@@ -1,0 +1,121 @@
+#include "includes/db_controller.h"
+
+
+using fname_t             = db_controller::fname_t;
+using db_t                = db_controller::db_t;
+using table_name_t        = db_controller::table_name_t;
+using table_t             = db_controller::table_t;
+using table_ptr           = db_controller::table_ptr; 
+using tables_t            = db_controller::tables_t;
+using table_iter_t        = typename db_controller::table_iter_t;
+using table_revers_iter_t = typename db_controller::table_revers_iter_t;
+
+db_controller::db_controller()
+{}
+
+db_controller::db_controller(size_t size_tables):
+    size_tables_(size_tables)
+{}
+
+
+db_controller::~db_controller()
+{}
+
+
+/* API DB_CONTROLLER */
+
+void db_controller::add_table(table_name_t&& dbname, fname_t&& fname, size_t size_table)
+{
+    auto new_db = make_db_kernel(std::move(fname), size_table);
+    tables_[dbname] = std::move(new_db);
+}
+
+
+table_ptr db_controller::get_table(const table_name_t& tname)
+{
+    auto table_iter = tables_.find(tname);
+    is_exist_table(table_iter);
+    return table_iter->second.get();
+}
+
+
+table_ptr db_controller::get_table(table_name_t&& tname)
+{
+    auto table_iter = tables_.find(std::move(tname));
+    is_exist_table(table_iter);
+    return table_iter->second.get();
+}
+
+
+void db_controller::is_exist_table(table_iter_t iter)
+{
+    if (iter == tables_.cend())
+    {
+        throw "table not found!";
+    }
+}
+
+
+
+ /* API DB_KERNEL */
+
+void db_controller::reserve()
+{
+    cur_table_->reserve();
+}
+
+void db_controller::reserve(size_t size)
+{
+    cur_table_->reserve(size);
+}
+
+void db_controller::init_table()
+{
+    cur_table_->create_table();
+}
+
+void db_controller::clear_table()
+{
+    cur_table_->drop_table();
+}
+
+token_ptr db_controller::get(size_t pos)
+{
+    return cur_table_->get(pos);
+}
+
+void db_controller::add(token_t&& val)
+{
+    cur_table_->add(std::move(val));
+}
+
+void db_controller::insert(size_t pos, token_t&& val)
+{
+    cur_table_->insert(pos, std::move(val));
+}
+
+void db_controller::remove(size_t pos)
+{
+    cur_table_->remove(pos);
+}
+
+void db_controller::update(size_t pos, token_t&& val)
+{
+    cur_table_->update(pos, std::move(val));
+}
+
+size_t db_controller::size_table()
+{
+    return cur_table_->size_table();
+}
+
+bool db_controller::is_open_table() const
+{
+    return cur_table_->is_open_file();
+}
+
+
+
+
+
+

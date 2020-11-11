@@ -1,0 +1,79 @@
+#ifndef _DB_KERNEL_H_
+#define _DB_KERNEL_H_
+//#define _ENABLE_DB_CONTROLLER_OPRTIONS_
+#define _BAD_ALLOC_DB_KERNEL_T_
+
+#include <iostream> //for size_t 
+#include <memory>
+#include <string>
+
+#ifndef _ENABLE_DB_CONTROLLER_OPRTIONS_
+#include <vector>
+
+#include "token.h"
+#include "tokenize_grammar.h"
+#include "file_stream.h"
+#include "methods.h"
+#endif // !_ENABLE_DB_CONTROLLER_OPRTIONS_
+
+class db_kernel;
+
+#ifndef _ENABLE_DB_CONTROLLER_OPRTIONS_
+using token_t           = std::unique_ptr<token>;
+using token_ptr         = token*;
+using file_stream_t     = file_stream;
+using file_stream_ptr   = file_stream_t*;
+using tok_gramm_t       = std::unique_ptr<tokenize_grammar>;
+using tok_gramm_ptr     = tokenize_grammar*;
+using container_t       = std::vector<token_t>;
+using container_iter_t  = typename container_t::iterator;
+using db_kernel_t       = std::unique_ptr<db_kernel>; 
+using db_kernel_ptr     = db_kernel*;
+#endif // !_ENABLE_DB_CONTROLLER_OPRTIONS_
+/*
+    token_t         = std::unique_ptr<token>
+    token_ptr       = token*
+    file_stream_t   = file_stream
+    file_stream_ptr = file_stream*
+    tok_gramm_t     = tokenize_grammar<file_stream*>
+    tok_gramm_ptr   = tokenize_grammar<file_stream*>*
+*/
+
+class db_kernel
+{
+public:
+    db_kernel(tok_gramm_t&& , size_t beg_cont_size = 0);
+    ~db_kernel();
+
+    void        reserve();
+    void        reserve(size_t );
+    void        create_table();
+    void        drop_table();
+
+    token_ptr   get(size_t );
+    void        add(token_t&& );
+    void        insert(size_t , token_t&& );
+    void        remove(size_t );
+    void        update(size_t , token_t&& );
+    size_t      size_table();
+    bool        is_open_file() const;
+    tok_gramm_t get_tok_gramm();
+    word_t      get_heder();
+
+private:
+    void      open_file();
+private:
+    size_t           beg_cont_size_;
+    tok_gramm_t      tok_gramm_;
+    container_t      container_;
+    container_iter_t iter_, beg_iter_;
+    word_t           heder_;
+};
+
+db_kernel_t make_db_kernel(std::string&& , size_t );
+
+#ifndef _BAD_ALLOC_DB_KERNEL_T_
+db_kernel_ptr alloc_db_kernel(std::string&& , size_t );
+#endif // !_BAD_ALLOC_DB_KERNEL_T_
+
+#endif // !_DB_KERNEL_H_
