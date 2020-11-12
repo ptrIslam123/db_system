@@ -1,4 +1,6 @@
 #include "includes/base_parse_api.h"
+#include <memory>
+
 
 base_parse_api::base_parse_api(base_parse_api::conatiner_t&& container):
     container_(std::move(container)),
@@ -15,6 +17,11 @@ lexeme_ptr base_parse_api::get_lexeme(size_t pos) const
     auto iter = container_.begin();
     std::advance(iter, position);
     return (*iter).get();
+}
+
+bool base_parse_api::is_end() const
+{
+    return (pos_ >= size_);
 }
 
 void base_parse_api::next_lexeme(size_t offset)

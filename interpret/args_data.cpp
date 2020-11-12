@@ -7,9 +7,13 @@ args_data::args_data():
     f_date_(false),
     f_time_(false),
     f_descript_(false),
-     type_(0)
+     type_(_NULL_TYPE)
 {}
 
+void args_data::set_null_type()
+{
+    type_ = _NULL_TYPE;
+}
 
 void args_data::set_args_type(args_type_t type)
 {

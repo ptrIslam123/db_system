@@ -11,7 +11,7 @@
 #define _TIME_DESCRIPT_ ( _TIME_ + _DESCRIPT_ )
 #define _DATE_DESCRIPT  ( _DATE_ + _DESCRIPT_ )
 #define _DATE_TIME_DESCRIPT_ ( _DATE_ + _TIME_ + _DESCRIPT_ )
-#define _ERROR_TYPE 0
+#define _NULL_TYPE 0
 
 struct args_data;
 using data_ptr      = args_data*;
@@ -30,6 +30,7 @@ public:
     void         set_date_ptr(const date_ptr );
     void         set_time_ptr(const time_ptr );
     void         set_descript_ptr(const descript_ptr );
+    void         set_null_type();
 
     date_ptr     get_date_ptr() const;
     time_ptr     get_time_ptr() const;

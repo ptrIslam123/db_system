@@ -96,6 +96,7 @@ void lexer<C>::run()
         else if (isspace(cur_s))
         {
             next(1);
+            continue;
         }
         else
         {

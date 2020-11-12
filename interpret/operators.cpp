@@ -4,7 +4,8 @@
 #include "includes/base_parse_api.h"
 
 /* API DB */
-operators::operators():
+operators::operators(base_parse_api_ptr base_p_api):
+    command(base_p_api),
     optr_table_{
         {"get",     __get_operator},
         {"insert",  __insert_operator},
@@ -21,7 +22,13 @@ operators::~operators()
 
 bool operators::is_it_commat() const
 {
-    return true;
+    auto word = get(0)->get_type();     // oprt_name
+    auto paraml = get(1)->get_type();   // (param_list)
+    if (word == LEXEME_TYPE::WORD && paraml == LEXEME_TYPE::L_BRACKET)
+    {
+        return true;
+    }
+    return false;
 }
 
 void operators::execute()
@@ -29,24 +36,26 @@ void operators::execute()
     auto oprt_p = parse_oprt();
     auto oprt = oprt_p.first;
     auto args = oprt_p.second;
-    oprt(std::move(args));
+
+    std::cout << "args_type = " << args[0].first->get_value() << "\n";
+
+    oprt(
+        std::move(args)
+    );
 }
 
 oprt_t operators::parse_oprt()
 {
-    auto oprt_name = get(0);
-    auto oprt = optr_table_.find(oprt_name->get_value());
+    auto oprt_name = get(0)->get_value();    // operator_name
+    auto oprt = optr_table_.find(oprt_name);
     if (oprt == optr_table_.cend())
     {
         throw "undefine operator";
     }
-    next(1);
-    auto cur_lex = get(0);
-    //is_eq_token(cur_lex->get_type(), LEXEME_TYPE::L_BRACKET, "udefine token" + cur_lex->get_value());
-    next(1);        // (
+    next(2);    // 'oprt_name'  '('
     auto args_oprt_data = parse_args_oprt_data();
     next(1);        // )
-    return oprt_t(oprt->second, std::move(args_oprt_data));
+    return oprt_t(oprt->second, std::move(args_oprt_data)); // ???
 }
 
 args_oprt_buf_t operators::parse_args_oprt_data()
@@ -64,27 +73,38 @@ args_oprt_buf_t operators::parse_args_oprt_data()
 args_oprt_t operators::make_args_oprt()
 {
     auto args_t_ = get(0);
-    auto args_d_ = get(3);
-    auto cur_lex = get(2);
-    //is_eq_token(cur_lex->get_type(), LEXEME_TYPE::TWO_POINT, "undefine token: " + cur_lex->get_value());
-    next(3);
+    next(1);    // args_type(example = dt)
+
+    auto two_point = get(0);
+    auto two_p_t = two_point->get_type();
+    auto two_p_v = two_point->get_value();   
+    is_eq_lex(two_p_t, LEXEME_TYPE::TWO_POINT, "undefine token" + two_p_v);
+    next(1);    // ':'
+
+    auto args_d_ = get(0);
+    next(1);    // args_data(example = '12.34.45')
     return args_oprt_t(args_t_, args_d_);
+}
+
+
+void operators::is_eq_lex(const LEXEME_TYPE& ltype, const LEXEME_TYPE& rtype, std::string&& emsg)
+{
+
 }
 
 bool operators::is_has_args_oprt() const
 {
-    return ( get(0)->get_type() == LEXEME_TYPE::R_BRACKET ); 
-    //return !(get(0)->get_type() == LEXEME_TYPE::R_BRACKET);
+    return !( get(0)->get_type() == LEXEME_TYPE::R_BRACKET ); 
 }
 
-lexeme_ptr operators::get(size_t ) const
+lexeme_ptr operators::get(size_t pos) const
 {
-    return nullptr;
+    return get_lexeme(pos);
 }
 
-void operators::next(size_t )
+void operators::next(size_t offset)
 {
-
+    next_lexeme(offset);
 }
 
 
@@ -93,17 +113,17 @@ void operators::next(size_t )
 static
 data_ptr get_data_ptr()
 {
-    return nullptr;
+    static args_data data;
+    data.set_null_type();
+    return &data;
 }
 
 static
 void init_data(data_ptr data, args_oprt_buf_t&& args)
 {
     auto size = args.size();
-    if (size % 2 != 0)
-    {
-        throw "";
-    }
+  
+
     auto i = 0;
     while (true)
     {
@@ -146,6 +166,10 @@ void __get_operator(args_oprt_buf_t&& args)
     auto data = get_data_ptr();
     try
     {
+        for (auto&i : args)
+        {
+            std::cout << i.first->get_value() << "\n";
+        }
         init_data(data, std::move(args));   
     }
     catch(const std::out_of_range& e)

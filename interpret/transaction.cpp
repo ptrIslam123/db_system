@@ -1,7 +1,9 @@
 #include "includes/transaction.h"
 #include "includes/transact_error.h"
 
-transaction::transaction()
+transaction::transaction(base_parse_api_ptr base_p_api):
+    command(base_p_api),
+    oprt_(base_p_api)
 {}
 
 transaction::~transaction()
@@ -24,27 +26,28 @@ void transaction::execute()
     }
 }
 
+lexeme_ptr transaction::get(size_t pos) const
+{
+    return get_lexeme(pos);
+}
+
+void transaction::next(size_t offset)
+{
+    next_lexeme(offset);
+}
+
 void transaction::close_transact_contecste() const
 {
 
 }
 
-lexeme_ptr transaction::get(size_t ) const
-{
-    return nullptr;
-}
-
-void transaction::next(size_t )
-{
-
-}
 
 bool transaction::is_it_commat() const
 {
-    return true;
+    return false;
 }
 
 bool transaction::is_end_transact_block() const
 {
-    return true;
+    return false;
 }

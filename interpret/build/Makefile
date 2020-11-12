@@ -39,6 +39,11 @@ compilLexeme:
 compilBaseParse_API:
 	clang++ -g -c ../base_parse_api.cpp
 
+compilOperators:
+	clang++ -g -c ../operators.cpp
+
+compilCommand:
+	clang++ -g -c ../command.cpp
 
 link:
 	clang++ *.o -o main

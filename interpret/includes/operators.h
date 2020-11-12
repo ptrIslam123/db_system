@@ -12,8 +12,8 @@ class operators : public command
 {
     using oprt_table_t = std::map<oprt_name_t, oprt_type>;
 public:
-    operators();
-    ~operators();
+    operators(base_parse_api_ptr );
+    virtual ~operators();
     virtual void    execute() override;
     virtual bool    is_it_commat() const override; 
 
@@ -24,6 +24,9 @@ private:
     bool            is_has_args_oprt() const;
     lexeme_ptr      get(size_t ) const;
     void            next(size_t );
+    void            is_eq_lex(const LEXEME_TYPE& , 
+                              const LEXEME_TYPE& , 
+                              std::string&&     );
 private:
     oprt_table_t    optr_table_;
 };
