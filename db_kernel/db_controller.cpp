@@ -39,6 +39,11 @@ table_ptr db_controller::get_table(const table_name_t& tname)
 }
 
 
+void db_controller::set_table(table_name_t&& tname)
+{
+    cur_table_ = get_table(std::move(tname));
+}
+
 table_ptr db_controller::get_table(table_name_t&& tname)
 {
     auto table_iter = tables_.find(std::move(tname));
@@ -69,14 +74,30 @@ void db_controller::reserve(size_t size)
     cur_table_->reserve(size);
 }
 
-void db_controller::init_table()
+void db_controller::init_table(table_name_t&& tname, file_name_t&& fname, size_t size_table)
 {
-    cur_table_->create_table();
+    table_name_t table_name = tname;
+    add_table(std::move(tname), std::move(fname), size_table);
+    
+    auto table = get_table(std::move(table_name));
+    table->create_table();
 }
 
-void db_controller::clear_table()
+void db_controller::clear_table(table_name_t&& tname)
 {
-    cur_table_->drop_table();
+    table_name_t table_name = tname;
+    auto table_ptr = get_table(std::move(tname));
+    
+    table_ptr->drop_table();
+    delete_table(std::move(table_name));
+}
+
+
+void db_controller::delete_table(table_name_t&& tname)
+{
+    auto iter = tables_.find(std::move(tname));
+    is_exist_table(iter);
+    tables_.erase(iter);
 }
 
 token_ptr db_controller::get(size_t pos)

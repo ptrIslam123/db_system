@@ -1,6 +1,8 @@
 #include "includes/token.h"
 #include <iostream>
 
+token::token()
+{}
 
 token::token(date_t_&& date, time_t_&& time, type_t_ type,  descript_t_&& descript):
     date_(std::move(date)),
@@ -9,8 +11,8 @@ token::token(date_t_&& date, time_t_&& time, type_t_ type,  descript_t_&& descri
     descript_(std::move(descript))
 {}
 
-token::~token() {}
-
+token::~token() 
+{}
 
 
 token_t token::clone()

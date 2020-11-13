@@ -15,7 +15,7 @@ int main()
     std::string all_path = "/home/islam/CppProgram/db_sysytem_for_it_company/db_kernel";
     std::string fname = all_path + "/data/data.txt";
 
-   
+
 
     return 0;
 }

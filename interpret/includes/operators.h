@@ -18,8 +18,6 @@ public:
     virtual bool    is_it_commat() const override; 
 
 private:
-    oprt_t          parse_oprt();
-    args_oprt_buf_t parse_args_oprt_data();
     args_oprt_t     make_args_oprt();
     bool            is_has_args_oprt() const;
     lexeme_ptr      get(size_t ) const;

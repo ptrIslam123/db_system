@@ -29,6 +29,7 @@ using descript_t_       = std::pair<descript_len, descript_val>;
 struct token
 {
 public:
+   token();
    token(date_t_&& , time_t_&&, type_t_,  descript_t_&& );
    ~token();
 
@@ -50,6 +51,11 @@ private:
     descript_t_ descript_;
 };
 
+template<typename ... Args>
+token_t make_token(Args&& ... args)
+{
+    return std::make_unique<token>(std::forward<Args>(args) ... );
+}
 
 bool const is_eq_ds(const descript_ptr_ , const descript_ptr_  );
 

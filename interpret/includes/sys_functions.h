@@ -56,7 +56,7 @@ void get_req(cmprt_t ,token_ptr ,  data_ptr , size_t );
 void insert_req(cmprt_t , token_ptr , data_ptr ,size_t , token_t&& );
 void update_req(cmprt_t , token_ptr , data_ptr ,size_t , token_t&& );
 void remove_req(cmprt_t , token_ptr , data_ptr ,size_t );
-
+void set_table(table_name_t&& );
 
 
 /* API transaction  */
@@ -66,12 +66,16 @@ void drop_table_atomic(table_name_t&& );
 void insert_req_atomic(cmprt_t , token_ptr , data_ptr ,size_t , token_t&& );
 void update_req_atomic(cmprt_t , token_ptr , data_ptr ,size_t , token_t&& );
 void remove_req_atomic(cmprt_t , token_ptr , data_ptr ,size_t );
+void set_table_atomic(table_name_t&& );
 void rolback_records();
 
 /* rolback request functions */
 static void _rolback_insert_r(record_ptr );
 static void _rolback_update_r(record_ptr );
 static void _rolback_remove_r(record_ptr );
+static void _rolback_create_table(record_ptr );
+static void _rolback_drop_table(record_ptr );
+static void _rolback_set_table(record_ptr );
 
 
 /* supporting functional */

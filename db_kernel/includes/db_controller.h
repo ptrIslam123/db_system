@@ -12,6 +12,7 @@ class db_controller
 {
 public:
     using fname_t             = std::string;
+    using file_name_t         = fname_t;
     using db_t                = std::unique_ptr<db_kernel>;
     using table_name_t        = std::string;
     using table_t             = db_kernel;
@@ -19,21 +20,23 @@ public:
     using tables_t            = std::map<table_name_t, db_t>;
     using table_iter_t        = typename tables_t::iterator;
     using table_revers_iter_t = typename tables_t::reverse_iterator;
-
+    
     db_controller();
     db_controller(size_t );
     ~db_controller();
 
     /* API DB_CONTROLLER */
     void        add_table(table_name_t&& , fname_t&& , size_t );
+    void        set_table(table_name_t&& );
+    void        delete_table(table_name_t&& );
     table_ptr   get_table(table_name_t&& );
     table_ptr   get_table(const table_name_t& );
 
     /* API DB_KERNEL */
     void        reserve();
     void        reserve(size_t );
-    void        init_table();
-    void        clear_table();
+    void        init_table(table_name_t&& , file_name_t&& , size_t);
+    void        clear_table(table_name_t&& );
 
     token_ptr   get(size_t );
     void        add(token_t&& );
@@ -44,7 +47,7 @@ public:
     bool        is_open_table() const;
 
 private:
-    void is_exist_table(table_iter_t );
+    void        is_exist_table(table_iter_t );
 
 private:
   tables_t  tables_;

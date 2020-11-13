@@ -49,6 +49,11 @@ void args_data::set_descript_ptr(const descript_ptr descript)
     descript_ =  descript;
 }
 
+void args_data::set_table_name_ptr(const table_name_ptr table_name)
+{
+    table_name_ = table_name;
+}
+
 date_ptr args_data::get_date_ptr() const
 {
     return date_;
@@ -67,4 +72,9 @@ descript_ptr args_data::get_descript_ptr()
 args_type_t args_data::get_args_type() 
 {
     return type_;
+}
+
+table_name_ptr args_data::get_table_name_ptr() const
+{
+    return table_name_;
 }
