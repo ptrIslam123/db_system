@@ -236,7 +236,7 @@ void __insert_operator(args_oprt_buf_t&& args)
     switch (type)
     {
         case _DATE_TIME_DESCRIPT_ : {
-            //for_each_select(comparator_dt_ti_ds, get_req, data);
+            for_each(insert_req, create_token(data));
             break;
         }
         default:
@@ -256,13 +256,10 @@ void __update_operator(args_oprt_buf_t&& args)
         //std::cerr << e.what() << '\n';
     }
     auto type = data->get_args_type();
-    
-    auto val = make_token();
-    
     switch (type)
     {
         case _DATE_ : {
-            for_each(comparator_dt, update_req, data, std::move(val));
+            for_each(insert_dt_req);
             break;
         }
         case _TIME_ : {
@@ -301,7 +298,7 @@ void __remove_operator(args_oprt_buf_t&& args)
     {
         throw "undefine param";
     }
-    remove_req();
+    //remove_req();
 }
 
 void __create_table_operator(args_oprt_buf_t&& args)

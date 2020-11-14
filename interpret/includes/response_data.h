@@ -19,6 +19,9 @@ public:
 
     void        reserve(size_t );
     void        add(size_t );
+    index_t     get_index(size_t ) const;
+    size_t      size() const;
+    size_t      capacity() const;
     container_t get_response();
 
 private:

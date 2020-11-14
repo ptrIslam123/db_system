@@ -68,3 +68,7 @@ void token::set_descript(const descript_t_& descript)
     descript_ = descript;
 }
 
+word_t get_type_token()
+{
+    return std::string("Дата и время      	Тип события	Описание");
+}

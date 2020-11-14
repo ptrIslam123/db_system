@@ -6,17 +6,18 @@
 #include <memory>
 
 
-#include "includes/lexer.h"
-#include "includes/parser.h"
+//#include "includes/lexer.h"
+//#include "includes/parser.h"
+#include "includes/response_data.h"
 
 
 
 int main()
 {
     std::string text = "get(dt: '12.34.21' ti:'12:32' ds: 'text descriptions')";
-    lexer<> lex(std::move(text), 100);
+    //lexer<> lex(std::move(text), 100);
 
-
+/* 
     lex.run();
     auto tokens = lex.get_result();
 
@@ -24,6 +25,7 @@ int main()
    
     parser p(std::move(base_ptr));
     p.run();
-
+*/
+   
     return 0;
 }

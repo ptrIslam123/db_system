@@ -59,4 +59,6 @@ token_t make_token(Args&& ... args)
 
 bool const is_eq_ds(const descript_ptr_ , const descript_ptr_  );
 
+word_t get_type_token();
+
 #endif // !_TOKEN_H_

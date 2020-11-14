@@ -21,3 +21,18 @@ response_data::container_t response_data::get_response()
 {
     return std::move(poll_indx_);
 }
+
+response_data::index_t response_data::get_index(size_t pos) const
+{
+    return poll_indx_[pos];
+}
+
+size_t response_data::size() const
+{
+    return poll_indx_.size();
+}
+
+size_t response_data::capacity() const
+{
+    return poll_indx_.capacity();
+}

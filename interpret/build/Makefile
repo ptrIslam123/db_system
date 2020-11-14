@@ -42,6 +42,9 @@ compilBaseParse_API:
 compilOperators:
 	clang++ -g -c ../operators.cpp
 
+compilResponse:
+	clang++ -g -c ../response_data.cpp
+
 compilCommand:
 	clang++ -g -c ../command.cpp
 

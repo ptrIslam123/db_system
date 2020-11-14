@@ -49,36 +49,33 @@ bool comparator_dt_ti_ds(const token_ptr tok, const data_ptr data)
 /* for_each */
 
 
-void for_each(cmprt_t cmprt, req_method_t req_method, data_ptr data, token_t&& val)
+void for_each(cmprt_t comparator , select_t select , data_ptr data)
 {
-    const size_t size = _get_size_table();
-    for (size_t i = 0; i < size; ++i)
+    const auto size = _get_size_table();
+    for (auto i = 0; i < size; ++i)
     {
-        req_method(cmprt, _get_token(i), data, i, std::move(val));
-    } 
+        select(comparator, _get_token(i), data, i);
+    }
 }
 
-void for_each(cmprt_t cmprt, rm_method_t rm_req_method, data_ptr data, token_t&& val)
+void for_each(req_method_t req , token_t&& val)
 {
-    const size_t size = _get_size_table();
-    for (size_t i = 0; i < size; ++i)
+    const auto size = _get_size_pesronse_buf();
+    for (auto i = 0; i < size; ++i)
     {
-        rm_req_method(cmprt, _get_token(i), data, i);
-    } 
-}
-
-
-response_d for_each_select(cmprt_t cmprt, select_t select, data_ptr data)
-{
-    const size_t size = _get_size_table();
-    for (size_t i = 0; i < size; ++i)
-    {
-        select(cmprt, _get_token(i), data, i);
-    } 
-    return _get_response();
+        req(_get_index_response_buf(i), val->clone());
+    }
 }
 
 
+void for_each(rm_method_t rm)
+{
+    const auto size = _get_size_pesronse_buf();
+    for (auto i = 0; i < size; ++i)
+    {
+        rm(_get_index_response_buf(i));
+    }
+}
 
 /* request functions */
 
@@ -98,66 +95,6 @@ void drop_table_req(table_name_t&& tname)
     );
 }
 
-void get_req(cmprt_t comparator,
-             token_ptr tok,
-             data_ptr data, 
-             size_t pos)
-{
-    if (comparator(tok, data))
-    {
-        response_data_t::instance().add(pos);
-    }
-}
-
-
-void insert_req(cmprt_t comparator,
-                token_ptr tok, 
-                data_ptr data, 
-                size_t pos, 
-                token_t&& val)
-{
-    if (comparator(tok, data))
-    {
-        _insert_token(pos, std::move(val));
-    }
-}
-
-void update_req(cmprt_t comparator,
-                token_ptr tok,
-                data_ptr data,
-                size_t pos,
-                token_t&& val)
-{
-    if(comparator(tok, data))
-    {
-        _update_token(pos, std::move(val));
-    }
-}
-
-/*
-void remove_req(cmprt_t comparator,
-                token_ptr tok,
-                data_ptr data,
-                size_t pos)
-{
-    if (comparator(tok, data))
-    {
-        _remove_token(pos);
-    }
-}
-*/
-
-void remove_req()
-{
-   /*
-        for (auto& i : get_response_arr())
-        {
-            auto indx = i.get_indx(i);
-            remove_token(indx);
-        }
-    */
-}
-
 
 void set_table_req(table_name_t&& tname)
 {
@@ -165,12 +102,66 @@ void set_table_req(table_name_t&& tname)
 }
 
 
+void get_req(cmprt_t comparator,
+             token_ptr tok,
+             data_ptr data, 
+             index_t index)
+{
+    if (comparator(tok, data))
+    {
+        _add_index_response_buf(index);
+    }
+}
+
+
+void insert_dt_req(index_t index, date_t_&& date)
+{
+    //
+}
+
+void insert_ti_req(index_t index, time_t_&& time)
+{
+
+}
+
+void insert_ds_req(index_t index, descript_t_&& descript)
+{
+
+}
+
+void insert_dt_ti_req(index_t index, date_t_&& date, time_t_&& time)
+{
+
+}
+
+void insert_ti_ds_req(index_t index, time_t_&& time, descript_t_&& descript)
+{
+
+}
+
+void insert_dt_ti_ds_req(index_t index, date_t_&& date, time_t_&& time, descript_t_&& descript)
+{
+
+}
+
+
+void update_req(index_t index, token_t&& val)
+{
+    _update_token(index, val->clone());
+}
+
+void remove_req(index_t index)
+{
+    _remove_token(index);
+}
+
+
+
 /* API transaction  */
 
 void create_table_req_atomic(table_name_t&& tname, file_name_t&& fname, size_t size_table)
 {
-    auto tok = make_token();    // <- null token
-   _save_state_record(0, tok.get(), _rolback_create_table);
+   _save_state_record(0,make_token(), _rolback_create_table);
   db_controller_t::instance().init_table(
        std::move(tname),
        std::move(fname),
@@ -180,58 +171,62 @@ void create_table_req_atomic(table_name_t&& tname, file_name_t&& fname, size_t s
 
 void drop_table_req_atomic(table_name_t&& tname)
 {
-    auto tok = make_token();    // <- null token
-    _save_state_record(0, tok.get(), _rolback_drop_table);
+    _save_state_record(0, make_token(), _rolback_drop_table);
    db_controller_t::instance().clear_table(
        std::move(tname)
    );
 }
 
-void insert_req_atomic(cmprt_t comparator,
-                token_ptr tok, 
-                data_ptr data, 
-                size_t pos, 
-                token_t&& val)
-{
-    if (comparator(tok, data))
-    {
-        _save_state_record(pos, tok, _rolback_insert_r);
-        _insert_token(pos, std::move(val));  
-    }
-}
-
-void update_req_atomic(cmprt_t comparator,
-                token_ptr tok,
-                data_ptr data,
-                size_t pos,
-                token_t&& val)
-{
-    if(comparator(tok, data))
-    {
-        _save_state_record(pos, tok, _rolback_update_r);
-        _update_token(pos, std::move(val));   
-    }
-}
-
-void remove_req_atomic(cmprt_t comparator,
-                token_ptr tok,
-                data_ptr data,
-                size_t pos)
-{
-    if (comparator(tok, data))
-    {
-         
-        _save_state_record(pos, tok, _rolback_remove_r);
-        _remove_token(pos);   
-    }
-}
-
 
 void set_table_req_atomic(table_name_t&& tname)
 {
-    auto tok = make_token();    // <- null token
-    _save_state_record(0, tok.get(), _rolback_set_table);
+    _save_state_record(0, make_token(), _rolback_set_table);
     db_controller_t::instance().set_table(std::move(tname));
+}
+
+
+
+void insert_dt_req_atomic(index_t index, date_t_&& date)
+{
+    //
+}
+
+void insert_ti_req_atomic(index_t index, time_t_&& time)
+{
+
+}
+
+void insert_ds_req_atomic(index_t index, descript_t_&& descript)
+{
+
+}
+
+void insert_dt_ti_req_atomic(index_t index, date_t_&& date, time_t_&& time)
+{
+
+}
+
+void insert_ti_ds_req_atomic(index_t index, time_t_&& time, descript_t_&& descript)
+{
+
+}
+
+void insert_dt_ti_ds_req_atomic(index_t index, date_t_&& date, time_t_&& time, descript_t_&& descript)
+{
+
+}
+
+
+void update_req_atomic(index_t index, token_t&& val)
+{
+    _save_state_record(index, val->clone(), _rolback_update_r);
+    _update_token(index, val->clone());
+}
+
+void remove_req_atomic(index_t index)
+{
+    _save_state_record(index, make_token(), _rolback_remove_r);
+    _remove_token(index);
 }
 
 
@@ -285,11 +280,43 @@ static void _rolback_set_table(record_ptr )
 
 /* supporting functional */
 
+token_t create_token(data_ptr data)
+{
+    auto dt = *(data->get_date_ptr());
+    auto ti = *(data->get_time_ptr());
+    auto ty = get_type_token();
+    auto ds = *(data->get_descript_ptr());
+   
+    auto val = make_token(
+        std::move(dt), std::move(ti) ,std::move(ty), std::move(ds)
+    );
+    return std::move(val);
+}
+
+
 static
 size_t const _get_size_table()
 {
     return db_controller_t::instance().size_table();
 }
+
+
+static size_t const _get_size_pesronse_buf()
+{
+    return response_data_t::instance().size();
+}
+
+static size_t const _get_index_response_buf(size_t pos)
+{
+    return response_data_t::instance().get_index(pos);
+}
+
+static void _add_index_response_buf(index_t index)
+{
+    response_data_t::instance().add(index);
+}
+
+
 
 static
 token_ptr const _get_token(size_t pos)
@@ -321,9 +348,10 @@ void _remove_token(size_t pos)
     db_controller_t::instance().remove(pos);
 }
 
+
 static
-void _save_state_record(index_t indx, token_ptr tok, controller_transact_t controll)
+void _save_state_record(index_t indx, token_t&& tok, controller_transact_t controll)
 {
-    memento_t::instance().set_state(indx, tok->clone(), controll);
+    memento_t::instance().set_state(indx, std::move(tok), controll);
 }
 
