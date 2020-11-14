@@ -50,23 +50,24 @@ response_d   for_each_select(cmprt_t , select_t , data_ptr );
 
 /* request functions */
 
-void create_table(table_name_t&& , file_name_t&& , size_t );
-void drop_table(table_name_t&& );
+void create_table_req(table_name_t&& , file_name_t&& , size_t );
+void drop_table_req(table_name_t&& );
 void get_req(cmprt_t ,token_ptr ,  data_ptr , size_t );
 void insert_req(cmprt_t , token_ptr , data_ptr ,size_t , token_t&& );
 void update_req(cmprt_t , token_ptr , data_ptr ,size_t , token_t&& );
-void remove_req(cmprt_t , token_ptr , data_ptr ,size_t );
-void set_table(table_name_t&& );
+//void remove_req(cmprt_t , token_ptr , data_ptr ,size_t );
+void remove_req();
+void set_table_req(table_name_t&& );
 
 
 /* API transaction  */
 
-void create_table_atomic(table_name_t&& , file_name_t&& , size_t );
-void drop_table_atomic(table_name_t&& );
+void create_table_req_atomic(table_name_t&& , file_name_t&& , size_t );
+void drop_table_req_atomic(table_name_t&& );
 void insert_req_atomic(cmprt_t , token_ptr , data_ptr ,size_t , token_t&& );
 void update_req_atomic(cmprt_t , token_ptr , data_ptr ,size_t , token_t&& );
 void remove_req_atomic(cmprt_t , token_ptr , data_ptr ,size_t );
-void set_table_atomic(table_name_t&& );
+void set_table_req_atomic(table_name_t&& );
 void rolback_records();
 
 /* rolback request functions */

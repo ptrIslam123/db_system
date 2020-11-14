@@ -16,6 +16,7 @@ int main()
     std::string text = "get(dt: '12.34.21' ti:'12:32' ds: 'text descriptions')";
     lexer<> lex(std::move(text), 100);
 
+
     lex.run();
     auto tokens = lex.get_result();
 

@@ -82,7 +82,7 @@ response_d for_each_select(cmprt_t cmprt, select_t select, data_ptr data)
 
 /* request functions */
 
-void create_table(table_name_t&& tname, file_name_t&& fname, size_t size_table)
+void create_table_req(table_name_t&& tname, file_name_t&& fname, size_t size_table)
 {
    db_controller_t::instance().init_table(
        std::move(tname),
@@ -91,7 +91,7 @@ void create_table(table_name_t&& tname, file_name_t&& fname, size_t size_table)
    );
 }
 
-void drop_table(table_name_t&& tname)
+void drop_table_req(table_name_t&& tname)
 {
     db_controller_t::instance().clear_table(
         std::move(tname)
@@ -134,6 +134,7 @@ void update_req(cmprt_t comparator,
     }
 }
 
+/*
 void remove_req(cmprt_t comparator,
                 token_ptr tok,
                 data_ptr data,
@@ -144,9 +145,21 @@ void remove_req(cmprt_t comparator,
         _remove_token(pos);
     }
 }
+*/
+
+void remove_req()
+{
+   /*
+        for (auto& i : get_response_arr())
+        {
+            auto indx = i.get_indx(i);
+            remove_token(indx);
+        }
+    */
+}
 
 
-void set_table(table_name_t&& tname)
+void set_table_req(table_name_t&& tname)
 {
     db_controller_t::instance().set_table(std::move(tname));
 }
@@ -154,7 +167,7 @@ void set_table(table_name_t&& tname)
 
 /* API transaction  */
 
-void create_table_atomic(table_name_t&& tname, file_name_t&& fname, size_t size_table)
+void create_table_req_atomic(table_name_t&& tname, file_name_t&& fname, size_t size_table)
 {
     auto tok = make_token();    // <- null token
    _save_state_record(0, tok.get(), _rolback_create_table);
@@ -165,7 +178,7 @@ void create_table_atomic(table_name_t&& tname, file_name_t&& fname, size_t size_
    );
 }
 
-void drop_table_atomic(table_name_t&& tname)
+void drop_table_req_atomic(table_name_t&& tname)
 {
     auto tok = make_token();    // <- null token
     _save_state_record(0, tok.get(), _rolback_drop_table);
@@ -214,7 +227,7 @@ void remove_req_atomic(cmprt_t comparator,
 }
 
 
-void set_table_atomic(table_name_t&& tname)
+void set_table_req_atomic(table_name_t&& tname)
 {
     auto tok = make_token();    // <- null token
     _save_state_record(0, tok.get(), _rolback_set_table);

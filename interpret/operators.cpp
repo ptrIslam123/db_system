@@ -157,6 +157,14 @@ void init_data(data_ptr data, args_oprt_buf_t&& args)
             i++;
             continue;
         }
+        if (args_type == "fn")
+        {
+            data->set_args_type(_FILE_NAME_);
+            auto file_name_ptr = (args.at(i).second)->get_ptr_value();
+            data->set_file_name_ptr(file_name_ptr);
+            i++;
+            continue;
+        }
         else
         {
             throw "undefine token";
@@ -249,10 +257,12 @@ void __update_operator(args_oprt_buf_t&& args)
     }
     auto type = data->get_args_type();
     
+    auto val = make_token();
+    
     switch (type)
     {
         case _DATE_ : {
-            //for_each_select(comparator_dt, get_req, data);
+            for_each(comparator_dt, update_req, data, std::move(val));
             break;
         }
         case _TIME_ : {
@@ -291,7 +301,7 @@ void __remove_operator(args_oprt_buf_t&& args)
     {
         throw "undefine param";
     }
-    //for_each(...);
+    remove_req();
 }
 
 void __create_table_operator(args_oprt_buf_t&& args)
@@ -309,8 +319,13 @@ void __create_table_operator(args_oprt_buf_t&& args)
     
     switch (type)
     {
-        case _TABLE_NAME_ : {
-            //for_each_select(comparator_dt_ti_ds, get_req, data);
+        case _TABLE_FILE_NAME_ : {
+            auto tname = *(data->get_table_name_ptr());
+            auto fname = *(data->get_file_name_ptr());
+            auto size_str = *(data->get_size_ptr());
+            auto size =  std::stoi(std::move(size_str));
+            
+            create_table_req(std::move(tname), std::move(fname) , size);
             break;
         }
         default:
@@ -334,7 +349,8 @@ void __drop_table_operator(args_oprt_buf_t&& args)
     switch (type)
     {
         case _TABLE_NAME_ : {
-            //for_each_select(comparator_dt_ti_ds, get_req, data);
+            auto tname = *(data->get_table_name_ptr());
+            drop_table_req(std::move(tname));
             break;
         }
         default:
@@ -358,7 +374,8 @@ void __set_table_operator(args_oprt_buf_t&& args)
     switch (type)
     {
         case _TABLE_NAME_ : {
-            //for_each_select(comparator_dt_ti_ds, get_req, data);
+            auto tname = *(data->get_table_name_ptr());
+            set_table_req(std::move(tname));
             break;
         }
         default:
