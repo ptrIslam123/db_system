@@ -51,6 +51,12 @@ compilSysFunctions:
 compilCommand:
 	clang++ -g -c ../command.cpp
 
+compilArgsData:
+	clang++ -g -c ../args_data.cpp
+
+compilShell:
+	clang++ -g -c ../shell.cpp
+
 link:
 	clang++ *.o -o main
 

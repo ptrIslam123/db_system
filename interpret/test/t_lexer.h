@@ -3,6 +3,9 @@
 
 #include <iostream>
 #include "../includes/lexeme.h"
+#include "../includes/lexer.h"
+#include "../includes/base_parse_api.h"
+#include "../includes/parser.h"
 
 auto printLexer = [](auto container)
 {
@@ -14,5 +17,25 @@ auto printLexer = [](auto container)
         std::cout << "value : " << lex->get_value() << "\n";
     }
 };
+
+
+void exec(std::string&& code)
+{
+    try
+    {
+        lexer<> lex(std::move(code), 200);
+        lex.run();
+
+        base_parse_api base(std::move(lex.get_result()));
+
+        parser p(&base);
+        p.run();
+        std::cout << "\t\t***|| execute command ||***\n";
+    }
+    catch(const char* e)
+    {
+        std::cerr << "\t\t***||error execute: " << e << " ||***\n";
+    }  
+}
 
 #endif // !_T_LEXER_H_

@@ -20,6 +20,7 @@ class base_parse_api
 {
     using conatiner_t  = std_container_type;
 public:
+    base_parse_api();
     base_parse_api(conatiner_t&& );
     ~base_parse_api();
 
@@ -28,6 +29,7 @@ public:
     void        is_eq_lexeme(const LEXEME_TYPE& ,
                              const LEXEME_TYPE& , std::string&& ) const;
     
+    void        set_container(conatiner_t&& );
     bool        is_end() const;
     size_t      get_size() const;
     size_t      get_pos() const;

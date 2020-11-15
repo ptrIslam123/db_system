@@ -13,7 +13,8 @@ operators::operators(base_parse_api_ptr base_p_api):
         {"remove",  __remove_operator},
         {"create_t",  __create_table_operator},
         {"drop_t",    __drop_table_operator},
-        {"set_t",     __set_table_operator}
+        {"set_t",     __set_table_operator},
+        {"print_t",   __print_table__operator}
     }
 {}
 
@@ -181,7 +182,9 @@ void init_data(data_ptr data, args_oprt_buf_t&& args)
 
 void __get_operator(args_oprt_buf_t&& args)
 {
-    auto data = get_data_ptr();
+    //auto data = get_data_ptr();
+    args_data arg_data;
+    data_ptr data = &arg_data;
     try
     {
         init_data(data, std::move(args));   
@@ -229,7 +232,9 @@ void __get_operator(args_oprt_buf_t&& args)
 
 void __insert_operator(args_oprt_buf_t&& args)
 {
-    auto data = get_data_ptr();
+    //auto data = get_data_ptr();
+    args_data arg_data;
+    data_ptr data = &arg_data;
     try
     {
         init_data(data, std::move(args));   
@@ -253,7 +258,9 @@ void __insert_operator(args_oprt_buf_t&& args)
 
 void __update_operator(args_oprt_buf_t&& args)
 {
-    auto data = get_data_ptr();
+    //auto data = get_data_ptr();
+    args_data arg_data;
+    data_ptr data = &arg_data;
     try
     {
         init_data(data, std::move(args));   
@@ -300,7 +307,7 @@ void __update_operator(args_oprt_buf_t&& args)
 
 void __remove_operator(args_oprt_buf_t&& args)
 {
-    auto size = args.size();
+    const auto size = args.size();
     if (size > 0 )
     {
         throw "method : __remove_operator | undefine param";
@@ -310,7 +317,9 @@ void __remove_operator(args_oprt_buf_t&& args)
 
 void __create_table_operator(args_oprt_buf_t&& args)
 {
-    auto data = get_data_ptr();
+    //auto data = get_data_ptr();
+    args_data arg_data;
+    data_ptr data = &arg_data;
     try
     {
         init_data(data, std::move(args));   
@@ -339,7 +348,9 @@ void __create_table_operator(args_oprt_buf_t&& args)
 
 void __drop_table_operator(args_oprt_buf_t&& args)
 {
-    auto data = get_data_ptr();
+    //auto data = get_data_ptr();
+    args_data arg_data;
+    data_ptr data = &arg_data;
     try
     {
         init_data(data, std::move(args));   
@@ -364,7 +375,9 @@ void __drop_table_operator(args_oprt_buf_t&& args)
 
 void __set_table_operator(args_oprt_buf_t&& args)
 {
-    auto data = get_data_ptr();
+    //auto data = get_data_ptr();
+    args_data arg_data;
+    data_ptr data = &arg_data;
     try
     {
         init_data(data, std::move(args));   
@@ -387,3 +400,12 @@ void __set_table_operator(args_oprt_buf_t&& args)
     }
 }
 
+void __print_table__operator(args_oprt_buf_t&& args)
+{
+    const auto size = args.size();
+    if (size > 0 )
+    {
+        throw "method : __print_table__operator | undefine param";
+    }
+    print_table_req();
+}

@@ -65,6 +65,7 @@ void update_dt_ds_req(index_t, data_ptr );
 void update_ti_ds_req(index_t , data_ptr );
 void update_dt_ti_ds_req(index_t , data_ptr );
 void remove_req(index_t );
+void print_table_req();
 
 
 
@@ -107,7 +108,7 @@ static void         _insert_token(size_t , token_t&& );
 static void         _update_token(size_t , token_t&& );
 static void         _remove_token(size_t );
 static void         _save_state_record(index_t , token_t&& , controller_transact_t);
-
+static void         _print_token(token_ptr );
 
 
 #endif // !_SYS_FUNCTIONS_H_

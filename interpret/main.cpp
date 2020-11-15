@@ -1,4 +1,5 @@
 #include <iostream>
+#include <fstream>
 #include <string>
 #include <vector>
 #include <map>
@@ -11,12 +12,13 @@
 #include "includes/base_parse_api.h"
 #include "includes/response_data.h"
 #include "test/t_lexer.h"
+#include "includes/shell.h"
 
 
 
 int main()
 {
-    std::string fn = "/home/islam/CppProgram/db_sysytem_for_it_company/db_kernel/data/data.txt";
+    std::string fn = "/home/islam/CppProgram/db_sysytem_for_it_company/interpret/test/tdata/tdata.txt";
     std::string tn = "table1";
     std::string dt = "18.07.2020";
     std::string sz = "10";
@@ -27,24 +29,9 @@ int main()
    
     std::string code  = create_t + "\n" + set_t + "\n" + get;
 
-    lexer<> lex(std::move(create_t + set_t), 200);
-    lex.run();
-    auto tokens = lex.get_result();
-    
-    auto base = std::make_unique<base_parse_api>(std::move(tokens));
-    
-    parser p(std::move(base));
-    try
-    {
-        p.run(); 
-    }
-    catch(const char* emsg)
-    {
-        std::cerr << emsg << '\n';
-    }
-    
-
-   
+    exec(std::move(create_t));
+    exec(std::move(set_t));
+    exec("print_t()");
 
     return 0;
 }

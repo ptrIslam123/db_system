@@ -4,9 +4,18 @@
 args_data::args_data():
     date_(nullptr),
     time_(nullptr),
+    descript_(nullptr),
+    table_name_(nullptr),
+    file_name_(nullptr),
+    size_(nullptr),
+    pos_(nullptr),
     f_date_(false),
     f_time_(false),
     f_descript_(false),
+    f_table_name_(false),
+    f_file_name_(false),
+    f_size_(false),
+    f_pos_(false),
      type_(_NULL_TYPE)
 {}
 

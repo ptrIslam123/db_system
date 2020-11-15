@@ -8,15 +8,16 @@
 
 class parser 
 {
-    using base_p_api_uptr       = std::unique_ptr<base_parse_api>;
+    using base_p_api_ptr        = base_parse_api*;
     using command_t             = command;
     using command_ptr           = command_t*;
-    using commands_t            = std::array<command_ptr,
-                                             SIZE_SET_COMMAND>;
+    using commands_t            = std::array<command_ptr, SIZE_SET_COMMAND>;
 public:
-    parser(base_p_api_uptr&& );
+    parser();
+    parser(base_p_api_ptr );
     ~parser();
     void run();
+    void set_base_parse_api(base_parse_api_ptr );
 
 private:
      command_ptr find_cmd() const;
@@ -25,7 +26,7 @@ private:
 
 private:
     commands_t      cmds_;
-    base_p_api_uptr base_p_api_;
+    base_p_api_ptr  base_p_api_;
 };
 
 

@@ -38,6 +38,7 @@ void  __remove_operator(args_oprt_buf_t&& );
 void  __create_table_operator(args_oprt_buf_t&& );
 void  __drop_table_operator(args_oprt_buf_t&& );
 void  __set_table_operator(args_oprt_buf_t&& );
+void  __print_table__operator(args_oprt_buf_t&& );
 
 static void     init_data(data_ptr , args_oprt_buf_t&& );
 static data_ptr get_data_ptr();

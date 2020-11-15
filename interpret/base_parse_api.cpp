@@ -1,6 +1,10 @@
 #include "includes/base_parse_api.h"
 #include <memory>
 
+base_parse_api::base_parse_api():
+    size_(0),
+    pos_(0)
+{}
 
 base_parse_api::base_parse_api(base_parse_api::conatiner_t&& container):
     container_(std::move(container)),
@@ -10,6 +14,12 @@ base_parse_api::base_parse_api(base_parse_api::conatiner_t&& container):
 
 base_parse_api::~base_parse_api()
 {}
+
+void base_parse_api::set_container(base_parse_api::conatiner_t&& container)
+{
+    container_ = std::move(container);
+    size_ = container_.size();
+}
 
 lexeme_ptr base_parse_api::get_lexeme(size_t pos) const
 {

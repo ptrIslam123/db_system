@@ -198,6 +198,15 @@ void remove_req(index_t index)
 }
 
 
+void print_table_req()
+{
+    const auto size = _get_size_table();
+    for (auto i = 0; i < size; ++i)
+    {
+        _print_token(_get_token(i));
+    }
+}
+
 
 /* API transaction  */
 
@@ -418,3 +427,11 @@ void _save_state_record(index_t indx, token_t&& tok, controller_transact_t contr
     memento_t::instance().set_state(indx, std::move(tok), controll);
 }
 
+static
+void _print_token(token_ptr tok)
+{
+    std::cout << tok->get_date() << "\n";
+    std::cout << tok->get_time() << "\n";
+    std::cout << tok->get_type() << "\n";
+    std::cout << tok->get_descript() << "\n\n"; 
+}

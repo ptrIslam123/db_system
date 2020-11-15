@@ -20,9 +20,12 @@ class lexer
 {
     using container_t = C;
 public:
+    lexer();
     lexer(code_t&& ,size_t );
     ~lexer();
     
+    void        set_code(const std::string& );
+    void        set_code(std::string&& );
     void        run();
     auto        get_result();
 
@@ -53,6 +56,13 @@ private:
 };
 
 template<typename C>
+lexer<C>::lexer():
+    size_code_(0),
+    pos_(0)
+{}
+
+
+template<typename C>
 lexer<C>::lexer(code_t&& code, size_t beg_cont_size):
     code_(std::move(code)),
     size_code_(code_.size()),
@@ -62,6 +72,22 @@ lexer<C>::lexer(code_t&& code, size_t beg_cont_size):
 
 template<typename C>
 lexer<C>::~lexer() {}
+
+
+template<typename C>
+void lexer<C>::set_code(const std::string& code)
+{
+    code_ = code;
+    size_code_ = code_.size();
+}
+
+
+template<typename C>
+void lexer<C>::set_code(std::string&& code)
+{
+    code_ = std::move(code);
+    size_code_ = code_.size();
+}
 
 
 template<typename C>

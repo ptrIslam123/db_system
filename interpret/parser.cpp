@@ -2,16 +2,24 @@
 #include "includes/operators.h"
 #include "includes/transaction.h"
 
+parser::parser()
+{}
 
-parser::parser(parser::base_p_api_uptr&& base_p_api):
-  base_p_api_(std::move(base_p_api))
+parser::parser(parser::base_p_api_ptr base_p_api)
 {
-  cmds_[0] = make_command<operators>(base_p_api_.get());
-  cmds_[1] = make_command<transaction>(base_p_api_.get());
+  base_p_api_ = base_p_api;
+  cmds_[0] = make_command<operators>(base_p_api_);
+  cmds_[1] = make_command<transaction>(base_p_api_);
 }
 
 parser::~parser()
 {}
+
+ void parser::set_base_parse_api(base_parse_api_ptr base_p_api)
+ {
+   base_p_api_ = base_p_api;
+ }
+
 
 void parser::run()
 {
