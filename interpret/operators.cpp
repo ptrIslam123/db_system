@@ -124,7 +124,6 @@ void init_data(data_ptr data, args_oprt_buf_t&& args)
             break;
 
         auto args_type = (args.at(i).first)->get_value();
-        std::cout << "args_type = " << args_type << "\n";
         if (args_type == "dt")
         {
             data->set_args_type(_DATE_);
@@ -165,9 +164,17 @@ void init_data(data_ptr data, args_oprt_buf_t&& args)
             i++;
             continue;
         }
+         if (args_type == "sz")
+        {
+            data->set_args_type(_SIZE_TABLE_);
+            auto size_ptr = (args.at(i).second)->get_ptr_value();
+            data->set_size_ptr(size_ptr);
+            i++;
+            continue;
+        }
         else
         {
-            throw "undefine token";
+            throw "method: init_data | undefine token";
         }
     }
 }
@@ -188,35 +195,35 @@ void __get_operator(args_oprt_buf_t&& args)
     switch (type)
     {
         case _DATE_ : {
-            for_each_select(comparator_dt, get_req, data);
+            for_each(comparator_dt, get_req, data);
             break;
         }
         case _TIME_ : {
-            for_each_select(comparator_ti, get_req, data);
+            for_each(comparator_ti, get_req, data);
             break;
         }
         case _DESCRIPT_ : {
-            for_each_select(comparator_ds, get_req, data);
+            for_each(comparator_ds, get_req, data);
             break;
         }
         case _DATE_TIME_ : {
-            for_each_select(comparator_dt_ti, get_req, data);
+            for_each(comparator_dt_ti, get_req, data);
             break;
         }
         case _DATE_DESCRIPT : {
-            for_each_select(comparator_dt_ds, get_req, data);
+            for_each(comparator_dt_ds, get_req, data);
             break;
         }
         case _TIME_DESCRIPT_ : {
-            for_each_select(comparator_ti_ds, get_req, data);
+            for_each(comparator_ti_ds, get_req, data);
             break;
         }
         case _DATE_TIME_DESCRIPT_ : {
-            for_each_select(comparator_dt_ti_ds, get_req, data);
+            for_each(comparator_dt_ti_ds, get_req, data);
             break;
         }
         default:
-            throw "undefine param type";
+            throw "method : __get_operator | undefine param type";
     }
 }
 
@@ -240,7 +247,7 @@ void __insert_operator(args_oprt_buf_t&& args)
             break;
         }
         default:
-            throw "undefine param type";
+            throw "method : __insert_operator | undefine param type";
     }
 }
 
@@ -259,35 +266,35 @@ void __update_operator(args_oprt_buf_t&& args)
     switch (type)
     {
         case _DATE_ : {
-            for_each(update_dt_req);
+            for_each(update_dt_req, data);
             break;
         }
         case _TIME_ : {
-            //for_each_select(comparator_ti, get_req, data);
+            for_each(update_ti_req, data);
             break;
         }
         case _DESCRIPT_ : {
-            //for_each_select(comparator_ds, get_req, data);
+            for_each(update_ds_req, data);
             break;
         }
         case _DATE_TIME_ : {
-            //for_each_select(comparator_dt_ti, get_req, data);
+            for_each(update_dt_ti_req, data);
             break;
         }
         case _DATE_DESCRIPT : {
-            //for_each_select(comparator_dt_ds, get_req, data);
+            for_each(update_dt_ds_req, data);
             break;
         }
         case _TIME_DESCRIPT_ : {
-            //for_each_select(comparator_ti_ds, get_req, data);
+            for_each(update_ti_ds_req, data);
             break;
         }
         case _DATE_TIME_DESCRIPT_ : {
-            //for_each_select(comparator_dt_ti_ds, get_req, data);
+            for_each(update_dt_ti_ds_req, data);
             break;
         }
         default:
-            throw "undefine param type";
+            throw "method : __update_operator | undefine param type";
     }
 }
 
@@ -296,9 +303,9 @@ void __remove_operator(args_oprt_buf_t&& args)
     auto size = args.size();
     if (size > 0 )
     {
-        throw "undefine param";
+        throw "method : __remove_operator | undefine param";
     }
-    //remove_req();
+    for_each(remove_req);
 }
 
 void __create_table_operator(args_oprt_buf_t&& args)
@@ -316,7 +323,7 @@ void __create_table_operator(args_oprt_buf_t&& args)
     
     switch (type)
     {
-        case _TABLE_FILE_NAME_ : {
+        case _TABLE_FILE_NAME_SIZE_ : {
             auto tname = *(data->get_table_name_ptr());
             auto fname = *(data->get_file_name_ptr());
             auto size_str = *(data->get_size_ptr());
@@ -326,7 +333,7 @@ void __create_table_operator(args_oprt_buf_t&& args)
             break;
         }
         default:
-            throw "undefine param type";
+            throw "method : __create_table_operator | undefine param type";
     }
 }
 
@@ -351,7 +358,7 @@ void __drop_table_operator(args_oprt_buf_t&& args)
             break;
         }
         default:
-            throw "undefine param type";
+            throw "method : __drop_table_operator | undefine param type";
     }
 }
 
@@ -376,7 +383,7 @@ void __set_table_operator(args_oprt_buf_t&& args)
             break;
         }
         default:
-            throw "undefine param type";
+            throw "method : __set_table_operator | undefine param type";
     }
 }
 

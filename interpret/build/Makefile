@@ -66,6 +66,9 @@ buildMain:
 run:
 	./main
 
+kdebug:
+	kdbg main
+
 debug:
 	gdb main
 

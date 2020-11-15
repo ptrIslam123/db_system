@@ -31,7 +31,7 @@ void error_report(const std::string& file_name, T&& msg)
     else
     {
         ofile.close();
-        std::cout << "file not found\n";
+       // std::cout << "methods : method : error_report | file not found\n";
     }
     
 }

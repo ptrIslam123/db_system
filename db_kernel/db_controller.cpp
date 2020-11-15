@@ -56,7 +56,7 @@ void db_controller::is_exist_table(table_iter_t iter)
 {
     if (iter == tables_.cend())
     {
-        throw "table not found!";
+        throw "db_controller: method : is_exist_table | table not found!";
     }
 }
 

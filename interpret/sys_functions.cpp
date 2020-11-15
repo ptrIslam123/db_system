@@ -46,6 +46,8 @@ bool comparator_dt_ti_ds(const token_ptr tok, const data_ptr data)
 
 
 
+
+
 /* for_each */
 
 
@@ -58,7 +60,7 @@ void for_each(cmprt_t comparator , select_t select , data_ptr data)
     }
 }
 
-void for_each(req_method_t req , token_t&& val)
+void for_each(ins_method_t req , token_t&& val)
 {
     const auto size = _get_size_pesronse_buf();
     for (auto i = 0; i < size; ++i)
@@ -67,6 +69,14 @@ void for_each(req_method_t req , token_t&& val)
     }
 }
 
+void for_each(upd_method_t update, data_ptr data)
+{
+    const auto size = _get_size_pesronse_buf();
+    for (auto i = 0; i < size; ++i)
+    {
+        update(_get_index_response_buf(i), data);
+    }
+}
 
 void for_each(rm_method_t rm)
 {
@@ -76,6 +86,10 @@ void for_each(rm_method_t rm)
         rm(_get_index_response_buf(i));
     }
 }
+
+
+
+
 
 /* request functions */
 
@@ -121,47 +135,56 @@ void insert_req(index_t index, token_t&& val)
 
 
 
-void update_dt_req(index_t index, date_t_&& date)
+void update_dt_req(index_t index, data_ptr data)
 {
+    auto date = *(data->get_date_ptr());
     db_controller_t::instance().update_dt(index, std::move(date));
 }
 
-void update_ti_req(index_t index, time_t_&& time)
+void update_ti_req(index_t index, data_ptr data)
 {
+    auto time = *(data->get_time_ptr());
     db_controller_t::instance().update_ti(index, std::move(time));
 }
 
-void update_ds_req(index_t index, descript_t_&& descript)
+void update_ds_req(index_t index, data_ptr data)
 {
+    auto descript = *(data->get_descript_ptr());
     db_controller_t::instance().update_ds(index, std::move(descript));
 }
 
-void update_dt_ti_req(index_t index, date_t_&& date, time_t_&& time)
+void update_dt_ti_req(index_t index, data_ptr data)
 {
+    auto date = *(data->get_date_ptr());
+    auto time = *(data->get_time_ptr());
     db_controller_t::instance().update_dt_ti(index, 
                                              std::move(date), 
                                              std::move(time));
 }
 
-void update_dt_ds_req(index_t index, date_t_&& date, descript_t_&& descript)
+void update_dt_ds_req(index_t index, data_ptr data)
 {
+    auto date = *(data->get_date_ptr());
+    auto descript = *(data->get_descript_ptr());
     db_controller_t::instance().update_dt_ds(index, 
                                           std::move(date),
                                           std::move(descript));
 }
 
-void update_ti_ds_req(index_t index, time_t_&& time, descript_t_&& descript)
+void update_ti_ds_req(index_t index, data_ptr data)
 {
+    auto time = *(data->get_time_ptr());
+    auto descript = *(data->get_descript_ptr());
     db_controller_t::instance().update_ti_ds(index, 
                                           std::move(time),
                                           std::move(descript));
 }
 
-void update_dt_ti_ds_req(index_t index, 
-                         date_t_&& date, 
-                         time_t_&& time, 
-                         descript_t_&& descript)
+void update_dt_ti_ds_req(index_t index, data_ptr data)
 {
+    auto date = *(data->get_date_ptr());
+    auto time = *(data->get_time_ptr());
+    auto descript = *(data->get_descript_ptr());
     db_controller_t::instance().update_dt_ti_ds(index, 
                                           std::move(date),
                                           std::move(time),
@@ -212,59 +235,53 @@ void insert_req_atomic(index_t index, token_t&& val)
 
 
 
-void update_dt_req_atomic(index_t index, date_t_&& date)
+void update_dt_req_atomic(index_t index, data_ptr data)
 {
     auto tok = _get_token(index);
     _save_state_record(index, tok->clone(), _rolback_update_r);
-    update_dt_req(index, std::move(date));
+    update_dt_req(index, data);
 }
 
-void update_ti_req_atomic(index_t index, time_t_&& time)
+void update_ti_req_atomic(index_t index, data_ptr data)
 {
     auto tok = _get_token(index);
     _save_state_record(index, tok->clone(), _rolback_update_r);
-    update_ti_req(index, std::move(time));
+    update_ti_req(index,data);
 }
 
-void update_ds_req_atomic(index_t index, descript_t_&& descript)
+void update_ds_req_atomic(index_t index, data_ptr data)
 {
     auto tok = _get_token(index);
     _save_state_record(index, tok->clone(), _rolback_update_r);
-    update_ds_req(index, std::move(descript));
+    update_ds_req(index, data);
 }
 
-void update_dt_ti_req_atomic(index_t index, date_t_&& date, time_t_&& time)
+void update_dt_ti_req_atomic(index_t index, data_ptr data)
 {
     auto tok = _get_token(index);
     _save_state_record(index, tok->clone(), _rolback_update_r);
-    update_dt_ti_req(index, std::move(date), std::move(time)); 
+    update_dt_ti_req(index, data); 
 }
 
-void update_dt_ds_req_atomic(index_t index, date_t_&& date, descript_t_&& descript)
+void update_dt_ds_req_atomic(index_t index, data_ptr data)
 {
     auto tok = _get_token(index);
     _save_state_record(index, tok->clone(), _rolback_update_r);
-    update_dt_ds_req(index, std::move(date), std::move(descript));
+    update_dt_ds_req(index, data);
 }
 
-void update_ti_ds_req_atomic(index_t index, time_t_&& time, descript_t_&& descript)
+void update_ti_ds_req_atomic(index_t index, data_ptr data)
 {
     auto tok = _get_token(index);
     _save_state_record(index, tok->clone(), _rolback_update_r);
-    update_ti_ds_req(index, std::move(time), std::move(descript));
+    update_ti_ds_req(index, data);
 }
 
-void update_dt_ti_ds_req_atomic(index_t index, 
-                                date_t_&& date, 
-                                time_t_&& time, 
-                                descript_t_&& descript)
+void update_dt_ti_ds_req_atomic(index_t index,  data_ptr data)
 {
     auto tok = _get_token(index);
     _save_state_record(index, tok->clone(), _rolback_update_r);
-    update_dt_ti_ds_req(index, 
-                        std::move(date), 
-                        std::move(time), 
-                        std::move(descript));
+    update_dt_ti_ds_req(index, data);
 }
 
 

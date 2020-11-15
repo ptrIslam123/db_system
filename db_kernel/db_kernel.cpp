@@ -214,6 +214,7 @@ void db_kernel::open_file()
     bool is_open_f = tok_gramm_->is_open_file();
     if(!is_open_f)
     {
+        /* 
         error_report(
             F_PATH_DB_KERNEL_DEGUB_INF,
             "\n\n#~ db_kernel::open_file()\n\n"
@@ -222,6 +223,7 @@ void db_kernel::open_file()
             F_PATH_DB_KERNEL_DEGUB_INF,
             std::string("file not found: " + tok_gramm_->get_file() + "\n")
         );
-        throw -1;
+        */
+        throw "db_kernel : method : open_file | file not found";
     }
 }

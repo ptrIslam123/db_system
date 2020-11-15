@@ -18,7 +18,8 @@ using rolback_f_t   = controller_transact_t;
 using indext_t      = size_t;
 using cmprt_t       = bool (*)(const token_ptr ,const data_ptr ); 
 using rm_method_t   = void (*)(index_t );
-using req_method_t  = void (*)(index_t , token_t&& );
+using ins_method_t  = void (*)(index_t , token_t&& );
+using upd_method_t  = void (*)(index_t, data_ptr );
 using select_t      = void (*)(cmprt_t, token_ptr , data_ptr , index_t );
 //using comparator_t  = bool (*)(cmprt_t, token_ptr , data_ptr ); 
 
@@ -43,7 +44,8 @@ bool comparator_dt_ti_ds(const token_ptr, const data_ptr );
 /* for_each */
 
 void for_each(cmprt_t , select_t , data_ptr );
-void for_each(req_method_t , token_t&& );
+void for_each(ins_method_t , token_t&& );
+void for_each(upd_method_t , data_ptr );
 void for_each(rm_method_t );
 
 
@@ -55,13 +57,13 @@ void set_table_req(table_name_t&& );
 
 void get_req(cmprt_t , token_ptr ,  data_ptr , index_t );
 void insert_req(index_t, token_t&& );
-void update_dt_req(index_t , date_t_&& );
-void update_ti_req(index_t , time_t_&& );
-void update_ds_req(index_t , descript_t_&& );
-void update_dt_ti_req(index_t , date_t_&& , time_t_&& );
-void update_dt_ds_req(index_t, date_t_&& , descript_t_&& );
-void update_ti_ds_req(index_t , time_t_&& , descript_t_&& );
-void update_dt_ti_ds_req(index_t , date_t_&& , time_t_&& , descript_t_&& );
+void update_dt_req(index_t , data_ptr );
+void update_ti_req(index_t , data_ptr );
+void update_ds_req(index_t , data_ptr );
+void update_dt_ti_req(index_t , data_ptr );
+void update_dt_ds_req(index_t, data_ptr );
+void update_ti_ds_req(index_t , data_ptr );
+void update_dt_ti_ds_req(index_t , data_ptr );
 void remove_req(index_t );
 
 
@@ -73,13 +75,13 @@ void drop_table_req_atomic(table_name_t&& );
 void set_table_req_atomic(table_name_t&& );
 
 void insert_req_atomic(index_t, token_t&& );
-void update_dt_req_atomic(index_t , date_t_&& );
-void update_ti_req_atomic(index_t , time_t_&& );
-void update_ds_req_atomic(index_t , descript_t_&& );
-void update_dt_ti_req_atomic(index_t , date_t_&& , time_t_&& );
-void update_dt_ds_req_atomic(index_t, date_t_&& , descript_t_&& );
-void update_ti_ds_req_atomic(index_t , time_t_&& , descript_t_&& );
-void update_dt_ti_ds_req_atomic(index_t , date_t_&& , time_t_&& , descript_t_&& );
+void update_dt_req_atomic(index_t , data_ptr );
+void update_ti_req_atomic(index_t , data_ptr );
+void update_ds_req_atomic(index_t , data_ptr );
+void update_dt_ti_req_atomic(index_t , data_ptr );
+void update_dt_ds_req_atomic(index_t, data_ptr );
+void update_ti_ds_req_atomic(index_t , data_ptr );
+void update_dt_ti_ds_req_atomic(index_t , data_ptr );
 void remove_req_atomic_atomic(index_t );
 
 void rolback_records();
