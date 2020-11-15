@@ -120,10 +120,55 @@ void db_controller::remove(size_t pos)
     cur_table_->remove(pos);
 }
 
+
+
 void db_controller::update(size_t pos, token_t&& val)
 {
     cur_table_->update(pos, std::move(val));
 }
+
+
+void db_controller::update_dt(size_t pos, date_t_&& date)
+{
+    cur_table_->update_dt(pos, std::move(date));
+}
+
+void db_controller::update_ti(size_t pos, time_t_&& time)
+{
+    cur_table_->update_ti(pos, std::move(time));
+}
+
+void db_controller::update_ds(size_t pos, descript_t_&& descript)
+{
+    cur_table_->update_ds(pos, std::move(descript));
+}
+
+void db_controller::update_dt_ti(size_t pos, date_t_&& date, time_t_&& time)
+{   
+    cur_table_->update_dt_ti(pos, std::move(date), std::move(time));
+}
+
+void db_controller::update_dt_ds(size_t pos, date_t_&& date, descript_t_&& descript)
+{
+    cur_table_->update_dt_ds(pos, std::move(date), std::move(descript));
+}
+
+void db_controller::update_ti_ds(size_t pos, time_t_&& time, descript_t_&& descript)
+{
+    cur_table_->update_ti_ds(pos, std::move(time), std::move(descript));
+}
+
+void db_controller::update_dt_ti_ds(size_t pos, 
+                                    date_t_&& date, 
+                                    time_t_&& time, 
+                                    descript_t_&& descript)
+{
+    cur_table_->update_dt_ti_ds(pos,
+                                std::move(date), 
+                                std::move(time), 
+                                std::move(descript));
+}
+
 
 size_t db_controller::size_table()
 {

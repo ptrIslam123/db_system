@@ -259,7 +259,7 @@ void __update_operator(args_oprt_buf_t&& args)
     switch (type)
     {
         case _DATE_ : {
-            for_each(insert_dt_req);
+            for_each(update_dt_req);
             break;
         }
         case _TIME_ : {

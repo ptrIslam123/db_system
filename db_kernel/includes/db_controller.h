@@ -42,7 +42,16 @@ public:
     void        add(token_t&& );
     void        insert(size_t , token_t&& );
     void        remove(size_t );
+    
     void        update(size_t , token_t&& );
+    void        update_dt(size_t , date_t_&& );
+    void        update_ti(size_t, time_t_&& );
+    void        update_ds(size_t, descript_t_&& );
+    void        update_dt_ti(size_t, date_t_&& , time_t_&& );
+    void        update_dt_ds(size_t, date_t_&& , descript_t_&& );
+    void        update_ti_ds(size_t , time_t_&& , descript_t_&& );
+    void        update_dt_ti_ds(size_t, date_t_&& , time_t_&& , descript_t_&&);
+   
     size_t      size_table();
     bool        is_open_table() const;
 

@@ -41,7 +41,10 @@ public:
    void         set_date(const date_t_& );
    void         set_time(const time_t_& );
    void         set_type(type_t_ );
-   void         set_descript(const descript_t_& );
+   void         set_descript(const descript_t_& ); 
+   void         set_date(date_t_&& );
+   void         set_time(time_t_&& );
+   void         set_descript(descript_t_&& );
    token_t      clone();
 
 private:
@@ -56,6 +59,8 @@ token_t make_token(Args&& ... args)
 {
     return std::make_unique<token>(std::forward<Args>(args) ... );
 }
+
+token_t make_token();
 
 bool const is_eq_ds(const descript_ptr_ , const descript_ptr_  );
 

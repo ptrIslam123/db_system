@@ -68,7 +68,29 @@ void token::set_descript(const descript_t_& descript)
     descript_ = descript;
 }
 
+
+void token::set_date(date_t_&& date)
+{
+    date_ = std::move(date);
+}
+
+void token::set_time(time_t_&& time)
+{
+    time_ = std::move(time);
+}
+
+void token::set_descript(descript_t_&& descript)
+{
+    descript_ = std::move(descript);
+}
+
+
 word_t get_type_token()
 {
-    return std::string("Дата и время      	Тип события	Описание");
+    return std::string("Аудит");
+}
+
+token_t make_token()
+{
+    return std::unique_ptr<token>(nullptr);
 }

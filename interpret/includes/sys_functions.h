@@ -54,13 +54,14 @@ void drop_table_req(table_name_t&& );
 void set_table_req(table_name_t&& );
 
 void get_req(cmprt_t , token_ptr ,  data_ptr , index_t );
-void insert_dt_req(index_t , date_t_&& );
-void insert_ti_req(index_t , time_t_&& );
-void insert_ds_req(index_t , descript_t_&& );
-void insert_dt_ti_req(index_t , date_t_&& , time_t_&& );
-void insert_ti_ds_req(index_t , time_t_&& , descript_t_&& );
-void insert_dt_ti_ds_req(index_t , date_t_&& , time_t_&& , descript_t_&& );
-void update_req(index_t , token_t&& );
+void insert_req(index_t, token_t&& );
+void update_dt_req(index_t , date_t_&& );
+void update_ti_req(index_t , time_t_&& );
+void update_ds_req(index_t , descript_t_&& );
+void update_dt_ti_req(index_t , date_t_&& , time_t_&& );
+void update_dt_ds_req(index_t, date_t_&& , descript_t_&& );
+void update_ti_ds_req(index_t , time_t_&& , descript_t_&& );
+void update_dt_ti_ds_req(index_t , date_t_&& , time_t_&& , descript_t_&& );
 void remove_req(index_t );
 
 
@@ -71,13 +72,14 @@ void create_table_req_atomic(table_name_t&& , file_name_t&& , size_t );
 void drop_table_req_atomic(table_name_t&& );
 void set_table_req_atomic(table_name_t&& );
 
-void insert_dt_req_atomic(index_t , date_t_&& );
-void insert_ti_req_atomic(index_t , time_t_&& );
-void insert_ds_req_atomic(index_t , descript_t_&& );
-void insert_dt_ti_req_atomic(index_t , date_t_&& , time_t_&& );
-void insert_ti_ds_req_atomic(index_t , time_t_&& , descript_t_&& );
-void insert_dt_ti_ds_req_atomic(index_t , date_t_&& , time_t_&& , descript_t_&& );
-void update_req_atomic_atomic(index_t , token_t&& );
+void insert_req_atomic(index_t, token_t&& );
+void update_dt_req_atomic(index_t , date_t_&& );
+void update_ti_req_atomic(index_t , time_t_&& );
+void update_ds_req_atomic(index_t , descript_t_&& );
+void update_dt_ti_req_atomic(index_t , date_t_&& , time_t_&& );
+void update_dt_ds_req_atomic(index_t, date_t_&& , descript_t_&& );
+void update_ti_ds_req_atomic(index_t , time_t_&& , descript_t_&& );
+void update_dt_ti_ds_req_atomic(index_t , date_t_&& , time_t_&& , descript_t_&& );
 void remove_req_atomic_atomic(index_t );
 
 void rolback_records();

@@ -146,6 +146,64 @@ void db_kernel::update(size_t pos, token_t&& val)
     *iter_ = std::move(val);
 }
 
+
+void db_kernel::update_dt(size_t pos, date_t_&& date)
+{
+    auto tok = get_token(pos);
+    tok->set_date(std::move(date));
+}
+
+void db_kernel::update_ti(size_t pos, time_t_&& time)
+{
+    auto tok = get_token(pos);
+    tok->set_time(std::move(time));
+}
+
+void db_kernel::update_ds(size_t pos, descript_t_&& descript)
+{
+    auto tok = get_token(pos);
+    tok->set_descript(std::move(descript));
+}
+
+void db_kernel::update_dt_ti(size_t pos, date_t_&& date, time_t_&& time)
+{
+    auto tok = get_token(pos);
+    tok->set_date(std::move(date));
+    tok->set_time(std::move(time));
+}
+
+void db_kernel::update_dt_ds(size_t pos, date_t_&& date, descript_t_&& descript)
+{
+    auto tok = get_token(pos);
+    tok->set_date(std::move(date));
+    tok->set_descript(std::move(descript));
+}
+
+void db_kernel::update_ti_ds(size_t pos, time_t_&& time, descript_t_&& descript)
+{
+    auto tok = get_token(pos);
+    tok->set_time(std::move(time));
+    tok->set_descript(std::move(descript));
+}
+
+void db_kernel::update_dt_ti_ds(size_t pos, 
+                                date_t_&& date, 
+                                time_t_&& time, 
+                                descript_t_&& descript)
+{
+    auto tok = get_token(pos);
+    tok->set_date(std::move(date));
+    tok->set_time(std::move(time));
+    tok->set_descript(std::move(descript));
+}
+
+token_ptr db_kernel::get_token(size_t pos)
+{
+    auto iter = container_.begin();
+    std::advance(iter, pos);
+    return (*iter).get();
+}
+
 bool db_kernel::is_open_file() const
 {
     return tok_gramm_->is_open_file();

@@ -114,41 +114,60 @@ void get_req(cmprt_t comparator,
 }
 
 
-void insert_dt_req(index_t index, date_t_&& date)
+void insert_req(index_t index, token_t&& val)
 {
-    //
-}
-
-void insert_ti_req(index_t index, time_t_&& time)
-{
-
-}
-
-void insert_ds_req(index_t index, descript_t_&& descript)
-{
-
-}
-
-void insert_dt_ti_req(index_t index, date_t_&& date, time_t_&& time)
-{
-
-}
-
-void insert_ti_ds_req(index_t index, time_t_&& time, descript_t_&& descript)
-{
-
-}
-
-void insert_dt_ti_ds_req(index_t index, date_t_&& date, time_t_&& time, descript_t_&& descript)
-{
-
+    _insert_token(index, std::move(val));
 }
 
 
-void update_req(index_t index, token_t&& val)
+
+void update_dt_req(index_t index, date_t_&& date)
 {
-    _update_token(index, val->clone());
+    db_controller_t::instance().update_dt(index, std::move(date));
 }
+
+void update_ti_req(index_t index, time_t_&& time)
+{
+    db_controller_t::instance().update_ti(index, std::move(time));
+}
+
+void update_ds_req(index_t index, descript_t_&& descript)
+{
+    db_controller_t::instance().update_ds(index, std::move(descript));
+}
+
+void update_dt_ti_req(index_t index, date_t_&& date, time_t_&& time)
+{
+    db_controller_t::instance().update_dt_ti(index, 
+                                             std::move(date), 
+                                             std::move(time));
+}
+
+void update_dt_ds_req(index_t index, date_t_&& date, descript_t_&& descript)
+{
+    db_controller_t::instance().update_dt_ds(index, 
+                                          std::move(date),
+                                          std::move(descript));
+}
+
+void update_ti_ds_req(index_t index, time_t_&& time, descript_t_&& descript)
+{
+    db_controller_t::instance().update_ti_ds(index, 
+                                          std::move(time),
+                                          std::move(descript));
+}
+
+void update_dt_ti_ds_req(index_t index, 
+                         date_t_&& date, 
+                         time_t_&& time, 
+                         descript_t_&& descript)
+{
+    db_controller_t::instance().update_dt_ti_ds(index, 
+                                          std::move(date),
+                                          std::move(time),
+                                          std::move(descript));
+}
+
 
 void remove_req(index_t index)
 {
@@ -185,43 +204,70 @@ void set_table_req_atomic(table_name_t&& tname)
 }
 
 
-
-void insert_dt_req_atomic(index_t index, date_t_&& date)
+void insert_req_atomic(index_t index, token_t&& val)
 {
-    //
-}
-
-void insert_ti_req_atomic(index_t index, time_t_&& time)
-{
-
-}
-
-void insert_ds_req_atomic(index_t index, descript_t_&& descript)
-{
-
-}
-
-void insert_dt_ti_req_atomic(index_t index, date_t_&& date, time_t_&& time)
-{
-
-}
-
-void insert_ti_ds_req_atomic(index_t index, time_t_&& time, descript_t_&& descript)
-{
-
-}
-
-void insert_dt_ti_ds_req_atomic(index_t index, date_t_&& date, time_t_&& time, descript_t_&& descript)
-{
-
+    _save_state_record(index, val->clone(), _rolback_insert_r);
+    _insert_token(index, std::move(val));
 }
 
 
-void update_req_atomic(index_t index, token_t&& val)
+
+void update_dt_req_atomic(index_t index, date_t_&& date)
 {
-    _save_state_record(index, val->clone(), _rolback_update_r);
-    _update_token(index, val->clone());
+    auto tok = _get_token(index);
+    _save_state_record(index, tok->clone(), _rolback_update_r);
+    update_dt_req(index, std::move(date));
 }
+
+void update_ti_req_atomic(index_t index, time_t_&& time)
+{
+    auto tok = _get_token(index);
+    _save_state_record(index, tok->clone(), _rolback_update_r);
+    update_ti_req(index, std::move(time));
+}
+
+void update_ds_req_atomic(index_t index, descript_t_&& descript)
+{
+    auto tok = _get_token(index);
+    _save_state_record(index, tok->clone(), _rolback_update_r);
+    update_ds_req(index, std::move(descript));
+}
+
+void update_dt_ti_req_atomic(index_t index, date_t_&& date, time_t_&& time)
+{
+    auto tok = _get_token(index);
+    _save_state_record(index, tok->clone(), _rolback_update_r);
+    update_dt_ti_req(index, std::move(date), std::move(time)); 
+}
+
+void update_dt_ds_req_atomic(index_t index, date_t_&& date, descript_t_&& descript)
+{
+    auto tok = _get_token(index);
+    _save_state_record(index, tok->clone(), _rolback_update_r);
+    update_dt_ds_req(index, std::move(date), std::move(descript));
+}
+
+void update_ti_ds_req_atomic(index_t index, time_t_&& time, descript_t_&& descript)
+{
+    auto tok = _get_token(index);
+    _save_state_record(index, tok->clone(), _rolback_update_r);
+    update_ti_ds_req(index, std::move(time), std::move(descript));
+}
+
+void update_dt_ti_ds_req_atomic(index_t index, 
+                                date_t_&& date, 
+                                time_t_&& time, 
+                                descript_t_&& descript)
+{
+    auto tok = _get_token(index);
+    _save_state_record(index, tok->clone(), _rolback_update_r);
+    update_dt_ti_ds_req(index, 
+                        std::move(date), 
+                        std::move(time), 
+                        std::move(descript));
+}
+
+
 
 void remove_req_atomic(index_t index)
 {

@@ -45,6 +45,9 @@ compilOperators:
 compilResponse:
 	clang++ -g -c ../response_data.cpp
 
+compilSysFunctions:
+	clang++ -g -c ../sys_functions.cpp
+
 compilCommand:
 	clang++ -g -c ../command.cpp
 
