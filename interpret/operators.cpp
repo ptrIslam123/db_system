@@ -8,13 +8,17 @@ operators::operators(base_parse_api_ptr base_p_api):
     command(base_p_api),
     optr_table_{
         {"get",     __get_operator},
+        {"add",     __add_operator},
         {"insert",  __insert_operator},
         {"update",  __update_operator},
         {"remove",  __remove_operator},
         {"create_t",  __create_table_operator},
         {"drop_t",    __drop_table_operator},
         {"set_t",     __set_table_operator},
-        {"print_t",   __print_table__operator}
+        {"print_t",   __print_table__operator},
+        {"print",     __print_operator},
+        {"count",     __count_operator},
+        {"clear",     __clear_operator}
     }
 {}
 
@@ -38,7 +42,7 @@ void operators::execute()
     
     if (oprt == optr_table_.cend())
     {   
-        throw "undefine oprterator";
+        throw "method: execute | undefine operator";
     }
     next(1);        // oprt_name
     
@@ -230,6 +234,32 @@ void __get_operator(args_oprt_buf_t&& args)
     }
 }
 
+
+void __add_operator(args_oprt_buf_t&& args)
+{
+    args_data arg_data;
+    data_ptr data = &arg_data;
+    try
+    {
+        init_data(data, std::move(args));   
+    }
+    catch(const std::out_of_range& e)
+    {
+        //std::cerr << e.what() << '\n';
+    }
+    auto type = data->get_args_type();
+    
+    switch (type)
+    {
+        case _DATE_TIME_DESCRIPT_ : {
+            add_req(create_token(data));
+            break;
+        }
+        default:
+            throw "method : __insert_operator | undefine param type";
+    }
+}
+
 void __insert_operator(args_oprt_buf_t&& args)
 {
     //auto data = get_data_ptr();
@@ -408,4 +438,35 @@ void __print_table__operator(args_oprt_buf_t&& args)
         throw "method : __print_table__operator | undefine param";
     }
     print_table_req();
+}
+
+void __print_operator(args_oprt_buf_t&& args)
+{
+    const auto size = args.size();
+    if (size > 0 )
+    {
+        throw "method : __print_operator | undefine param";
+    }
+    _print_heder();
+    for_each(_print_token);
+}
+
+void  __count_operator(args_oprt_buf_t&& args)
+{
+    const auto size = args.size();
+    if (size > 0 )
+    {
+        throw "method : __print_operator | undefine param";
+    }
+    std::cout << _get_size_pesronse_buf() << "\n";
+}
+
+void __clear_operator(args_oprt_buf_t&& args)
+{
+    const auto size = args.size();
+    if (size > 0 )
+    {
+        throw "method : __clear_operator | undefine param";
+    }
+    clear_req();
 }

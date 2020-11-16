@@ -64,14 +64,14 @@ public:
     void        update_ti_ds(size_t , time_t_&& , descript_t_&& );
     void        update_dt_ti_ds(size_t, date_t_&& , time_t_&& , descript_t_&&);
 
+    word_t&     get_heder();
     size_t      size_table();
     bool        is_open_file() const;
     tok_gramm_t get_tok_gramm();
-    word_t      get_heder();
 
 private:
     token_ptr   get_token(size_t );
-    void      open_file();
+    void        open_file();
 private:
     size_t           beg_cont_size_;
     tok_gramm_t      tok_gramm_;

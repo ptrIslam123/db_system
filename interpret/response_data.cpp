@@ -17,6 +17,11 @@ void response_data::add(size_t indx)
     poll_indx_.push_back(indx);
 }
 
+void response_data::clear_buf()
+{
+    poll_indx_.clear();
+}
+
 response_data::container_t response_data::get_response()
 {
     return std::move(poll_indx_);

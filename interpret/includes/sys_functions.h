@@ -21,6 +21,7 @@ using rm_method_t   = void (*)(index_t );
 using ins_method_t  = void (*)(index_t , token_t&& );
 using upd_method_t  = void (*)(index_t, data_ptr );
 using select_t      = void (*)(cmprt_t, token_ptr , data_ptr , index_t );
+using req_method_t  = void (*)(token_ptr );
 //using comparator_t  = bool (*)(cmprt_t, token_ptr , data_ptr ); 
 
 /* rm_method_t for remove_request */
@@ -47,7 +48,7 @@ void for_each(cmprt_t , select_t , data_ptr );
 void for_each(ins_method_t , token_t&& );
 void for_each(upd_method_t , data_ptr );
 void for_each(rm_method_t );
-
+void for_each(req_method_t );
 
 /* request functions */
 
@@ -56,6 +57,7 @@ void drop_table_req(table_name_t&& );
 void set_table_req(table_name_t&& );
 
 void get_req(cmprt_t , token_ptr ,  data_ptr , index_t );
+void add_req(token_t&& );
 void insert_req(index_t, token_t&& );
 void update_dt_req(index_t , data_ptr );
 void update_ti_req(index_t , data_ptr );
@@ -66,6 +68,9 @@ void update_ti_ds_req(index_t , data_ptr );
 void update_dt_ti_ds_req(index_t , data_ptr );
 void remove_req(index_t );
 void print_table_req();
+void clear_req();
+
+
 
 
 
@@ -75,6 +80,7 @@ void create_table_req_atomic(table_name_t&& , file_name_t&& , size_t );
 void drop_table_req_atomic(table_name_t&& );
 void set_table_req_atomic(table_name_t&& );
 
+void add_req_atomic(token_t&& );
 void insert_req_atomic(index_t, token_t&& );
 void update_dt_req_atomic(index_t , data_ptr );
 void update_ti_req_atomic(index_t , data_ptr );
@@ -88,6 +94,8 @@ void remove_req_atomic_atomic(index_t );
 void rolback_records();
 
 /* rolback request functions */
+
+static void _rolback_add_r(record_ptr );
 static void _rolback_insert_r(record_ptr );
 static void _rolback_update_r(record_ptr );
 static void _rolback_remove_r(record_ptr );
@@ -98,17 +106,18 @@ static void _rolback_set_table(record_ptr );
 
 /* supporting functional */
 token_t                   create_token(data_ptr );
-static size_t       const _get_size_table();
-static size_t       const _get_size_pesronse_buf();
+size_t              const _get_size_table();
+size_t              const _get_size_pesronse_buf();
 static size_t       const _get_index_response_buf(size_t );
 static void               _add_index_response_buf(index_t );
 static token_ptr    const _get_token(size_t );
 static response_d   const _get_response();
+static void         _add_token(token_t&& );
 static void         _insert_token(size_t , token_t&& );
 static void         _update_token(size_t , token_t&& );
 static void         _remove_token(size_t );
 static void         _save_state_record(index_t , token_t&& , controller_transact_t);
-static void         _print_token(token_ptr );
-
+void                _print_token(token_ptr );
+void                _print_heder();
 
 #endif // !_SYS_FUNCTIONS_H_

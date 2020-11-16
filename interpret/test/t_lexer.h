@@ -21,6 +21,7 @@ auto printLexer = [](auto container)
 
 void exec(std::string&& code)
 {
+    auto ccode = code;
     try
     {
         lexer<> lex(std::move(code), 200);
@@ -30,11 +31,12 @@ void exec(std::string&& code)
 
         parser p(&base);
         p.run();
-        std::cout << "\t\t***|| execute command ||***\n";
+        //std::cout << "\t\t***|| execute command ||***\n";
+        std::cout << "\n";
     }
     catch(const char* e)
     {
-        std::cerr << "\t\t***||error execute: " << e << " ||***\n";
+        std::cerr << "\t\t***||error execute: " << ccode << " | " << e << " ||***\n";
     }  
 }
 

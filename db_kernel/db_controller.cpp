@@ -170,6 +170,11 @@ void db_controller::update_dt_ti_ds(size_t pos,
 }
 
 
+heder_t db_controller::get_heder_table()
+{
+    return cur_table_->get_heder();
+}
+
 size_t db_controller::size_table()
 {
     return cur_table_->size_table();

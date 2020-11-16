@@ -74,12 +74,6 @@ void db_kernel::reserve(size_t beg_cont_size)
     container_.reserve(beg_cont_size_);
 }
 
-
-word_t db_kernel::get_heder()
-{
-    return std::move(heder_);
-}
-
 void db_kernel::create_table()
 {
     open_file();
@@ -202,6 +196,12 @@ token_ptr db_kernel::get_token(size_t pos)
     auto iter = container_.begin();
     std::advance(iter, pos);
     return (*iter).get();
+}
+
+
+word_t& db_kernel::get_heder()
+{
+    return heder_;
 }
 
 bool db_kernel::is_open_file() const

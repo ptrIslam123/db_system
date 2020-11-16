@@ -1,10 +1,6 @@
 #include <iostream>
-#include <fstream>
-#include <string>
-#include <vector>
-#include <map>
-#include <array>
 #include <memory>
+#include <vector>
 
 
 #include "includes/lexer.h"
@@ -14,24 +10,28 @@
 #include "test/t_lexer.h"
 #include "includes/shell.h"
 
-
-
-int main()
-{
     std::string fn = "/home/islam/CppProgram/db_sysytem_for_it_company/interpret/test/tdata/tdata.txt";
     std::string tn = "table1";
     std::string dt = "18.07.2020";
+    std::string ti = "6:52:59";
     std::string sz = "10";
 
     std::string create_t = "create_t( tn: '" + tn + "' fn: '" + fn + "' sz: '" + sz +"')";
     std::string set_t = "set_t(tn : '" + tn + "')";
     std::string get = "get(dt: '" + dt + "')";
-   
+
     std::string code  = create_t + "\n" + set_t + "\n" + get;
+
+int main()
+{
 
     exec(std::move(create_t));
     exec(std::move(set_t));
-    exec("print_t()");
+  
+    exec("get(dt : '18.07.2020')");
+    exec("print()");
+
+    exec("clear()");
 
     return 0;
 }

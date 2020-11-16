@@ -19,6 +19,7 @@ public:
 
     void        reserve(size_t );
     void        add(size_t );
+    void        clear_buf();
     index_t     get_index(size_t ) const;
     size_t      size() const;
     size_t      capacity() const;

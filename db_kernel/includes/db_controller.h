@@ -7,6 +7,7 @@
 
 class db_controller;
 using db_controller_t         = singleton_classic<db_controller>;
+using heder_t                 = word_t&;
 
 class db_controller
 {
@@ -51,7 +52,8 @@ public:
     void        update_dt_ds(size_t, date_t_&& , descript_t_&& );
     void        update_ti_ds(size_t , time_t_&& , descript_t_&& );
     void        update_dt_ti_ds(size_t, date_t_&& , time_t_&& , descript_t_&&);
-   
+    heder_t     get_heder_table();
+
     size_t      size_table();
     bool        is_open_table() const;
 

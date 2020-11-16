@@ -88,7 +88,14 @@ void for_each(rm_method_t rm)
 }
 
 
-
+void for_each(req_method_t req)
+{
+    const auto size = _get_size_pesronse_buf();
+    for (auto i = 0; i < size; ++i)
+    {
+        req( _get_token( _get_index_response_buf(i) ) );
+    }
+}
 
 
 /* request functions */
@@ -127,6 +134,10 @@ void get_req(cmprt_t comparator,
     }
 }
 
+void add_req(token_t&& val)
+{
+    _add_token(std::move(val));
+}
 
 void insert_req(index_t index, token_t&& val)
 {
@@ -208,6 +219,12 @@ void print_table_req()
 }
 
 
+void clear_req()
+{
+    response_data_t::instance().clear_buf();
+}
+
+
 /* API transaction  */
 
 void create_table_req_atomic(table_name_t&& tname, file_name_t&& fname, size_t size_table)
@@ -235,6 +252,13 @@ void set_table_req_atomic(table_name_t&& tname)
     db_controller_t::instance().set_table(std::move(tname));
 }
 
+
+void add_req_atomic(token_t&& val)
+{
+    auto pos = _get_size_table();
+    _save_state_record(pos, val->clone(), _rolback_add_r);
+    _add_token(std::move(val));
+}
 
 void insert_req_atomic(index_t index, token_t&& val)
 {
@@ -312,6 +336,14 @@ void rolback_records()
 /* rolback_request functions */
 
 static
+void _rolback_add_r(record_ptr record)
+{
+    auto indx = record->get_index();
+    _remove_token(indx);
+}
+
+
+static
 void _rolback_insert_r(record_ptr record)
 {
     auto indx = record->get_index();
@@ -356,7 +388,7 @@ token_t create_token(data_ptr data)
 {
     auto dt = *(data->get_date_ptr());
     auto ti = *(data->get_time_ptr());
-    auto ty = get_type_token();
+    auto ty =   get_type_token();
     auto ds = *(data->get_descript_ptr());
    
     auto val = make_token(
@@ -366,14 +398,13 @@ token_t create_token(data_ptr data)
 }
 
 
-static
 size_t const _get_size_table()
 {
     return db_controller_t::instance().size_table();
 }
 
 
-static size_t const _get_size_pesronse_buf()
+size_t const _get_size_pesronse_buf()
 {
     return response_data_t::instance().size();
 }
@@ -403,6 +434,12 @@ response_d const _get_response()
 }
 
 static
+void _add_token(token_t&& val)
+{
+    db_controller_t::instance().add(std::move(val));
+}
+
+static
 void _insert_token(size_t pos, token_t&& val)
 {
     db_controller_t::instance().insert(pos, std::move(val));
@@ -427,11 +464,16 @@ void _save_state_record(index_t indx, token_t&& tok, controller_transact_t contr
     memento_t::instance().set_state(indx, std::move(tok), controll);
 }
 
-static
+
 void _print_token(token_ptr tok)
 {
     std::cout << tok->get_date() << "\n";
     std::cout << tok->get_time() << "\n";
     std::cout << tok->get_type() << "\n";
     std::cout << tok->get_descript() << "\n\n"; 
+}
+
+void _print_heder()
+{
+    std::cout << db_controller_t::instance().get_heder_table() << "\n";
 }
