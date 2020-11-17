@@ -1,5 +1,5 @@
-#ifndef _OPERATORS_H_
-#define _OPERATORS_H_
+#ifndef _ATOMIC_OPERATORS_H_
+#define _ATOMIC_OPERATORS_H_
 
 #include <string>
 #include <map>
@@ -7,12 +7,12 @@
 #include "shared_oprt_funcs.h"
 #include "command.h"
 
-class operators : public command
+class atomic_operators : public command
 {
     using oprt_table_t = std::map<oprt_name_t, oprt_type>;
 public:
-    operators(base_parse_api_ptr );
-    virtual ~operators();
+    atomic_operators(base_parse_api_ptr );
+    virtual ~atomic_operators();
     virtual void    execute() override;
     virtual bool    is_it_commat() const override; 
 
@@ -24,22 +24,21 @@ private:
     void            is_eq_lex(const LEXEME_TYPE& , 
                               const LEXEME_TYPE& , 
                               std::string&&     );
+
 private:
     oprt_table_t    optr_table_;
 };
 
+
 /* REAUESTES */
 
-void  __add_operator(args_oprt_buf_t&& );
-void  __insert_operator(args_oprt_buf_t&& );
-void  __update_operator(args_oprt_buf_t&& );
-void  __remove_operator(args_oprt_buf_t&& );
-void  __create_table_operator(args_oprt_buf_t&& );
-void  __drop_table_operator(args_oprt_buf_t&& );
-void  __set_table_operator(args_oprt_buf_t&& );
+void  __add_operator_atomic(args_oprt_buf_t&& );
+void  __insert_operator_atomic(args_oprt_buf_t&& );
+void  __update_operator_atomic(args_oprt_buf_t&& );
+void  __remove_operator_atomic(args_oprt_buf_t&& );
+void  __create_table_operator_atomic(args_oprt_buf_t&& );
+void  __drop_table_operator_atomic(args_oprt_buf_t&& );
+void  __set_table_operator_atomic(args_oprt_buf_t&& );
 
 
-
-
-
-#endif // !_OPERATORS_H_
+#endif // !_ATOMIC_OPERATORS_H_

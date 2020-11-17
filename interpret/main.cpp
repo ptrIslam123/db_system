@@ -28,10 +28,11 @@ int main()
     exec(std::move(create_t));
     exec(std::move(set_t));
   
-    exec("get(dt : '18.07.2020')");
-    exec("print()");
+    exec("print_t()");
 
-    exec("clear()");
+    exec("{ add(dt : '0.0.0' ti : '00:00' ds : 'transaction saccess!!!') print_t() }");
+    
+
 
     return 0;
 }

@@ -1,8 +1,9 @@
 #ifndef _TRANSACTION_H_
 #define _TRANSACTION_H_
 
-#include "command.h"
+
 #include "operators.h"
+#include "command.h"
 
 class transaction : public command
 {
@@ -14,9 +15,10 @@ public:
 
 private:
     bool         is_end_transact_block() const;
-    void         close_transact_contecste() const;
+    void         close_transact_contecste();
     lexeme_ptr   get(size_t ) const;
     void         next(size_t );
+
 private:
     operators oprt_;
 };

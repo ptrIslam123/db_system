@@ -11,6 +11,7 @@ transaction::~transaction()
 
 void transaction::execute()
 {
+    next(1);        // '{'
     while (!is_end_transact_block())
     {
         try
@@ -21,10 +22,34 @@ void transaction::execute()
         {
             e.rolback_records();
             close_transact_contecste();
-            return;
+            break;
         } 
     }
+    next(1);        // '}'
 }
+
+
+
+bool transaction::is_it_commat() const
+{
+    return get(0)->get_type() == LEXEME_TYPE::L_SHAPE_BRACKET;
+}
+
+
+void transaction::close_transact_contecste() 
+{
+    while (!is_end_transact_block())
+    {
+        next(1);   
+    }
+}
+
+
+bool transaction::is_end_transact_block() const
+{
+    return get(0)->get_type() == LEXEME_TYPE::R_SHAPE_BRACKET;
+}
+
 
 lexeme_ptr transaction::get(size_t pos) const
 {
@@ -34,20 +59,4 @@ lexeme_ptr transaction::get(size_t pos) const
 void transaction::next(size_t offset)
 {
     next_lexeme(offset);
-}
-
-void transaction::close_transact_contecste() const
-{
-
-}
-
-
-bool transaction::is_it_commat() const
-{
-    return false;
-}
-
-bool transaction::is_end_transact_block() const
-{
-    return false;
 }

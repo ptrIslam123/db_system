@@ -89,7 +89,7 @@ void update_dt_ti_req_atomic(index_t , data_ptr );
 void update_dt_ds_req_atomic(index_t, data_ptr );
 void update_ti_ds_req_atomic(index_t , data_ptr );
 void update_dt_ti_ds_req_atomic(index_t , data_ptr );
-void remove_req_atomic_atomic(index_t );
+void remove_req_atomic(index_t );
 
 void rolback_records();
 

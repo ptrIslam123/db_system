@@ -42,11 +42,23 @@ compilBaseParse_API:
 compilOperators:
 	clang++ -g -c ../operators.cpp
 
+compilAtomicOperators:
+	clang++ -g -c ../atomic_operators.cpp
+
 compilResponse:
 	clang++ -g -c ../response_data.cpp
 
 compilSysFunctions:
 	clang++ -g -c ../sys_functions.cpp
+
+compilParser:
+	clang++ -g -c ../parser.cpp
+
+compilTransaction:
+	clang++ -g -c ../transaction.cpp
+
+compilSharedOprt:
+	clang++ -g -c ../shared_oprt_funcs.cpp
 
 compilCommand:
 	clang++ -g -c ../command.cpp
