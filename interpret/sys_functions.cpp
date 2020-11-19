@@ -4,6 +4,8 @@
 #include "../db_kernel/includes/db_controller.h"
 
 
+
+
 /* comparators */
 
 bool comparator_dt(const token_ptr tok, const data_ptr data)
@@ -209,15 +211,16 @@ void remove_req(index_t index)
 }
 
 
-void print_table_req()
+void print_table_req(data_ptr data)
 {
-    const auto size = _get_size_table();
-    for (auto i = 0; i < size; ++i)
-    {
-        _print_token(_get_token(i));
-    }
+   _print_table(data->get_table_name_ptr());
 }
 
+
+void print_tables_req()
+{
+    db_controller_t::instance().print_tables();
+}
 
 void clear_req()
 {
@@ -229,6 +232,10 @@ void clear_req()
 
 void create_table_req_atomic(table_name_t&& tname, file_name_t&& fname, size_t size_table)
 {
+#ifndef _TRANSACT_TEST_LOG_
+    _save_state_log(&tname, "add_req");
+#endif // !_TRANSACT_TEST_LOG_G_
+ 
    _save_state_record(0,make_token(), _rolback_create_table);
   db_controller_t::instance().init_table(
        std::move(tname),
@@ -239,6 +246,10 @@ void create_table_req_atomic(table_name_t&& tname, file_name_t&& fname, size_t s
 
 void drop_table_req_atomic(table_name_t&& tname)
 {
+#ifndef _TRANSACT_TEST_LOG_
+    _save_state_log(&tname, "add_req");
+#endif // !_TRANSACT_TEST_LOG_
+
     _save_state_record(0, make_token(), _rolback_drop_table);
    db_controller_t::instance().clear_table(
        std::move(tname)
@@ -248,6 +259,10 @@ void drop_table_req_atomic(table_name_t&& tname)
 
 void set_table_req_atomic(table_name_t&& tname)
 {
+#ifndef _TRANSACT_TEST_LOG_
+    _save_state_log(&tname, "add_req");
+#endif // !_TRANSACT_TEST_LOG_
+
     _save_state_record(0, make_token(), _rolback_set_table);
     db_controller_t::instance().set_table(std::move(tname));
 }
@@ -255,6 +270,10 @@ void set_table_req_atomic(table_name_t&& tname)
 
 void add_req_atomic(token_t&& val)
 {
+#ifndef _TRANSACT_TEST_LOG_
+    _save_state_log(val.get(), "add_req");
+#endif // !_TRANSACT_TEST_LOG_
+
     auto pos = _get_size_table();
     _save_state_record(pos, val->clone(), _rolback_add_r);
     _add_token(std::move(val));
@@ -262,6 +281,10 @@ void add_req_atomic(token_t&& val)
 
 void insert_req_atomic(index_t index, token_t&& val)
 {
+#ifndef _TRANSACT_TEST_LOG_
+    _save_state_log(val.get(), "insert_req");
+#endif // !_TRANSACT_TEST_LOG_
+
     _save_state_record(index, val->clone(), _rolback_insert_r);
     _insert_token(index, std::move(val));
 }
@@ -271,6 +294,11 @@ void insert_req_atomic(index_t index, token_t&& val)
 void update_dt_req_atomic(index_t index, data_ptr data)
 {
     auto tok = _get_token(index);
+
+#ifndef _TRANSACT_TEST_LOG_
+    _save_state_log(tok, "update_dt_req");
+#endif // !_TRANSACT_TEST_LO
+
     _save_state_record(index, tok->clone(), _rolback_update_r);
     update_dt_req(index, data);
 }
@@ -278,6 +306,11 @@ void update_dt_req_atomic(index_t index, data_ptr data)
 void update_ti_req_atomic(index_t index, data_ptr data)
 {
     auto tok = _get_token(index);
+
+#ifndef _TRANSACT_TEST_LOG_
+    _save_state_log(tok, "update_ti_req");
+#endif // !_TRANSACT_TEST_LOG
+
     _save_state_record(index, tok->clone(), _rolback_update_r);
     update_ti_req(index,data);
 }
@@ -285,6 +318,11 @@ void update_ti_req_atomic(index_t index, data_ptr data)
 void update_ds_req_atomic(index_t index, data_ptr data)
 {
     auto tok = _get_token(index);
+
+#ifndef _TRANSACT_TEST_LOG_
+    _save_state_log(tok, "update_ds_req");
+#endif // !_TRANSACT_TEST_LOG
+
     _save_state_record(index, tok->clone(), _rolback_update_r);
     update_ds_req(index, data);
 }
@@ -292,6 +330,11 @@ void update_ds_req_atomic(index_t index, data_ptr data)
 void update_dt_ti_req_atomic(index_t index, data_ptr data)
 {
     auto tok = _get_token(index);
+
+#ifndef _TRANSACT_TEST_LOG_
+    _save_state_log(tok, "update_dt_ti_req");
+#endif // !_TRANSACT_TEST_LOG_
+
     _save_state_record(index, tok->clone(), _rolback_update_r);
     update_dt_ti_req(index, data); 
 }
@@ -299,6 +342,11 @@ void update_dt_ti_req_atomic(index_t index, data_ptr data)
 void update_dt_ds_req_atomic(index_t index, data_ptr data)
 {
     auto tok = _get_token(index);
+
+#ifndef _TRANSACT_TEST_LOG_
+    _save_state_log(tok, "update_dt_ds_req");
+#endif // !_TRANSACT_TEST_LOG_
+
     _save_state_record(index, tok->clone(), _rolback_update_r);
     update_dt_ds_req(index, data);
 }
@@ -306,6 +354,11 @@ void update_dt_ds_req_atomic(index_t index, data_ptr data)
 void update_ti_ds_req_atomic(index_t index, data_ptr data)
 {
     auto tok = _get_token(index);
+
+#ifndef _TRANSACT_TEST_LOG_
+    _save_state_log(tok, "update_ti_ds_req");
+#endif // !_TRANSACT_TEST_LOG_
+
     _save_state_record(index, tok->clone(), _rolback_update_r);
     update_ti_ds_req(index, data);
 }
@@ -321,6 +374,10 @@ void update_dt_ti_ds_req_atomic(index_t index,  data_ptr data)
 
 void remove_req_atomic(index_t index)
 {
+#ifndef _TRANSACT_TEST_LOG_
+    _save_state_log(_get_token(index), "remove_req");
+#endif // !_TRANSACT_TEST_LOG_
+
     _save_state_record(index, make_token(), _rolback_remove_r);
     _remove_token(index);
 }
@@ -473,7 +530,47 @@ void _print_token(token_ptr tok)
     std::cout << tok->get_descript() << "\n\n"; 
 }
 
-void _print_heder()
+void _print_heder(const word_ptr heder)
 {
-    std::cout << db_controller_t::instance().get_heder_table() << "\n";
+    std::cout << (*heder) << "\n";
 }
+
+
+void _print_table(const table_name_ptr tname_ptr)
+{
+    auto tname = *tname_ptr;
+    const auto table = db_controller_t::instance().get_table(std::move(tname));
+    const auto size = table->size_table();
+    
+    _print_heder(table->get_heder_ptr());
+    for (auto i = 0; i < size; ++i)
+    {
+        _print_token( table->get(i) );
+    }
+}
+
+void _print_tables()
+{
+
+}
+
+#ifndef _TRANSACT_TEST_LOG_
+
+static
+void _save_state_log(const token_ptr tok, const std::string& msg)
+{
+    std::cout << msg << " :=> record{" << std::endl;
+    _print_token(tok);
+    std::cout << "}" << std::endl;
+}
+
+
+static
+void _save_state_log(const table_name_ptr tname_p,  const std::string& msg)
+{
+    std::cout << msg << " :=> table{" << std::endl;
+    std::cout << (*tname_p) << std::endl;
+    std::cout << "}" << std::endl;
+}
+
+#endif // !_TRANSACT_TEST_LOG_

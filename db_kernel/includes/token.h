@@ -16,6 +16,11 @@ using time_t_           = std::string;
 using type_t_           = std::string;
 using word_t            = std::string;
 
+using date_ptr          = date_t_*;
+using time_ptr          = time_t_*;
+using type_ptr          = type_t_*;
+using word_ptr          = word_t*;
+
 using descript_t_       = word_t;
 using descript_ptr_     = descript_t_*;
 using token_t           = std::unique_ptr<token>;

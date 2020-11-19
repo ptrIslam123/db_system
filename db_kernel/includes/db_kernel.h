@@ -49,6 +49,7 @@ public:
     void        reserve(size_t );
     void        create_table();
     void        drop_table();
+    void        print_table();
 
     token_ptr   get(size_t );
     void        add(token_t&& );
@@ -65,13 +66,17 @@ public:
     void        update_dt_ti_ds(size_t, date_t_&& , time_t_&& , descript_t_&&);
 
     word_t&     get_heder();
+    word_ptr    get_heder_ptr();
+
     size_t      size_table();
     bool        is_open_file() const;
     tok_gramm_t get_tok_gramm();
 
 private:
+    void        print_token(const token_ptr );
     token_ptr   get_token(size_t );
     void        open_file();
+    
 private:
     size_t           beg_cont_size_;
     tok_gramm_t      tok_gramm_;

@@ -16,9 +16,11 @@ public:
     using file_name_t         = fname_t;
     using db_t                = std::unique_ptr<db_kernel>;
     using table_name_t        = std::string;
+    using table_name_ptr      = table_name_t*;
     using table_t             = db_kernel;
     using table_ptr           = table_t*; 
     using tables_t            = std::map<table_name_t, db_t>;
+    using tables_ptr          = tables_t*;
     using table_iter_t        = typename tables_t::iterator;
     using table_revers_iter_t = typename tables_t::reverse_iterator;
     
@@ -30,8 +32,11 @@ public:
     void        add_table(table_name_t&& , fname_t&& , size_t );
     void        set_table(table_name_t&& );
     void        delete_table(table_name_t&& );
+    void        print_tables();
+    
     table_ptr   get_table(table_name_t&& );
     table_ptr   get_table(const table_name_t& );
+    tables_ptr  get_tables_ptr();
 
     /* API DB_KERNEL */
     void        reserve();
@@ -58,6 +63,7 @@ public:
     bool        is_open_table() const;
 
 private:
+    void        print_table_name(table_name_ptr );
     void        is_exist_table(table_iter_t );
 
 private:

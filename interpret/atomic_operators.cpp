@@ -17,7 +17,9 @@ atomic_operators::atomic_operators(base_parse_api_ptr base_p_api):
         {"print_t",   __print_table__operator},
         {"print",     __print_operator},
         {"count",     __count_operator},
-        {"clear",     __clear_operator}
+        {"clear",     __clear_operator},
+        {"log",       __log_operator},
+        {"rolback",   __rolback_operator}
     }
 {}
 

@@ -1,5 +1,6 @@
 #include <iostream>
 #include <memory>
+#include <map>
 #include <vector>
 
 
@@ -27,12 +28,9 @@ int main()
 
     exec(std::move(create_t));
     exec(std::move(set_t));
-  
+
+    exec("print_t(tn : '"+ tn +"')");
+    exec("log(ds : '\n===============\n')");
     exec("print_t()");
-
-    exec("{ add(dt : '0.0.0' ti : '00:00' ds : 'transaction saccess!!!') print_t() }");
-    
-
-
     return 0;
 }

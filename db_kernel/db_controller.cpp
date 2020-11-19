@@ -44,11 +44,30 @@ void db_controller::set_table(table_name_t&& tname)
     cur_table_ = get_table(std::move(tname));
 }
 
+void db_controller::print_tables()
+{
+    for (auto &i : tables_)
+    {
+        std::cout << "TABLE_NAME : " << (i.first) << "\n";
+        i.second->print_table();
+    }
+}
+
+void db_controller::print_table_name(table_name_ptr tname_p)
+{
+    std::cout << (*tname_p) << "\n";
+}
+
 table_ptr db_controller::get_table(table_name_t&& tname)
 {
     auto table_iter = tables_.find(std::move(tname));
     is_exist_table(table_iter);
     return table_iter->second.get();
+}
+
+db_controller::tables_ptr db_controller::get_tables_ptr() 
+{
+    return &tables_;
 }
 
 

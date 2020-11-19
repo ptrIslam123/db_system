@@ -3,6 +3,7 @@
 
 
 #include "operators.h"
+#include "atomic_operators.h"
 #include "command.h"
 
 class transaction : public command
@@ -20,7 +21,7 @@ private:
     void         next(size_t );
 
 private:
-    operators oprt_;
+    atomic_operators oprt_;
 };
 
 #endif // !_TRANSACTION_H_

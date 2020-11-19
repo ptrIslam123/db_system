@@ -93,6 +93,24 @@ void db_kernel::drop_table()
    container_.clear();
 }
 
+
+void db_kernel::print_table()
+{
+    const auto size = size_table();
+    for (auto i = 0; i < size ; ++i)
+    {
+        print_token(get(i));
+    }
+}
+
+void db_kernel::print_token(const token_ptr tok)
+{
+    std::cout << tok->get_date() << 
+    "\n" << tok->get_time() <<
+    "\n" << tok->get_type() <<
+    "\n" << tok->get_descript() << "\n";
+}
+
 tok_gramm_t db_kernel::get_tok_gramm() 
 {
     return std::move(tok_gramm_);
@@ -202,6 +220,11 @@ token_ptr db_kernel::get_token(size_t pos)
 word_t& db_kernel::get_heder()
 {
     return heder_;
+}
+
+word_ptr db_kernel::get_heder_ptr()
+{
+    return &heder_;
 }
 
 bool db_kernel::is_open_file() const

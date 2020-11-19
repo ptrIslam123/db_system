@@ -1,5 +1,9 @@
 #ifndef _SYS_FUNCTIONS_H_
 #define _SYS_FUNCTIONS_H_
+//#define _TRANSACT_TEST_LOG_
+#ifndef _TRANSACT_TEST_LOG_
+#include <iostream>
+#endif // !_TRANSACT_TEST_LOG_
 
 #include <memory>
 #include "record.h"
@@ -67,7 +71,8 @@ void update_dt_ds_req(index_t, data_ptr );
 void update_ti_ds_req(index_t , data_ptr );
 void update_dt_ti_ds_req(index_t , data_ptr );
 void remove_req(index_t );
-void print_table_req();
+void print_table_req(data_ptr );
+void print_tables_req();
 void clear_req();
 
 
@@ -117,7 +122,16 @@ static void         _insert_token(size_t , token_t&& );
 static void         _update_token(size_t , token_t&& );
 static void         _remove_token(size_t );
 static void         _save_state_record(index_t , token_t&& , controller_transact_t);
+
 void                _print_token(token_ptr );
-void                _print_heder();
+void                _print_heder(const word_ptr );
+void                _print_table(const table_name_ptr );
+void                _print_tables();
+
+#ifndef _TRANSACT_TEST_LOG_
+static void         _save_state_log(const token_ptr , const std::string& );
+static void         _save_state_log(const table_name_ptr ,  const std::string& );
+#endif // !_TRANSACT_TEST_LOG_
+
 
 #endif // !_SYS_FUNCTIONS_H_

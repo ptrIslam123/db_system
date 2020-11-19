@@ -1,5 +1,6 @@
 #include "includes/shared_oprt_funcs.h"
 #include "includes/sys_functions.h"
+#include <iostream>
 
 
 void __get_operator(args_oprt_buf_t&& args)
@@ -54,12 +55,33 @@ void __get_operator(args_oprt_buf_t&& args)
 
 void __print_table__operator(args_oprt_buf_t&& args)
 {
+    //auto data = get_data_ptr();
+    args_data arg_data;
+    data_ptr data = &arg_data;
+    try
+    {
+        init_data(data, std::move(args));   
+    }
+    catch(const std::out_of_range& e)
+    {
+        //std::cerr << e.what() << '\n';
+    }
+    auto type = data->get_args_type();
+    
     const auto size = args.size();
-    if (size > 0 )
+    if (size == 0 )
+    {
+        print_tables_req();
+    }
+    else if (type == _TABLE_NAME_)
+    {
+        print_table_req(data);
+    }
+    else
     {
         throw "method : __print_table__operator | undefine param";
     }
-    print_table_req();
+    
 }
 
 void __print_operator(args_oprt_buf_t&& args)
@@ -69,7 +91,7 @@ void __print_operator(args_oprt_buf_t&& args)
     {
         throw "method : __print_operator | undefine param";
     }
-    _print_heder();
+    //_print_heder();
     for_each(_print_token);
 }
 
@@ -91,6 +113,37 @@ void __clear_operator(args_oprt_buf_t&& args)
         throw "method : __clear_operator | undefine param";
     }
     clear_req();
+}
+
+
+void __log_operator(args_oprt_buf_t&& args)
+{
+    args_data arg_data;
+    data_ptr data = &arg_data;
+    try
+    {
+        init_data(data, std::move(args));   
+    }
+    catch(const std::out_of_range& e)
+    {
+        //std::cerr << e.what() << '\n';
+    }
+    auto type = data->get_args_type();
+    
+    switch (type)
+    {
+        case _DESCRIPT_ : {
+            std::cout << "LOG: " << (*data->get_descript_ptr()) << "\n";
+            break;
+        }
+        default:
+            throw "method : __get_operator | undefine param type";
+    }
+}
+
+void __rolback_operator(args_oprt_buf_t&& )
+{
+    rolback_records();
 }
 
 data_ptr get_data_ptr()
@@ -165,3 +218,4 @@ void init_data(data_ptr data, args_oprt_buf_t&& args)
         }
     }
 }
+
