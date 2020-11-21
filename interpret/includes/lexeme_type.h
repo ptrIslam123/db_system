@@ -19,6 +19,7 @@ enum class LEXEME_TYPE
     /* TOKENS */
     WORD,
     DATA,
+    TRIGGER,
 
     /* OPERATORS */
     LESS,

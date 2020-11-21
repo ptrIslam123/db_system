@@ -7,13 +7,13 @@
 #include "../includes/base_parse_api.h"
 #include "../includes/parser.h"
 
-auto printLexer = [](auto container)
+auto printLexer = [](std_container_type* container)
 {
     lexeme_ptr lex = nullptr;
-    const auto size = container.size();
+    const auto size = container->size();
     for (auto i = 0; i < size; ++i)
     {
-        lex = container[i].get();
+        lex = container->at(i).get();
         std::cout << "value : " << lex->get_value() << "\n";
     }
 };

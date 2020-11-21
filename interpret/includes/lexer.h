@@ -202,6 +202,12 @@ lexeme_uptr lexer<C>::tokenize_word()
             break;
         }
     }
+
+    if (buffer == "trigger")
+    {
+        return make_lexeme(std::move(buffer), lexeme_t::TRIGGER);
+    }
+    
     return make_lexeme(std::move(buffer), lexeme_t::WORD);
 }
 

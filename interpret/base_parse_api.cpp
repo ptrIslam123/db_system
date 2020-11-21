@@ -29,6 +29,19 @@ lexeme_ptr base_parse_api::get_lexeme(size_t pos) const
     return (*iter).get();
 }
 
+lexeme_uptr base_parse_api::get_lexeme_uptr(size_t pos)
+{
+    auto position = pos_ + pos;
+    auto iter = container_.begin();
+    std::advance(iter, position);
+
+    auto val = std::move((*iter));
+    container_.erase(iter);
+    size_--;
+
+    return std::move(val);
+}
+
 bool base_parse_api::is_end() const
 {
     return (pos_ >= size_);

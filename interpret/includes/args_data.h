@@ -22,13 +22,16 @@ constexpr short _TABLE_NAME_            = 20;
 constexpr short _FILE_NAME_             = 25;
 constexpr short _SIZE_TABLE_            = 30;
 constexpr short _POS_                   = 31;
+constexpr short _OPTION_                = 40;
+constexpr short _NAME_                  = 48;
 constexpr short _TABLE_FILE_NAME_SIZE_  = ( _TABLE_NAME_ + _FILE_NAME_ + _SIZE_TABLE_ );      
 constexpr short _DESCRIPT_              = 100;
 constexpr short _DATE_TIME_             = ( _DATE_ + _TIME_ );
 constexpr short _TIME_DESCRIPT_         = ( _TIME_ + _DESCRIPT_ );
 constexpr short _DATE_DESCRIPT          = ( _DATE_ + _DESCRIPT_ );
 constexpr short _DATE_TIME_DESCRIPT_    = ( _DATE_ + _TIME_ + _DESCRIPT_ );
-
+constexpr short _TG_TNAME_NAME_OP_OP_   = ( _TABLE_NAME_ + _NAME_ + _OPTION_ + _OPTION_ );
+constexpr short _TG_TNAME_NAME_         = ( _TABLE_NAME_ + _NAME_ );
 
 struct args_data;
 using data_ptr      = args_data*;
@@ -40,6 +43,8 @@ using table_name_ptr= word_t*;
 using file_name_ptr = word_t*;
 using size_ptr      = word_t*;
 using pos_ptr       = word_t*;
+using option_ptr    = word_t*;
+using name_ptr      = word_t*;
 using args_type_t   = short;
 
 struct args_data
@@ -56,6 +61,8 @@ public:
     void            set_file_name_ptr(const file_name_ptr );
     void            set_size_ptr(const size_ptr );
     void            set_pos_ptr(const pos_ptr );
+    void            set_option_ptr(const option_ptr );
+    void            set_name_ptr(const name_ptr );
 
     date_ptr        get_date_ptr() const;
     time_ptr        get_time_ptr() const;
@@ -65,6 +72,8 @@ public:
     file_name_ptr   get_file_name_ptr() const;
     size_ptr        get_size_ptr() const;
     pos_ptr         get_pos_ptr() const;
+    option_ptr      get_option_ptr() const;
+    name_ptr        get_name_ptr() const;
 
 private:   
     void            is_f_true(const bool& , std::string&& );
@@ -78,6 +87,8 @@ private:
     file_name_ptr   file_name_;
     size_ptr        size_;
     pos_ptr         pos_;
+    option_ptr      option_;
+    name_ptr        name_;
 
     bool            f_date_;
     bool            f_time_;
@@ -86,6 +97,8 @@ private:
     bool            f_file_name_;
     bool            f_size_;
     bool            f_pos_;
+    bool            f_option_;
+    bool            f_name_;
 };
 
 #endif // !_ARGS_DATA_H_

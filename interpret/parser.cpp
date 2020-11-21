@@ -1,6 +1,7 @@
 #include "includes/parser.h"
 #include "includes/operators.h"
 #include "includes/transaction.h"
+#include "includes/trigger_opeators.h"
 
 parser::parser()
 {}
@@ -10,6 +11,7 @@ parser::parser(parser::base_p_api_ptr base_p_api)
   base_p_api_ = base_p_api;
   cmds_[0] = make_command<operators>(base_p_api_);
   cmds_[1] = make_command<transaction>(base_p_api_);
+  cmds_[2] = make_command<trigger_operators>(base_p_api);
 }
 
 parser::~parser()

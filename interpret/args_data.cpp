@@ -9,6 +9,8 @@ args_data::args_data():
     file_name_(nullptr),
     size_(nullptr),
     pos_(nullptr),
+    option_(nullptr),
+    name_(nullptr),
     f_date_(false),
     f_time_(false),
     f_descript_(false),
@@ -16,6 +18,8 @@ args_data::args_data():
     f_file_name_(false),
     f_size_(false),
     f_pos_(false),
+    f_option_(false),
+    f_name_(false),
      type_(_NULL_TYPE)
 {}
 
@@ -78,6 +82,19 @@ void args_data::set_pos_ptr(const pos_ptr pos)
     f_pos_ = true;
 }
 
+void args_data::set_option_ptr(const option_ptr option)
+{
+    is_f_true(f_pos_, "op");
+    option_ = option;
+    f_option_ = true;
+}
+
+void args_data::set_name_ptr(const name_ptr name)
+{
+    is_f_true(f_name_, "nm");
+    name_ = name;
+    f_name_ = true;
+}
 
 date_ptr args_data::get_date_ptr() const
 {
@@ -126,4 +143,14 @@ void args_data::is_f_true(const bool& flage, std::string&& p)
     {
         throw "multi difinition param: " + p;
     }
-}   
+}  
+
+option_ptr args_data::get_option_ptr() const
+{
+    return option_;
+}
+
+name_ptr args_data::get_name_ptr() const
+{
+    return name_;
+}

@@ -9,12 +9,16 @@ class event
 {
     using trigers_t = std::vector<triger_ptr>; 
 public:
-            event();
-    virtual ~event();
+    event();
+    ~event();
 
-    virtual void attach(const triger_ptr );
-    virtual void detach(const triger_ptr );
-    virtual void notify();
+    void attach(const triger_ptr );
+    void detach(const triger_ptr );
+    void notify();
+
+    size_t get_size();
+    size_t capacity();
+
 
 private:
     trigers_t   poll_triger_;

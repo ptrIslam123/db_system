@@ -57,6 +57,12 @@ compil:
 compilMain:
 	clang++ -g -c ../main.cpp
 
+compilTriggers:
+	clang++ -g -c ../triggers.cpp
+
+compilTriggerOperators:
+	clang++ -g -c ../trigger_operators.cpp
+
 compilLexeme:
 	clang++ -g -c ../lexeme.cpp
 

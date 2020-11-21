@@ -25,10 +25,13 @@
 
 int main()
 {
-
+ 
     exec(std::move(create_t));
     exec(std::move(set_t));
 
-    exec("print_t(tn : 'table1' )");
+    exec("trigger test { print_t(tn : 'table1' ) insert(dt : '12.12.12' ti : '12:12' ds : 'new descript') }");
+
+    exec("print_t(tn : 'table1')");
+
     return 0;
 }

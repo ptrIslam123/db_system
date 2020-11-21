@@ -25,6 +25,7 @@ public:
     ~base_parse_api();
 
     lexem_ptr   get_lexeme(size_t ) const;
+    lexeme_uptr get_lexeme_uptr(size_t pos);
     void        next_lexeme(size_t );
     void        is_eq_lexeme(const LEXEME_TYPE& ,
                              const LEXEME_TYPE& , std::string&& ) const;

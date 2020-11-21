@@ -15,6 +15,7 @@ public:
 protected:
     bool        is_end() const;
     lexeme_ptr  get_lexeme(size_t ) const;
+    lexeme_uptr get_lexeme_uptr(size_t pos);
     void        next_lexeme(size_t );
 
 private:

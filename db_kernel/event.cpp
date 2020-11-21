@@ -1,8 +1,9 @@
 #include "includes/event.h"
 
-event::event():
-    poll_triger_(_SIZE_TRIGERS_)
-{}
+event::event()
+{
+    poll_triger_.reserve(_SIZE_TRIGERS_);
+}
 
 event::~event()
 {}
@@ -28,8 +29,19 @@ void event::detach(const triger_ptr t)
 
 void event::notify()
 {
-    for (auto &i : poll_triger_)
+    const auto size = poll_triger_.size();
+    for (auto i = 0; i < size; ++i)
     {
-        i->exec();
+        poll_triger_[i]->exec();
     }
+}
+
+size_t event::get_size()
+{
+    return poll_triger_.size();
+}
+
+size_t event::capacity()
+{
+    return poll_triger_.capacity();
 }

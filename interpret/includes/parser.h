@@ -1,6 +1,6 @@
 #ifndef _PARSER_H_
 #define _PARSER_H_
-#define SIZE_SET_COMMAND 2
+#define SIZE_SET_COMMAND 3
 
 #include <array>
 #include <memory>
