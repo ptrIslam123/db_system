@@ -1,5 +1,7 @@
 #include "includes/db_kernel.h"
 //#define _MALLOC_DEB_INF_F_
+#define _ENBL_API_TRIGERS_
+
 
  
 db_kernel_t make_db_kernel(std::string&& fname, size_t beg_cont_size)
@@ -99,16 +101,18 @@ void db_kernel::print_table()
     const auto size = size_table();
     for (auto i = 0; i < size ; ++i)
     {
-        print_token(get(i));
+        print_token(get(i), i);
     }
 }
 
-void db_kernel::print_token(const token_ptr tok)
+void db_kernel::print_token(const token_ptr tok, const size_t index)
 {
-    std::cout << tok->get_date() << 
-    "\n" << tok->get_time() <<
-    "\n" << tok->get_type() <<
-    "\n" << tok->get_descript() << "\n";
+    auto date = tok->get_date().c_str();
+    auto time = tok->get_time().c_str();
+    auto descript = tok->get_descript().c_str();
+
+    printf("\n%-10d\t%-10s\t%-10s\t%-300s\n",
+                            index, date, time, descript);
 }
 
 tok_gramm_t db_kernel::get_tok_gramm() 
@@ -131,7 +135,15 @@ size_t db_kernel::size_table()
 
 void db_kernel::add(token_t&& val)
 {
+#ifdef _ENBL_API_TRIGERS_
+    befEventAdd_.notify();
+#endif // !_ENBL_API_TRIGERS_
+
     container_.push_back(std::move(val));
+
+#ifdef _ENBL_API_TRIGERS_
+    aftEventAdd_.notify();
+#endif // !_ENBL_API_TRIGERS_
 }
 
 
@@ -250,3 +262,51 @@ void db_kernel::open_file()
         throw "db_kernel : method : open_file | file not found";
     }
 }
+
+
+/*  TRIGERS API */
+
+void db_kernel::bef_attach_triger_add(const triger_ptr t)
+{
+    befEventAdd_.attach(t);
+}
+
+void db_kernel::bef_attach_triger_remove(const triger_ptr t)
+{
+    befEventRemove_.attach(t);
+}
+
+void db_kernel::bef_attach_triger_insert(const triger_ptr t)
+{
+    befEventInsert_.attach(t);
+}
+
+void db_kernel::bef_attach_triger_drop_table(const triger_ptr t)
+{
+    befEventDropTable_.attach(t);
+}
+    
+
+
+
+void db_kernel::aft_attach_triger_add(const triger_ptr t)
+{
+    aftEventAdd_.attach(t);
+}
+
+void db_kernel::aft_attach_triger_remove(const triger_ptr t)
+{
+    aftEventRemove_.attach(t);
+}
+
+void db_kernel::aft_attach_triger_insert(const triger_ptr t)
+{
+    aftEventInsert_.attach(t);
+}
+
+void db_kernel::aft_attach_triger_drop_table(const triger_ptr t)
+{
+    aftEventDropTable_.attach(t);
+}
+
+

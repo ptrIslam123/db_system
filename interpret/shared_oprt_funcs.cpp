@@ -91,7 +91,6 @@ void __print_operator(args_oprt_buf_t&& args)
     {
         throw "method : __print_operator | undefine param";
     }
-    //_print_heder();
     for_each(_print_token);
 }
 

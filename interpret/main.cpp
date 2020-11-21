@@ -29,8 +29,6 @@ int main()
     exec(std::move(create_t));
     exec(std::move(set_t));
 
-    exec("print_t(tn : '"+ tn +"')");
-    exec("log(ds : '\n===============\n')");
-    exec("print_t()");
+    exec("print_t(tn : 'table1' )");
     return 0;
 }

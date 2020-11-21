@@ -19,6 +19,30 @@ compilFstream:
 	clang++ -g -c ../../db_kernel/file_stream.cpp
 
 
+
+compilTrigersAdd:
+	clang++ -g -c ../../db_kernel/triger_add.cpp
+
+compilTrigersRemove:
+	clang++ -g -c ../../db_kernel/triger_remove.cpp
+
+
+compilTrigersInsert:
+	clang++ -g -c ../../db_kernel/triger_insert.cpp
+
+compilTrigersDropTable:
+	clang++ -g -c ../../db_kernel/triger_drop_table.cpp
+
+compilTrigers:
+	make compilTrigersAdd
+	make compilTrigersInsert
+	make compilTrigersRemove
+	make compilTrigersDropTable
+
+
+compilEvent:
+	clang++ -g -c ../../db_kernel/event.cpp
+
 compilDB_API:
 	make compilDBContoller
 	make compilToken

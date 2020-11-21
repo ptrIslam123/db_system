@@ -14,6 +14,7 @@
 #include "tokenize_grammar.h"
 #include "file_stream.h"
 #include "methods.h"
+#include "event.h"
 #endif // !_ENABLE_DB_CONTROLLER_OPRTIONS_
 
 class db_kernel;
@@ -72,8 +73,23 @@ public:
     bool        is_open_file() const;
     tok_gramm_t get_tok_gramm();
 
+    
+    /*  TRIGERS API */
+
+    void bef_attach_triger_add(const triger_ptr );
+    void bef_attach_triger_remove(const triger_ptr );
+    void bef_attach_triger_insert(const triger_ptr );
+    void bef_attach_triger_drop_table(const triger_ptr );
+    
+
+    void aft_attach_triger_add(const triger_ptr );
+    void aft_attach_triger_remove(const triger_ptr );
+    void aft_attach_triger_insert(const triger_ptr );
+    void aft_attach_triger_drop_table(const triger_ptr );
+
+
 private:
-    void        print_token(const token_ptr );
+    void        print_token(const token_ptr , const size_t );
     token_ptr   get_token(size_t );
     void        open_file();
     
@@ -83,7 +99,21 @@ private:
     container_t      container_;
     container_iter_t iter_, beg_iter_;
     word_t           heder_;
+
+
+    /*  TRIGERS API */
+
+    event           befEventAdd_;
+    event           befEventRemove_;
+    event           befEventInsert_;
+    event           befEventDropTable_;
+
+    event           aftEventAdd_;
+    event           aftEventRemove_;
+    event           aftEventInsert_;
+    event           aftEventDropTable_;
 };
+
 
 db_kernel_t make_db_kernel(std::string&& , size_t );
 

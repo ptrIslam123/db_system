@@ -524,10 +524,12 @@ void _save_state_record(index_t indx, token_t&& tok, controller_transact_t contr
 
 void _print_token(token_ptr tok)
 {
-    std::cout << tok->get_date() << "\n";
-    std::cout << tok->get_time() << "\n";
-    std::cout << tok->get_type() << "\n";
-    std::cout << tok->get_descript() << "\n\n"; 
+    auto date = tok->get_date().c_str();
+    auto time = tok->get_time().c_str();
+    auto descript = tok->get_descript().c_str();
+
+    printf("\n%-19s\t%-10s\t%-300s\n", 
+                            date, time, descript);
 }
 
 void _print_heder(const word_ptr heder)
@@ -542,7 +544,7 @@ void _print_table(const table_name_ptr tname_ptr)
     const auto table = db_controller_t::instance().get_table(std::move(tname));
     const auto size = table->size_table();
     
-    _print_heder(table->get_heder_ptr());
+    //_print_heder(table->get_heder_ptr());
     for (auto i = 0; i < size; ++i)
     {
         _print_token( table->get(i) );

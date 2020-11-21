@@ -22,6 +22,23 @@ compilTokenGrammar:
 compilTest:
 	clang++ -g -c ../test/*.cpp
 
+compilTrigerAdd:
+	clang++ -g -c ../triger_add.cpp
+
+compilTrigerREmove:
+	clang++ -g -c ../triger_remove.cpp
+
+compilTrigerInsert:
+	clang++ -g -c ../triger_insert.cpp
+
+compilTrigerDropTable:
+	clang++ -g -c ../triger_drop_table.cpp
+
+compilEvent:
+	clang++ -g -c ../event.cpp
+
+
+
 compilMain:
 	clang++ -g -c ../main.cpp
 

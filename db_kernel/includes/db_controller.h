@@ -66,6 +66,23 @@ private:
     void        print_table_name(table_name_ptr );
     void        is_exist_table(table_iter_t );
 
+
+    /*  TRIGERS API */
+
+    void bef_attach_triger_add(const triger_ptr );
+    void bef_attach_triger_remove(const triger_ptr );
+    void bef_attach_triger_insert(const triger_ptr );
+    void bef_attach_triger_drop_table(const triger_ptr );
+    
+
+    void aft_attach_triger_add(const triger_ptr );
+    void aft_attach_triger_remove(const triger_ptr );
+    void aft_attach_triger_insert(const triger_ptr );
+    void aft_attach_triger_drop_table(const triger_ptr );
+
+    
+    
+
 private:
   tables_t  tables_;
   table_ptr cur_table_;
