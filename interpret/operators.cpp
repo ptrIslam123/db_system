@@ -20,7 +20,11 @@ operators::operators(base_parse_api_ptr base_p_api):
         {"count",     __count_operator},
         {"clear",     __clear_operator},
         {"log",       __log_operator},
-        {"rolback",   __rolback_operator}
+        {"rolback",   __rolback_operator},
+        {"bef_attach",__bef_attach_operator},
+        {"bef_detach",__bef_detach_operator},
+        {"aft_attach",__aft_attach_operator},
+        {"aft_detach",__aft_detach_operator}
     }
 {}
 

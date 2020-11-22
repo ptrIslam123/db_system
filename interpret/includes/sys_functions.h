@@ -75,6 +75,13 @@ void print_table_req(data_ptr );
 void print_tables_req();
 void clear_req();
 
+/* TRIGGER API */
+
+void bef_attach_req(data_ptr );
+void bef_detach_req(data_ptr );
+
+void aft_attach_req(data_ptr );
+void aft_detach_req(data_ptr );
 
 
 

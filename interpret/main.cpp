@@ -10,6 +10,7 @@
 #include "includes/response_data.h"
 #include "test/t_lexer.h"
 #include "includes/shell.h"
+#include "includes/option_parse.h"
 
     std::string fn = "/home/islam/CppProgram/db_sysytem_for_it_company/interpret/test/tdata/tdata.txt";
     std::string tn = "table1";
@@ -26,12 +27,6 @@
 int main()
 {
  
-    exec(std::move(create_t));
-    exec(std::move(set_t));
-
-    exec("trigger test { print_t(tn : 'table1' ) insert(dt : '12.12.12' ti : '12:12' ds : 'new descript') }");
-
-    exec("print_t(tn : 'table1')");
-
+   
     return 0;
 }

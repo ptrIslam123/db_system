@@ -1,5 +1,7 @@
 #include "includes/shared_oprt_funcs.h"
 #include "includes/sys_functions.h"
+#include "includes/option_parse.h"
+
 #include <iostream>
 
 
@@ -153,10 +155,117 @@ data_ptr get_data_ptr()
 }
 
 
+
+void  __bef_attach_operator(args_oprt_buf_t&& args)
+{
+    args_data arg_data;
+    data_ptr data = &arg_data;
+    try
+    {
+        init_data(data, std::move(args));   
+    }
+    catch(const std::out_of_range& e)
+    {
+        //std::cerr << e.what() << '\n';
+    }
+    auto type = data->get_args_type();
+
+    switch (type)
+    {
+        case _TG_TNAME_NAME_OP_ : {
+            bef_attach_req(data);
+            break;
+        }
+        default:
+            throw "method : __attach_operator | undefine param type";
+    }
+}
+
+void  __bef_detach_operator(args_oprt_buf_t&& args)
+{
+    args_data arg_data;
+    data_ptr data = &arg_data;
+    try
+    {
+        init_data(data, std::move(args));   
+    }
+    catch(const std::out_of_range& e)
+    {
+        //std::cerr << e.what() << '\n';
+    }
+    auto type = data->get_args_type();
+
+    switch (type)
+    {
+        case _TG_TNAME_NAME_ : {
+            bef_detach_req(data);
+            break;
+        }
+        default:
+            throw "method :__detach_operator | undefine param type";
+    }
+}
+
+void  __aft_attach_operator(args_oprt_buf_t&& args)
+{
+    args_data arg_data;
+    data_ptr data = &arg_data;
+    try
+    {
+        init_data(data, std::move(args));   
+    }
+    catch(const std::out_of_range& e)
+    {
+        //std::cerr << e.what() << '\n';
+    }
+    auto type = data->get_args_type();
+
+    switch (type)
+    {
+        case _TG_TNAME_NAME_OP_ : {
+            aft_attach_req(data);
+            break;
+        }
+        default:
+            throw "method : __attach_operator | undefine param type";
+    }
+}
+
+void  __aft_detach_operator(args_oprt_buf_t&& args)
+{
+    args_data arg_data;
+    data_ptr data = &arg_data;
+    try
+    {
+        init_data(data, std::move(args));   
+    }
+    catch(const std::out_of_range& e)
+    {
+        //std::cerr << e.what() << '\n';
+    }
+    auto type = data->get_args_type();
+
+    switch (type)
+    {
+        case _TG_TNAME_NAME_ : {
+            aft_detach_req(data);
+            break;
+        }
+        default:
+            throw "method :__detach_operator | undefine param type";
+    }
+}
+
+
+
+
+
 void init_data(data_ptr data, args_oprt_buf_t&& args)
 {
+    static option_parse opt_parse_; 
     auto size = args.size();
     auto i = 0;
+    
     while (true)
     {
         if (i >= size)
@@ -203,11 +312,18 @@ void init_data(data_ptr data, args_oprt_buf_t&& args)
             i++;
             continue;
         }
-         if (args_type == "sz")
+        if (args_type == "sz")
         {
             data->set_args_type(_SIZE_TABLE_);
             auto size_ptr = (args.at(i).second)->get_ptr_value();
             data->set_size_ptr(size_ptr);
+            i++;
+            continue;
+        }
+        if (args_type == "op")
+        {
+            auto opt_val_ptr = (args.at(i).second)->get_ptr_value();
+            opt_parse_.parse(data, opt_val_ptr);
             i++;
             continue;
         }

@@ -228,6 +228,33 @@ void clear_req()
 }
 
 
+
+/* TRIGGER API */
+
+void bef_attach_req(data_ptr data)
+{
+
+}
+
+void bef_detach_req(data_ptr data)
+{
+
+}
+
+
+
+void aft_attach_req(data_ptr data)
+{
+
+}
+
+void aft_detach_req(data_ptr data)
+{
+
+}
+
+
+
 /* API transaction  */
 
 void create_table_req_atomic(table_name_t&& tname, file_name_t&& fname, size_t size_table)

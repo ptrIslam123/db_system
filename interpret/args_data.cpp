@@ -20,7 +20,8 @@ args_data::args_data():
     f_pos_(false),
     f_option_(false),
     f_name_(false),
-     type_(_NULL_TYPE)
+     type_(_NULL_TYPE),
+     opt_(_NULL_TYPE)
 {}
 
 void args_data::set_null_type()
@@ -31,6 +32,11 @@ void args_data::set_null_type()
 void args_data::set_args_type(args_type_t type)
 {
     type_ += type;
+}
+
+void args_data::set_opt_type(opt_type_t opt)
+{
+    opt_ += opt;
 }
 
 void args_data::set_date_ptr(const date_ptr date)
@@ -106,7 +112,7 @@ time_ptr args_data::get_time_ptr() const
     return time_;
 }
 
-descript_ptr args_data::get_descript_ptr() 
+descript_ptr args_data::get_descript_ptr()
 {
     return descript_;
 }
@@ -114,6 +120,11 @@ descript_ptr args_data::get_descript_ptr()
 args_type_t args_data::get_args_type() 
 {
     return type_;
+}
+
+opt_type_t args_data::get_opt_type() 
+{
+    return opt_;
 }
 
 table_name_ptr args_data::get_table_name_ptr() const

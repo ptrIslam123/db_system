@@ -22,15 +22,28 @@ constexpr short _TABLE_NAME_            = 20;
 constexpr short _FILE_NAME_             = 25;
 constexpr short _SIZE_TABLE_            = 30;
 constexpr short _POS_                   = 31;
-constexpr short _OPTION_                = 40;
 constexpr short _NAME_                  = 48;
+
+constexpr short _OPTION_                = 40;
+constexpr short _BEFORE_OP_             = 66;
+constexpr short _AFTER_OP_              = 68;
+constexpr short _BEFORE_AFTER_OP_       = ( _BEFORE_OP_ + _AFTER_OP_ );
+
+constexpr short _INSERT_EV_             = 70;
+constexpr short _ADD_EV_                = 72;
+constexpr short _REMOVE_EV_             = 74;
+constexpr short _INS_ADD_EV_            = ( _INSERT_EV_ + _ADD_EV_ );
+constexpr short _INS_REM_EV_            = ( _INSERT_EV_ + _REMOVE_EV_ );
+constexpr short _ADD_REM_EV_            = ( _ADD_EV_ + _REMOVE_EV_ );
+constexpr short _INS_ADD_REM_EV_        = ( _INSERT_EV_ + _ADD_EV_ + _REMOVE_EV_ );
+
 constexpr short _TABLE_FILE_NAME_SIZE_  = ( _TABLE_NAME_ + _FILE_NAME_ + _SIZE_TABLE_ );      
 constexpr short _DESCRIPT_              = 100;
 constexpr short _DATE_TIME_             = ( _DATE_ + _TIME_ );
 constexpr short _TIME_DESCRIPT_         = ( _TIME_ + _DESCRIPT_ );
 constexpr short _DATE_DESCRIPT          = ( _DATE_ + _DESCRIPT_ );
 constexpr short _DATE_TIME_DESCRIPT_    = ( _DATE_ + _TIME_ + _DESCRIPT_ );
-constexpr short _TG_TNAME_NAME_OP_OP_   = ( _TABLE_NAME_ + _NAME_ + _OPTION_ + _OPTION_ );
+constexpr short _TG_TNAME_NAME_OP_      = ( _TABLE_NAME_ + _NAME_ + _OPTION_ );
 constexpr short _TG_TNAME_NAME_         = ( _TABLE_NAME_ + _NAME_ );
 
 struct args_data;
@@ -45,6 +58,7 @@ using size_ptr      = word_t*;
 using pos_ptr       = word_t*;
 using option_ptr    = word_t*;
 using name_ptr      = word_t*;
+using opt_type_t    = short;
 using args_type_t   = short;
 
 struct args_data
@@ -53,6 +67,7 @@ public:
     args_data();
 
     void            set_args_type(args_type_t );
+    void            set_opt_type(opt_type_t );
     void            set_date_ptr(const date_ptr );
     void            set_time_ptr(const time_ptr );
     void            set_descript_ptr(const descript_ptr );
@@ -68,6 +83,7 @@ public:
     time_ptr        get_time_ptr() const;
     descript_ptr    get_descript_ptr();
     args_type_t     get_args_type();
+    opt_type_t      get_opt_type();
     table_name_ptr  get_table_name_ptr() const;
     file_name_ptr   get_file_name_ptr() const;
     size_ptr        get_size_ptr() const;
@@ -89,6 +105,7 @@ private:
     pos_ptr         pos_;
     option_ptr      option_;
     name_ptr        name_;
+    opt_type_t      opt_;
 
     bool            f_date_;
     bool            f_time_;

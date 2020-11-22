@@ -90,6 +90,9 @@ compilTransaction:
 compilSharedOprt:
 	clang++ -g -c ../shared_oprt_funcs.cpp
 
+compilOptionParse:
+	clang++ -g -c ../option_parse.cpp
+
 compilCommand:
 	clang++ -g -c ../command.cpp
 
