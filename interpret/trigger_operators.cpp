@@ -1,4 +1,5 @@
 #include "includes/trigger_opeators.h"
+#include "includes/list_triggers.h"
 
 trigger_operators::trigger_operators(base_parse_api_ptr base_p_api):
     command(base_p_api)
@@ -7,7 +8,7 @@ trigger_operators::trigger_operators(base_parse_api_ptr base_p_api):
 trigger_operators::~trigger_operators()
 {}
 
-bool trigger_operators::is_it_commat() const
+bool trigger_operators::is_it_command() const
 {
     return (get(0)->get_type() == LEXEME_TYPE::TRIGGER && 
             get(1)->get_type() == LEXEME_TYPE::WORD);
@@ -15,6 +16,9 @@ bool trigger_operators::is_it_commat() const
 
 void trigger_operators::execute()
 {
+    container_t poll_cmd_;
+    poll_cmd_.reserve(_STD_TRIGG_BLOCK_SIZE_);
+
     auto tname = get(1)->get_value();
     next(2);        // 'trigger' 'name'
 
@@ -28,7 +32,10 @@ void trigger_operators::execute()
             move_lexeme()
         );
     }
-    next(1);    // '}'   
+    next(1);    // '}'  
+
+    list_triggers_t::instance().add(std::move(tname), 
+                                    std::move(poll_cmd_)); 
 }
 
 lexeme_uptr trigger_operators::move_lexeme()

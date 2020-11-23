@@ -6,25 +6,20 @@ base_parse_api::base_parse_api():
     pos_(0)
 {}
 
-base_parse_api::base_parse_api(base_parse_api::conatiner_t&& container):
-    container_(std::move(container)),
-    size_(container_.size()),
+base_parse_api::base_parse_api(base_parse_api::container_ptr container):
+    container_(container),
+    size_(container_->size()),
     pos_(0)
 {}
 
 base_parse_api::~base_parse_api()
 {}
 
-void base_parse_api::set_container(base_parse_api::conatiner_t&& container)
-{
-    container_ = std::move(container);
-    size_ = container_.size();
-}
 
 lexeme_ptr base_parse_api::get_lexeme(size_t pos) const
 {
     auto position = pos_ + pos;
-    auto iter = container_.begin();
+    auto iter = container_->begin();
     std::advance(iter, position);
     return (*iter).get();
 }
@@ -32,11 +27,11 @@ lexeme_ptr base_parse_api::get_lexeme(size_t pos) const
 lexeme_uptr base_parse_api::get_lexeme_uptr(size_t pos)
 {
     auto position = pos_ + pos;
-    auto iter = container_.begin();
+    auto iter = container_->begin();
     std::advance(iter, position);
 
     auto val = std::move((*iter));
-    container_.erase(iter);
+    container_->erase(iter);
     size_--;
 
     return std::move(val);

@@ -82,7 +82,7 @@ void db_kernel::create_table()
     heder_ = std::move(tok_gramm_->tokenize_heder());
     while (!tok_gramm_->is_eof())
     {
-        add(
+        push_token(
             std::move(tok_gramm_->tokenize())
         );
     }
@@ -132,13 +132,17 @@ size_t db_kernel::size_table()
     return container_.size();
 }
 
+void db_kernel::push_token(token_t&& val)
+{
+    container_.push_back(std::move(val));
+}
+
 
 void db_kernel::add(token_t&& val)
 {
 #ifdef _ENBL_API_TRIGERS_
     befEventAdd_.notify();
 #endif // !_ENBL_API_TRIGERS_
-
     container_.push_back(std::move(val));
 
 #ifdef _ENBL_API_TRIGERS_
@@ -149,17 +153,33 @@ void db_kernel::add(token_t&& val)
 
 void db_kernel::insert(size_t pos, token_t&& val)
 {
+#ifdef _ENBL_API_TRIGERS_
+    befEventInsert_.notify();
+#endif // !_ENBL_API_TRIGERS_
+
     iter_ = container_.begin();
     std::advance(iter_, pos);
     container_.insert(iter_, std::move(val));
+
+#ifdef _ENBL_API_TRIGERS_
+    aftEventInsert_.notify();
+#endif // !_ENBL_API_TRIGERS_
 }
 
 
 void db_kernel::remove(size_t pos)
 {
+#ifdef _ENBL_API_TRIGERS_
+    befEventRemove_.notify();
+#endif // !_ENBL_API_TRIGERS_
+
     iter_ = container_.begin();
     std::advance(iter_, pos);
     container_.erase(iter_);
+
+#ifdef _ENBL_API_TRIGERS_
+    aftEventRemove_.notify();
+#endif // !_ENBL_API_TRIGERS_
 }
 
 
@@ -266,47 +286,40 @@ void db_kernel::open_file()
 
 /*  TRIGERS API */
 
-void db_kernel::bef_attach_triger_add(const triger_ptr t)
+void db_kernel::bef_attach_triger_add(const trigger_ptr t)
 {
     befEventAdd_.attach(t);
 }
 
-void db_kernel::bef_attach_triger_remove(const triger_ptr t)
+void db_kernel::bef_attach_triger_remove(const trigger_ptr t)
 {
     befEventRemove_.attach(t);
 }
 
-void db_kernel::bef_attach_triger_insert(const triger_ptr t)
+void db_kernel::bef_attach_triger_insert(const trigger_ptr t)
 {
     befEventInsert_.attach(t);
 }
-
-void db_kernel::bef_attach_triger_drop_table(const triger_ptr t)
-{
-    befEventDropTable_.attach(t);
-}
-    
+ 
 
 
 
-void db_kernel::aft_attach_triger_add(const triger_ptr t)
+void db_kernel::aft_attach_triger_add(const trigger_ptr t)
 {
     aftEventAdd_.attach(t);
 }
 
-void db_kernel::aft_attach_triger_remove(const triger_ptr t)
+void db_kernel::aft_attach_triger_remove(const trigger_ptr t)
 {
     aftEventRemove_.attach(t);
 }
 
-void db_kernel::aft_attach_triger_insert(const triger_ptr t)
+void db_kernel::aft_attach_triger_insert(const trigger_ptr t)
 {
     aftEventInsert_.attach(t);
 }
 
-void db_kernel::aft_attach_triger_drop_table(const triger_ptr t)
-{
-    aftEventDropTable_.attach(t);
-}
 
 
+
+    

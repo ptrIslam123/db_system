@@ -208,47 +208,40 @@ bool db_controller::is_open_table() const
 
 /*  TRIGERS API */
 
-void db_controller::bef_attach_triger_add(const triger_ptr t)
+void db_controller::bef_attach_triger_add(const trigger_ptr t)
 {
     cur_table_->bef_attach_triger_add(t);
 }
 
 
-void bef_attach_triger_remove(const triger_ptr t)
+void db_controller::bef_attach_triger_remove(const trigger_ptr t)
 {
-
+    cur_table_->bef_attach_triger_remove(t);
 }
 
-void bef_attach_triger_insert(const triger_ptr t)
+void db_controller::bef_attach_triger_insert(const trigger_ptr t)
 {
-
+    cur_table_->bef_attach_triger_insert(t);
 }
 
-void bef_attach_triger_drop_table(const triger_ptr t)
-{
-
-}
-    
-    
+  
 
 
-
-void db_controller::aft_attach_triger_add(const triger_ptr t)
+void db_controller::aft_attach_triger_add(const trigger_ptr t)
 {
     cur_table_->aft_attach_triger_add(t);
 }
 
-void aft_attach_triger_remove(const triger_ptr t)
+void db_controller::aft_attach_triger_remove(const trigger_ptr t)
 {
-
+    cur_table_->aft_attach_triger_remove(t);
 }
 
-void aft_attach_triger_insert(const triger_ptr t)
+void db_controller::aft_attach_triger_insert(const trigger_ptr t)
 {
-
+    cur_table_->aft_attach_triger_insert(t);
 }
 
-void aft_attach_triger_drop_table(const triger_ptr t)
-{
+    
 
-}
+

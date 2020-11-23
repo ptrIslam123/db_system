@@ -27,7 +27,9 @@ void exec(std::string&& code)
         lexer<> lex(std::move(code), 200);
         lex.run();
 
-        base_parse_api base(std::move(lex.get_result()));
+        auto lexemes = lex.get_result();
+
+        base_parse_api base(&lexemes);
 
         parser p(&base);
         p.run();

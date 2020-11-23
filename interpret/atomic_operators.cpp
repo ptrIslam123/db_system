@@ -59,7 +59,7 @@ void atomic_operators::execute()
     oprt_f(std::move(args));
 }
 
-bool atomic_operators::is_it_commat() const
+bool atomic_operators::is_it_command() const
 {
     auto word = get(0)->get_type();     // oprt_name
     auto paraml = get(1)->get_type();   // (param_list)

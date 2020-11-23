@@ -57,8 +57,11 @@ compil:
 compilMain:
 	clang++ -g -c ../main.cpp
 
-compilTriggers:
-	clang++ -g -c ../triggers.cpp
+compilListTriggers:
+	clang++ -g -c ../list_triggers.cpp
+
+compilTriggerNode:
+	clang++ -g -c ../trigger_node.cpp
 
 compilTriggerOperators:
 	clang++ -g -c ../trigger_operators.cpp

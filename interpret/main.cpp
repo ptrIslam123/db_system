@@ -11,6 +11,8 @@
 #include "test/t_lexer.h"
 #include "includes/shell.h"
 #include "includes/option_parse.h"
+#include "../db_kernel/includes/event.h"
+#include "includes/list_triggers.h"
 
     std::string fn = "/home/islam/CppProgram/db_sysytem_for_it_company/interpret/test/tdata/tdata.txt";
     std::string tn = "table1";
@@ -27,6 +29,12 @@
 int main()
 {
  
+   exec(std::move(create_t));
+   exec(std::move(set_t));
    
+   exec("trigger t1 { log(ds : 'hello world!' ) }");
+   exec("bef_attach(nm : 't1' op : 'ADD|' )");
+    exec("add(dt : '0.0.0' ti : '00:00' ds : 'trigger event' )");
+
     return 0;
 }

@@ -31,7 +31,7 @@ operators::operators(base_parse_api_ptr base_p_api):
 operators::~operators()
 {}
 
-bool operators::is_it_commat() const
+bool operators::is_it_command() const
 {
     auto word = get(0)->get_type();     // oprt_name
     auto paraml = get(1)->get_type();   // (param_list)
@@ -134,7 +134,8 @@ void __add_operator(args_oprt_buf_t&& args)
     switch (type)
     {
         case _DATE_TIME_DESCRIPT_ : {
-            add_req(create_token(data));
+            auto t = create_token(data);
+            add_req(std::move(t));
             break;
         }
         default:

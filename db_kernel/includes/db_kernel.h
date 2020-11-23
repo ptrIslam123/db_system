@@ -76,19 +76,20 @@ public:
     
     /*  TRIGERS API */
 
-    void bef_attach_triger_add(const triger_ptr );
-    void bef_attach_triger_remove(const triger_ptr );
-    void bef_attach_triger_insert(const triger_ptr );
-    void bef_attach_triger_drop_table(const triger_ptr );
+    void bef_attach_triger_add(const trigger_ptr );
+    void bef_attach_triger_remove(const trigger_ptr );
+    void bef_attach_triger_insert(const trigger_ptr );
     
+    void aft_attach_triger_add(const trigger_ptr );
+    void aft_attach_triger_remove(const trigger_ptr );
+    void aft_attach_triger_insert(const trigger_ptr );
 
-    void aft_attach_triger_add(const triger_ptr );
-    void aft_attach_triger_remove(const triger_ptr );
-    void aft_attach_triger_insert(const triger_ptr );
-    void aft_attach_triger_drop_table(const triger_ptr );
+    
+    
 
 
 private:
+    void        push_token(token_t&& );
     void        print_token(const token_ptr , const size_t );
     token_ptr   get_token(size_t );
     void        open_file();
@@ -106,12 +107,10 @@ private:
     event           befEventAdd_;
     event           befEventRemove_;
     event           befEventInsert_;
-    event           befEventDropTable_;
 
     event           aftEventAdd_;
     event           aftEventRemove_;
     event           aftEventInsert_;
-    event           aftEventDropTable_;
 };
 
 

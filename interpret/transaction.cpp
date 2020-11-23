@@ -30,7 +30,7 @@ void transaction::execute()
 
 
 
-bool transaction::is_it_commat() const
+bool transaction::is_it_command() const
 {
     return get(0)->get_type() == LEXEME_TYPE::L_SHAPE_BRACKET;
 }

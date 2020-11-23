@@ -43,6 +43,7 @@ constexpr short _DATE_TIME_             = ( _DATE_ + _TIME_ );
 constexpr short _TIME_DESCRIPT_         = ( _TIME_ + _DESCRIPT_ );
 constexpr short _DATE_DESCRIPT          = ( _DATE_ + _DESCRIPT_ );
 constexpr short _DATE_TIME_DESCRIPT_    = ( _DATE_ + _TIME_ + _DESCRIPT_ );
+constexpr short _TG_NAME_OP_            = ( _NAME_ + _OPTION_ );
 constexpr short _TG_TNAME_NAME_OP_      = ( _TABLE_NAME_ + _NAME_ + _OPTION_ );
 constexpr short _TG_TNAME_NAME_         = ( _TABLE_NAME_ + _NAME_ );
 

@@ -8,12 +8,12 @@ event::event()
 event::~event()
 {}
 
-void event::attach(const triger_ptr t)
+void event::attach(const trigger_ptr t)
 {
     poll_triger_.push_back(t); 
 }
 
-void event::detach(const triger_ptr t)
+void event::detach(const trigger_ptr t)
 {
     auto beg = poll_triger_.begin();
     auto end = poll_triger_.end();

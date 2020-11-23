@@ -12,7 +12,7 @@ public:
     transaction(base_parse_api_ptr );
     virtual ~transaction();
     virtual void execute() override;
-    virtual bool is_it_commat() const override;
+    virtual bool is_it_command() const override;
 
 private:
     bool         is_end_transact_block() const;

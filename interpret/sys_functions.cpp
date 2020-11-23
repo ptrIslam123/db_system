@@ -1,9 +1,8 @@
 #include "includes/sys_functions.h"
 #include "includes/transact_error.h"
 #include "includes/memento.h"
+#include "includes/list_triggers.h"
 #include "../db_kernel/includes/db_controller.h"
-
-
 
 
 /* comparators */
@@ -233,7 +232,50 @@ void clear_req()
 
 void bef_attach_req(data_ptr data)
 {
+    auto name_ptr = data->get_name_ptr();
+    auto option = data->get_opt_type();
+    
+    auto t_ptr = list_triggers_t::instance().get_trigger_ptr(name_ptr);
 
+    switch (option)
+    {
+        case _ADD_EV_ :         
+        {
+            db_controller_t::instance().bef_attach_triger_add(t_ptr);
+            break;
+        }
+        case _REMOVE_EV_ :      
+        {
+            db_controller_t::instance().bef_attach_triger_remove(t_ptr);
+            break;
+        }
+        case _INSERT_EV_ :      
+        {
+            db_controller_t::instance().bef_attach_triger_insert(t_ptr);
+            break;
+        }
+        case _ADD_REM_EV_ :     
+        {
+            db_controller_t::instance().bef_attach_triger_add(t_ptr);
+            db_controller_t::instance().bef_attach_triger_remove(t_ptr);
+            break;
+        }
+        case _INS_REM_EV_ :     
+        {
+            db_controller_t::instance().bef_attach_triger_insert(t_ptr);
+            db_controller_t::instance().bef_attach_triger_remove(t_ptr);
+            break;
+        }
+        case _INS_ADD_REM_EV_ : 
+        {
+            db_controller_t::instance().bef_attach_triger_add(t_ptr);
+            db_controller_t::instance().bef_attach_triger_remove(t_ptr);
+            db_controller_t::instance().bef_attach_triger_insert(t_ptr);
+            break;
+        }
+        default:
+            throw "method : bef_attach_req | undefine option";
+    }
 }
 
 void bef_detach_req(data_ptr data)

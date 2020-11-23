@@ -172,12 +172,12 @@ void  __bef_attach_operator(args_oprt_buf_t&& args)
 
     switch (type)
     {
-        case _TG_TNAME_NAME_OP_ : {
+        case _TG_NAME_OP_ : {
             bef_attach_req(data);
             break;
         }
         default:
-            throw "method : __attach_operator | undefine param type";
+            throw "method : __bef_attach_operator | undefine param type";
     }
 }
 
@@ -202,7 +202,7 @@ void  __bef_detach_operator(args_oprt_buf_t&& args)
             break;
         }
         default:
-            throw "method :__detach_operator | undefine param type";
+            throw "method :__bef_detach_operator | undefine param type";
     }
 }
 
@@ -227,7 +227,7 @@ void  __aft_attach_operator(args_oprt_buf_t&& args)
             break;
         }
         default:
-            throw "method : __attach_operator | undefine param type";
+            throw "method : __aft_attach_operator | undefine param type";
     }
 }
 
@@ -252,7 +252,7 @@ void  __aft_detach_operator(args_oprt_buf_t&& args)
             break;
         }
         default:
-            throw "method :__detach_operator | undefine param type";
+            throw "method :__aft_detach_operator | undefine param type";
     }
 }
 
@@ -320,8 +320,17 @@ void init_data(data_ptr data, args_oprt_buf_t&& args)
             i++;
             continue;
         }
+        if (args_type == "nm")
+        {
+            data->set_args_type(_NAME_);
+            auto name_ptr = (args.at(i).second)->get_ptr_value();
+            data->set_name_ptr(name_ptr);
+            i++;
+            continue;
+        }
         if (args_type == "op")
         {
+            data->set_args_type(_OPTION_);
             auto opt_val_ptr = (args.at(i).second)->get_ptr_value();
             opt_parse_.parse(data, opt_val_ptr);
             i++;

@@ -14,7 +14,7 @@ public:
     atomic_operators(base_parse_api_ptr );
     virtual ~atomic_operators();
     virtual void    execute() override;
-    virtual bool    is_it_commat() const override; 
+    virtual bool    is_it_command() const override; 
 
 private:
     args_oprt_t     make_args_oprt();

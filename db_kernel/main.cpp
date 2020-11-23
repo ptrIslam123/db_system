@@ -10,7 +10,7 @@
 #include "test/t_db_kernel.h"
 
 #include "includes/event.h"
-#include "includes/triger_add.h"
+
 
 int main()
 {

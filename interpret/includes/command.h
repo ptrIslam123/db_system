@@ -10,7 +10,7 @@ public:
     virtual ~command();
 
     virtual void execute() = 0;
-    virtual bool is_it_commat() const = 0;
+    virtual bool is_it_command() const;
 
 protected:
     bool        is_end() const;

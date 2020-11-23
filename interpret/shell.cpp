@@ -28,17 +28,7 @@ void shell::run()
 
     while (true)
     {
-        std::cout << user_name_ << "~#\t";
-        std::getline(std::cin, script);
-
-        if (script == "exit")
-            break;
-        lexer_.set_code(std::move(script));
-        lexer_.run();
-
-        base_parse_api base(std::move(lexer_.get_result()));
-        parser p(&base);
-        p.run();
+       ////
     }
 }
 

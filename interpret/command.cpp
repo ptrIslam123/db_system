@@ -8,6 +8,10 @@ command::command(base_parse_api_ptr base_p_api):
 command::~command()
 {}
 
+bool command::is_it_command() const
+{
+    return false;
+}
 
 lexeme_ptr command::get_lexeme(size_t pos) const
 {

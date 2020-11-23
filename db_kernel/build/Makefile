@@ -1,3 +1,18 @@
+compilInterpretAPI:
+	clang++ -g -c ../../interpret/*.cpp
+
+compilCommand:
+	clang++ -g -c ../../interpret/command.cpp
+
+compilParser:
+	clang++ -g -c ../../interpret/parser.cpp
+
+compilBaseParseApi:
+	clang++ -g -c ../../interpret/base_parse_api.cpp
+
+compilTriggerNode:
+	clang++ -g -c ../../interpret/trigger_node.cpp
+
 compilFstream:
 	clang++ -g -c ../file_stream.cpp 
 

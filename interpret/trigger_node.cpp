@@ -1,0 +1,32 @@
+#include "includes/trigger_node.h"
+
+
+trigger_node::trigger_node(name_t&& name, block_t&& block):
+    block_(std::move(block)),
+    name_(std::move(name)),
+    base_p_api_(&block_),
+    parser_(&base_p_api_)
+{}
+
+trigger_node::~trigger_node()
+{}
+
+void trigger_node::exec()
+{
+    parser_.run();   
+}
+
+name_ptr trigger_node::get_name_ptr()
+{
+    return &name_;
+}
+
+trigger_node::block_ptr trigger_node::get_block_ptr()
+{
+    return &block_;
+}
+
+bool trigger_node::is_eq(const name_ptr name) const
+{
+    return (name_) == (*name);
+}

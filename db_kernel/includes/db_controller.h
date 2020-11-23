@@ -62,26 +62,21 @@ public:
     size_t      size_table();
     bool        is_open_table() const;
 
-private:
-    void        print_table_name(table_name_ptr );
-    void        is_exist_table(table_iter_t );
-
 
     /*  TRIGERS API */
 
-    void bef_attach_triger_add(const triger_ptr );
-    void bef_attach_triger_remove(const triger_ptr );
-    void bef_attach_triger_insert(const triger_ptr );
-    void bef_attach_triger_drop_table(const triger_ptr );
+    void bef_attach_triger_add(const trigger_ptr );
+    void bef_attach_triger_remove(const trigger_ptr );
+    void bef_attach_triger_insert(const trigger_ptr );
     
 
-    void aft_attach_triger_add(const triger_ptr );
-    void aft_attach_triger_remove(const triger_ptr );
-    void aft_attach_triger_insert(const triger_ptr );
-    void aft_attach_triger_drop_table(const triger_ptr );
+    void aft_attach_triger_add(const trigger_ptr );
+    void aft_attach_triger_remove(const trigger_ptr );
+    void aft_attach_triger_insert(const trigger_ptr );
 
-    
-    
+private:
+    void        print_table_name(table_name_ptr );
+    void        is_exist_table(table_iter_t );
 
 private:
   tables_t  tables_;

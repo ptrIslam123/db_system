@@ -12,6 +12,7 @@ class parser
     using command_t             = command;
     using command_ptr           = command_t*;
     using commands_t            = std::array<command_ptr, SIZE_SET_COMMAND>;
+    using cmd_uptr              = command*;
 public:
     parser();
     parser(base_p_api_ptr );
@@ -27,14 +28,9 @@ private:
 private:
     commands_t      cmds_;
     base_p_api_ptr  base_p_api_;
+    cmd_uptr        oprts_;
+    cmd_uptr        transact_;
+    cmd_uptr        trigg_oprts_;
 };
-
-
-template<typename T, typename ... Args>
-parser::command_ptr parser::make_command(base_parse_api_ptr base_p_api_ptr_ , Args&& ... args)
-{
-    static T t(base_p_api_ptr_, std::forward<Args>(args) ... );
-    return &t;
-}
 
 #endif // !_PARSER_H_
