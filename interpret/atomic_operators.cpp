@@ -19,6 +19,8 @@ atomic_operators::atomic_operators(base_parse_api_ptr base_p_api):
         {"count",     __count_operator},
         {"clear",     __clear_operator},
         {"log",       __log_operator},
+        {"ltables",   __list_tables_operator},
+        {"ltriggers", __list_triggers_operator},
         {"rolback",   __rolback_operator},
         {"bef_attach",__bef_attach_operator},
         {"bef_detach",__bef_detach_operator},

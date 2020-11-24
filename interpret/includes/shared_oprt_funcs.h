@@ -11,6 +11,8 @@ void  __count_operator(args_oprt_buf_t&& );
 void  __clear_operator(args_oprt_buf_t&& );
 void  __log_operator(args_oprt_buf_t&& );
 void  __rolback_operator(args_oprt_buf_t&& );
+void  __list_tables_operator(args_oprt_buf_t&& );
+void  __list_triggers_operator(args_oprt_buf_t&& );
 void  __bef_attach_operator(args_oprt_buf_t&& );
 void  __bef_detach_operator(args_oprt_buf_t&& );
 void  __aft_attach_operator(args_oprt_buf_t&& );

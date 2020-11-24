@@ -70,12 +70,7 @@ void __print_table__operator(args_oprt_buf_t&& args)
     }
     auto type = data->get_args_type();
     
-    const auto size = args.size();
-    if (size == 0 )
-    {
-        print_tables_req();
-    }
-    else if (type == _TABLE_NAME_)
+    if (type == _TABLE_NAME_)
     {
         print_table_req(data);
     }
@@ -142,6 +137,25 @@ void __log_operator(args_oprt_buf_t&& args)
     }
 }
 
+void __list_tables_operator(args_oprt_buf_t&& args)
+{
+    const auto size = args.size();
+    if (size > 0 )
+    {
+        throw "method : __list_tables_operator | undefine param";
+    }
+    print_tables_req();
+}
+
+void __list_triggers_operator(args_oprt_buf_t&& args)
+{
+    const auto size = args.size();
+    if (size > 0 )
+    {
+        throw "method : __list_triggers_operator | undefine param";
+    }
+}
+
 void __rolback_operator(args_oprt_buf_t&& )
 {
     rolback_records();
@@ -197,7 +211,7 @@ void  __bef_detach_operator(args_oprt_buf_t&& args)
 
     switch (type)
     {
-        case _TG_TNAME_NAME_ : {
+        case _NAME_ : {
             bef_detach_req(data);
             break;
         }
@@ -222,7 +236,7 @@ void  __aft_attach_operator(args_oprt_buf_t&& args)
 
     switch (type)
     {
-        case _TG_TNAME_NAME_OP_ : {
+        case _TG_NAME_OP_ : {
             aft_attach_req(data);
             break;
         }

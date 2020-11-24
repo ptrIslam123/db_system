@@ -8,6 +8,11 @@ list_triggers::~list_triggers()
 {}
 
 
+void list_triggers::print_triggers()
+{
+    std::cout << "<null list_triggers>\n";
+}
+
 void list_triggers::add(trigger_name_t&& tname, trigger_block_t&& tblock)
 {
     triggers_.push_back(

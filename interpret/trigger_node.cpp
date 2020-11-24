@@ -17,18 +17,17 @@ trigger_node::trigger_node(name_t&& name, block_t&& block):
 trigger_node::~trigger_node()
 {}
 
-/*
-void trigger_node::exec()
-{
-    parser_.run();   
-}
-*/
+
 
 void trigger_node::exec()
 {
     base_parse_api base_(&block_);
     parser parser_(&base_);
-    parser_.run();
+    
+    while (!base_.is_end())
+    {
+        parser_.run();
+    }
 }
 
 name_ptr trigger_node::get_name_ptr()

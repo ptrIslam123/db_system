@@ -73,6 +73,7 @@ void update_dt_ti_ds_req(index_t , data_ptr );
 void remove_req(index_t );
 void print_table_req(data_ptr );
 void print_tables_req();
+void print_triggers_req();
 void clear_req();
 
 /* TRIGGER API */
@@ -133,7 +134,8 @@ static void         _save_state_record(index_t , token_t&& , controller_transact
 void                _print_token(token_ptr );
 void                _print_heder(const word_ptr );
 void                _print_table(const table_name_ptr );
-void                _print_tables();
+static void         _print_tables();
+static void         _print_triggers();
 
 #ifndef _TRANSACT_TEST_LOG_
 static void         _save_state_log(const token_ptr , const std::string& );

@@ -218,7 +218,12 @@ void print_table_req(data_ptr data)
 
 void print_tables_req()
 {
-    db_controller_t::instance().print_tables();
+    _print_tables();
+}
+
+void print_triggers_req()
+{
+    _print_triggers();
 }
 
 void clear_req()
@@ -690,9 +695,16 @@ void _print_table(const table_name_ptr tname_ptr)
     }
 }
 
+static
 void _print_tables()
 {
+    db_controller_t::instance().print_tables();
+}
 
+static
+void _print_triggers()
+{
+    list_triggers_t::instance().print_triggers();
 }
 
 #ifndef _TRANSACT_TEST_LOG_

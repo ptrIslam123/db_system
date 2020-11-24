@@ -30,6 +30,7 @@ public:
     list_triggers();
     ~list_triggers();
 
+    void                print_triggers();
     void                add(trigger_name_t&& , trigger_block_t&& );
     void                remove(trigger_name_t&& );
     trigger_node_ptr    get_trigger_ptr(const trigger_name_ptr );
