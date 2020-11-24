@@ -242,6 +242,16 @@ void db_controller::aft_attach_triger_insert(const trigger_ptr t)
     cur_table_->aft_attach_triger_insert(t);
 }
 
-    
+
+void db_controller::bef_detach_trigger(const trigger_ptr t)
+{
+    cur_table_->bef_detach_trigger(t);
+}
+
+void db_controller::aft_detach_trigger(const trigger_ptr t)
+{
+    cur_table_->aft_detach_trigger(t);
+}
+
 
 

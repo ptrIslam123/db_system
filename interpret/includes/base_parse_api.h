@@ -6,17 +6,19 @@
 #include "lexer.h"
 
 class base_parse_api;
-using base_parse_api_ptr = base_parse_api*;
+using base_parse_api_ptr    = base_parse_api*;
+
 
 class base_parse_api
 {
-    using container_t   = std_container_type;
-    using container_ptr = container_t*;
+    using container_t           = std_container_type;
+    using container_ptr         = container_t*;
 public:
     base_parse_api();
     base_parse_api(container_ptr );
     ~base_parse_api();
 
+    void        set_pos(size_t );
     lexem_ptr   get_lexeme(size_t ) const;
     lexeme_uptr get_lexeme_uptr(size_t pos);
     void        next_lexeme(size_t );

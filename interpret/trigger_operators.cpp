@@ -24,7 +24,7 @@ void trigger_operators::execute()
 
     auto clex = get(0);
     is_eq_lex(clex->get_type(), LEXEME_TYPE::L_SHAPE_BRACKET, "indefine token : " + clex->get_value());
-    next(1);        // '{'
+    //next(1);        // '{'
 
     while (is_has_args_oprt())
     {
@@ -32,7 +32,8 @@ void trigger_operators::execute()
             move_lexeme()
         );
     }
-    next(1);    // '}'  
+    //next(1);    // '}'  
+    poll_cmd_.push_back(move_lexeme());
 
     list_triggers_t::instance().add(std::move(tname), 
                                     std::move(poll_cmd_)); 

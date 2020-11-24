@@ -74,6 +74,9 @@ public:
     void aft_attach_triger_remove(const trigger_ptr );
     void aft_attach_triger_insert(const trigger_ptr );
 
+    void bef_detach_trigger(const trigger_ptr );
+    void aft_detach_trigger(const trigger_ptr );
+
 private:
     void        print_table_name(table_name_ptr );
     void        is_exist_table(table_iter_t );

@@ -320,6 +320,18 @@ void db_kernel::aft_attach_triger_insert(const trigger_ptr t)
 }
 
 
+void db_kernel::bef_detach_trigger(const trigger_ptr t)
+{
+    befEventAdd_.detach(t);
+    befEventInsert_.detach(t);
+    befEventRemove_.detach(t);
+}
 
+void db_kernel::aft_detach_trigger(const trigger_ptr t)
+{
+    aftEventAdd_.detach(t);
+    aftEventInsert_.detach(t);
+    aftEventRemove_.detach(t);
+}
 
     

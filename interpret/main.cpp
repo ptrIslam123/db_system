@@ -25,16 +25,40 @@
     std::string get = "get(dt: '" + dt + "')";
 
     std::string code  = create_t + "\n" + set_t + "\n" + get;
-
+    std::string trigger_blcok = "  log(ds : '\t\t***||TRIGGER_EVENT||***\n') print_t(tn : 'table1' ) ";
+    std::string triggerc = "trigger t1 {  log(ds : '\t\t***||TRIGGER_EVENT||***\n') print_t(tn : 'table1' ) }";
 int main()
 {
- 
-   exec(std::move(create_t));
+
+
+
+   
+   
+    exec(std::move(create_t));
    exec(std::move(set_t));
    
-   exec("trigger t1 { log(ds : 'hello world!' ) }");
-   exec("bef_attach(nm : 't1' op : 'ADD|' )");
-    exec("add(dt : '0.0.0' ti : '00:00' ds : 'trigger event' )");
+   exec("trigger test {log(ds : '\t\t==TRIGGER_EVENT_ADD==\n')  }");
+   exec("bef_attach(nm: 'test' op : 'ADD|' )");
+   exec("log(ds : 'create trigger and chek in!!\n\n')");
 
-    return 0;
+   exec("add(dt : '11.11.11' ti : '11:11' ds : 'description1')"); 
+    
+
+    
+    /*
+        std::string tn = "test";
+    lexer<> lex;
+    lex.set_code(std::move(trigger_blcok));
+    lex.run();
+
+    auto tokens = lex.get_result();
+    //printLexer(&tokens);
+    list_triggers_t::instance().add("test", std::move(tokens));
+    auto t = list_triggers_t::instance().get_trigger_ptr(&tn);
+
+    t->exec();
+     */
+     
+
+   return 0;
 }

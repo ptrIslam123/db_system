@@ -16,12 +16,27 @@ base_parse_api::~base_parse_api()
 {}
 
 
+void base_parse_api::set_pos(size_t pos)
+{
+    pos_ = pos;
+}
+
 lexeme_ptr base_parse_api::get_lexeme(size_t pos) const
 {
     auto position = pos_ + pos;
     auto iter = container_->begin();
     std::advance(iter, position);
-    return (*iter).get();
+    try
+    {
+     auto val = (*iter).get();
+     return val;   
+    }
+    catch(const std::exception& e)
+    {
+        std::cout << "ERROR : SEGMENTATION FOLL\n";
+        std::cerr << e.what() << '\n';
+    }
+    return nullptr;
 }
 
 lexeme_uptr base_parse_api::get_lexeme_uptr(size_t pos)

@@ -12,11 +12,12 @@ using trigger_node_uptr = std::unique_ptr<trigger_node>;
 
 struct trigger_node
 {
-    using name_t    = trigger_name_t;
-    using name_ptr  = name_t*;
-    using block_t   = trigger_block_t;
-    using block_ptr = block_t*;
+    using name_t        = trigger_name_t;
+    using name_ptr      = name_t*;
+    using block_t       = trigger_block_t;
+    using block_ptr     = block_t*;
 public:
+    //trigger_node(name_t&& , block_t&& );
     trigger_node(name_t&& , block_t&& );
     ~trigger_node();
 
@@ -26,8 +27,6 @@ public:
     bool            is_eq(const name_ptr ) const;
 
 private:
-    base_parse_api  base_p_api_;
-    parser          parser_;
     name_t          name_;
     block_t         block_;
 };

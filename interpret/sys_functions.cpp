@@ -228,14 +228,21 @@ void clear_req()
 
 
 
+
+
 /* TRIGGER API */
 
 void bef_attach_req(data_ptr data)
 {
-    auto name_ptr = data->get_name_ptr();
-    auto option = data->get_opt_type();
+    auto name_ptr   = data->get_name_ptr();
+    auto option     = data->get_opt_type();
     
     auto t_ptr = list_triggers_t::instance().get_trigger_ptr(name_ptr);
+
+    if (t_ptr == nullptr)
+    {
+        throw "method : bef_attach_req | trigger not found";
+    }
 
     switch (option)
     {
@@ -280,20 +287,83 @@ void bef_attach_req(data_ptr data)
 
 void bef_detach_req(data_ptr data)
 {
-
+    auto name_ptr   = data->get_name_ptr();
+    auto t_ptr = list_triggers_t::instance().get_trigger_ptr(name_ptr);
+    if (t_ptr == nullptr)
+    {
+        throw "method : bef_detach_req | trigger not found";
+    }
+    db_controller_t::instance().bef_detach_trigger(t_ptr);
 }
 
 
 
 void aft_attach_req(data_ptr data)
 {
+    auto name_ptr   = data->get_name_ptr();
+    auto option     = data->get_opt_type();
+    
+    auto t_ptr = list_triggers_t::instance().get_trigger_ptr(name_ptr);
+    
+    if (t_ptr == nullptr)
+    {
+        throw "method : aft_attach_req | trigger not found";
+    }
 
+    switch (option)
+    {
+        case _ADD_EV_ :         
+        {
+            db_controller_t::instance().aft_attach_triger_add(t_ptr);
+            break;
+        }
+        case _REMOVE_EV_ :      
+        {
+            db_controller_t::instance().aft_attach_triger_remove(t_ptr);
+            break;
+        }
+        case _INSERT_EV_ :      
+        {
+            db_controller_t::instance().aft_attach_triger_insert(t_ptr);
+            break;
+        }
+        case _ADD_REM_EV_ :     
+        {
+            db_controller_t::instance().aft_attach_triger_add(t_ptr);
+            db_controller_t::instance().aft_attach_triger_remove(t_ptr);
+            break;
+        }
+        case _INS_REM_EV_ :     
+        {
+            db_controller_t::instance().aft_attach_triger_insert(t_ptr);
+            db_controller_t::instance().aft_attach_triger_remove(t_ptr);
+            break;
+        }
+        case _INS_ADD_REM_EV_ : 
+        {
+            db_controller_t::instance().aft_attach_triger_add(t_ptr);
+            db_controller_t::instance().aft_attach_triger_remove(t_ptr);
+            db_controller_t::instance().aft_attach_triger_insert(t_ptr);
+            break;
+        }
+        default:
+            throw "method : bef_attach_req | undefine option";
+    }
 }
 
 void aft_detach_req(data_ptr data)
 {
-
+    auto name_ptr   = data->get_name_ptr();
+    auto t_ptr = list_triggers_t::instance().get_trigger_ptr(name_ptr);
+    if (t_ptr == nullptr)
+    {
+        throw "method : aft_detach_req | trigger not found";
+    }
+    db_controller_t::instance().bef_detach_trigger(t_ptr);
 }
+
+
+
 
 
 

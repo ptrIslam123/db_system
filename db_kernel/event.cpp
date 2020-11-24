@@ -23,6 +23,7 @@ void event::detach(const trigger_ptr t)
         if ( (*it) == t )
         {
             poll_triger_.erase(it);
+            break;
         }
     }
 }
