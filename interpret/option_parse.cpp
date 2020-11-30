@@ -4,7 +4,7 @@ option_parse::option_parse():
     size_(0),
     pos_(0)
 {
-    buffer_.reserve(_B_BUF_SIZE_);
+    buffer_.reserve(_B_BUF_SIZE_OPTION_);
 }
 
 option_parse::~option_parse()

@@ -33,12 +33,15 @@ public:
     void        set_table(table_name_t&& );
     void        delete_table(table_name_t&& );
     void        print_tables();
+    void        print_table(word_t&& );
     
     table_ptr   get_table(table_name_t&& );
     table_ptr   get_table(const table_name_t& );
     tables_ptr  get_tables_ptr();
 
     /* API DB_KERNEL */
+    void        write_table_to_table(word_t&& );
+    void        write_table_to_file(word_t&& );
     void        reserve();
     void        reserve(size_t );
     void        init_table(table_name_t&& , file_name_t&& , size_t);
@@ -78,7 +81,6 @@ public:
     void aft_detach_trigger(const trigger_ptr );
 
 private:
-    void        print_table_name(table_name_ptr );
     void        is_exist_table(table_iter_t );
 
 private:

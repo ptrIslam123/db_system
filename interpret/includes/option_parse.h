@@ -1,6 +1,6 @@
 #ifndef _OPTION_PARSE_H_
 #define _OPTION_PARSE_H_
-#define _B_BUF_SIZE_ 10
+#define _B_BUF_SIZE_OPTION_ 10
 
 #include "args_data.h"
 #include "args_data_operator.h" 

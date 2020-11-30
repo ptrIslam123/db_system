@@ -1,5 +1,7 @@
 #ifndef _SYS_FUNCTIONS_H_
 #define _SYS_FUNCTIONS_H_
+#define _LOGER_SIZE_BUF_ 255
+
 //#define _TRANSACT_TEST_LOG_
 #ifndef _TRANSACT_TEST_LOG_
 #include <iostream>
@@ -9,7 +11,9 @@
 #include "record.h"
 #include "args_data.h"
 #include "response_data.h"
+#include "../../tools/includes/loger.h"
 
+using loger_t       = log::loger<_LOGER_SIZE_BUF_>;
 using token_ptr     = token*;   // token*
 using token_t       = std::unique_ptr<token>;
 using response_d    = response_data::container_t;
@@ -74,7 +78,10 @@ void remove_req(index_t );
 void print_table_req(data_ptr );
 void print_tables_req();
 void print_triggers_req();
+void print_error_log_req();
 void clear_req();
+void write_table_to_file_req(data_ptr );
+void write_table_to_table_req(data_ptr );
 
 /* TRIGGER API */
 
@@ -104,7 +111,9 @@ void update_ti_ds_req_atomic(index_t , data_ptr );
 void update_dt_ti_ds_req_atomic(index_t , data_ptr );
 void remove_req_atomic(index_t );
 
+
 void rolback_records();
+
 
 /* rolback request functions */
 
@@ -125,17 +134,20 @@ static size_t       const _get_index_response_buf(size_t );
 static void               _add_index_response_buf(index_t );
 static token_ptr    const _get_token(size_t );
 static response_d   const _get_response();
+static loger_t&           _get_loger();
 static void         _add_token(token_t&& );
 static void         _insert_token(size_t , token_t&& );
 static void         _update_token(size_t , token_t&& );
 static void         _remove_token(size_t );
 static void         _save_state_record(index_t , token_t&& , controller_transact_t);
 
+static void         _log(word_t&& );
 void                _print_token(token_ptr );
 void                _print_heder(const word_ptr );
 void                _print_table(const table_name_ptr );
 static void         _print_tables();
 static void         _print_triggers();
+static void         _print_log_file();
 
 #ifndef _TRANSACT_TEST_LOG_
 static void         _save_state_log(const token_ptr , const std::string& );

@@ -46,6 +46,9 @@ constexpr short _DATE_TIME_DESCRIPT_    = ( _DATE_ + _TIME_ + _DESCRIPT_ );
 constexpr short _TG_NAME_OP_            = ( _NAME_ + _OPTION_ );
 constexpr short _TG_TNAME_NAME_OP_      = ( _TABLE_NAME_ + _NAME_ + _OPTION_ );
 constexpr short _TG_TNAME_NAME_         = ( _TABLE_NAME_ + _NAME_ );
+constexpr short _TABLE_FIE_NAME_        = ( _TABLE_NAME_ + _FILE_NAME_ );
+constexpr short _TABLE_TABLE_NAME_      = ( _TABLE_NAME_ + _TABLE_NAME_ );
+constexpr short _FILE_NAME_DESCRIPT_    = ( _FILE_NAME_  + _DESCRIPT_ ); 
 
 struct args_data;
 using data_ptr      = args_data*;

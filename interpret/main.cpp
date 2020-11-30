@@ -14,8 +14,9 @@
 #include "../db_kernel/includes/event.h"
 #include "includes/list_triggers.h"
 
-    std::string fn1 = "/home/islam/CppProgram/db_sysytem_for_it_company/interpret/test/tdata/tdata1.txt";
-    std::string fn2 = "/home/islam/CppProgram/db_sysytem_for_it_company/interpret/test/tdata/tdata2.txt";
+    std::string fn1 = "../test/tdata/tdata1.txt";
+    std::string fn2 = "../test/tdata/tdata2.txt";
+    std::string fn3 = "../test/tdata/big_data.txt";
     std::string tn1 = "table1";
     std::string tn2 = "table2";
     std::string dt = "18.07.2020";
@@ -33,17 +34,11 @@
     std::string triggerc = "trigger t1 {  log(ds : '\t\t***||TRIGGER_EVENT||***\n') print_t(tn : 'table1' ) }";
 int main()
 {
-
-
-
+   exec("create_t(tn : 'table1' fn : '"+ fn1 +"' sz : '10000')");
+   exec("set_t(tn : 'table1')");
+   exec("print_t(tn : 'table1')");
    
    
-
-
-
-
    
-     
-
    return 0;
 }

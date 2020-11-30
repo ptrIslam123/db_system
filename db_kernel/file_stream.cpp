@@ -54,7 +54,12 @@ void file_stream::seekchar(int offset)
 }
 
 
-std::string file_stream::get_file() const
+word_t file_stream::get_file() const
 {
     return file_name_;
+}
+
+word_ptr file_stream::get_file_ptr()
+{
+    return &file_name_;
 }

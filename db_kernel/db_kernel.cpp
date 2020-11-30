@@ -1,4 +1,5 @@
 #include "includes/db_kernel.h"
+#include "../tools/includes/files.h"
 //#define _MALLOC_DEB_INF_F_
 #define _ENBL_API_TRIGERS_
 
@@ -101,7 +102,7 @@ void db_kernel::print_table()
     const auto size = size_table();
     for (auto i = 0; i < size ; ++i)
     {
-        print_token(get(i), i);
+        print_token(get(i), i + 1);
     }
 }
 
@@ -111,9 +112,39 @@ void db_kernel::print_token(const token_ptr tok, const size_t index)
     auto time = tok->get_time().c_str();
     auto descript = tok->get_descript().c_str();
 
-    printf("\n%-10d\t%-10s\t%-10s\t%-300s\n",
+    printf("\n%-10d|\t%-10s|\t%-10s|\t%-300s\n",
                             index, date, time, descript);
 }
+
+
+void db_kernel::write_table_to_file(word_t&& fname)
+{
+    try
+    {
+        files file(std::move(fname));
+         file.write(get_heder());
+
+        const auto size = size_table();
+        token_ptr val = nullptr;
+        for (auto i = 0; i < size; ++i)
+        {
+            file.write("\n");
+
+            val = get(i);
+            auto record =   val->get_date()     + " " + 
+                            val->get_time()     + "\t" +
+                            get_type_token()    + "\t\t" +
+                            val->get_descript();
+                            
+            file.write(std::move(record));
+        }
+    }
+    catch(const std::string& e)
+    {
+        std::cout << e << '\n';
+    }
+}
+
 
 tok_gramm_t db_kernel::get_tok_gramm() 
 {
@@ -257,6 +288,11 @@ word_t& db_kernel::get_heder()
 word_ptr db_kernel::get_heder_ptr()
 {
     return &heder_;
+}
+
+word_ptr db_kernel::get_file_name_ptr()
+{
+    return tok_gramm_->get_file_ptr();
 }
 
 bool db_kernel::is_open_file() const

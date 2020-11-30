@@ -3,7 +3,9 @@
 #include "includes/memento.h"
 #include "includes/list_triggers.h"
 #include "../db_kernel/includes/db_controller.h"
+#include "../tools/includes/files.h"
 
+#define _LOGER_FILE_PATH_ "../../config/error_log.txt"
 
 /* comparators */
 
@@ -226,12 +228,32 @@ void print_triggers_req()
     _print_triggers();
 }
 
+void print_error_log_req()
+{
+    _print_log_file();
+}
+
 void clear_req()
 {
     response_data_t::instance().clear_buf();
 }
 
 
+void write_table_to_file_req(data_ptr data)
+{
+    auto fname = *(data->get_file_name_ptr());
+    db_controller_t::instance().write_table_to_file(
+        std::move(fname)
+    );
+}
+
+void write_table_to_table_req(data_ptr data)
+{
+    auto tname = *(data->get_table_name_ptr());
+    db_controller_t::instance().write_table_to_table(
+        std::move(tname)
+    );
+}
 
 
 
@@ -634,6 +656,14 @@ response_d const _get_response()
     return response_data_t::instance().get_response();
 }
 
+
+static
+loger_t& _get_loger()
+{
+    static loger_t loger_("../config/error_log.txt");
+    return loger_;
+}
+
 static
 void _add_token(token_t&& val)
 {
@@ -658,6 +688,13 @@ void _remove_token(size_t pos)
     db_controller_t::instance().remove(pos);
 }
 
+
+static
+void _log(word_t&& type_error, word_t&& descript_error)
+{
+    loger_t& loger_ = _get_loger();
+    loger_.log(std::move(type_error), std::move(descript_error));
+}
 
 static
 void _save_state_record(index_t indx, token_t&& tok, controller_transact_t controll)
@@ -686,13 +723,7 @@ void _print_table(const table_name_ptr tname_ptr)
 {
     auto tname = *tname_ptr;
     const auto table = db_controller_t::instance().get_table(std::move(tname));
-    const auto size = table->size_table();
-    
-    //_print_heder(table->get_heder_ptr());
-    for (auto i = 0; i < size; ++i)
-    {
-        _print_token( table->get(i) );
-    }
+    table->print_table();
 }
 
 static
@@ -705,6 +736,13 @@ static
 void _print_triggers()
 {
     list_triggers_t::instance().print_triggers();
+}
+
+static
+void _print_log_file()
+{
+   static files file(_LOGER_FILE_PATH_);
+   std::cout << file.read(); 
 }
 
 #ifndef _TRANSACT_TEST_LOG_

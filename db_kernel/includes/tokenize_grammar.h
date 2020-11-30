@@ -39,7 +39,8 @@ public:
     bool        is_eof() const;
     bool        is_open_file() const;
     void        skip_nul_scpace();
-    std::string get_file() const;
+    word_t      get_file() const;
+    word_ptr    get_file_ptr();
     fstream_t   get_fsretam();
 
 private:

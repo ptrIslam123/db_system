@@ -4,6 +4,8 @@ compil:
 compilMain:
 	clang++ -g -c ../main.cpp
 
+compilFiles:
+	clang++ -g -c ../files.cpp
 
 link:
 	clang++ *.o -o main

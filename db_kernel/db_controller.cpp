@@ -24,6 +24,33 @@ db_controller::~db_controller()
 
 /* API DB_CONTROLLER */
 
+void db_controller::write_table_to_table(word_t&& tname)
+{
+    try
+    {
+        auto table_ptr = get_table(std::move(tname));
+
+        const auto size = table_ptr->size_table();
+        for (auto i = 0; i < size; ++i)
+        {
+            cur_table_->push_token(
+                table_ptr->get(i)->clone()
+            );
+        }
+    }
+    catch(const char* e)
+    {
+        std::cout << e << '\n';
+    }
+}
+
+void db_controller::write_table_to_file(word_t&& fname)
+{
+    cur_table_->write_table_to_file(std::move(fname)); 
+}
+
+
+
 void db_controller::add_table(table_name_t&& dbname, fname_t&& fname, size_t size_table)
 {
     auto new_db = make_db_kernel(std::move(fname), size_table);
@@ -41,22 +68,34 @@ table_ptr db_controller::get_table(const table_name_t& tname)
 
 void db_controller::set_table(table_name_t&& tname)
 {
-    cur_table_ = get_table(std::move(tname));
+    try
+    {
+        cur_table_ = get_table(std::move(tname));   
+    }
+    catch(const char* e)
+    {
+        std::cerr << e << '\n';
+    }
 }
 
 void db_controller::print_tables()
 {
     for (auto &i : tables_)
     {
-        std::cout << "TABLE_NAME : " << (i.first) << "\n";
-        i.second->print_table();
+        auto table = i.second.get();
+        printf("%-30s|\t\t%-50s|\t\t%d\n",
+                i.first.c_str(), 
+                ( (*table->get_file_name_ptr()).c_str() ), 
+                table->size_table());
     }
 }
 
-void db_controller::print_table_name(table_name_ptr tname_p)
+void db_controller::print_table(word_t&& tname)
 {
-    std::cout << (*tname_p) << "\n";
+    auto table_ptr = get_table(std::move(tname));
+    table_ptr->print_table();
 }
+
 
 table_ptr db_controller::get_table(table_name_t&& tname)
 {

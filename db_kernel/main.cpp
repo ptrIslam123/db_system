@@ -14,10 +14,15 @@
 
 int main()
 {
-    std::string all_path = "/home/islam/CppProgram/db_sysytem_for_it_company/db_kernel";
-    std::string fname = all_path + "/data/data.txt";
+    //std::string all_path = "/home/islam/CppProgram/db_sysytem_for_it_company/db_kernel";
+    std::string fname1 = "../data/data.txt";
+    std::string fname2 = "../data/new_file_with_data.txt";
+    std::string fname3 = "../data/file3.txt";
+    db_controller db;
 
-   
+    
+    
+
 
     return 0;
 }

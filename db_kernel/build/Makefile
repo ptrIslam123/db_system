@@ -1,3 +1,6 @@
+compilTooslFiles:
+	clang++ -g -c ../../tools/files.cpp
+
 compilInterpretAPI:
 	clang++ -g -c ../../interpret/*.cpp
 

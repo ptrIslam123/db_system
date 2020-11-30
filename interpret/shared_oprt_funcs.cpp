@@ -1,6 +1,7 @@
 #include "includes/shared_oprt_funcs.h"
 #include "includes/sys_functions.h"
 #include "includes/option_parse.h"
+#include "../tools/includes/files.h"
 
 #include <iostream>
 
@@ -132,8 +133,24 @@ void __log_operator(args_oprt_buf_t&& args)
             std::cout << "LOG: " << (*data->get_descript_ptr()) << "\n";
             break;
         }
+        case _FILE_NAME_DESCRIPT_: {
+            try
+            {
+                auto fname = *(data->get_file_name_ptr());
+                files file(std::move(fname));
+
+                auto descript = *(data->get_descript_ptr());
+                file.write(std::move(descript));
+            }
+            catch(const char* e)
+            {
+                std::cerr << e << '\n';
+                break;
+            }
+            break;
+        }
         default:
-            throw "method : __get_operator | undefine param type";
+            throw "method : __log_operator | undefine param type";
     }
 }
 
@@ -154,7 +171,20 @@ void __list_triggers_operator(args_oprt_buf_t&& args)
     {
         throw "method : __list_triggers_operator | undefine param";
     }
+    print_triggers_req();
 }
+
+
+void __list_error_log_operator(args_oprt_buf_t&& args)
+{
+    const auto size = args.size();
+    if (size > 0 )
+    {
+        throw "method : __list_triggers_operator | undefine param";
+    }
+    print_error_log_req();
+}
+
 
 void __rolback_operator(args_oprt_buf_t&& )
 {
@@ -271,7 +301,34 @@ void  __aft_detach_operator(args_oprt_buf_t&& args)
 }
 
 
+void __write_table_operator(args_oprt_buf_t&& args)
+{
+    args_data arg_data;
+    data_ptr data = &arg_data;
+    try
+    {
+        init_data(data, std::move(args));   
+    }
+    catch(const std::out_of_range& e)
+    {
+        //std::cerr << e.what() << '\n';
+    }
+    auto type = data->get_args_type();
 
+    switch (type)
+    {
+        case _FILE_NAME_ : {
+            write_table_to_file_req(data);
+            break;
+        }
+        case _TABLE_NAME_: {
+            write_table_to_table_req(data);
+            break;
+        }
+        default:
+            throw "method :__aft_detach_operator | undefine param type";
+    }
+}
 
 
 void init_data(data_ptr data, args_oprt_buf_t&& args)

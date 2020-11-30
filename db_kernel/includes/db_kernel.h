@@ -51,9 +51,11 @@ public:
     void        create_table();
     void        drop_table();
     void        print_table();
+    void        write_table_to_file(word_t&& );
 
     token_ptr   get(size_t );
     void        add(token_t&& );
+    void        push_token(token_t&& );
     void        insert(size_t , token_t&& );
     void        remove(size_t );
     
@@ -68,6 +70,7 @@ public:
 
     word_t&     get_heder();
     word_ptr    get_heder_ptr();
+    word_ptr    get_file_name_ptr();
 
     size_t      size_table();
     bool        is_open_file() const;
@@ -89,7 +92,6 @@ public:
     void aft_detach_trigger(const trigger_ptr );
 
 private:
-    void        push_token(token_t&& );
     void        print_token(const token_ptr , const size_t );
     token_ptr   get_token(size_t );
     void        open_file();

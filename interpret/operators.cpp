@@ -26,7 +26,9 @@ operators::operators(base_parse_api_ptr base_p_api):
         {"bef_attach",__bef_attach_operator},
         {"bef_detach",__bef_detach_operator},
         {"aft_attach",__aft_attach_operator},
-        {"aft_detach",__aft_detach_operator}
+        {"aft_detach",__aft_detach_operator},
+        {"write_to",  __write_table_operator},
+        {"llog",      __list_error_log_operator}
     }
 {}
 

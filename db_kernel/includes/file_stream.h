@@ -4,13 +4,16 @@
 #include <fstream>
 #include <string>
 
+#include "token.h"
+
 class file_stream
 {
 public:
     file_stream(std::string&& );
     ~file_stream();
 
-    std::string get_file() const;
+    word_t      get_file() const;
+    word_ptr    get_file_ptr();
     void        open(std::string&& );
     void        open();
     bool        is_open();
@@ -20,7 +23,7 @@ public:
     void        seekchar(int );
 
 private:
-    std::string   file_name_;
+    word_t        file_name_;
     std::fstream  file;
 };
 

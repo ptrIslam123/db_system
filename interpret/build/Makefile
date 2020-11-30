@@ -1,3 +1,7 @@
+compilToolsFiles:
+	clang++ -g -c ../../tools/files.cpp
+
+
 compilToken:
 	clang++ -g -c ../../db_kernel/token.cpp
 

@@ -129,7 +129,7 @@ word_t tokenize_grammar::tokenize_word()
 
 word_t tokenize_grammar::tokenize_heder()
 {
-    word_t heder = "Дата и время	Тип события	Описание";
+    word_t heder = "Дата и время      	Тип события	Описание";
     char cur_s = 0;
     while (true)
     {
@@ -189,6 +189,11 @@ token_t tokenize_grammar::make_token
     );
 }
 
+
+word_ptr tokenize_grammar::get_file_ptr()
+{
+    return fstream_->get_file_ptr();
+}
 
 fstream_t tokenize_grammar::get_fsretam() 
 {
