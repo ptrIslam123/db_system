@@ -24,7 +24,7 @@ void exec(std::string&& code)
     auto ccode = code;
     try
     {
-        lexer<> lex(std::move(code), 200);
+        lexer lex(std::move(code), 200);
         lex.run();
 
         auto lexemes = lex.get_result();
@@ -33,12 +33,13 @@ void exec(std::string&& code)
 
         parser p(&base);
         p.run();
-        //std::cout << "\t\t***|| execute command ||***\n";
+        
         std::cout << "\n";
     }
     catch(const char* e)
     {
-        std::cerr << "\t\t***||error execute: " << ccode << " | " << e << " ||***\n";
+        std::cerr << e << "\n";
+        exit(1);
     }  
 }
 

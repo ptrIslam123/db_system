@@ -50,6 +50,8 @@ public:
    void         set_date(date_t_&& );
    void         set_time(time_t_&& );
    void         set_descript(descript_t_&& );
+   void         print(const size_t );
+   void         print(); 
    token_t      clone();
 
 private:

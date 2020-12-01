@@ -32,13 +32,15 @@
     std::string code  = create_t1 + "\n" + set_t1 + "\n" + get;
     std::string trigger_blcok = "  log(ds : '\t\t***||TRIGGER_EVENT||***\n') print_t(tn : 'table1' ) ";
     std::string triggerc = "trigger t1 {  log(ds : '\t\t***||TRIGGER_EVENT||***\n') print_t(tn : 'table1' ) }";
+
+
+
 int main()
 {
-   exec("create_t(tn : 'table1' fn : '"+ fn1 +"' sz : '10000')");
-   exec("set_t(tn : 'table1')");
-   exec("print_t(tn : 'table1')");
-   
-   
+   exec("create_t(tn : '" + tn1 + "' fn : '" + fn1 + "' sz : '10')");
+   exec("set_t(tn : '" + tn1 + "')");
+   exec("print_t(tn : '" + tn1 + "'')");
+    
    
    return 0;
 }

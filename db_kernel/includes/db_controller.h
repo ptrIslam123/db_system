@@ -68,25 +68,26 @@ public:
 
     /*  TRIGERS API */
 
-    void bef_attach_triger_add(const trigger_ptr );
-    void bef_attach_triger_remove(const trigger_ptr );
-    void bef_attach_triger_insert(const trigger_ptr );
+    void        bef_attach_triger_add(const trigger_ptr );
+    void        bef_attach_triger_remove(const trigger_ptr );
+    void        bef_attach_triger_insert(const trigger_ptr );
     
 
-    void aft_attach_triger_add(const trigger_ptr );
-    void aft_attach_triger_remove(const trigger_ptr );
-    void aft_attach_triger_insert(const trigger_ptr );
+    void        aft_attach_triger_add(const trigger_ptr );
+    void        aft_attach_triger_remove(const trigger_ptr );
+    void        aft_attach_triger_insert(const trigger_ptr );
 
-    void bef_detach_trigger(const trigger_ptr );
-    void aft_detach_trigger(const trigger_ptr );
+    void        bef_detach_trigger(const trigger_ptr );
+    void        aft_detach_trigger(const trigger_ptr );
 
 private:
     void        is_exist_table(table_iter_t );
+    void        log_error(word_t&& , word_t&& );
 
 private:
-  tables_t  tables_;
-  table_ptr cur_table_;
-  size_t    size_tables_;
+  tables_t      tables_;
+  table_ptr     cur_table_;
+  size_t        size_tables_;
 };
 
 

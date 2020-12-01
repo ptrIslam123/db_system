@@ -85,6 +85,18 @@ void token::set_descript(descript_t_&& descript)
 }
 
 
+void token::print(const size_t index)
+{
+    printf("\n%-10d|\t%-10s|\t%-10s|\t%-300s\n",
+            index, date_.c_str(), time_.c_str(), descript_.c_str());
+}
+
+void token::print()
+{
+    printf("\n\t%-10s|\t%-10s|\t%-300s\n",
+            date_.c_str(), time_.c_str(), descript_.c_str());
+}
+
 word_t get_type_token()
 {
     return std::string("Аудит");

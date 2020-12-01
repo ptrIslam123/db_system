@@ -79,17 +79,17 @@ public:
     
     /*  TRIGERS API */
 
-    void bef_attach_triger_add(const trigger_ptr );
-    void bef_attach_triger_remove(const trigger_ptr );
-    void bef_attach_triger_insert(const trigger_ptr );
+    void        bef_attach_triger_add(const trigger_ptr );
+    void        bef_attach_triger_remove(const trigger_ptr );
+    void        bef_attach_triger_insert(const trigger_ptr );
     
-    void aft_attach_triger_add(const trigger_ptr );
-    void aft_attach_triger_remove(const trigger_ptr );
-    void aft_attach_triger_insert(const trigger_ptr );
+    void        aft_attach_triger_add(const trigger_ptr );
+    void        aft_attach_triger_remove(const trigger_ptr );
+    void        aft_attach_triger_insert(const trigger_ptr );
 
     
-    void bef_detach_trigger(const trigger_ptr );
-    void aft_detach_trigger(const trigger_ptr );
+    void        bef_detach_trigger(const trigger_ptr );
+    void        aft_detach_trigger(const trigger_ptr );
 
 private:
     void        print_token(const token_ptr , const size_t );

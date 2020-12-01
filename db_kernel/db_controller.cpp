@@ -1,5 +1,10 @@
 #include "includes/db_controller.h"
-
+#include "../tools/includes/loger.h"
+#define _EXCEPTION_REQ_
+#define _LOGER_BUF_SIZE__   2550
+#define _LOGER_FILE_PATH_   "../../config/error_log.txt"
+#define _INIT_FILE_PATH_    "../../config/init.txt"
+#define _INIT_TABLE_NAME_   "init"
 
 using fname_t             = db_controller::fname_t;
 using db_t                = db_controller::db_t;
@@ -11,11 +16,39 @@ using table_iter_t        = typename db_controller::table_iter_t;
 using table_revers_iter_t = typename db_controller::table_revers_iter_t;
 
 db_controller::db_controller()
-{}
+{
+    try
+    {
+        init_table(_INIT_TABLE_NAME_,_INIT_FILE_PATH_, 0);
+        cur_table_ = get_table(_INIT_TABLE_NAME_);
+    }
+    catch(const std::runtime_error& e)
+    {
+        /// sys_log()
+    }
+    catch(const std::exception& e)
+    {
+        /// sys_log()
+    }
+}
 
 db_controller::db_controller(size_t size_tables):
     size_tables_(size_tables)
-{}
+{
+    try
+    {
+        init_table(_INIT_TABLE_NAME_,_INIT_FILE_PATH_, 0);
+        cur_table_ = get_table(_INIT_TABLE_NAME_);
+    }
+    catch(const std::runtime_error& e)
+    {
+        /// sys_log()
+    }
+    catch(const std::exception& e)
+    {
+        /// sys_log()
+    }
+}
 
 
 db_controller::~db_controller()
@@ -38,30 +71,80 @@ void db_controller::write_table_to_table(word_t&& tname)
             );
         }
     }
-    catch(const char* e)
+    catch(const std::bad_alloc& e)
     {
-        std::cout << e << '\n';
+        
+    }
+    catch(const std::out_of_range& e)
+    {
+        
+    }
+    catch(const std::exception& e)
+    {
+
     }
 }
 
 void db_controller::write_table_to_file(word_t&& fname)
 {
-    cur_table_->write_table_to_file(std::move(fname)); 
+    try
+    {
+        cur_table_->write_table_to_file(std::move(fname));   
+    }
+    catch(const std::bad_alloc& e)
+    {
+        /////
+    }
+    catch(const std::runtime_error& e)
+    {
+        /////
+    }
+    catch(const std::exception& e)
+    {
+        /////
+    }
 }
 
 
 
 void db_controller::add_table(table_name_t&& dbname, fname_t&& fname, size_t size_table)
 {
-    auto new_db = make_db_kernel(std::move(fname), size_table);
-    tables_[dbname] = std::move(new_db);
+    try
+    {
+        auto new_db = make_db_kernel(std::move(fname), size_table);
+        tables_[dbname] = std::move(new_db);
+    }
+    catch(const std::bad_alloc& e)
+    {
+
+    }
+    catch(const std::out_of_range& e)
+    {
+
+    }
+    catch(const std::runtime_error& e)
+    {
+
+    }
+    catch(const std::exception& e)
+    {
+        
+    }
+    
 }
 
 
 table_ptr db_controller::get_table(const table_name_t& tname)
 {
     auto table_iter = tables_.find(tname);
-    is_exist_table(table_iter);
+    try
+    {
+        is_exist_table(table_iter);  
+    }
+    catch(const std::runtime_error& e)
+    {
+        //// sys_log()
+    }
     return table_iter->second.get();
 }
 
@@ -70,11 +153,11 @@ void db_controller::set_table(table_name_t&& tname)
 {
     try
     {
-        cur_table_ = get_table(std::move(tname));   
+        cur_table_ = get_table(std::move(tname));  
     }
-    catch(const char* e)
+    catch(const std::runtime_error& e)
     {
-        std::cerr << e << '\n';
+        //// sys_log()
     }
 }
 
@@ -92,15 +175,30 @@ void db_controller::print_tables()
 
 void db_controller::print_table(word_t&& tname)
 {
-    auto table_ptr = get_table(std::move(tname));
-    table_ptr->print_table();
+    try
+    {
+        auto table_ptr = get_table(std::move(tname));
+        table_ptr->print_table();
+    }
+    catch(const std::runtime_error e)
+    {
+        //// sys_log()
+    }
+    
 }
 
 
 table_ptr db_controller::get_table(table_name_t&& tname)
 {
     auto table_iter = tables_.find(std::move(tname));
-    is_exist_table(table_iter);
+    try
+    {
+        is_exist_table(table_iter);
+    }
+    catch(const std::runtime_error& e)
+    {
+        //// sys_log();
+    }
     return table_iter->second.get();
 }
 
@@ -114,11 +212,17 @@ void db_controller::is_exist_table(table_iter_t iter)
 {
     if (iter == tables_.cend())
     {
-        throw "db_controller: method : is_exist_table | table not found!";
+        //////sys_log();
+        throw std::runtime_error("db_controller: undefine table");
     }
 }
 
 
+void db_controller::log_error(word_t&& type_err, word_t&& descript_err)
+{
+    static log::loger<_LOGER_BUF_SIZE__> loger_(_LOGER_FILE_PATH_);
+    loger_.log(std::move(type_err), std::move(descript_err));
+}
 
  /* API DB_KERNEL */
 
@@ -134,86 +238,331 @@ void db_controller::reserve(size_t size)
 
 void db_controller::init_table(table_name_t&& tname, file_name_t&& fname, size_t size_table)
 {
-    table_name_t table_name = tname;
-    add_table(std::move(tname), std::move(fname), size_table);
-    
-    auto table = get_table(std::move(table_name));
-    table->create_table();
+    try
+    {
+        table_name_t table_name = tname;
+        add_table(std::move(tname), std::move(fname), size_table);
+            
+        auto table = get_table(std::move(table_name));
+        table->create_table();
+    }
+    catch(const std::bad_alloc& e)
+    {
+        /// sys_log()
+    }
+    catch(const std::out_of_range& e)
+    {
+        /// sys_log()
+    }
+    catch(const std::exception& e)
+    {
+        /// sys_log()
+    }
 }
 
 void db_controller::clear_table(table_name_t&& tname)
 {
-    table_name_t table_name = tname;
-    auto table_ptr = get_table(std::move(tname));
-    
-    table_ptr->drop_table();
-    delete_table(std::move(table_name));
+    try
+    {
+        table_name_t table_name = tname;
+        auto table_ptr = get_table(std::move(tname));
+        
+        table_ptr->drop_table();
+        delete_table(std::move(table_name));
+    }
+    catch(const std::exception& e)
+    {
+        /// sys_log()
+    }
 }
 
 
 void db_controller::delete_table(table_name_t&& tname)
 {
-    auto iter = tables_.find(std::move(tname));
-    is_exist_table(iter);
-    tables_.erase(iter);
+    try
+    {
+        auto iter = tables_.find(std::move(tname));
+        is_exist_table(iter);
+        tables_.erase(iter);
+    }
+    catch(const std::out_of_range& e)
+    {
+        /// sys_log()
+    }
+    catch(const std::runtime_error& e)
+    {
+        /// sys_log()
+    }
+    catch(const std::exception& e)
+    {
+        /// sys_log()
+    }
 }
 
 token_ptr db_controller::get(size_t pos)
 {
-    return cur_table_->get(pos);
+    token_ptr val = nullptr;
+    try
+    {
+        val = cur_table_->get(pos);
+    }
+    catch(const std::out_of_range& e)
+    {
+
+    }
+    catch(const std::runtime_error& e)
+    {
+
+    }
+    catch(const std::exception& e)
+    {
+        
+    }
+    return val;
 }
 
 void db_controller::add(token_t&& val)
 {
-    cur_table_->add(std::move(val));
+    try
+    {
+        cur_table_->add(std::move(val));
+    }
+    catch(const std::bad_alloc& e)
+    {
+
+    }
+    catch(const std::runtime_error& e)
+    {
+
+    }
+    catch(const std::out_of_range& e)
+    {
+
+    }
+    catch(const std::exception& e)
+    {
+
+    }   
 }
 
 void db_controller::insert(size_t pos, token_t&& val)
 {
-    cur_table_->insert(pos, std::move(val));
+    try
+    {
+        cur_table_->insert(pos, std::move(val));
+    }
+    catch(const std::bad_alloc& e)
+    {
+
+    }
+    catch(const std::runtime_error& e)
+    {
+
+    }
+    catch(const std::out_of_range& e)
+    {
+
+    }
+    catch(const std::exception& e)
+    {
+
+    }   
 }
 
 void db_controller::remove(size_t pos)
 {
-    cur_table_->remove(pos);
+    try
+    {
+        cur_table_->remove(pos);
+    }
+    catch(const std::bad_alloc& e)
+    {
+
+    }
+    catch(const std::runtime_error& e)
+    {
+
+    }
+    catch(const std::out_of_range& e)
+    {
+
+    }
+    catch(const std::exception& e)
+    {
+
+    }   
 }
 
 
 
 void db_controller::update(size_t pos, token_t&& val)
 {
-    cur_table_->update(pos, std::move(val));
+    try
+    {
+        cur_table_->update(pos, std::move(val));
+    }
+    catch(const std::bad_alloc& e)
+    {
+
+    }
+    catch(const std::runtime_error& e)
+    {
+
+    }
+    catch(const std::out_of_range& e)
+    {
+
+    }
+    catch(const std::exception& e)
+    {
+
+    }   
 }
 
 
 void db_controller::update_dt(size_t pos, date_t_&& date)
 {
-    cur_table_->update_dt(pos, std::move(date));
+    try
+    {
+        cur_table_->update_dt(pos, std::move(date));
+    }
+    catch(const std::bad_alloc& e)
+    {
+
+    }
+    catch(const std::runtime_error& e)
+    {
+
+    }
+    catch(const std::out_of_range& e)
+    {
+
+    }
+    catch(const std::exception& e)
+    {
+
+    }   
 }
 
 void db_controller::update_ti(size_t pos, time_t_&& time)
 {
-    cur_table_->update_ti(pos, std::move(time));
+    try
+    {
+        cur_table_->update_ti(pos, std::move(time));
+    }
+    catch(const std::bad_alloc& e)
+    {
+
+    }
+    catch(const std::runtime_error& e)
+    {
+
+    }
+    catch(const std::out_of_range& e)
+    {
+
+    }
+    catch(const std::exception& e)
+    {
+
+    }   
 }
 
 void db_controller::update_ds(size_t pos, descript_t_&& descript)
 {
-    cur_table_->update_ds(pos, std::move(descript));
+    try
+    {
+        cur_table_->update_ds(pos, std::move(descript));
+    }
+    catch(const std::bad_alloc& e)
+    {
+
+    }
+    catch(const std::runtime_error& e)
+    {
+
+    }
+    catch(const std::out_of_range& e)
+    {
+
+    }
+    catch(const std::exception& e)
+    {
+
+    }   
 }
 
 void db_controller::update_dt_ti(size_t pos, date_t_&& date, time_t_&& time)
 {   
-    cur_table_->update_dt_ti(pos, std::move(date), std::move(time));
+    try
+    {
+        cur_table_->update_dt_ti(pos, std::move(date), std::move(time));
+    }
+    catch(const std::bad_alloc& e)
+    {
+
+    }
+    catch(const std::runtime_error& e)
+    {
+
+    }
+    catch(const std::out_of_range& e)
+    {
+
+    }
+    catch(const std::exception& e)
+    {
+
+    }   
 }
 
 void db_controller::update_dt_ds(size_t pos, date_t_&& date, descript_t_&& descript)
 {
-    cur_table_->update_dt_ds(pos, std::move(date), std::move(descript));
+    try
+    {
+        cur_table_->update_dt_ds(pos, std::move(date), std::move(descript));
+    }
+    catch(const std::bad_alloc& e)
+    {
+
+    }
+    catch(const std::runtime_error& e)
+    {
+
+    }
+    catch(const std::out_of_range& e)
+    {
+
+    }
+    catch(const std::exception& e)
+    {
+
+    }  
 }
 
 void db_controller::update_ti_ds(size_t pos, time_t_&& time, descript_t_&& descript)
 {
-    cur_table_->update_ti_ds(pos, std::move(time), std::move(descript));
+    try
+    {
+        cur_table_->update_ti_ds(pos, std::move(time),
+                                 std::move(descript));
+    }
+    catch(const std::bad_alloc& e)
+    {
+
+    }
+    catch(const std::runtime_error& e)
+    {
+
+    }
+    catch(const std::out_of_range& e)
+    {
+
+    }
+    catch(const std::exception& e)
+    {
+
+    }   
 }
 
 void db_controller::update_dt_ti_ds(size_t pos, 
@@ -221,10 +570,29 @@ void db_controller::update_dt_ti_ds(size_t pos,
                                     time_t_&& time, 
                                     descript_t_&& descript)
 {
-    cur_table_->update_dt_ti_ds(pos,
+    try
+    {
+        cur_table_->update_dt_ti_ds(pos,
                                 std::move(date), 
                                 std::move(time), 
                                 std::move(descript));
+    }
+    catch(const std::bad_alloc& e)
+    {
+
+    }
+    catch(const std::runtime_error& e)
+    {
+
+    }
+    catch(const std::out_of_range& e)
+    {
+
+    }
+    catch(const std::exception& e)
+    {
+
+    }   
 }
 
 
@@ -249,18 +617,39 @@ bool db_controller::is_open_table() const
 
 void db_controller::bef_attach_triger_add(const trigger_ptr t)
 {
-    cur_table_->bef_attach_triger_add(t);
+    try
+    {
+        cur_table_->bef_attach_triger_add(t);
+    }
+    catch(const std::runtime_error& e)
+    {
+
+    }
 }
 
 
 void db_controller::bef_attach_triger_remove(const trigger_ptr t)
 {
-    cur_table_->bef_attach_triger_remove(t);
+    try
+    {
+        cur_table_->bef_attach_triger_remove(t);
+    }
+    catch(const std::runtime_error& e)
+    {
+
+    }
 }
 
 void db_controller::bef_attach_triger_insert(const trigger_ptr t)
 {
-    cur_table_->bef_attach_triger_insert(t);
+    try
+    {
+        cur_table_->bef_attach_triger_insert(t);
+    }
+    catch(const std::runtime_error& e)
+    {
+
+    }
 }
 
   
@@ -268,28 +657,63 @@ void db_controller::bef_attach_triger_insert(const trigger_ptr t)
 
 void db_controller::aft_attach_triger_add(const trigger_ptr t)
 {
-    cur_table_->aft_attach_triger_add(t);
+    try
+    {
+        cur_table_->aft_attach_triger_add(t);
+    }
+    catch(const std::runtime_error& e)
+    {
+
+    }
 }
 
 void db_controller::aft_attach_triger_remove(const trigger_ptr t)
 {
-    cur_table_->aft_attach_triger_remove(t);
+    try
+    {
+        cur_table_->aft_attach_triger_remove(t);
+    }
+    catch(const std::runtime_error& e)
+    {
+
+    }
 }
 
 void db_controller::aft_attach_triger_insert(const trigger_ptr t)
 {
-    cur_table_->aft_attach_triger_insert(t);
+    try
+    {
+        cur_table_->aft_attach_triger_insert(t);
+    }
+    catch(const std::runtime_error& e)
+    {
+
+    }
 }
 
 
 void db_controller::bef_detach_trigger(const trigger_ptr t)
 {
-    cur_table_->bef_detach_trigger(t);
+    try
+    {
+        cur_table_->bef_detach_trigger(t);
+    }
+    catch(const std::runtime_error& e)
+    {
+
+    }
 }
 
 void db_controller::aft_detach_trigger(const trigger_ptr t)
 {
-    cur_table_->aft_detach_trigger(t);
+    try
+    {
+        cur_table_->aft_detach_trigger(t);
+    }
+    catch(const std::runtime_error& e)
+    {
+
+    }
 }
 
 

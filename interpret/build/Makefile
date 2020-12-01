@@ -70,6 +70,9 @@ compilTriggerNode:
 compilTriggerOperators:
 	clang++ -g -c ../trigger_operators.cpp
 
+compilLexer:
+	clang++ -g -c ../lexer.cpp
+
 compilLexeme:
 	clang++ -g -c ../lexeme.cpp
 

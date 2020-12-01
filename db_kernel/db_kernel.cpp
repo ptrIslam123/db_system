@@ -108,12 +108,7 @@ void db_kernel::print_table()
 
 void db_kernel::print_token(const token_ptr tok, const size_t index)
 {
-    auto date = tok->get_date().c_str();
-    auto time = tok->get_time().c_str();
-    auto descript = tok->get_descript().c_str();
-
-    printf("\n%-10d|\t%-10s|\t%-10s|\t%-300s\n",
-                            index, date, time, descript);
+    tok->print(index);
 }
 
 
@@ -122,7 +117,7 @@ void db_kernel::write_table_to_file(word_t&& fname)
     try
     {
         files file(std::move(fname));
-         file.write(get_heder());
+        file.write(get_heder());
 
         const auto size = size_table();
         token_ptr val = nullptr;
@@ -158,7 +153,7 @@ token_ptr db_kernel::get(size_t pos)
     return (*iter_).get();
 }
 
-size_t db_kernel::size_table()
+size_t db_kernel::size_table() 
 {
     return container_.size();
 }
