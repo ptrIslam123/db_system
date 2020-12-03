@@ -5,8 +5,6 @@
 #include "../db_kernel/includes/db_controller.h"
 #include "../tools/includes/files.h"
 
-#define _LOGER_FILE_PATH_ "../../config/error_log.txt"
-
 /* comparators */
 
 bool comparator_dt(const token_ptr tok, const data_ptr data)
@@ -268,7 +266,8 @@ void bef_attach_req(data_ptr data)
 
     if (t_ptr == nullptr)
     {
-        throw "method : bef_attach_req | trigger not found";
+        throw sys_error(error_type::TRIGGER_NOT_FOUND,
+            "method : sys_function::bef_attach_req | trigger not found");
     }
 
     switch (option)
@@ -308,7 +307,8 @@ void bef_attach_req(data_ptr data)
             break;
         }
         default:
-            throw "method : bef_attach_req | undefine option";
+            throw sys_error(error_type::UNDEFINE_PARAM_TYPE,
+                "method : sys_function::bef_attach_req");
     }
 }
 
@@ -318,7 +318,8 @@ void bef_detach_req(data_ptr data)
     auto t_ptr = list_triggers_t::instance().get_trigger_ptr(name_ptr);
     if (t_ptr == nullptr)
     {
-        throw "method : bef_detach_req | trigger not found";
+        throw sys_error(error_type::TRIGGER_NOT_FOUND,
+            "method : sys_function::aft_attach_req | trigger not found");
     }
     db_controller_t::instance().bef_detach_trigger(t_ptr);
 }
@@ -334,7 +335,8 @@ void aft_attach_req(data_ptr data)
     
     if (t_ptr == nullptr)
     {
-        throw "method : aft_attach_req | trigger not found";
+        throw sys_error(error_type::TRIGGER_NOT_FOUND,
+            "method : sys_function::aft_attach_req | trigger not found");
     }
 
     switch (option)
@@ -374,7 +376,8 @@ void aft_attach_req(data_ptr data)
             break;
         }
         default:
-            throw "method : bef_attach_req | undefine option";
+            throw sys_error(error_type::UNDEFINE_PARAM_TYPE,
+                "method : sys_function::aft_attach_req");
     }
 }
 
@@ -384,7 +387,8 @@ void aft_detach_req(data_ptr data)
     auto t_ptr = list_triggers_t::instance().get_trigger_ptr(name_ptr);
     if (t_ptr == nullptr)
     {
-        throw "method : aft_detach_req | trigger not found";
+        throw sys_error(error_type::TRIGGER_NOT_FOUND,
+            "method : sys_function::aft_detach_req | trigger not found");
     }
     db_controller_t::instance().bef_detach_trigger(t_ptr);
 }
@@ -681,14 +685,7 @@ void _remove_token(size_t pos)
     db_controller_t::instance().remove(pos);
 }
 
-/*
-static
-void _log(word_t&& type_error, word_t&& descript_error)
-{
-    log::loger<_B_BUF_SIZE_>& loger_ = get_loger();
-    loger_.log(std::move(type_error), std::move(descript_error));
-}
-*/
+
 static
 void _save_state_record(index_t indx, token_t&& tok, controller_transact_t controll)
 {
@@ -734,7 +731,7 @@ void _print_triggers()
 static
 void _print_log_file()
 {
-   static files file(_LOGER_FILE_PATH_);
+   static files file(_STD_LOGER_FILE_PATH_);
    std::cout << file.read(); 
 }
 

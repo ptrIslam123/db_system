@@ -2,6 +2,7 @@
 #include "includes/operators.h"
 #include "includes/transaction.h"
 #include "includes/trigger_opeators.h"
+#include "includes/sys_error.h"
 
 
 parser::parser(parser::base_p_api_ptr base_p_api)
@@ -26,7 +27,8 @@ void parser::run()
   }
   else
   {
-      throw "method : parser::run | undeine commnd";
+      throw sys_error(error_type::UNDEFINE_FUNCTION,
+                      "parser::run : undefine function");
   }
 }
 

@@ -135,7 +135,7 @@ void __add_operator(args_oprt_buf_t&& args)
     catch(const std::out_of_range& e)
     {
         throw sys_error(error_type::OUT_OF_RANGE, 
-                        "init_data(parse_argument function { set_t })");
+                        "init_data(parse_argument function { add })");
     }
     auto type = data->get_args_type();
     
@@ -164,7 +164,7 @@ void  __insert_operator(args_oprt_buf_t&& args)
     catch(const std::out_of_range& e)
     {
         throw sys_error(error_type::OUT_OF_RANGE, 
-                        "init_data(parse_argument function { set_t })");
+                        "init_data(parse_argument function { insert })");
     }
     auto type = data->get_args_type();
     
@@ -192,7 +192,7 @@ void __update_operator(args_oprt_buf_t&& args)
     catch(const std::out_of_range& e)
     {
         throw sys_error(error_type::OUT_OF_RANGE, 
-                        "init_data(parse_argument function { set_t })");
+                        "init_data(parse_argument function { update })");
     }
     auto type = data->get_args_type();
     switch (type)
@@ -254,7 +254,7 @@ void __create_table_operator(args_oprt_buf_t&& args)
     catch(const std::out_of_range& e)
     {
         throw sys_error(error_type::OUT_OF_RANGE, 
-                        "init_data(parse_argument function { set_t })");
+                        "init_data(parse_argument function { create_t })");
     }
     auto type = data->get_args_type();
     
@@ -286,7 +286,8 @@ void __drop_table_operator(args_oprt_buf_t&& args)
     }
     catch(const std::out_of_range& e)
     {
-        //std::cerr << e.what() << '\n';
+        throw sys_error(error_type::OUT_OF_RANGE, 
+                        "init_data(parse_argument function { drop_t })");
     }
     auto type = data->get_args_type();
     

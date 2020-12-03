@@ -1,5 +1,6 @@
 #include "includes/shell.h"
 #include "../tools/includes/files.h"
+#include "includes/sys_error.h"
 
 
 shell::shell(const std::string& file_name):
@@ -32,6 +33,10 @@ void shell::exec(std::string&& code)
         
         while (!base_p_api.is_end())
             p.run();
+    }
+    catch(sys_error& e)
+    {
+        e.write_log();
     }
     catch(const char* e)
     {

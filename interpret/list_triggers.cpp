@@ -1,5 +1,5 @@
 #include "includes/list_triggers.h"
-
+#include "includes/sys_error.h"
 
 list_triggers::list_triggers()
 {}
@@ -24,8 +24,8 @@ void list_triggers::add(trigger_name_t&& tname, trigger_block_t&& tblock)
 
 void list_triggers::remove(trigger_name_t&& tname)
 {
-    auto beg               = triggers_.begin();
-    auto end               = triggers_.end();
+    auto beg                = triggers_.begin();
+    auto end                = triggers_.end();
     trigger_node_ptr node_p = nullptr;
     
     for (auto it = beg; it != end; ++it)
@@ -40,8 +40,8 @@ void list_triggers::remove(trigger_name_t&& tname)
 
 trigger_node_ptr list_triggers::get_trigger_ptr(const trigger_name_ptr tname_p)
 {
-    auto beg               = triggers_.begin();
-    auto end               = triggers_.end();
+    auto beg                = triggers_.begin();
+    auto end                = triggers_.end();
     trigger_node_ptr node_p = nullptr;
     
     for (auto it = beg; it != end; ++it)
@@ -52,7 +52,8 @@ trigger_node_ptr list_triggers::get_trigger_ptr(const trigger_name_ptr tname_p)
             return node_p;
         }
     }
-    throw "method : list_triggers::get_trigger_block_ptr | trigger not found";
+    throw sys_error(error_type::TRIGGER_NOT_FOUND,
+        "method : list_triggers::get_trigger_block_ptr : undefine triggert = > " + *(tname_p));
 }
 
 trigger_block_ptr list_triggers::get_trigger_block_ptr(const trigger_name_ptr tname_p)
@@ -69,5 +70,6 @@ trigger_block_ptr list_triggers::get_trigger_block_ptr(const trigger_name_ptr tn
             return node_p->get_block_ptr();
         }
     }
-    throw "method : list_triggers::get_trigger_block_ptr | trigger not found";
+    throw sys_error(error_type::TRIGGER_NOT_FOUND,
+        "method : list_triggers::get_trigger_block_ptr : undefine triggert = > " + *(tname_p));
 }

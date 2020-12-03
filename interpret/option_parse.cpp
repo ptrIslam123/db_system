@@ -1,4 +1,5 @@
 #include "includes/option_parse.h"
+#include "includes/sys_error.h"
 
 option_parse::option_parse():
     size_(0),
@@ -37,7 +38,8 @@ void option_parse::parse(data_ptr data, lexeme_v_ptr value)
         }
         else if (pos_ > size_)
         {
-            throw "method: option_parse::parse | error option ('|')";
+            throw sys_error(error_type::UNDEFINE_PARAM_TYPE,
+                            "method: option_parse::parse | error option (undefine token) => '|'");
         }
         buffer_ += get(0);
         next(1);
@@ -60,7 +62,8 @@ void option_parse::set_option(data_ptr data, word_ptr buf)
     }
     else 
     {
-        throw "method: option_parse::set_option | undefine option";
+        throw sys_error(error_type::UNDEFINE_PARAM_TYPE,
+                        "method: option_parse::set_option | undefine option");
     }
 }
 

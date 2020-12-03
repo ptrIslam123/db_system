@@ -1,5 +1,6 @@
 #include "includes/args_data.h"
 #include "../db_kernel/includes/tokenize_grammar.h"
+#include "includes/sys_error.h"
 
 args_data::args_data():
     date_(nullptr),
@@ -152,7 +153,8 @@ void args_data::is_f_true(const bool& flage, std::string&& p)
 {
     if (flage)
     {
-        throw "multi difinition param: " + p;
+        throw sys_error(error_type::MULTI_DEFINITION,
+                        "multi definition argument = > " + p); 
     }
 }  
 

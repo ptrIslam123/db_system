@@ -1,4 +1,5 @@
 #include "includes/base_parse_api.h"
+#include "includes/sys_error.h"
 #include <memory>
 
 base_parse_api::base_parse_api():
@@ -28,13 +29,13 @@ lexeme_ptr base_parse_api::get_lexeme(size_t pos) const
     std::advance(iter, position);
     try
     {
-     auto val = (*iter).get();
-     return val;   
+        auto val = (*iter).get();
+        return val;   
     }
     catch(const std::exception& e)
     {
-        std::cout << "ERROR : SEGMENTATION FOLL\n";
-        std::cerr << e.what() << '\n';
+        throw sys_error(error_type::OUT_OF_RANGE,
+                        "base_parse_api::get_lexeme : out of range lexemes");
     }
     return nullptr;
 }

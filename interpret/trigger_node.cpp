@@ -1,14 +1,5 @@
 #include "includes/trigger_node.h"
 
-/*
-trigger_node::trigger_node(name_t&& name, block_t&& block):
-    block_(std::move(block)),
-    name_(std::move(name)),
-    base_p_api_(&block_),
-    parser_(&base_p_api_)
-{}
-*/
-
 trigger_node::trigger_node(name_t&& name, block_t&& block):
     name_(std::move(name)),
     block_(std::move(block))
