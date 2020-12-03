@@ -1,5 +1,5 @@
 #include "includes/transaction.h"
-#include "includes/transact_error.h"
+#include "includes/sys_error.h"
 
 transaction::transaction(base_parse_api_ptr base_p_api):
     command(base_p_api),
@@ -18,8 +18,9 @@ void transaction::execute()
         {
             oprt_.execute();
         }
-        catch(transact_error& e)
+        catch(sys_error& e)
         {
+            e.write_log();
             e.rolback_records();
             close_transact_contecste();
             break;

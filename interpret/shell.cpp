@@ -1,38 +1,41 @@
 #include "includes/shell.h"
-//#define _LEXER_F_ENBL
-//#define  _PARSER_F_ENBL 
+#include "../tools/includes/files.h"
 
-shell::shell():
-    user_name_("root")
-{}
 
-shell::shell(const std::string& user_name):
-    user_name_(std::move(user_name))
-{}
-
-shell::shell(std::string&& user_name):
-    user_name_(std::move(user_name))
+shell::shell(const std::string& file_name):
+    file_name_(file_name)
 {}
 
 shell::~shell()
 {}
 
+
 void shell::run()
 {
-    init_shell();
+    files file(file_name_);
+    auto code =  file.read();
 
-    std::string script;
-    script.reserve(500);
-    
-    lexer<> lexer_;
-
-    while (true)
-    {
-       ////
-    }
+    exec(std::move(code));
 }
 
-void shell::init_shell()
+void shell::exec(std::string&& code)
 {
-    std::cout << "\t\t\t****|| db_system ||****" << "\n"; 
+    try
+    {
+        lexer_.set_code(std::move(code));
+        lexer_.run();
+
+        auto lexemes = lexer_.get_result();
+        base_parse_api base_p_api(&lexemes);
+        
+        parser p(&base_p_api);
+        
+        while (!base_p_api.is_end())
+            p.run();
+    }
+    catch(const char* e)
+    {
+        std::cerr << e << "\n";
+        exit(1);
+    }  
 }

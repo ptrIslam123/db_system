@@ -2,7 +2,7 @@
 #include "includes/sys_functions.h"
 #include "includes/option_parse.h"
 #include "../tools/includes/files.h"
-
+#include "includes/sys_error.h"
 #include <iostream>
 
 
@@ -17,7 +17,8 @@ void __get_operator(args_oprt_buf_t&& args)
     }
     catch(const std::out_of_range& e)
     {
-        //std::cerr << e.what() << '\n';
+        throw sys_error(error_type::OUT_OF_RANGE, 
+                        "init_data(parse_argument function { get })");
     }
     auto type = data->get_args_type();
     
@@ -52,7 +53,8 @@ void __get_operator(args_oprt_buf_t&& args)
             break;
         }
         default:
-            throw "method : __get_operator | undefine param type";
+            throw sys_error(error_type::UNDEFINE_PARAM_TYPE,
+                            "method :__get_operator | undefine param type");
     }
 }
 
@@ -67,7 +69,8 @@ void __print_table__operator(args_oprt_buf_t&& args)
     }
     catch(const std::out_of_range& e)
     {
-        //std::cerr << e.what() << '\n';
+        throw sys_error(error_type::OUT_OF_RANGE, 
+                        "init_data(parse_argument function { print_t })");
     }
     auto type = data->get_args_type();
     
@@ -77,7 +80,8 @@ void __print_table__operator(args_oprt_buf_t&& args)
     }
     else
     {
-        throw "method : __print_table__operator | undefine param";
+        throw sys_error(error_type::UNDEFINE_PARAM_TYPE,
+                            "method :__print_table__operator | undefine param type");
     }
     
 }
@@ -87,7 +91,8 @@ void __print_operator(args_oprt_buf_t&& args)
     const auto size = args.size();
     if (size > 0 )
     {
-        throw "method : __print_operator | undefine param";
+        throw sys_error(error_type::UNDEFINE_PARAM_TYPE,
+                            "method :__print_operator | undefine param type");
     }
     for_each(_print_token);
 }
@@ -97,7 +102,8 @@ void  __count_operator(args_oprt_buf_t&& args)
     const auto size = args.size();
     if (size > 0 )
     {
-        throw "method : __print_operator | undefine param";
+        throw sys_error(error_type::UNDEFINE_PARAM_TYPE,
+                            "method :__count_operator | undefine param type");
     }
     std::cout << _get_size_pesronse_buf() << "\n";
 }
@@ -107,7 +113,8 @@ void __clear_operator(args_oprt_buf_t&& args)
     const auto size = args.size();
     if (size > 0 )
     {
-        throw "method : __clear_operator | undefine param";
+        throw sys_error(error_type::UNDEFINE_PARAM_TYPE,
+                            "method :__clear_operator | undefine param type");
     }
     clear_req();
 }
@@ -123,7 +130,8 @@ void __log_operator(args_oprt_buf_t&& args)
     }
     catch(const std::out_of_range& e)
     {
-        //std::cerr << e.what() << '\n';
+        throw sys_error(error_type::OUT_OF_RANGE, 
+                        "init_data(parse_argument function { log })");
     }
     auto type = data->get_args_type();
     
@@ -150,7 +158,8 @@ void __log_operator(args_oprt_buf_t&& args)
             break;
         }
         default:
-            throw "method : __log_operator | undefine param type";
+            throw sys_error(error_type::UNDEFINE_PARAM_TYPE,
+                            "method :__log_operator | undefine param type");
     }
 }
 
@@ -159,7 +168,8 @@ void __list_tables_operator(args_oprt_buf_t&& args)
     const auto size = args.size();
     if (size > 0 )
     {
-        throw "method : __list_tables_operator | undefine param";
+        throw sys_error(error_type::UNDEFINE_PARAM_TYPE,
+                            "method :__list_tables_operator | undefine param type");
     }
     print_tables_req();
 }
@@ -169,7 +179,8 @@ void __list_triggers_operator(args_oprt_buf_t&& args)
     const auto size = args.size();
     if (size > 0 )
     {
-        throw "method : __list_triggers_operator | undefine param";
+        throw sys_error(error_type::UNDEFINE_PARAM_TYPE,
+                            "method :__list_triggers_operator | undefine param type");
     }
     print_triggers_req();
 }
@@ -180,7 +191,8 @@ void __list_error_log_operator(args_oprt_buf_t&& args)
     const auto size = args.size();
     if (size > 0 )
     {
-        throw "method : __list_triggers_operator | undefine param";
+        throw sys_error(error_type::UNDEFINE_PARAM_TYPE,
+                            "method :__list_error_log_operator | undefine param type");
     }
     print_error_log_req();
 }
@@ -210,7 +222,8 @@ void  __bef_attach_operator(args_oprt_buf_t&& args)
     }
     catch(const std::out_of_range& e)
     {
-        //std::cerr << e.what() << '\n';
+        throw sys_error(error_type::OUT_OF_RANGE, 
+                        "init_data(parse_argument function { bef_attach })");
     }
     auto type = data->get_args_type();
 
@@ -221,7 +234,8 @@ void  __bef_attach_operator(args_oprt_buf_t&& args)
             break;
         }
         default:
-            throw "method : __bef_attach_operator | undefine param type";
+            throw sys_error(error_type::UNDEFINE_PARAM_TYPE,
+                            "method :__bef_attach_operator | undefine param type");
     }
 }
 
@@ -235,7 +249,8 @@ void  __bef_detach_operator(args_oprt_buf_t&& args)
     }
     catch(const std::out_of_range& e)
     {
-        //std::cerr << e.what() << '\n';
+        throw sys_error(error_type::OUT_OF_RANGE, 
+                        "init_data(parse_argument function { bef_detach })");
     }
     auto type = data->get_args_type();
 
@@ -246,7 +261,8 @@ void  __bef_detach_operator(args_oprt_buf_t&& args)
             break;
         }
         default:
-            throw "method :__bef_detach_operator | undefine param type";
+        throw sys_error(error_type::UNDEFINE_PARAM_TYPE,
+                            "method :__bef_detach_operator | undefine param type");
     }
 }
 
@@ -260,7 +276,8 @@ void  __aft_attach_operator(args_oprt_buf_t&& args)
     }
     catch(const std::out_of_range& e)
     {
-        //std::cerr << e.what() << '\n';
+        throw sys_error(error_type::OUT_OF_RANGE, 
+                        "init_data(parse_argument function { aft_attch })");
     }
     auto type = data->get_args_type();
 
@@ -271,7 +288,8 @@ void  __aft_attach_operator(args_oprt_buf_t&& args)
             break;
         }
         default:
-            throw "method : __aft_attach_operator | undefine param type";
+                throw sys_error(error_type::UNDEFINE_PARAM_TYPE,
+                            "method :__aft_attach_operator | undefine param type");
     }
 }
 
@@ -285,7 +303,8 @@ void  __aft_detach_operator(args_oprt_buf_t&& args)
     }
     catch(const std::out_of_range& e)
     {
-        //std::cerr << e.what() << '\n';
+        throw sys_error(error_type::OUT_OF_RANGE, 
+                        "init_data(parse_argument function { aft_detach })");
     }
     auto type = data->get_args_type();
 
@@ -296,7 +315,8 @@ void  __aft_detach_operator(args_oprt_buf_t&& args)
             break;
         }
         default:
-            throw "method :__aft_detach_operator | undefine param type";
+            throw sys_error(error_type::UNDEFINE_PARAM_TYPE,
+                            "method :__aft_detach_operator | undefine param type");
     }
 }
 
@@ -311,7 +331,8 @@ void __write_table_operator(args_oprt_buf_t&& args)
     }
     catch(const std::out_of_range& e)
     {
-        //std::cerr << e.what() << '\n';
+        throw sys_error(error_type::OUT_OF_RANGE, 
+                        "init_data(parse_argument function { write_table })");
     }
     auto type = data->get_args_type();
 
@@ -326,7 +347,8 @@ void __write_table_operator(args_oprt_buf_t&& args)
             break;
         }
         default:
-            throw "method :__aft_detach_operator | undefine param type";
+            throw sys_error(error_type::UNDEFINE_PARAM_TYPE,
+                            "method :__write_table_operator | undefine param type");
     }
 }
 
@@ -409,7 +431,8 @@ void init_data(data_ptr data, args_oprt_buf_t&& args)
         }
         else
         {
-            throw "method: init_data | undefine token";
+            throw sys_error(error_type::UNDEFINE_TOKEN,
+                            "method: init_data | undefine token => " + args_type);
         }
     }
 }

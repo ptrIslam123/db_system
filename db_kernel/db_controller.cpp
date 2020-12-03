@@ -220,8 +220,8 @@ void db_controller::is_exist_table(table_iter_t iter)
 
 void db_controller::log_error(word_t&& type_err, word_t&& descript_err)
 {
-    static log::loger<_LOGER_BUF_SIZE__> loger_(_LOGER_FILE_PATH_);
-    loger_.log(std::move(type_err), std::move(descript_err));
+    log::loger& log = get_loger();
+    log.log(std::move(type_err), std::move(descript_err));
 }
 
  /* API DB_KERNEL */

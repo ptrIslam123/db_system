@@ -32,6 +32,7 @@ private:
     lexeme_uptr    tokenize_operator(char );
     lexeme_uptr    tokenize_word();
     lexeme_uptr    tokenize_data();
+    void           tokenize_comment();
     lexeme_uptr    make_lexeme(lexeme_v&& ,lexeme_t&& );
     void           push_back(lexeme_uptr&& );
     void           skip_null_space();
@@ -40,6 +41,7 @@ private:
     bool           is_word(char ) const;
     bool           is_data(char ) const;
     bool           is_end(char ) const;
+    bool           is_commnet(char ) const;
     bool           is_oprt(char ) const;
     void           error_lexeme(char );
 

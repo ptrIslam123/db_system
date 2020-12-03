@@ -7,6 +7,9 @@ compilMain:
 compilFiles:
 	clang++ -g -c ../files.cpp
 
+compilLoger:
+	clang++ -g -c ../loger.cpp
+
 link:
 	clang++ *.o -o main
 

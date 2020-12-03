@@ -1,5 +1,5 @@
 #include "includes/sys_functions.h"
-#include "includes/transact_error.h"
+#include "includes/sys_error.h"
 #include "includes/memento.h"
 #include "includes/list_triggers.h"
 #include "../db_kernel/includes/db_controller.h"
@@ -658,13 +658,6 @@ response_d const _get_response()
 
 
 static
-loger_t& _get_loger()
-{
-    static loger_t loger_("../config/error_log.txt");
-    return loger_;
-}
-
-static
 void _add_token(token_t&& val)
 {
     db_controller_t::instance().add(std::move(val));
@@ -688,14 +681,14 @@ void _remove_token(size_t pos)
     db_controller_t::instance().remove(pos);
 }
 
-
+/*
 static
 void _log(word_t&& type_error, word_t&& descript_error)
 {
-    loger_t& loger_ = _get_loger();
+    log::loger<_B_BUF_SIZE_>& loger_ = get_loger();
     loger_.log(std::move(type_error), std::move(descript_error));
 }
-
+*/
 static
 void _save_state_record(index_t indx, token_t&& tok, controller_transact_t controll)
 {

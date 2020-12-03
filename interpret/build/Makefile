@@ -22,7 +22,8 @@ compilTokenGrammar:
 compilFstream:
 	clang++ -g -c ../../db_kernel/file_stream.cpp
 
-
+compilToolsLOger:
+	clang++ -g -c ../../tools/loger.cpp
 
 compilTrigersAdd:
 	clang++ -g -c ../../db_kernel/triger_add.cpp
@@ -30,6 +31,8 @@ compilTrigersAdd:
 compilTrigersRemove:
 	clang++ -g -c ../../db_kernel/triger_remove.cpp
 
+compilSysError:
+	clang++ -g -c ../sys_error.cpp
 
 compilTrigersInsert:
 	clang++ -g -c ../../db_kernel/triger_insert.cpp

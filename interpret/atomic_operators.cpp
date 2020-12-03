@@ -2,6 +2,7 @@
 #include "includes/args_data.h"
 #include "includes/sys_functions.h"
 #include "includes/base_parse_api.h"
+#include "includes/sys_error.h"
 
 atomic_operators::atomic_operators(base_parse_api_ptr base_p_api):
     command(base_p_api),
@@ -40,7 +41,8 @@ void atomic_operators::execute()
     
     if (oprt == optr_table_.cend())
     {   
-        throw "method: execute | undefine operator";
+        throw sys_error(error_type::UNDEFINE_FUNCTION,
+            "atomic_operator::execute |undefine operator" + get(0)->get_value());
     }
     next(1);        // oprt_name
     
@@ -77,7 +79,7 @@ bool atomic_operators::is_it_command() const
 
 args_oprt_t atomic_operators::make_args_oprt()
 {
-     auto args_t_ = get(0);
+    auto args_t_ = get(0);
     next(1);    // args_type(example = dt)
 
     auto two_point = get(0);
@@ -132,7 +134,8 @@ void  __add_operator_atomic(args_oprt_buf_t&& args)
     }
     catch(const std::out_of_range& e)
     {
-        //std::cerr << e.what() << '\n';
+        throw sys_error(error_type::OUT_OF_RANGE, 
+                        "init_data(parse_argument function { add })");
     }
     auto type = data->get_args_type();
     
@@ -143,7 +146,8 @@ void  __add_operator_atomic(args_oprt_buf_t&& args)
             break;
         }
         default:
-            throw "method : __add_operator_atomic | undefine param type";
+            throw sys_error(error_type::UNDEFINE_PARAM_TYPE,
+                            "method :__add_operator_atomic | undefine param type");
     }
 }
 
@@ -158,7 +162,8 @@ void  __insert_operator_atomic(args_oprt_buf_t&& args)
     }
     catch(const std::out_of_range& e)
     {
-        //std::cerr << e.what() << '\n';
+        throw sys_error(error_type::OUT_OF_RANGE, 
+                        "init_data(parse_argument function { insert })");
     }
     auto type = data->get_args_type();
     
@@ -169,7 +174,8 @@ void  __insert_operator_atomic(args_oprt_buf_t&& args)
             break;
         }
         default:
-            throw "method : __insert_operator_atomic | undefine param type";
+            throw sys_error(error_type::UNDEFINE_PARAM_TYPE,
+                            "method :__insert_operator_atomic | undefine param type");
     }
 }
 
@@ -184,7 +190,8 @@ void  __update_operator_atomic(args_oprt_buf_t&& args)
     }
     catch(const std::out_of_range& e)
     {
-        //std::cerr << e.what() << '\n';
+        throw sys_error(error_type::OUT_OF_RANGE, 
+                        "init_data(parse_argument function { update })");
     }
     auto type = data->get_args_type();
     switch (type)
@@ -218,7 +225,8 @@ void  __update_operator_atomic(args_oprt_buf_t&& args)
             break;
         }
         default:
-            throw "method : __update_operator_atomic | undefine param type";
+            throw sys_error(error_type::UNDEFINE_PARAM_TYPE,
+                            "method :__update_operator_atomic | undefine param type");
     }
 }
 
@@ -227,7 +235,8 @@ void  __remove_operator_atomic(args_oprt_buf_t&& args)
     const auto size = args.size();
     if (size > 0 )
     {
-        throw "method : __remove_operator_atomic | undefine param";
+        throw sys_error(error_type::UNDEFINE_PARAM_TYPE,
+                            "method :__remove_operator_atomic | undefine param type");
     }
     for_each(remove_req_atomic);
 }
@@ -243,7 +252,8 @@ void  __create_table_operator_atomic(args_oprt_buf_t&& args)
     }
     catch(const std::out_of_range& e)
     {
-        //std::cerr << e.what() << '\n';
+        throw sys_error(error_type::OUT_OF_RANGE, 
+                        "init_data(parse_argument function { create_t })");
     }
     auto type = data->get_args_type();
     
@@ -261,7 +271,8 @@ void  __create_table_operator_atomic(args_oprt_buf_t&& args)
             break;
         }
         default:
-            throw "method : __create_table_operator_atomic | undefine param type";
+            throw sys_error(error_type::UNDEFINE_PARAM_TYPE,
+                            "method :__create_table_operator_atomic | undefine param type");
     }
 }
 
@@ -276,7 +287,8 @@ void  __drop_table_operator_atomic(args_oprt_buf_t&& args)
     }
     catch(const std::out_of_range& e)
     {
-        //std::cerr << e.what() << '\n';
+        throw sys_error(error_type::OUT_OF_RANGE, 
+                        "init_data(parse_argument function { drop_t })");
     }
     auto type = data->get_args_type();
     
@@ -288,7 +300,8 @@ void  __drop_table_operator_atomic(args_oprt_buf_t&& args)
             break;
         }
         default:
-            throw "method : __drop_table_operator_atomic | undefine param type";
+            throw sys_error(error_type::UNDEFINE_PARAM_TYPE,
+                            "method :__drop_table_operator_atomic | undefine param type");
     }
 }
 
@@ -303,7 +316,8 @@ void  __set_table_operator_atomic(args_oprt_buf_t&& args)
     }
     catch(const std::out_of_range& e)
     {
-        //std::cerr << e.what() << '\n';
+        throw sys_error(error_type::OUT_OF_RANGE, 
+                        "init_data(parse_argument function { set_t })");
     }
     auto type = data->get_args_type();
     
@@ -315,6 +329,7 @@ void  __set_table_operator_atomic(args_oprt_buf_t&& args)
             break;
         }
         default:
-            throw "method : __set_table_operator_atomic | undefine param type";
+            throw sys_error(error_type::UNDEFINE_PARAM_TYPE,
+                            "method :__set_table_operator_atomic | undefine param type");
     }
 }

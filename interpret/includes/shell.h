@@ -3,7 +3,6 @@
 
 #include <iostream>
 #include <string>
-#include <memory>
 
 #include "lexer.h"
 #include "base_parse_api.h"
@@ -12,17 +11,17 @@
 class shell
 {
 public:
-    shell();
-    shell(std::string&&);
     shell(const std::string& );
     ~shell();
 
     void run();
 
 private:
-    void init_shell();
+    void exec(std::string&& );
+
 private:
-    std::string user_name_;
+    std::string file_name_;
+    lexer lexer_;
 };
 
 #endif // !_SHELL_H_

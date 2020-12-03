@@ -33,14 +33,14 @@
     std::string trigger_blcok = "  log(ds : '\t\t***||TRIGGER_EVENT||***\n') print_t(tn : 'table1' ) ";
     std::string triggerc = "trigger t1 {  log(ds : '\t\t***||TRIGGER_EVENT||***\n') print_t(tn : 'table1' ) }";
 
-
+    std::string script_path = "../test/scripts/script.txt";
 
 int main()
 {
-   exec("create_t(tn : '" + tn1 + "' fn : '" + fn1 + "' sz : '10')");
-   exec("set_t(tn : '" + tn1 + "')");
-   exec("print_t(tn : '" + tn1 + "'')");
     
+   shell sh(std::move(script_path));
+   sh.run();
    
+
    return 0;
 }

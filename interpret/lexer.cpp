@@ -1,4 +1,5 @@
 #include "includes/lexer.h"
+#include "includes/sys_error.h"
 
 
 lexer::lexer():
@@ -46,6 +47,11 @@ void lexer::run()
         {
             break;
         }
+        else if (is_commnet(cur_s))
+        {
+            tokenize_comment();
+            continue;
+        }
         else if (is_data(cur_s))
         {
             next(1);
@@ -85,6 +91,21 @@ void lexer::push_back(lexeme_uptr&& val)
 }
 
 
+void lexer::tokenize_comment()
+{
+    char cur_s;
+    while (true)
+    {
+        cur_s = get(0);
+        if (cur_s == '\n' || cur_s == '\0')
+        {
+            next(1);
+            break;
+        }
+        next(1);
+    }
+}
+
 lexeme_uptr lexer::tokenize_data()
 {
     word_t buffer;
@@ -92,10 +113,10 @@ lexeme_uptr lexer::tokenize_data()
     while (true)
     {
         cur_s = get(0);
-        //std::cout << "cur_s = " << cur_s << "\n";
         if (cur_s == '\0')
         {
-            throw "lexer::tokenize_data : undefine token";
+            throw sys_error(error_type::UNDEFINE_TOKEN ,
+                            "lexer::tokenize_data : undefine token \"\'\"");
         }
         if (cur_s == '\'')
         {
@@ -189,8 +210,11 @@ lexeme_uptr lexer::make_lexeme(lexeme_v&& value,lexeme_t&& type)
 
 void lexer::error_lexeme(char s)
 {
-    //log
-    throw "lexer: undefine token";
+    auto errmsg = "lexer::tokenize : undefine token => ";
+    errmsg += s;
+    
+    throw sys_error(error_type::UNDEFINE_TOKEN,
+                    std::move(errmsg));
 }
 
 
@@ -214,7 +238,7 @@ char lexer::get(size_t rel_pos)
 {
    size_t position = pos_ + rel_pos;
    if (position < 0 || position > size_code_)
-    return '\0';
+        return '\0';
    return code_[position];
 }
 
@@ -225,6 +249,10 @@ void lexer::next(size_t offset)
 }
 
 
+bool lexer::is_commnet(char s) const
+{
+    return s == '#';
+}
 
 bool lexer::is_word(char s) const
 {

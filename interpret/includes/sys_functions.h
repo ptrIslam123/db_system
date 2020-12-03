@@ -13,7 +13,6 @@
 #include "response_data.h"
 #include "../../tools/includes/loger.h"
 
-using loger_t       = log::loger<_LOGER_SIZE_BUF_>;
 using token_ptr     = token*;   // token*
 using token_t       = std::unique_ptr<token>;
 using response_d    = response_data::container_t;
@@ -134,7 +133,6 @@ static size_t       const _get_index_response_buf(size_t );
 static void               _add_index_response_buf(index_t );
 static token_ptr    const _get_token(size_t );
 static response_d   const _get_response();
-static loger_t&           _get_loger();
 static void         _add_token(token_t&& );
 static void         _insert_token(size_t , token_t&& );
 static void         _update_token(size_t , token_t&& );

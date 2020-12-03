@@ -2,6 +2,7 @@
 #include "includes/args_data.h"
 #include "includes/sys_functions.h"
 #include "includes/base_parse_api.h"
+#include "includes/sys_error.h"
 
 /* API DB */
 operators::operators(base_parse_api_ptr base_p_api):
@@ -52,7 +53,9 @@ void operators::execute()
     
     if (oprt == optr_table_.cend())
     {   
-        throw "method: execute | undefine operator";
+        ///////
+        throw sys_error(error_type::UNDEFINE_PARAM_TYPE,
+                            "method :__write_table_operator | undefine param type");
     }
     next(1);        // oprt_name
     
@@ -131,7 +134,8 @@ void __add_operator(args_oprt_buf_t&& args)
     }
     catch(const std::out_of_range& e)
     {
-        //std::cerr << e.what() << '\n';
+        throw sys_error(error_type::OUT_OF_RANGE, 
+                        "init_data(parse_argument function { set_t })");
     }
     auto type = data->get_args_type();
     
@@ -143,11 +147,12 @@ void __add_operator(args_oprt_buf_t&& args)
             break;
         }
         default:
-            throw "method : __insert_operator | undefine param type";
+            throw sys_error(error_type::UNDEFINE_PARAM_TYPE,
+                            "method :__add_operator | undefine param type");
     }
 }
 
-void __insert_operator(args_oprt_buf_t&& args)
+void  __insert_operator(args_oprt_buf_t&& args)
 {
     //auto data = get_data_ptr();
     args_data arg_data;
@@ -158,7 +163,8 @@ void __insert_operator(args_oprt_buf_t&& args)
     }
     catch(const std::out_of_range& e)
     {
-        //std::cerr << e.what() << '\n';
+        throw sys_error(error_type::OUT_OF_RANGE, 
+                        "init_data(parse_argument function { set_t })");
     }
     auto type = data->get_args_type();
     
@@ -169,7 +175,8 @@ void __insert_operator(args_oprt_buf_t&& args)
             break;
         }
         default:
-            throw "method : __insert_operator | undefine param type";
+            throw sys_error(error_type::UNDEFINE_PARAM_TYPE,
+                            "method :__insert_operator | undefine param type");
     }
 }
 
@@ -184,7 +191,8 @@ void __update_operator(args_oprt_buf_t&& args)
     }
     catch(const std::out_of_range& e)
     {
-        //std::cerr << e.what() << '\n';
+        throw sys_error(error_type::OUT_OF_RANGE, 
+                        "init_data(parse_argument function { set_t })");
     }
     auto type = data->get_args_type();
     switch (type)
@@ -218,7 +226,8 @@ void __update_operator(args_oprt_buf_t&& args)
             break;
         }
         default:
-            throw "method : __update_operator | undefine param type";
+            throw sys_error(error_type::UNDEFINE_PARAM_TYPE,
+                            "method :__update_operator | undefine param type");
     }
 }
 
@@ -227,7 +236,8 @@ void __remove_operator(args_oprt_buf_t&& args)
     const auto size = args.size();
     if (size > 0 )
     {
-        throw "method : __remove_operator | undefine param";
+        throw sys_error(error_type::UNDEFINE_PARAM_TYPE,
+                            "method :__remove_operator | undefine param type");
     }
     for_each(remove_req);
 }
@@ -243,7 +253,8 @@ void __create_table_operator(args_oprt_buf_t&& args)
     }
     catch(const std::out_of_range& e)
     {
-        //std::cerr << e.what() << '\n';
+        throw sys_error(error_type::OUT_OF_RANGE, 
+                        "init_data(parse_argument function { set_t })");
     }
     auto type = data->get_args_type();
     
@@ -259,7 +270,8 @@ void __create_table_operator(args_oprt_buf_t&& args)
             break;
         }
         default:
-            throw "method : __create_table_operator | undefine param type";
+            throw sys_error(error_type::UNDEFINE_PARAM_TYPE,
+                            "method :__create_table_operator | undefine param type");
     }
 }
 
@@ -286,7 +298,8 @@ void __drop_table_operator(args_oprt_buf_t&& args)
             break;
         }
         default:
-            throw "method : __drop_table_operator | undefine param type";
+            throw sys_error(error_type::UNDEFINE_PARAM_TYPE,
+                            "method :__drop_table_operator | undefine param type");
     }
 }
 
@@ -301,7 +314,8 @@ void __set_table_operator(args_oprt_buf_t&& args)
     }
     catch(const std::out_of_range& e)
     {
-        //std::cerr << e.what() << '\n';
+        throw sys_error(error_type::OUT_OF_RANGE, 
+                        "init_data(parse_argument function { set_t })");
     }
     auto type = data->get_args_type();
     
@@ -313,7 +327,8 @@ void __set_table_operator(args_oprt_buf_t&& args)
             break;
         }
         default:
-            throw "method : __set_table_operator | undefine param type";
+            throw sys_error(error_type::UNDEFINE_PARAM_TYPE,
+                            "method :__set_table_operator | undefine param type");
     }
 }
 
