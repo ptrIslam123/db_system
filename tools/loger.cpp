@@ -1,4 +1,7 @@
 #include "includes/loger.h"
+#include "includes/files.h"
+
+#include <iostream>
 
 log::loger& get_loger()
 {
@@ -54,6 +57,23 @@ void loger::log(str_t&& type_err, str_t&& descript)
     
     const auto size_data = log_format.size();
     write(std::move(log_format));
+}
+
+
+void loger::print_log()
+{
+   /*
+    files file(fname_);
+   std::cout << file.read() << "\n";
+    */
+   char* data = nullptr;
+   const auto size_block_data = sizeof(char)*size_;
+
+   while (true)
+   {
+       fstream_.read(data, size_block_data);
+       std::cout << (*data) << "\n";
+   }
 }
 
 

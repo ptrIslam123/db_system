@@ -1,5 +1,7 @@
 #include "includes/db_controller.h"
 #include "../tools/includes/loger.h"
+#include "../interpret/includes/sys_error.h"
+
 #define _EXCEPTION_REQ_
 #define _LOGER_BUF_SIZE__   2550
 #define _LOGER_FILE_PATH_   "../../config/error_log.txt"
@@ -24,11 +26,13 @@ db_controller::db_controller()
     }
     catch(const std::runtime_error& e)
     {
-        /// sys_log()
+        throw sys_error(error_type::FILE_NOT_FOUND,
+            "db_controller::__init__ : can`t create and init table { init }");
     }
     catch(const std::exception& e)
     {
-        /// sys_log()
+        throw sys_error(error_type::RUNTIME_ERROR,
+                        "db_controller::__init__ ");
     }
 }
 
@@ -42,11 +46,13 @@ db_controller::db_controller(size_t size_tables):
     }
     catch(const std::runtime_error& e)
     {
-        /// sys_log()
+        throw sys_error(error_type::FILE_NOT_FOUND,
+            "db_controller::__init__ : can`t create and init table { init }");
     }
     catch(const std::exception& e)
     {
-        /// sys_log()
+        throw sys_error(error_type::RUNTIME_ERROR,
+                        "db_controller::__init__ ");
     }
 }
 
@@ -73,15 +79,18 @@ void db_controller::write_table_to_table(word_t&& tname)
     }
     catch(const std::bad_alloc& e)
     {
-        
+        throw sys_error(error_type::BAD_ALLOC,
+                        "db_controller::write_table_to_table");
     }
     catch(const std::out_of_range& e)
     {
-        
+        throw sys_error(error_type::OUT_OF_RANGE,
+                        "db_controller::write_table_to_table");
     }
     catch(const std::exception& e)
     {
-
+        throw sys_error(error_type::RUNTIME_ERROR,
+                        "db_controller::__init__ ");
     }
 }
 
@@ -93,15 +102,18 @@ void db_controller::write_table_to_file(word_t&& fname)
     }
     catch(const std::bad_alloc& e)
     {
-        /////
+        throw sys_error(error_type::BAD_ALLOC,
+                        "db_controller::write_table_to_table");
     }
     catch(const std::runtime_error& e)
     {
-        /////
+        throw sys_error(error_type::FILE_NOT_FOUND,
+                        "db_controller::write_table_to_table => " + fname);
     }
     catch(const std::exception& e)
     {
-        /////
+        throw sys_error(error_type::RUNTIME_ERROR,
+                        "db_controller::write_table_to_file ");
     }
 }
 
@@ -116,19 +128,23 @@ void db_controller::add_table(table_name_t&& dbname, fname_t&& fname, size_t siz
     }
     catch(const std::bad_alloc& e)
     {
-
+        throw sys_error(error_type::BAD_ALLOC,
+                        "db_controller::add_table");
     }
     catch(const std::out_of_range& e)
     {
-
+        throw sys_error(error_type::OUT_OF_RANGE,
+                        "db_controller::add_table");
     }
     catch(const std::runtime_error& e)
     {
-
+        throw sys_error(error_type::FILE_NOT_FOUND,
+                        "db_controller::add_table = > " + fname);
     }
     catch(const std::exception& e)
     {
-        
+        throw sys_error(error_type::RUNTIME_ERROR,
+                        "db_controller::add_table ");
     }
     
 }
@@ -143,7 +159,8 @@ table_ptr db_controller::get_table(const table_name_t& tname)
     }
     catch(const std::runtime_error& e)
     {
-        //// sys_log()
+       throw sys_error(error_type::TABLE_NOT_FOUND,
+                        "db_controller::get_table = > " + tname);
     }
     return table_iter->second.get();
 }
@@ -157,7 +174,8 @@ void db_controller::set_table(table_name_t&& tname)
     }
     catch(const std::runtime_error& e)
     {
-        //// sys_log()
+        throw sys_error(error_type::TABLE_NOT_FOUND,
+                        "db_controller::set_table = > " + tname);
     }
 }
 
@@ -182,7 +200,8 @@ void db_controller::print_table(word_t&& tname)
     }
     catch(const std::runtime_error e)
     {
-        //// sys_log()
+        throw sys_error(error_type::TABLE_NOT_FOUND,
+                        "db_controller::print_table = > " + tname);
     }
     
 }
@@ -196,8 +215,9 @@ table_ptr db_controller::get_table(table_name_t&& tname)
         is_exist_table(table_iter);
     }
     catch(const std::runtime_error& e)
-    {
-        //// sys_log();
+    {;
+        throw sys_error(error_type::TABLE_NOT_FOUND,
+                        "db_controller::get_table = > " + tname);   
     }
     return table_iter->second.get();
 }
@@ -212,7 +232,6 @@ void db_controller::is_exist_table(table_iter_t iter)
 {
     if (iter == tables_.cend())
     {
-        //////sys_log();
         throw std::runtime_error("db_controller: undefine table");
     }
 }
@@ -248,15 +267,18 @@ void db_controller::init_table(table_name_t&& tname, file_name_t&& fname, size_t
     }
     catch(const std::bad_alloc& e)
     {
-        /// sys_log()
+        throw sys_error(error_type::BAD_ALLOC,
+                        "db_controller::init_table = > " + tname);
     }
     catch(const std::out_of_range& e)
     {
-        /// sys_log()
+        throw sys_error(error_type::OUT_OF_RANGE,
+                        "db_controller::init_table = > " + tname);
     }
     catch(const std::exception& e)
     {
-        /// sys_log()
+        throw sys_error(error_type::RUNTIME_ERROR,
+                        "db_controller::init_table ");
     }
 }
 
@@ -270,9 +292,15 @@ void db_controller::clear_table(table_name_t&& tname)
         table_ptr->drop_table();
         delete_table(std::move(table_name));
     }
+    catch(const std::runtime_error& e)
+    {
+        throw sys_error(error_type::TABLE_NOT_FOUND,
+                        "db_controller::clear_table = > " + tname);
+    }
     catch(const std::exception& e)
     {
-        /// sys_log()
+        throw sys_error(error_type::RUNTIME_ERROR,
+                        "db_controller::clear_table ");
     }
 }
 
@@ -287,15 +315,18 @@ void db_controller::delete_table(table_name_t&& tname)
     }
     catch(const std::out_of_range& e)
     {
-        /// sys_log()
+        throw sys_error(error_type::OUT_OF_RANGE,
+                        "db_controller::delete_table = > " + tname);
     }
     catch(const std::runtime_error& e)
     {
-        /// sys_log()
+        throw sys_error(error_type::TABLE_NOT_FOUND,
+                        "db_controller::delete_table = > " + tname);
     }
     catch(const std::exception& e)
     {
-        /// sys_log()
+        throw sys_error(error_type::RUNTIME_ERROR,
+                        "db_controller::delete_table ");
     }
 }
 
@@ -308,15 +339,18 @@ token_ptr db_controller::get(size_t pos)
     }
     catch(const std::out_of_range& e)
     {
-
+        throw sys_error(error_type::OUT_OF_RANGE,
+                        "db_controller::get");
     }
     catch(const std::runtime_error& e)
     {
-
+        throw sys_error(error_type::TABLE_NOT_FOUND,
+                        "db_controller::get");
     }
     catch(const std::exception& e)
-    {
-        
+    {   
+        throw sys_error(error_type::RUNTIME_ERROR,
+                        "db_controller::get");
     }
     return val;
 }
@@ -329,19 +363,23 @@ void db_controller::add(token_t&& val)
     }
     catch(const std::bad_alloc& e)
     {
-
+        throw sys_error(error_type::BAD_ALLOC,
+                        "db_controller::add");
     }
     catch(const std::runtime_error& e)
     {
-
+        throw sys_error(error_type::TABLE_NOT_FOUND,
+                        "db_controller::add");
     }
     catch(const std::out_of_range& e)
     {
-
+        throw sys_error(error_type::OUT_OF_RANGE,
+                        "db_controller::add");
     }
     catch(const std::exception& e)
     {
-
+        throw sys_error(error_type::RUNTIME_ERROR,
+                        "db_controller::add ");
     }   
 }
 
@@ -353,19 +391,23 @@ void db_controller::insert(size_t pos, token_t&& val)
     }
     catch(const std::bad_alloc& e)
     {
-
+        throw sys_error(error_type::BAD_ALLOC,
+                        "db_controller::insert");
     }
     catch(const std::runtime_error& e)
     {
-
+        throw sys_error(error_type::TABLE_NOT_FOUND,
+                        "db_controller::insert");
     }
     catch(const std::out_of_range& e)
     {
-
+        throw sys_error(error_type::OUT_OF_RANGE,
+                        "db_controller::insert");
     }
     catch(const std::exception& e)
     {
-
+        throw sys_error(error_type::RUNTIME_ERROR,
+                        "db_controller::insert");
     }   
 }
 
@@ -377,19 +419,23 @@ void db_controller::remove(size_t pos)
     }
     catch(const std::bad_alloc& e)
     {
-
+        throw sys_error(error_type::BAD_ALLOC,
+                        "db_controller::remove");
     }
     catch(const std::runtime_error& e)
     {
-
+        throw sys_error(error_type::TABLE_NOT_FOUND,
+                        "db_controller::remove");
     }
     catch(const std::out_of_range& e)
     {
-
+        throw sys_error(error_type::OUT_OF_RANGE,
+                        "db_controller::remove");
     }
     catch(const std::exception& e)
     {
-
+        throw sys_error(error_type::RUNTIME_ERROR,
+                        "db_controller::remove");
     }   
 }
 
@@ -403,19 +449,23 @@ void db_controller::update(size_t pos, token_t&& val)
     }
     catch(const std::bad_alloc& e)
     {
-
+        throw sys_error(error_type::BAD_ALLOC,
+                        "db_controller::update");
     }
     catch(const std::runtime_error& e)
     {
-
+        throw sys_error(error_type::TABLE_NOT_FOUND,
+                        "db_controller::update");
     }
     catch(const std::out_of_range& e)
     {
-
+        throw sys_error(error_type::OUT_OF_RANGE,
+                        "db_controller::update");
     }
     catch(const std::exception& e)
     {
-
+        throw sys_error(error_type::RUNTIME_ERROR,
+                        "db_controller::update ");
     }   
 }
 
@@ -428,19 +478,23 @@ void db_controller::update_dt(size_t pos, date_t_&& date)
     }
     catch(const std::bad_alloc& e)
     {
-
+        throw sys_error(error_type::BAD_ALLOC,
+                        "db_controller::update");
     }
     catch(const std::runtime_error& e)
     {
-
-    }
+        throw sys_error(error_type::TABLE_NOT_FOUND,
+                        "db_controller::update");
+    }   
     catch(const std::out_of_range& e)
     {
-
+        throw sys_error(error_type::OUT_OF_RANGE,
+                        "db_controller::update");
     }
     catch(const std::exception& e)
     {
-
+        throw sys_error(error_type::RUNTIME_ERROR,
+                        "db_controller::update");
     }   
 }
 
@@ -452,19 +506,23 @@ void db_controller::update_ti(size_t pos, time_t_&& time)
     }
     catch(const std::bad_alloc& e)
     {
-
+        throw sys_error(error_type::BAD_ALLOC,
+                        "db_controller::update");
     }
     catch(const std::runtime_error& e)
     {
-
+        throw sys_error(error_type::TABLE_NOT_FOUND,
+                        "db_controller::update");
     }
     catch(const std::out_of_range& e)
     {
-
+        throw sys_error(error_type::OUT_OF_RANGE,
+                        "db_controller::update");
     }
     catch(const std::exception& e)
     {
-
+        throw sys_error(error_type::RUNTIME_ERROR,
+                        "db_controller::update ");
     }   
 }
 
@@ -476,19 +534,23 @@ void db_controller::update_ds(size_t pos, descript_t_&& descript)
     }
     catch(const std::bad_alloc& e)
     {
-
+        throw sys_error(error_type::BAD_ALLOC,
+                        "db_controller::update");
     }
     catch(const std::runtime_error& e)
     {
-
+        throw sys_error(error_type::TABLE_NOT_FOUND,
+                        "db_controller::update");
     }
     catch(const std::out_of_range& e)
     {
-
+        throw sys_error(error_type::OUT_OF_RANGE,
+                        "db_controller::update");
     }
     catch(const std::exception& e)
     {
-
+        throw sys_error(error_type::RUNTIME_ERROR,
+                        "db_controller::update");
     }   
 }
 
@@ -500,19 +562,23 @@ void db_controller::update_dt_ti(size_t pos, date_t_&& date, time_t_&& time)
     }
     catch(const std::bad_alloc& e)
     {
-
+        throw sys_error(error_type::BAD_ALLOC,
+                        "db_controller::update");
     }
     catch(const std::runtime_error& e)
     {
-
+        throw sys_error(error_type::TABLE_NOT_FOUND,
+                        "db_controller::update");
     }
     catch(const std::out_of_range& e)
     {
-
+        throw sys_error(error_type::OUT_OF_RANGE,
+                        "db_controller::update");
     }
     catch(const std::exception& e)
     {
-
+        throw sys_error(error_type::RUNTIME_ERROR,
+                        "db_controller::update ");
     }   
 }
 
@@ -524,19 +590,23 @@ void db_controller::update_dt_ds(size_t pos, date_t_&& date, descript_t_&& descr
     }
     catch(const std::bad_alloc& e)
     {
-
+        throw sys_error(error_type::BAD_ALLOC,
+                        "db_controller::update");
     }
     catch(const std::runtime_error& e)
     {
-
+        throw sys_error(error_type::TABLE_NOT_FOUND,
+                        "db_controller::update");
     }
     catch(const std::out_of_range& e)
     {
-
+        throw sys_error(error_type::OUT_OF_RANGE,
+                        "db_controller::update");
     }
     catch(const std::exception& e)
     {
-
+        throw sys_error(error_type::RUNTIME_ERROR,
+                        "db_controller::update ");
     }  
 }
 
@@ -549,19 +619,23 @@ void db_controller::update_ti_ds(size_t pos, time_t_&& time, descript_t_&& descr
     }
     catch(const std::bad_alloc& e)
     {
-
+        throw sys_error(error_type::BAD_ALLOC,
+                        "db_controller::update");
     }
     catch(const std::runtime_error& e)
     {
-
+        throw sys_error(error_type::TABLE_NOT_FOUND,
+                        "db_controller::update");
     }
     catch(const std::out_of_range& e)
     {
-
+        throw sys_error(error_type::OUT_OF_RANGE,
+                        "db_controller::update");
     }
     catch(const std::exception& e)
     {
-
+        throw sys_error(error_type::RUNTIME_ERROR,
+                        "db_controller::update ");
     }   
 }
 
@@ -579,19 +653,23 @@ void db_controller::update_dt_ti_ds(size_t pos,
     }
     catch(const std::bad_alloc& e)
     {
-
+        throw sys_error(error_type::BAD_ALLOC,
+                        "db_controller::update");
     }
     catch(const std::runtime_error& e)
     {
-
+        throw sys_error(error_type::TABLE_NOT_FOUND,
+                        "db_controller::update");
     }
     catch(const std::out_of_range& e)
     {
-
+        throw sys_error(error_type::OUT_OF_RANGE,
+                        "db_controller::update");
     }
     catch(const std::exception& e)
     {
-
+        throw sys_error(error_type::RUNTIME_ERROR,
+                        "db_controller::update ");
     }   
 }
 
@@ -623,7 +701,8 @@ void db_controller::bef_attach_triger_add(const trigger_ptr t)
     }
     catch(const std::runtime_error& e)
     {
-
+        throw sys_error(error_type::RUNTIME_ERROR,
+                        "db_controller::bef_attach_triger_add");
     }
 }
 
@@ -636,7 +715,8 @@ void db_controller::bef_attach_triger_remove(const trigger_ptr t)
     }
     catch(const std::runtime_error& e)
     {
-
+        throw sys_error(error_type::RUNTIME_ERROR,
+                        "db_controller::bef_attach_triger_remove");
     }
 }
 
@@ -648,7 +728,8 @@ void db_controller::bef_attach_triger_insert(const trigger_ptr t)
     }
     catch(const std::runtime_error& e)
     {
-
+        throw sys_error(error_type::RUNTIME_ERROR,
+                        "db_controller::bef_attach_triger_insert");
     }
 }
 
@@ -663,7 +744,8 @@ void db_controller::aft_attach_triger_add(const trigger_ptr t)
     }
     catch(const std::runtime_error& e)
     {
-
+        throw sys_error(error_type::RUNTIME_ERROR,
+                        "db_controller::aft_attach_triger_add");
     }
 }
 
@@ -675,7 +757,8 @@ void db_controller::aft_attach_triger_remove(const trigger_ptr t)
     }
     catch(const std::runtime_error& e)
     {
-
+        throw sys_error(error_type::RUNTIME_ERROR,
+                        "db_controller::aft_attach_triger_remove");
     }
 }
 
@@ -687,7 +770,8 @@ void db_controller::aft_attach_triger_insert(const trigger_ptr t)
     }
     catch(const std::runtime_error& e)
     {
-
+        throw sys_error(error_type::RUNTIME_ERROR,
+                        "db_controller::aft_attach_triger_insert");
     }
 }
 
@@ -700,7 +784,8 @@ void db_controller::bef_detach_trigger(const trigger_ptr t)
     }
     catch(const std::runtime_error& e)
     {
-
+        throw sys_error(error_type::RUNTIME_ERROR,
+                        "db_controller::bef_detach_trigger");
     }
 }
 
@@ -712,7 +797,8 @@ void db_controller::aft_detach_trigger(const trigger_ptr t)
     }
     catch(const std::runtime_error& e)
     {
-
+        throw sys_error(error_type::RUNTIME_ERROR,
+                        "db_controller::aft_detach_trigger");
     }
 }
 

@@ -1,5 +1,6 @@
 #include "includes/event.h"
 
+
 event::event()
 {
     poll_triger_.reserve(_SIZE_TRIGERS_);

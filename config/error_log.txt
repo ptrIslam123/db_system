@@ -1,2 +1,62 @@
 #error logs:
 
+<DATE | TIME>   : Thu Dec  3 18:06:09 2020
+<TYPE_ERROR >   : undefine token: 'a'
+<DESCRIPTION>   : lexer::data
+
+<DATE | TIME>   : Thu Dec  3 18:06:09 2020
+<TYPE_ERROR >   : undefine token: 'a'
+<DESCRIPTION>   : lexer::data
+
+<DATE | TIME>   : Thu Dec  3 18:06:09 2020
+<TYPE_ERROR >   : undefine token: 'a'
+<DESCRIPTION>   : lexer::data
+
+<DATE | TIME>   : Thu Dec  3 18:06:09 2020
+<TYPE_ERROR >   : undefine token: 'a'
+<DESCRIPTION>   : lexer::data
+
+<DATE | TIME>   : Thu Dec  3 18:06:09 2020
+<TYPE_ERROR >   : undefine token: 'a'
+<DESCRIPTION>   : lexer::data
+
+<DATE | TIME>   : Thu Dec  3 18:09:45 2020
+<TYPE_ERROR >   : undefine token: 'a'
+<DESCRIPTION>   : lexer::data
+
+<DATE | TIME>   : Thu Dec  3 18:09:45 2020
+<TYPE_ERROR >   : undefine token: 'a'
+<DESCRIPTION>   : lexer::data
+
+<DATE | TIME>   : Thu Dec  3 18:09:45 2020
+<TYPE_ERROR >   : undefine token: 'a'
+<DESCRIPTION>   : lexer::data
+
+<DATE | TIME>   : Thu Dec  3 18:09:45 2020
+<TYPE_ERROR >   : undefine token: 'a'
+<DESCRIPTION>   : lexer::data
+
+<DATE | TIME>   : Thu Dec  3 18:09:45 2020
+<TYPE_ERROR >   : undefine token: 'a'
+<DESCRIPTION>   : lexer::data
+
+<DATE | TIME>   : Thu Dec  3 18:10:05 2020
+<TYPE_ERROR >   : undefine token: 'a'
+<DESCRIPTION>   : lexer::data
+
+<DATE | TIME>   : Thu Dec  3 18:10:05 2020
+<TYPE_ERROR >   : undefine token: 'a'
+<DESCRIPTION>   : lexer::data
+
+<DATE | TIME>   : Thu Dec  3 18:10:05 2020
+<TYPE_ERROR >   : undefine token: 'a'
+<DESCRIPTION>   : lexer::data
+
+<DATE | TIME>   : Thu Dec  3 18:10:05 2020
+<TYPE_ERROR >   : undefine token: 'a'
+<DESCRIPTION>   : lexer::data
+
+<DATE | TIME>   : Thu Dec  3 18:10:05 2020
+<TYPE_ERROR >   : undefine token: 'a'
+<DESCRIPTION>   : lexer::data
+

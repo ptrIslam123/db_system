@@ -16,7 +16,8 @@ enum class error_type
     UNDEFINE_FUNCTION,
     UNDEFINE_PARAM_TYPE,
     MULTI_DEFINITION,
-    UNDEFINE_TOKEN
+    UNDEFINE_TOKEN,
+    RUNTIME_ERROR
 };
 
 struct sys_error

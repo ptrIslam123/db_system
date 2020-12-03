@@ -33,6 +33,7 @@ public:
     ~loger();
 
     void log(str_t&& ,str_t&& );
+    void print_log();
     void flush();
     
 private:

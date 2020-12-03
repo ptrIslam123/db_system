@@ -16,6 +16,9 @@ compilBaseParseApi:
 compilTriggerNode:
 	clang++ -g -c ../../interpret/trigger_node.cpp
 
+compilSysError:
+	clang++ -g -c ../../interpret/sys_error.cpp
+
 compilFstream:
 	clang++ -g -c ../file_stream.cpp 
 
@@ -55,7 +58,8 @@ compilTrigerDropTable:
 compilEvent:
 	clang++ -g -c ../event.cpp
 
-
+compilToolsLoger:
+	clang++ -g -c ../../tools/loger.cpp
 
 compilMain:
 	clang++ -g -c ../main.cpp
