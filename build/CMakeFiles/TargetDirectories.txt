@@ -1,0 +1,3 @@
+/home/islam/CppProgram/db_sysytem_for_it_company/build/CMakeFiles/rebuild_cache.dir
+/home/islam/CppProgram/db_sysytem_for_it_company/build/CMakeFiles/main.dir
+/home/islam/CppProgram/db_sysytem_for_it_company/build/CMakeFiles/edit_cache.dir
