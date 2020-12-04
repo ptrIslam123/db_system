@@ -1,0 +1,30 @@
+
+
+set_t(tn : 'init')
+
+print_t(tn : 'init')
+
+trigger add_trigg {  log(ds : 'TRIGGER_EVENT: ADD NEW ROCORD') }
+
+bef_attach(nm : 'add_trigg' op : 'ADD|')
+
+log(ds : 'CHECK IN TRIGGERS')
+log(ds : '')
+log(ds : '')
+log(ds : '')
+
+
+log(ds : 'ADD_OPERATION')
+
+add(dt : '12.12.12'
+    ti : '12:12:12'
+    ds : 'new record')
+
+
+bef_detach(nm : 'add_trigg')
+
+
+print_t(tn : 'init')
+
+
+

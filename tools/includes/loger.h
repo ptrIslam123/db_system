@@ -4,7 +4,7 @@
 #define _SIZE_DATE_TIME_T   30
 #define _SIZE_ERR_TYPE_T_   30
 #define _SIZE_DESCRIPT_T_   30
-#define _STD_LOGER_FILE_PATH_ "../../config/error_log.txt"
+#define _STD_LOGER_FILE_PATH_ "../config/log/error_log.txt"
 
 #include <string>
 #include <fstream>

@@ -1,0 +1,17 @@
+
+
+set_t(tn : 'init')
+
+print_t(tn : 'init')
+
+add(dt : '12.12.12'
+    ti : '00:00:00'
+    ds : 'this is new record!')
+
+
+log(ds : 'ADD _NEW RECORD')
+log(ds : '')
+log(ds : '')
+log(ds : '')
+
+print_t(tn : 'init')

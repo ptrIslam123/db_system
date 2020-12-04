@@ -1,0 +1,19 @@
+
+
+create_t(tn : 'new_table'
+         fn : '/home/islam/CppProgram/db_sysytem_for_it_company/config/tables/init.txt' 
+         sz : '30')
+
+create_t(tn : 'big_table'
+         fn : '../config/tables/big_init.txt'
+         sz : '30')
+
+print_t(tn : 'new_table')
+
+
+log( ds : 'PRINT_TABLES' )
+log( ds : '')
+log( ds : '')
+
+ltables()
+

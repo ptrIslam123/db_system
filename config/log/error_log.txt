@@ -1,62 +1,29 @@
 #error logs:
 
-<DATE | TIME>   : Thu Dec  3 18:06:09 2020
-<TYPE_ERROR >   : undefine token: 'a'
-<DESCRIPTION>   : lexer::data
+# Testing system:
+# Patch error code :
 
-<DATE | TIME>   : Thu Dec  3 18:06:09 2020
-<TYPE_ERROR >   : undefine token: 'a'
-<DESCRIPTION>   : lexer::data
+<DATE | TIME>   : Fri Dec  4 16:32:12 2020
+<TYPE_ERROR >   : sys_error: Can`t to find or access the file
+<DESCRIPTION>   : ../../config/init.txt
 
-<DATE | TIME>   : Thu Dec  3 18:06:09 2020
-<TYPE_ERROR >   : undefine token: 'a'
-<DESCRIPTION>   : lexer::data
+<DATE | TIME>   : Fri Dec  4 16:34:21 2020
+<TYPE_ERROR >   : sys_error: Can`t to find or access the file
+<DESCRIPTION>   : db_kernel::open_file() : ../../config/init.txt
 
-<DATE | TIME>   : Thu Dec  3 18:06:09 2020
-<TYPE_ERROR >   : undefine token: 'a'
-<DESCRIPTION>   : lexer::data
+<DATE | TIME>   : Fri Dec  4 16:37:59 2020
+<TYPE_ERROR >   : sys_error: Can`t to find or access the file
+<DESCRIPTION>   : db_kernel::open_file() : ../../config/init.txt
 
-<DATE | TIME>   : Thu Dec  3 18:06:09 2020
-<TYPE_ERROR >   : undefine token: 'a'
-<DESCRIPTION>   : lexer::data
+<DATE | TIME>   : Fri Dec  4 16:55:41 2020
+<TYPE_ERROR >   : sys_error: Can`t to find or access the file
+<DESCRIPTION>   : db_kernel::open_file() : ../../config/tables/init.txt
 
-<DATE | TIME>   : Thu Dec  3 18:09:45 2020
-<TYPE_ERROR >   : undefine token: 'a'
-<DESCRIPTION>   : lexer::data
+<DATE | TIME>   : Fri Dec  4 17:05:26 2020
+<TYPE_ERROR >   : sys_error: Undefine token
+<DESCRIPTION>   : method: init_data | undefine token => ps
 
-<DATE | TIME>   : Thu Dec  3 18:09:45 2020
-<TYPE_ERROR >   : undefine token: 'a'
-<DESCRIPTION>   : lexer::data
-
-<DATE | TIME>   : Thu Dec  3 18:09:45 2020
-<TYPE_ERROR >   : undefine token: 'a'
-<DESCRIPTION>   : lexer::data
-
-<DATE | TIME>   : Thu Dec  3 18:09:45 2020
-<TYPE_ERROR >   : undefine token: 'a'
-<DESCRIPTION>   : lexer::data
-
-<DATE | TIME>   : Thu Dec  3 18:09:45 2020
-<TYPE_ERROR >   : undefine token: 'a'
-<DESCRIPTION>   : lexer::data
-
-<DATE | TIME>   : Thu Dec  3 18:10:05 2020
-<TYPE_ERROR >   : undefine token: 'a'
-<DESCRIPTION>   : lexer::data
-
-<DATE | TIME>   : Thu Dec  3 18:10:05 2020
-<TYPE_ERROR >   : undefine token: 'a'
-<DESCRIPTION>   : lexer::data
-
-<DATE | TIME>   : Thu Dec  3 18:10:05 2020
-<TYPE_ERROR >   : undefine token: 'a'
-<DESCRIPTION>   : lexer::data
-
-<DATE | TIME>   : Thu Dec  3 18:10:05 2020
-<TYPE_ERROR >   : undefine token: 'a'
-<DESCRIPTION>   : lexer::data
-
-<DATE | TIME>   : Thu Dec  3 18:10:05 2020
-<TYPE_ERROR >   : undefine token: 'a'
-<DESCRIPTION>   : lexer::data
+<DATE | TIME>   : Fri Dec  4 17:05:59 2020
+<TYPE_ERROR >   : sys_error: Undefine token
+<DESCRIPTION>   : method: init_data | undefine token => ps
 

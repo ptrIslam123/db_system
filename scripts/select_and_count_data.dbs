@@ -1,0 +1,16 @@
+
+
+set_t(tn : 'init')
+
+get(dt : '18.07.2020' ti : '6:52:59')
+
+print()
+
+log(ds : 'COUNT RECORDS:')
+log(ds : '')
+log(ds : '')
+log(ds : '')
+
+
+count()
+

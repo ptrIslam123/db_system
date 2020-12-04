@@ -19,6 +19,8 @@ includes/db_kernel.h
 /home/islam/CppProgram/db_sysytem_for_it_company/db_kernel/includes/db_kernel.h
 ../tools/includes/files.h
 /home/islam/CppProgram/db_sysytem_for_it_company/tools/includes/files.h
+../interpret/includes/sys_error.h
+/home/islam/CppProgram/db_sysytem_for_it_company/interpret/includes/sys_error.h
 
 /home/islam/CppProgram/db_sysytem_for_it_company/db_kernel/event.cpp
 includes/event.h
@@ -417,6 +419,8 @@ includes/memento.h
 /home/islam/CppProgram/db_sysytem_for_it_company/interpret/includes/memento.h
 ../tools/includes/loger.h
 /home/islam/CppProgram/db_sysytem_for_it_company/tools/includes/loger.h
+iostream
+-
 
 /home/islam/CppProgram/db_sysytem_for_it_company/interpret/sys_functions.cpp
 includes/sys_functions.h
@@ -431,6 +435,18 @@ includes/list_triggers.h
 /home/islam/CppProgram/db_sysytem_for_it_company/db_kernel/includes/db_controller.h
 ../tools/includes/files.h
 /home/islam/CppProgram/db_sysytem_for_it_company/tools/includes/files.h
+
+/home/islam/CppProgram/db_sysytem_for_it_company/interpret/test/t_lexer.h
+iostream
+-
+../includes/lexeme.h
+/home/islam/CppProgram/db_sysytem_for_it_company/interpret/includes/lexeme.h
+../includes/lexer.h
+/home/islam/CppProgram/db_sysytem_for_it_company/interpret/includes/lexer.h
+../includes/base_parse_api.h
+/home/islam/CppProgram/db_sysytem_for_it_company/interpret/includes/base_parse_api.h
+../includes/parser.h
+/home/islam/CppProgram/db_sysytem_for_it_company/interpret/includes/parser.h
 
 /home/islam/CppProgram/db_sysytem_for_it_company/interpret/transaction.cpp
 includes/transaction.h
@@ -451,8 +467,12 @@ includes/list_triggers.h
 /home/islam/CppProgram/db_sysytem_for_it_company/main.cpp
 iostream
 -
+fstream
+-
 interpret/includes/shell.h
 /home/islam/CppProgram/db_sysytem_for_it_company/interpret/includes/shell.h
+interpret/test/t_lexer.h
+/home/islam/CppProgram/db_sysytem_for_it_company/interpret/test/t_lexer.h
 
 /home/islam/CppProgram/db_sysytem_for_it_company/tools/files.cpp
 includes/files.h
@@ -485,6 +505,8 @@ includes/loger.h
 /home/islam/CppProgram/db_sysytem_for_it_company/tools/includes/loger.h
 includes/files.h
 /home/islam/CppProgram/db_sysytem_for_it_company/tools/includes/files.h
+../interpret/includes/sys_error.h
+/home/islam/CppProgram/db_sysytem_for_it_company/interpret/includes/sys_error.h
 iostream
 -
 

@@ -1,5 +1,6 @@
 #include "includes/loger.h"
 #include "includes/files.h"
+#include "../interpret/includes/sys_error.h"
 
 #include <iostream>
 
@@ -62,10 +63,6 @@ void loger::log(str_t&& type_err, str_t&& descript)
 
 void loger::print_log()
 {
-   /*
-    files file(fname_);
-   std::cout << file.read() << "\n";
-    */
    char* data = nullptr;
    const auto size_block_data = sizeof(char)*size_;
 
@@ -108,7 +105,8 @@ void loger::file_open()
 {
     if (!fstream_.is_open())
     {
-        throw std::runtime_error("loger: file not found:=> " + fname_);
+        throw sys_error(error_type::FILE_NOT_FOUND,
+                        "loger: file not found:=> " + fname_);
     }
 }
 

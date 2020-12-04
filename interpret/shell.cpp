@@ -34,9 +34,16 @@ void shell::exec(std::string&& code)
         while (!base_p_api.is_end())
             p.run();
     }
+    catch(const std::runtime_error& e)
+    {
+        std::cout << e.what() << "\n";
+        exit(-1);
+    }
     catch(sys_error& e)
     {
         e.write_log();
+        e.what();
+        exit(-1);
     }
     catch(const char* e)
     {

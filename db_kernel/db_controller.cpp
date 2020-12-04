@@ -4,8 +4,8 @@
 
 #define _EXCEPTION_REQ_
 #define _LOGER_BUF_SIZE__   2550
-#define _LOGER_FILE_PATH_   "../../config/error_log.txt"
-#define _INIT_FILE_PATH_    "../../config/init.txt"
+#define _LOGER_FILE_PATH_   "../config/log/error_log.txt"
+#define _INIT_FILE_PATH_    "../config/tables/init.txt"
 #define _INIT_TABLE_NAME_   "init"
 
 using fname_t             = db_controller::fname_t;

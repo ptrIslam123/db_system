@@ -1,5 +1,6 @@
 #include "includes/db_kernel.h"
 #include "../tools/includes/files.h"
+#include "../interpret/includes/sys_error.h"
 //#define _MALLOC_DEB_INF_F_
 #define _ENBL_API_TRIGERS_
 
@@ -298,19 +299,11 @@ bool db_kernel::is_open_file() const
 void db_kernel::open_file()
 {
     bool is_open_f = tok_gramm_->is_open_file();
-    if(!is_open_f)
+    if (!is_open_f)
     {
-        /* 
-        error_report(
-            F_PATH_DB_KERNEL_DEGUB_INF,
-            "\n\n#~ db_kernel::open_file()\n\n"
-        );
-        error_report(
-            F_PATH_DB_KERNEL_DEGUB_INF,
-            std::string("file not found: " + tok_gramm_->get_file() + "\n")
-        );
-        */
-        throw "db_kernel : method : open_file | file not found";
+        auto errmsg = "db_kernel::open_file() : " + *(get_file_name_ptr());
+        throw sys_error(error_type::FILE_NOT_FOUND,
+            std::move(errmsg));
     }
 }
 

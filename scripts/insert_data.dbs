@@ -1,0 +1,20 @@
+
+
+set_t(tn : 'init')
+
+print_t(tn : 'init')
+
+get(dt : '18.07.2020')
+
+insert(
+       dt : '12.12.12'
+       ti : '12:12:12'
+       ds : 'Новая запись в таблице!')
+
+
+log(ds : 'INSERT NEW RECORD')
+log(ds : '')
+log(ds : '')
+log(ds : '')
+
+print_t(tn : 'init')

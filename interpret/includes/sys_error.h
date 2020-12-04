@@ -29,6 +29,7 @@ public:
     void        rolback_records();
     void        write_log();
     void        print_log();
+    void        what();
 
 private:
     errmsg_t    get_type_err(const error_type& );
