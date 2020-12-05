@@ -1,0 +1,34 @@
+
+
+set_t(tn : 'init')
+
+log(ds : 'PRINT_ALL_RECORD:')
+print_t(tn : 'init')
+
+log(ds : '')
+log(ds : '')
+log(ds : '')
+
+log(ds : 'SELECT RECORDS WITH TIME = 6:12:59')
+get(ti : '6:12:59')
+print()
+log(ds : 'COUNT RESULT:')
+count()
+
+log(ds : 'REMOVE RECORD WITH TIME = 6:12:59')
+log(ds : '')
+log(ds : '')
+log(ds : '')
+
+remove()
+clear()
+
+#print_t(tn : 'init')
+
+
+log(ds : 'SELECT RECORDS WITH TIME = 6:12:59')
+get(ti : '6:12:59')
+print()
+log(ds : 'COUNT RESULT:')
+count()
+

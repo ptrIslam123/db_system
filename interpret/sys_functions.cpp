@@ -430,7 +430,7 @@ void drop_table_req_atomic(table_name_t&& tname)
 void set_table_req_atomic(table_name_t&& tname)
 {
 #ifndef _TRANSACT_TEST_LOG_
-    _save_state_log(&tname, "add_req");
+    _save_state_log(&tname, "set_t_req");
 #endif // !_TRANSACT_TEST_LOG_
 
     _save_state_record(0, make_token(), _rolback_set_table);
@@ -695,17 +695,17 @@ void _save_state_record(index_t indx, token_t&& tok, controller_transact_t contr
 
 void _print_token(token_ptr tok)
 {
-    auto date = tok->get_date().c_str();
-    auto time = tok->get_time().c_str();
-    auto descript = tok->get_descript().c_str();
-
-    printf("\n%-19s\t%-10s\t%-300s\n", 
-                            date, time, descript);
+    if (tok == nullptr)
+    {
+        throw sys_error(error_type::OUT_OF_RANGE,
+            "_print_token : Attempt to access invalid or non-existent data");
+    }
+    tok->print();
 }
 
 void _print_heder(const word_ptr heder)
 {
-    std::cout << (*heder) << "\n";
+    std::cout << (*heder) << std::endl;
 }
 
 

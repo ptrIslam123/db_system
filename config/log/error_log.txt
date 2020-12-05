@@ -27,3 +27,51 @@
 <TYPE_ERROR >   : sys_error: Undefine token
 <DESCRIPTION>   : method: init_data | undefine token => ps
 
+<DATE | TIME>   : Sat Dec  5 11:34:32 2020
+<TYPE_ERROR >   : sys_error: Out of bounds of a table or record, trying to access an unavailable record
+<DESCRIPTION>   : _print_token::invalid data
+
+<DATE | TIME>   : Sat Dec  5 11:36:59 2020
+<TYPE_ERROR >   : sys_error: Out of bounds of a table or record, trying to access an unavailable record
+<DESCRIPTION>   : _print_token : Attempt to access invalid or non-existent data
+
+<DATE | TIME>   : Sat Dec  5 11:37:43 2020
+<TYPE_ERROR >   : sys_error: Out of bounds of a table or record, trying to access an unavailable record
+<DESCRIPTION>   : _print_token : Attempt to access invalid or non-existent data
+
+<DATE | TIME>   : Sat Dec  5 11:38:30 2020
+<TYPE_ERROR >   : sys_error: Out of bounds of a table or record, trying to access an unavailable record
+<DESCRIPTION>   : _print_token : Attempt to access invalid or non-existent data
+
+<DATE | TIME>   : Sat Dec  5 11:39:41 2020
+<TYPE_ERROR >   : sys_error: Out of bounds of a table or record, trying to access an unavailable record
+<DESCRIPTION>   : _print_token : Attempt to access invalid or non-existent data
+
+<DATE | TIME>   : Sat Dec  5 12:39:09 2020
+<TYPE_ERROR >   : sys_error: Undefine token
+<DESCRIPTION>   : c_insert
+
+<DATE | TIME>   : Sat Dec  5 12:40:24 2020
+<TYPE_ERROR >   : sys_error: Undefine token
+<DESCRIPTION>   : c_insert
+
+<DATE | TIME>   : Sat Dec  5 13:14:31 2020
+<TYPE_ERROR >   : sys_error: Undefine token
+<DESCRIPTION>   : X
+
+<DATE | TIME>   : Sat Dec  5 13:45:12 2020
+<TYPE_ERROR >   : sys_error: Undefine funcion param type
+<DESCRIPTION>   : method :__update_operator | undefine param type
+
+<DATE | TIME>   : Sat Dec  5 13:46:24 2020
+<TYPE_ERROR >   : sys_error: Undefine funcion param type
+<DESCRIPTION>   : method :__update_operator | undefine param type
+
+<DATE | TIME>   : Sat Dec  5 13:46:33 2020
+<TYPE_ERROR >   : sys_error: Undefine funcion param type
+<DESCRIPTION>   : method :__update_operator | undefine param type
+
+<DATE | TIME>   : Sat Dec  5 13:47:25 2020
+<TYPE_ERROR >   : sys_error: Undefine funcion param type
+<DESCRIPTION>   : method :__update_operator | undefine param type
+

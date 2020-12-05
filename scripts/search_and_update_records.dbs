@@ -1,0 +1,24 @@
+
+set_t(tn : 'init')
+
+log(ds : 'PRINT_ALL_RECORD:')
+print_t(tn : 'init')
+
+log(ds : 'SELECT RECORD WITH DATE = 11.05.2020')
+get(dt : '11.05.2020')
+print()
+log(ds : 'COUNT_RESULT:')
+count()
+
+log(ds : '')
+log(ds : '')
+log(ds : '')
+
+log(ds : 'UPDATE VALUE RECORD WTHIS DATE = 11.05.2020')
+update(ti : '12:12:12')
+print()
+
+
+
+
+

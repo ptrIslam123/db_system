@@ -138,7 +138,7 @@ void __log_operator(args_oprt_buf_t&& args)
     switch (type)
     {
         case _DESCRIPT_ : {
-            std::cout << "LOG: " << (*data->get_descript_ptr()) << "\n";
+            std::cout << "LOG: " << (*data->get_descript_ptr()) << std::endl;
             break;
         }
         case _FILE_NAME_DESCRIPT_: {

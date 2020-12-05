@@ -5,6 +5,12 @@
 
 set_t(tn : 'init')
 
+print_t(tn : 'init')
+log(ds : 'PRINT_TABLE')
+log(ds : '')
+log(ds : '')
+log(ds : '')
+
 {
     add(dt : '00.00.00'
         ti : '00:00:00'
@@ -20,8 +26,10 @@ set_t(tn : 'init')
     insert(dt : '02.02.02'
            ti : '03:03:03'
            ds : 'new_record_3')
+    
+    clear()
 
 }
 
-print()
+print_t(tn : 'init')
 

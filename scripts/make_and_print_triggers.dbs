@@ -1,0 +1,59 @@
+
+trigger remove_t {
+    log(ds : 'EVENT :=> REMOVE RECORD')
+}
+
+trigger insert_t {
+    log(ds : 'EVENT :=> INSERT RECORD')
+}
+
+trigger add_t {
+    log(ds : 'EVENT :=> ADD RECORD')
+}
+
+set_t(tn : 'init')
+
+
+bef_attach(nm : 'insert_t'  op : 'INSERT|'  )
+bef_attach(nm : 'add_t'     op : 'ADD|'     )
+aft_attach(nm : 'remove_t'  op : 'REMOVE|'  )
+
+
+log(ds : 'CREATE AND CHECK IN TRIGGERS:')
+log(ds : '')
+log(ds : '')
+log(ds : '')
+
+log(ds : 'PRINT TRIGGERS')
+ltriggers()
+
+log(ds : 'PRINT_ALL_RECORD:')
+print_t(tn : 'init')
+
+
+log(ds : 'ADD NEW RECORD:')
+add(dt : '12.12.12'
+    ti : '12:12:12'
+    ds : 'new_record!')
+
+
+log(ds : 'INSERT NEW RECORD WITH DATE = 17.03.2020')
+get(dt : '17.03.2020')
+insert(dt : '00.00.00'
+       ti : '00:00:00'
+       ds : 'insert_new_Record!')
+
+
+log(ds : 'REMOVE RECORDS WITH TIME = 6:12:59')
+clear()
+get(ti : '6:12:59')
+remove()
+
+log(ds : '')
+log(ds : '')
+log(ds : '')
+
+log(ds : 'PRINT_ALL_RECORD:')
+print_t(tn  :'init')
+
+

@@ -4,6 +4,8 @@ project(dbsystem)
 
 file(GLOB CPPS "*.cpp" "db_kernel/*.cpp" "interpret/*.cpp" "tools/*.cpp")
 
+add_definitions( -g )
+
 add_executable(dbs ${CPPS})
 
 message("BUILD PROJECT")

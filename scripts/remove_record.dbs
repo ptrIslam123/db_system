@@ -1,0 +1,14 @@
+
+set_t(tn : 'init')
+
+print_t(tn : 'init')
+get(dt : '18.07.2020')
+
+remove()
+
+log(ds : 'REMOVE RECORD')
+log(ds : '')
+log(ds : '')
+log(ds : '')
+
+print_t(tn : 'init')

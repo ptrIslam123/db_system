@@ -10,7 +10,20 @@ list_triggers::~list_triggers()
 
 void list_triggers::print_triggers()
 {
-    std::cout << "<null list_triggers>\n";
+    auto beg = triggers_.cbegin();
+    auto end = triggers_.cend();
+    trigger_node_ptr node = nullptr;
+
+    for (auto it = beg; it != end; it++)
+    {
+        node = (*it).get();
+        if (node == nullptr)
+        {
+            throw sys_error(error_type::OUT_OF_RANGE,
+                "An attempt to access non-existint or invalid data");
+        }
+        std::cout << "\t[TRIGGER_NAME] :=> " << *(node->get_name_ptr()) << std::endl;
+    }
 }
 
 void list_triggers::add(trigger_name_t&& tname, trigger_block_t&& tblock)

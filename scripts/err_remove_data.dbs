@@ -1,0 +1,44 @@
+
+# Error work to response_data.cpp , remove_req, _remove_token: (Need Patch)
+
+trigger remove_trigg {
+    log(ds : 'EVENT :: => REMOVE RECORD WITH DATE = 18.07.2020')
+    log(ds : '')
+    log(ds : '')
+    log(ds : '')
+}
+bef_attach(nm : 'remove_trigg' op : 'REMOVE|')
+
+set_t(tn : 'init')
+
+
+print_t(tn : 'init')
+log(ds : 'PTRINT_TABLE_ALL_BEFORE_REMOVE')
+log(ds : '')
+log(ds : '')
+log(ds : '')
+
+
+get(dt : '18.07.2020')
+print()
+log(ds : 'COUNT_RESULT')
+count()
+
+
+
+
+remove()
+clear()
+log(ds : 'COUNT_RESULT after remove: ')
+count()
+
+get(dt : '18.07.2020')
+print()
+log(ds : 'COUNT_RESULT after get print: ')
+count()
+
+log(ds : '')
+log(ds : '')
+log(ds : '')
+log(ds : 'PTRINT_TABLE:')
+print_t(tn : 'init')

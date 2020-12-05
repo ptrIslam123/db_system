@@ -1,8 +1,7 @@
 #ifndef _SYS_FUNCTIONS_H_
 #define _SYS_FUNCTIONS_H_
 #define _LOGER_SIZE_BUF_ 255
-
-//#define _TRANSACT_TEST_LOG_
+#define _TRANSACT_TEST_LOG_
 #ifndef _TRANSACT_TEST_LOG_
 #include <iostream>
 #endif // !_TRANSACT_TEST_LOG_

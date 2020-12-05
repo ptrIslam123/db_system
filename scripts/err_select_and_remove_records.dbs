@@ -1,0 +1,42 @@
+
+#  НЕПРАВИЛЬНО РАБОТАЕТ МЕТОД УДАЛЕНИЯ ЗАПИСЕЙ,
+#  И ТАК ЖЕ ПРОВЕРИТЬ МЕТОД ВЫБОРКИ ДАННЫХ И СТРУКТУРА БУФФЕР ИНДЕКСОВ ВЫБОРКИ
+
+trigger remove_t {
+    log(ds : 'EVENT :=> REMOVE RECORD')
+}
+
+bef_attach(nm : 'remove_t' op : 'REMOVE|')
+log(ds : 'MAKE AND CHEK IN TRIGGER REMOVE_T:')
+
+
+set_t(tn : 'init')
+
+log(ds : 'PRINT_ALL_RECORDS:')
+print_t(tn : 'init')
+
+log(ds : 'SELECT RECORDS WITH DATE = 18.07.2020')
+get(dt : '18.07.2020')
+print()
+log(ds : 'COUNT_RESULT:')
+count()
+
+
+remove()
+clear()
+
+
+log(ds : '')
+log(ds : '')
+log(ds : '')
+
+
+log(ds : 'PRINT_ALL_RECORDS AFTER REMOVE OPERATION:')
+print_t(tn : 'init')
+
+
+log(ds : 'SELECT RECORDS WITH DATE = 18.07.2020 AFTER REMOVE OPERATION')
+get(dt : '18.07.2020')
+print()
+log(ds : 'COUNT_RESULT:')
+count()
