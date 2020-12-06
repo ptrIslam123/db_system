@@ -75,3 +75,7 @@
 <TYPE_ERROR >   : sys_error: Undefine funcion param type
 <DESCRIPTION>   : method :__update_operator | undefine param type
 
+<DATE | TIME>   : Sun Dec  6 14:34:09 2020
+<TYPE_ERROR >   : sys_error: Undefine funcion param type
+<DESCRIPTION>   : method :__remove_operator | undefine param type
+

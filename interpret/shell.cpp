@@ -1,5 +1,6 @@
 #include "includes/shell.h"
 #include "../tools/includes/files.h"
+#include "../tools/includes/utils.h"
 #include "includes/sys_error.h"
 
 
@@ -36,18 +37,21 @@ void shell::exec(std::string&& code)
     }
     catch(const std::runtime_error& e)
     {
-        std::cout << e.what() << "\n";
+        auto err = e.what();
+        printRed(err);
         exit(-1);
     }
     catch(sys_error& e)
     {
         e.write_log();
-        e.what();
+        auto err = e.what();
+        printRed(err);
         exit(-1);
     }
     catch(const char* e)
     {
-        std::cerr << e << "\n";
-        exit(1);
+        auto err = e;
+        printRed(err);
+        exit(-1);
     }  
 }

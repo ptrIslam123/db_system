@@ -21,6 +21,8 @@ includes/db_kernel.h
 /home/islam/CppProgram/db_sysytem_for_it_company/tools/includes/files.h
 ../interpret/includes/sys_error.h
 /home/islam/CppProgram/db_sysytem_for_it_company/interpret/includes/sys_error.h
+../tools/includes/utils.h
+/home/islam/CppProgram/db_sysytem_for_it_company/tools/includes/utils.h
 
 /home/islam/CppProgram/db_sysytem_for_it_company/db_kernel/event.cpp
 includes/event.h
@@ -139,6 +141,8 @@ includes/base_parse_api.h
 /home/islam/CppProgram/db_sysytem_for_it_company/interpret/includes/base_parse_api.h
 includes/sys_error.h
 /home/islam/CppProgram/db_sysytem_for_it_company/interpret/includes/sys_error.h
+../tools/includes/utils.h
+/home/islam/CppProgram/db_sysytem_for_it_company/tools/includes/utils.h
 
 /home/islam/CppProgram/db_sysytem_for_it_company/interpret/base_parse_api.cpp
 includes/base_parse_api.h
@@ -363,6 +367,8 @@ includes/base_parse_api.h
 /home/islam/CppProgram/db_sysytem_for_it_company/interpret/includes/base_parse_api.h
 includes/sys_error.h
 /home/islam/CppProgram/db_sysytem_for_it_company/interpret/includes/sys_error.h
+../tools/includes/utils.h
+/home/islam/CppProgram/db_sysytem_for_it_company/tools/includes/utils.h
 
 /home/islam/CppProgram/db_sysytem_for_it_company/interpret/option_parse.cpp
 includes/option_parse.h
@@ -409,6 +415,8 @@ includes/shell.h
 /home/islam/CppProgram/db_sysytem_for_it_company/interpret/includes/shell.h
 ../tools/includes/files.h
 /home/islam/CppProgram/db_sysytem_for_it_company/tools/includes/files.h
+../tools/includes/utils.h
+/home/islam/CppProgram/db_sysytem_for_it_company/tools/includes/utils.h
 includes/sys_error.h
 /home/islam/CppProgram/db_sysytem_for_it_company/interpret/includes/sys_error.h
 
@@ -500,6 +508,12 @@ chrono
 memory
 -
 
+/home/islam/CppProgram/db_sysytem_for_it_company/tools/includes/utils.h
+string
+-
+iostream
+-
+
 /home/islam/CppProgram/db_sysytem_for_it_company/tools/loger.cpp
 includes/loger.h
 /home/islam/CppProgram/db_sysytem_for_it_company/tools/includes/loger.h
@@ -509,4 +523,8 @@ includes/files.h
 /home/islam/CppProgram/db_sysytem_for_it_company/interpret/includes/sys_error.h
 iostream
 -
+
+/home/islam/CppProgram/db_sysytem_for_it_company/tools/utils.cpp
+includes/utils.h
+/home/islam/CppProgram/db_sysytem_for_it_company/tools/includes/utils.h
 

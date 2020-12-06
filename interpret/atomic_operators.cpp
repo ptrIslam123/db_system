@@ -3,6 +3,7 @@
 #include "includes/sys_functions.h"
 #include "includes/base_parse_api.h"
 #include "includes/sys_error.h"
+#include "../tools/includes/utils.h"
 
 atomic_operators::atomic_operators(base_parse_api_ptr base_p_api):
     command(base_p_api),
@@ -173,6 +174,15 @@ void  __insert_operator_atomic(args_oprt_buf_t&& args)
             for_each(insert_req_atomic, create_token(data));
             break;
         }
+        case _POS_DATE_TIME_DESCRIPT_ : {
+            auto pos_str = *(data->get_pos_ptr());
+
+            size_t pos  = cast_str_i(std::move(pos_str));
+            auto val    = create_token(data);
+            
+            insert_req_atomic(pos, std::move(val));
+            break;
+        }
         default:
             throw sys_error(error_type::UNDEFINE_PARAM_TYPE,
                             "method :__insert_operator_atomic | undefine param type");
@@ -232,13 +242,36 @@ void  __update_operator_atomic(args_oprt_buf_t&& args)
 
 void  __remove_operator_atomic(args_oprt_buf_t&& args)
 {
-    const auto size = args.size();
-    if (size > 0 )
+    //auto data = get_data_ptr();
+    args_data arg_data;
+    data_ptr data = &arg_data;
+    try
     {
-        throw sys_error(error_type::UNDEFINE_PARAM_TYPE,
-                            "method :__remove_operator_atomic | undefine param type");
+        init_data(data, std::move(args));   
     }
-    for_each(remove_req_atomic);
+    catch(const std::out_of_range& e)
+    {
+        throw sys_error(error_type::OUT_OF_RANGE, 
+                        "init_data(parse_argument function { update })");
+    }
+    auto type = data->get_args_type();
+    switch (type)
+    {
+        case _NULL_TYPE : {
+            for_each(remove_req);
+            break;
+        }
+        case _POS_ : {
+            auto pos_str = *(data->get_pos_ptr());
+            auto pos = cast_str_i(std::move(pos_str));
+
+            remove_req(pos);
+            break;
+        }
+        default:
+            throw sys_error(error_type::UNDEFINE_PARAM_TYPE,
+                            "method :__remove_operator | undefine param type");
+    }
 }
 
 void  __create_table_operator_atomic(args_oprt_buf_t&& args)

@@ -29,6 +29,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/dbs.dir/interpret/trigger_operators.cpp.o"
   "CMakeFiles/dbs.dir/tools/files.cpp.o"
   "CMakeFiles/dbs.dir/tools/loger.cpp.o"
+  "CMakeFiles/dbs.dir/tools/utils.cpp.o"
   "dbs.pdb"
   "dbs"
 )

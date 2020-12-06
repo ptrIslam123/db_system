@@ -1,9 +1,22 @@
 #include "includes/db_kernel.h"
 #include "../tools/includes/files.h"
 #include "../interpret/includes/sys_error.h"
+#include "../tools/includes/utils.h"
+
 //#define _MALLOC_DEB_INF_F_
 #define _ENBL_API_TRIGERS_
+//#define _ENBL_DEBUG_OP_
 
+#ifndef _ENBL_DEBUG_OP_
+#define _UNENBL_API_TRIGERS_
+#define _UNENBL_DEBUG_ADD_OP_
+#define _UNENBL_DEBUG_INSERT_OP_
+#define _UNENBL_DEBUG_REMOVE_OP_
+#define _UNENBL_DEBUG_UPDATE_OP_
+#define _UNENBL_DEBUG_DROP_TABLE_OP_
+#define _UNENBL_DEBUG_CREATE_TABLE_OP_ 
+#endif // _ENBL_DEBUG_OP_
+#define LOG_OP(MSG)  printBlue(MSG)
 
  
 db_kernel_t make_db_kernel(std::string&& fname, size_t beg_cont_size)
@@ -80,6 +93,10 @@ void db_kernel::reserve(size_t beg_cont_size)
 
 void db_kernel::create_table()
 {
+#ifndef _UNENBL_DEBUG_CREATE_TABLE_OP_
+    printBlue("CREATE TABLE");
+#endif // !_UNENBL_DEBUG_ADD_OP_
+
     open_file();
     heder_ = std::move(tok_gramm_->tokenize_heder());
     while (!tok_gramm_->is_eof())
@@ -93,6 +110,10 @@ void db_kernel::create_table()
 
 void db_kernel::drop_table()
 {
+#ifndef _UNENBL_DEBUG_DROP_TABLE_OP_
+    printBlue("DROP TABLE");
+#endif // !_UNENBL_DEBUG_ADD_OP_
+
     /* delete table */
    container_.clear();
 }
@@ -170,6 +191,12 @@ void db_kernel::add(token_t&& val)
 #ifdef _ENBL_API_TRIGERS_
     befEventAdd_.notify();
 #endif // !_ENBL_API_TRIGERS_
+
+#ifndef _UNENBL_DEBUG_ADD_OP_
+    printBlue("ADD TOKEN");
+    val->print();
+#endif // !_UNENBL_DEBUG_ADD_OP_
+
     container_.push_back(std::move(val));
 
 #ifdef _ENBL_API_TRIGERS_
@@ -186,6 +213,12 @@ void db_kernel::insert(size_t pos, token_t&& val)
 
     iter_ = container_.begin();
     std::advance(iter_, pos);
+
+#ifndef _UNENBL_DEBUG_INSERT_OP_
+    printBlue("INSERT TOKEN");
+    val->print();
+#endif // !_UNENBL_DEBUG_REMOVE_OP_
+
     container_.insert(iter_, std::move(val));
 
 #ifdef _ENBL_API_TRIGERS_
@@ -202,6 +235,12 @@ void db_kernel::remove(size_t pos)
 
     iter_ = container_.begin();
     std::advance(iter_, pos);
+
+#ifndef _UNENBL_DEBUG_REMOVE_OP_
+    printBlue("REMOVE TOKEN");
+    (iter_->get())->print();
+#endif // !_UNENBL_DEBUG_REMOVE_OP_
+
     container_.erase(iter_);
 
 #ifdef _ENBL_API_TRIGERS_

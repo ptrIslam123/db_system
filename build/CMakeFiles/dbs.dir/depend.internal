@@ -48,6 +48,7 @@ CMakeFiles/dbs.dir/db_kernel/db_kernel.cpp.o
  /home/islam/CppProgram/db_sysytem_for_it_company/interpret/includes/trigger_opeators.h
  /home/islam/CppProgram/db_sysytem_for_it_company/tools/includes/files.h
  /home/islam/CppProgram/db_sysytem_for_it_company/tools/includes/singleton.h
+ /home/islam/CppProgram/db_sysytem_for_it_company/tools/includes/utils.h
 CMakeFiles/dbs.dir/db_kernel/event.cpp.o
  /home/islam/CppProgram/db_sysytem_for_it_company/db_kernel/event.cpp
  /home/islam/CppProgram/db_sysytem_for_it_company/db_kernel/includes/event.h
@@ -107,6 +108,7 @@ CMakeFiles/dbs.dir/interpret/atomic_operators.cpp.o
  /home/islam/CppProgram/db_sysytem_for_it_company/interpret/includes/sys_functions.h
  /home/islam/CppProgram/db_sysytem_for_it_company/tools/includes/loger.h
  /home/islam/CppProgram/db_sysytem_for_it_company/tools/includes/singleton.h
+ /home/islam/CppProgram/db_sysytem_for_it_company/tools/includes/utils.h
 CMakeFiles/dbs.dir/interpret/base_parse_api.cpp.o
  /home/islam/CppProgram/db_sysytem_for_it_company/interpret/base_parse_api.cpp
  /home/islam/CppProgram/db_sysytem_for_it_company/interpret/includes/base_parse_api.h
@@ -175,6 +177,7 @@ CMakeFiles/dbs.dir/interpret/operators.cpp.o
  /home/islam/CppProgram/db_sysytem_for_it_company/interpret/operators.cpp
  /home/islam/CppProgram/db_sysytem_for_it_company/tools/includes/loger.h
  /home/islam/CppProgram/db_sysytem_for_it_company/tools/includes/singleton.h
+ /home/islam/CppProgram/db_sysytem_for_it_company/tools/includes/utils.h
 CMakeFiles/dbs.dir/interpret/option_parse.cpp.o
  /home/islam/CppProgram/db_sysytem_for_it_company/db_kernel/includes/token.h
  /home/islam/CppProgram/db_sysytem_for_it_company/interpret/includes/args_data.h
@@ -238,6 +241,7 @@ CMakeFiles/dbs.dir/interpret/shell.cpp.o
  /home/islam/CppProgram/db_sysytem_for_it_company/interpret/shell.cpp
  /home/islam/CppProgram/db_sysytem_for_it_company/tools/includes/files.h
  /home/islam/CppProgram/db_sysytem_for_it_company/tools/includes/singleton.h
+ /home/islam/CppProgram/db_sysytem_for_it_company/tools/includes/utils.h
 CMakeFiles/dbs.dir/interpret/sys_error.cpp.o
  /home/islam/CppProgram/db_sysytem_for_it_company/db_kernel/includes/token.h
  /home/islam/CppProgram/db_sysytem_for_it_company/interpret/includes/memento.h
@@ -344,3 +348,6 @@ CMakeFiles/dbs.dir/tools/loger.cpp.o
  /home/islam/CppProgram/db_sysytem_for_it_company/tools/includes/files.h
  /home/islam/CppProgram/db_sysytem_for_it_company/tools/includes/loger.h
  /home/islam/CppProgram/db_sysytem_for_it_company/tools/loger.cpp
+CMakeFiles/dbs.dir/tools/utils.cpp.o
+ /home/islam/CppProgram/db_sysytem_for_it_company/tools/includes/utils.h
+ /home/islam/CppProgram/db_sysytem_for_it_company/tools/utils.cpp

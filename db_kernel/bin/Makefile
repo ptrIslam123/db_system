@@ -60,6 +60,8 @@ compilEvent:
 
 compilToolsLoger:
 	clang++ -g -c ../../tools/loger.cpp
+compilToolsUtils:
+	clang++ -g -c ../../tools/utils.cpp
 
 compilMain:
 	clang++ -g -c ../main.cpp
@@ -82,6 +84,19 @@ buildMain:
 build:
 	make compil
 	make link
+
+
+
+compilTestDBKernel:
+	clang++ -g -c ../test/test_db_kernel.cpp
+
+
+RunTtest:
+	make compilTestDBKernel
+	make compilMain
+	make link
+	make run
+
 
 debug:
 	gdb main

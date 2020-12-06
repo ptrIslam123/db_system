@@ -1,0 +1,17 @@
+
+set_t(tn : 'init')
+
+print_t(tn : 'init')
+
+log(ds : 'PRINT_ALL_RECORD')
+log(ds : '')
+log(ds : '')
+log(ds : '')
+
+insert( ps : '1'
+        dt : '12.12.12'
+        ti : '12:12:12'
+        ds : 'new_description!' )
+
+
+print_t(tn : 'init')

@@ -51,10 +51,9 @@ word_t sys_error::get_type_err(const error_type& terr)
     }
 }
 
-void sys_error::what()
+errmsg_t sys_error::what()
 {
-    std::cout << get_type_err(type_error_) 
-                << " : " << errmsg_ << std::endl;
+    return get_type_err(type_error_) +  " : "  + errmsg_;
 }
 
 void sys_error::write_log()
@@ -69,3 +68,7 @@ void sys_error::print_log()
     printf("%s\t\t%s\n", 
             t_err.c_str(), errmsg_.c_str()); 
 }
+
+
+
+

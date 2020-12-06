@@ -75,6 +75,7 @@ public:
     size_t      size_table();
     bool        is_open_file() const;
     tok_gramm_t get_tok_gramm();
+    void        open_file();
 
     
     /*  TRIGERS API */
@@ -94,7 +95,6 @@ public:
 private:
     void        print_token(const token_ptr , const size_t );
     token_ptr   get_token(size_t );
-    void        open_file();
     
 private:
     size_t           beg_cont_size_;

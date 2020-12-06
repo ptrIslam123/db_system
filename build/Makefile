@@ -933,6 +933,33 @@ tools/loger.cpp.s:
 	$(MAKE) -f CMakeFiles/dbs.dir/build.make CMakeFiles/dbs.dir/tools/loger.cpp.s
 .PHONY : tools/loger.cpp.s
 
+tools/utils.o: tools/utils.cpp.o
+
+.PHONY : tools/utils.o
+
+# target to build an object file
+tools/utils.cpp.o:
+	$(MAKE) -f CMakeFiles/dbs.dir/build.make CMakeFiles/dbs.dir/tools/utils.cpp.o
+.PHONY : tools/utils.cpp.o
+
+tools/utils.i: tools/utils.cpp.i
+
+.PHONY : tools/utils.i
+
+# target to preprocess a source file
+tools/utils.cpp.i:
+	$(MAKE) -f CMakeFiles/dbs.dir/build.make CMakeFiles/dbs.dir/tools/utils.cpp.i
+.PHONY : tools/utils.cpp.i
+
+tools/utils.s: tools/utils.cpp.s
+
+.PHONY : tools/utils.s
+
+# target to generate assembly for a file
+tools/utils.cpp.s:
+	$(MAKE) -f CMakeFiles/dbs.dir/build.make CMakeFiles/dbs.dir/tools/utils.cpp.s
+.PHONY : tools/utils.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -1032,6 +1059,9 @@ help:
 	@echo "... tools/loger.o"
 	@echo "... tools/loger.i"
 	@echo "... tools/loger.s"
+	@echo "... tools/utils.o"
+	@echo "... tools/utils.i"
+	@echo "... tools/utils.s"
 .PHONY : help
 
 

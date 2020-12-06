@@ -4,7 +4,9 @@ set_t(tn : 'init')
 
 print_t(tn : 'init')
 
-trigger add_trigg {  log(ds : 'TRIGGER_EVENT: ADD NEW ROCORD') }
+trigger add_trigg {  
+	log(ds : 'EVENT :=> ADD NEW ROCORD')
+ }
 
 bef_attach(nm : 'add_trigg' op : 'ADD|')
 

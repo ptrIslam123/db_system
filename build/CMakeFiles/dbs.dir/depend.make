@@ -47,6 +47,7 @@ CMakeFiles/dbs.dir/db_kernel/db_kernel.cpp.o: ../interpret/includes/trigger_node
 CMakeFiles/dbs.dir/db_kernel/db_kernel.cpp.o: ../interpret/includes/trigger_opeators.h
 CMakeFiles/dbs.dir/db_kernel/db_kernel.cpp.o: ../tools/includes/files.h
 CMakeFiles/dbs.dir/db_kernel/db_kernel.cpp.o: ../tools/includes/singleton.h
+CMakeFiles/dbs.dir/db_kernel/db_kernel.cpp.o: ../tools/includes/utils.h
 
 CMakeFiles/dbs.dir/db_kernel/event.cpp.o: ../db_kernel/event.cpp
 CMakeFiles/dbs.dir/db_kernel/event.cpp.o: ../db_kernel/includes/event.h
@@ -106,6 +107,7 @@ CMakeFiles/dbs.dir/interpret/atomic_operators.cpp.o: ../interpret/includes/sys_e
 CMakeFiles/dbs.dir/interpret/atomic_operators.cpp.o: ../interpret/includes/sys_functions.h
 CMakeFiles/dbs.dir/interpret/atomic_operators.cpp.o: ../tools/includes/loger.h
 CMakeFiles/dbs.dir/interpret/atomic_operators.cpp.o: ../tools/includes/singleton.h
+CMakeFiles/dbs.dir/interpret/atomic_operators.cpp.o: ../tools/includes/utils.h
 
 CMakeFiles/dbs.dir/interpret/base_parse_api.cpp.o: ../interpret/base_parse_api.cpp
 CMakeFiles/dbs.dir/interpret/base_parse_api.cpp.o: ../interpret/includes/base_parse_api.h
@@ -174,6 +176,7 @@ CMakeFiles/dbs.dir/interpret/operators.cpp.o: ../interpret/includes/sys_function
 CMakeFiles/dbs.dir/interpret/operators.cpp.o: ../interpret/operators.cpp
 CMakeFiles/dbs.dir/interpret/operators.cpp.o: ../tools/includes/loger.h
 CMakeFiles/dbs.dir/interpret/operators.cpp.o: ../tools/includes/singleton.h
+CMakeFiles/dbs.dir/interpret/operators.cpp.o: ../tools/includes/utils.h
 
 CMakeFiles/dbs.dir/interpret/option_parse.cpp.o: ../db_kernel/includes/token.h
 CMakeFiles/dbs.dir/interpret/option_parse.cpp.o: ../interpret/includes/args_data.h
@@ -237,6 +240,7 @@ CMakeFiles/dbs.dir/interpret/shell.cpp.o: ../interpret/includes/sys_error.h
 CMakeFiles/dbs.dir/interpret/shell.cpp.o: ../interpret/shell.cpp
 CMakeFiles/dbs.dir/interpret/shell.cpp.o: ../tools/includes/files.h
 CMakeFiles/dbs.dir/interpret/shell.cpp.o: ../tools/includes/singleton.h
+CMakeFiles/dbs.dir/interpret/shell.cpp.o: ../tools/includes/utils.h
 
 CMakeFiles/dbs.dir/interpret/sys_error.cpp.o: ../db_kernel/includes/token.h
 CMakeFiles/dbs.dir/interpret/sys_error.cpp.o: ../interpret/includes/memento.h
@@ -343,4 +347,7 @@ CMakeFiles/dbs.dir/tools/loger.cpp.o: ../interpret/includes/sys_error.h
 CMakeFiles/dbs.dir/tools/loger.cpp.o: ../tools/includes/files.h
 CMakeFiles/dbs.dir/tools/loger.cpp.o: ../tools/includes/loger.h
 CMakeFiles/dbs.dir/tools/loger.cpp.o: ../tools/loger.cpp
+
+CMakeFiles/dbs.dir/tools/utils.cpp.o: ../tools/includes/utils.h
+CMakeFiles/dbs.dir/tools/utils.cpp.o: ../tools/utils.cpp
 

@@ -21,6 +21,8 @@ void __get_operator(args_oprt_buf_t&& args)
                         "init_data(parse_argument function { get })");
     }
     auto type = data->get_args_type();
+
+    clear_req();
     
     switch (type)
     {
@@ -410,6 +412,14 @@ void init_data(data_ptr data, args_oprt_buf_t&& args)
             data->set_args_type(_SIZE_TABLE_);
             auto size_ptr = (args.at(i).second)->get_ptr_value();
             data->set_size_ptr(size_ptr);
+            i++;
+            continue;
+        }
+        if (args_type == "ps")
+        {
+            data->set_args_type(_POS_);
+            auto pos_ptr = (args.at(i).second)->get_ptr_value();
+            data->set_pos_ptr(pos_ptr);
             i++;
             continue;
         }

@@ -53,9 +53,9 @@ update(dt : '<DATE>'| ti : '<TIME>'| ds : '<DESCRIPTION>')
 
 add(dt : '<DATE>' ti : '<TIME>' ds : '<DESCRIPTION>')
 
-insert(dt : '<DATE>' ti : '<TIME>' ds : '<DESCRIPTION>')
+insert(ps : '<POSITION>' | dt : '<DATE>' ti : '<TIME>' ds : '<DESCRIPTION>')
 
-remove()
+remove(ps : '<POSITION>' | )
 
 set_t(tn : '<TABLE_NAME>')
 

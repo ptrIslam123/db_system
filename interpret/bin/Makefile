@@ -25,6 +25,9 @@ compilFstream:
 compilToolsLOger:
 	clang++ -g -c ../../tools/loger.cpp
 
+compilToolsUtils:
+	clang++ -g -c ../../tools/utils.cpp
+
 compilTrigersAdd:
 	clang++ -g -c ../../db_kernel/triger_add.cpp
 

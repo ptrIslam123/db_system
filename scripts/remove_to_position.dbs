@@ -1,0 +1,21 @@
+
+
+set_t(tn : 'init')
+
+log(ds : 'PRINT_ALL_RECORDS:')
+print_t(tn : 'init')
+
+log(ds : '')
+log(ds : '')
+log(ds : '')
+
+log(ds : 'REMOVE RECORD WITH POSITION = 1')
+remove(
+    ps : '1'
+)
+
+log(ds : '')
+log(ds : '')
+log(ds : '')
+
+print_t(tn : 'init')
