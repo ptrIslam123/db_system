@@ -36,25 +36,6 @@ db_controller::db_controller()
     }
 }
 
-db_controller::db_controller(size_t size_tables):
-    size_tables_(size_tables)
-{
-    try
-    {
-        init_table(_INIT_TABLE_NAME_,_INIT_FILE_PATH_, 0);
-        cur_table_ = get_table(_INIT_TABLE_NAME_);
-    }
-    catch(const std::runtime_error& e)
-    {
-        throw sys_error(error_type::FILE_NOT_FOUND,
-            "db_controller::__init__ : can`t create and init table { init }");
-    }
-    catch(const std::exception& e)
-    {
-        throw sys_error(error_type::RUNTIME_ERROR,
-                        "db_controller::__init__ ");
-    }
-}
 
 
 db_controller::~db_controller()
@@ -67,10 +48,10 @@ void db_controller::write_table_to_table(word_t&& tname)
 {
     try
     {
-        auto table_ptr = get_table(std::move(tname));
-
-        const auto size = table_ptr->size_table();
-        for (auto i = 0; i < size; ++i)
+        auto table_ptr  = get_table(std::move(tname));
+        auto size       = table_ptr->size_table();
+        
+        for (decltype(size) i = 0; i < size; ++i)
         {
             cur_table_->push_token(
                 table_ptr->get(i)->clone()

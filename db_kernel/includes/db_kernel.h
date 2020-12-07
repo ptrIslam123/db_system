@@ -97,8 +97,9 @@ private:
     token_ptr   get_token(size_t );
     
 private:
-    size_t           beg_cont_size_;
+
     tok_gramm_t      tok_gramm_;
+    size_t           beg_cont_size_;
     container_t      container_;
     container_iter_t iter_, beg_iter_;
     word_t           heder_;

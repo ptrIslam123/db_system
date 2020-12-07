@@ -188,7 +188,7 @@ std::string lexer::to_string(char s)
 {
     std::string str;
     str += s;
-    return std::move(str);
+    return str;     // return std::move(str);   // -Wall 
 }
 
 

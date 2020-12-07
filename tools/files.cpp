@@ -56,5 +56,5 @@ std::string files::read()
     {
         buffer += s;
     }
-    return std::move(buffer);
+    return buffer;   // -Wall return std::move(buffer);
 }

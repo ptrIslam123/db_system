@@ -100,16 +100,17 @@ private:
     void            is_f_true(const bool& , std::string&& );
 
 private:
+
     date_ptr        date_;
     time_ptr        time_;
     descript_ptr    descript_;
-    args_type_t     type_;
     table_name_ptr  table_name_;
     file_name_ptr   file_name_;
     size_ptr        size_;
     pos_ptr         pos_;
     option_ptr      option_;
     name_ptr        name_;
+    args_type_t     type_;
     opt_type_t      opt_;
 
     bool            f_date_;

@@ -14,11 +14,11 @@ namespace log
 {
 
 
-loger::loger(file_name_t&& fname):
-    fname_(std::move(fname)),
-    capacity_(buffer_.size()),
-    size_(0)
+loger::loger(file_name_t&& fname)
 {
+    fname_ = std::move(fname);
+    capacity_ = buffer_.size();
+    size_ = 0;
     fstream_.open(fname_,   std::ios::in |
                             std::ios::out|
                             std::ios::app|
@@ -27,11 +27,11 @@ loger::loger(file_name_t&& fname):
 }
 
 
-loger::loger(const file_name_t& fname):
-    fname_(fname),
-    capacity_(buffer_.size()),
-    size_(0)
+loger::loger(const file_name_t& fname)
 {
+    fname_ = fname;
+    capacity_ = buffer_.size();
+    size_ = 0;
     fstream_.open(fname_,   std::ios::in |
                             std::ios::out|
                             std::ios::app|
@@ -56,15 +56,15 @@ void loger::log(str_t&& type_err, str_t&& descript)
                         "<TYPE_ERROR >   : " + type_err + "\n" +
                         "<DESCRIPTION>   : " + descript + "\n\n";
     
-    const auto size_data = log_format.size();
+    //const auto size_data = log_format.size(); // -Wall : unused 
     write(std::move(log_format));
 }
 
 
 void loger::print_log()
 {
-   char* data = nullptr;
-   const auto size_block_data = sizeof(char)*size_;
+   char* data                   = nullptr;
+   const auto size_block_data   = sizeof(char)*size_;
 
    while (true)
    {
@@ -93,8 +93,8 @@ void loger::write(data_t&& data)
 
 void loger::flush()
 {
-   auto data = buffer_.data();
-   const auto size_block_data = sizeof(char)*size_;
+   auto data                    = buffer_.data();
+   const auto size_block_data   = sizeof(char)*size_;
    fstream_.write(data, size_block_data);
 }
 

@@ -98,11 +98,11 @@ void db_kernel::create_table()
 #endif // !_UNENBL_DEBUG_ADD_OP_
 
     open_file();
-    heder_ = std::move(tok_gramm_->tokenize_heder());
+    heder_ = tok_gramm_->tokenize_heder();  // -Wall std::move(tokenize_heder())
     while (!tok_gramm_->is_eof())
     {
         push_token(
-            std::move(tok_gramm_->tokenize())
+            tok_gramm_->tokenize()   // -Wall std::move(tok_gramm_->tokenize())
         );
     }
 }
@@ -121,8 +121,9 @@ void db_kernel::drop_table()
 
 void db_kernel::print_table()
 {
-    const auto size = size_table();
-    for (auto i = 0; i < size ; ++i)
+    auto size = size_table();
+    
+    for (decltype(size) i = 0; i < size ; ++i)
     {
         print_token(get(i), i + 1);
     }
@@ -141,9 +142,10 @@ void db_kernel::write_table_to_file(word_t&& fname)
         files file(std::move(fname));
         file.write(get_heder());
 
-        const auto size = size_table();
-        token_ptr val = nullptr;
-        for (auto i = 0; i < size; ++i)
+        auto size       = size_table();
+        token_ptr val   = nullptr;
+
+        for (decltype(size) i = 0; i < size; ++i)
         {
             file.write("\n");
 

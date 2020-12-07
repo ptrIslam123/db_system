@@ -31,8 +31,9 @@ void event::detach(const trigger_ptr t)
 
 void event::notify()
 {
-    const auto size = poll_triger_.size();
-    for (auto i = 0; i < size; ++i)
+    auto size = poll_triger_.size();
+    
+    for (decltype(size) i = 0; i < size; ++i)
     {
         poll_triger_[i]->exec();
     }

@@ -12,6 +12,9 @@ args_data::args_data():
     pos_(nullptr),
     option_(nullptr),
     name_(nullptr),
+    type_(_NULL_TYPE),
+    opt_(_NULL_TYPE),
+    
     f_date_(false),
     f_time_(false),
     f_descript_(false),
@@ -20,9 +23,7 @@ args_data::args_data():
     f_size_(false),
     f_pos_(false),
     f_option_(false),
-    f_name_(false),
-     type_(_NULL_TYPE),
-     opt_(_NULL_TYPE)
+    f_name_(false)
 {}
 
 void args_data::set_null_type()

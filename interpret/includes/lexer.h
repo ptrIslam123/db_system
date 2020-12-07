@@ -46,14 +46,14 @@ private:
     void           error_lexeme(char );
 
     char           get(size_t );
-    void           next(size_t );
-   
+    void           next(size_t ); 
 
 private:
-    container_t container_;
+
     code_t      code_;
-    size_t      pos_;
     size_t      size_code_;
+    size_t      pos_;
+    container_t container_;
 };
 
 

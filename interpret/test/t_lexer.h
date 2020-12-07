@@ -10,8 +10,9 @@
 auto printLexer = [](std_container_type* container)
 {
     lexeme_ptr lex = nullptr;
-    const auto size = container->size();
-    for (auto i = 0; i < size; ++i)
+    auto size = container->size();
+    
+    for (decltype(size) i = 0; i < size; ++i)
     {
         lex = container->at(i).get();
         std::cout << "value : " << lex->get_value() << "\n";

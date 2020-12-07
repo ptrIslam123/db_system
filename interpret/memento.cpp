@@ -10,8 +10,8 @@ memento::~memento()
 
 void memento::reserve(size_t size_table_records)
 {
-    size_table_records = size_table_records;
-    records_.reserve(size_table_records);
+    size_table_records_ = size_table_records;
+    records_.reserve(size_table_records_);
 }
 
 void memento::set_state(index_t index, token_t&& value, controller_transact_t controller)

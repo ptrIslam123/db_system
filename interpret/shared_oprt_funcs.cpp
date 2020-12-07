@@ -358,8 +358,8 @@ void __write_table_operator(args_oprt_buf_t&& args)
 void init_data(data_ptr data, args_oprt_buf_t&& args)
 {
     static option_parse opt_parse_; 
-    auto size = args.size();
-    auto i = 0;
+    auto size           = args.size();
+    decltype(size) i    = 0;
     
     while (true)
     {

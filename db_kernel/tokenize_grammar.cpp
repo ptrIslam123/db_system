@@ -38,19 +38,19 @@ token_t tokenize_grammar::tokenize()
 
 time_t_ tokenize_grammar::tokenize_time()
 {
-    return std::move(tokenize_word());
+    return tokenize_word();  // -Wall return std::move(tokenize_word());
 }
 
 
 date_t_ tokenize_grammar::tokenize_date()
 {
-    return std::move(tokenize_word());
+    return tokenize_word(); // -Wall eturn std::move(tokenize_word());
 }
 
 
 type_t_ tokenize_grammar::tokenize_type()
 {
-    return std::move(tokenize_word());
+    return tokenize_word();  // -Wall return std::move(tokenize_word());
 }
 
 
@@ -109,7 +109,7 @@ descript_t_ tokenize_grammar::tokenize_description()
             break;
         buffer += cur_s;
     }
-    return std::move(buffer);
+    return buffer;   // -Wall return std::move(buffer);
 }
 
 word_t tokenize_grammar::tokenize_word()
@@ -123,7 +123,7 @@ word_t tokenize_grammar::tokenize_word()
         buffer += cur_s;
     }
     skip_nul_scpace();
-    return std::move(buffer);
+    return buffer;   // -Wall return std::move(buffer);
 }
 
 
@@ -139,7 +139,7 @@ word_t tokenize_grammar::tokenize_heder()
             break;
         }
     }
-    return std::move(heder);
+    return heder;    // -Wall return std::move(heder);
 }
 
 
@@ -158,7 +158,7 @@ word_t tokenize_grammar::tokenize_data()
         }
         buffer += cur_s;
     }
-    return std::move(buffer);
+    return buffer;  // -Wall return std::move(buffer);
 }
 
 
@@ -232,5 +232,5 @@ std::string tokenize_grammar::get_file() const
 descript_t_   make_description(const word_t& word)
 {
     descript_t_   descript;
-    return std::move(descript);
+    return descript;     // -Wall return std::move(descript);
 }

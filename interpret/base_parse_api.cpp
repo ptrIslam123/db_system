@@ -50,7 +50,7 @@ lexeme_uptr base_parse_api::get_lexeme_uptr(size_t pos)
     container_->erase(iter);
     size_--;
 
-    return std::move(val);
+    return val;      // return std::move(val); // -Wall
 }
 
 bool base_parse_api::is_end() const

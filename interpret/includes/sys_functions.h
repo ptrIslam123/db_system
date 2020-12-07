@@ -115,40 +115,40 @@ void rolback_records();
 
 /* rolback request functions */
 
-static void _rolback_add_r(record_ptr );
-static void _rolback_insert_r(record_ptr );
-static void _rolback_update_r(record_ptr );
-static void _rolback_remove_r(record_ptr );
-static void _rolback_create_table(record_ptr );
-static void _rolback_drop_table(record_ptr );
-static void _rolback_set_table(record_ptr );
+void _rolback_add_r(record_ptr );
+void _rolback_insert_r(record_ptr );
+void _rolback_update_r(record_ptr );
+void _rolback_remove_r(record_ptr );
+void _rolback_create_table(record_ptr );
+void _rolback_drop_table(record_ptr );
+void _rolback_set_table(record_ptr );
 
 
 /* supporting functional */
-token_t                   create_token(data_ptr );
-size_t              const _get_size_table();
-size_t              const _get_size_pesronse_buf();
-static size_t       const _get_index_response_buf(size_t );
-static void               _add_index_response_buf(index_t );
-static token_ptr    const _get_token(size_t );
-static response_d   const _get_response();
-static void         _add_token(token_t&& );
-static void         _insert_token(size_t , token_t&& );
-static void         _update_token(size_t , token_t&& );
-static void         _remove_token(size_t );
-static void         _save_state_record(index_t , token_t&& , controller_transact_t);
+token_t       create_token(data_ptr );
+size_t        const _get_size_table();
+size_t        const _get_size_pesronse_buf();
+size_t        const _get_index_response_buf(size_t );
+void          _add_index_response_buf(index_t );
+token_ptr     const _get_token(size_t );
+response_d    const _get_response();
+void         _add_token(token_t&& );
+void         _insert_token(size_t , token_t&& );
+void         _update_token(size_t , token_t&& );
+void         _remove_token(size_t );
+void         _save_state_record(index_t , token_t&& , controller_transact_t);
 
-static void         _log(word_t&& );
-void                _print_token(token_ptr );
-void                _print_heder(const word_ptr );
-void                _print_table(const table_name_ptr );
-static void         _print_tables();
-static void         _print_triggers();
-static void         _print_log_file();
+void         _log(word_t&& );
+void         _print_token(token_ptr );
+void         _print_heder(const word_ptr );
+void         _print_table(const table_name_ptr );
+void         _print_tables();
+void         _print_triggers();
+void         _print_log_file();
 
 #ifndef _TRANSACT_TEST_LOG_
-static void         _save_state_log(const token_ptr , const std::string& );
-static void         _save_state_log(const table_name_ptr ,  const std::string& );
+void         _save_state_log(const token_ptr , const std::string& );
+void         _save_state_log(const table_name_ptr ,  const std::string& );
 #endif // !_TRANSACT_TEST_LOG_
 
 

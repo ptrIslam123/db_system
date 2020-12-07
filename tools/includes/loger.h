@@ -42,11 +42,12 @@ private:
     str_t get_date_time();
 
 private:
-    std::fstream    fstream_;
+    
     file_name_t     fname_;
-    buffer_t        buffer_;
     buf_size_t      size_;
     buf_size_t      capacity_;
+    std::fstream    fstream_;
+    buffer_t        buffer_;
 };
 
 

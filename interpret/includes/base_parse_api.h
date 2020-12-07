@@ -30,9 +30,11 @@ public:
     size_t      get_pos() const;
 
 private:
+
     container_ptr   container_;
-    size_t          pos_;
     size_t          size_;
+    size_t          pos_;
+    
 };
 
 

@@ -25,7 +25,6 @@ public:
     using table_revers_iter_t = typename tables_t::reverse_iterator;
     
     db_controller();
-    db_controller(size_t );
     ~db_controller();
 
     /* API DB_CONTROLLER */
@@ -87,7 +86,7 @@ private:
 private:
   tables_t      tables_;
   table_ptr     cur_table_;
-  size_t        size_tables_;
+  
 };
 
 
