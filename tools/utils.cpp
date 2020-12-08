@@ -17,3 +17,8 @@ size_t cast_str_i(std::string&& str)
 {
     return std::stoi(std::move(str));
 }
+
+string_t cast_i_str(int_t val)
+{
+    return std::to_string(val);
+}

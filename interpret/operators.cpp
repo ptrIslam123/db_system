@@ -24,7 +24,6 @@ operators::operators(base_parse_api_ptr base_p_api):
         {"log",       __log_operator},
         {"ltables",   __list_tables_operator},
         {"ltriggers", __list_triggers_operator},
-        {"rolback",   __rolback_operator},
         {"bef_attach",__bef_attach_operator},
         {"bef_detach",__bef_detach_operator},
         {"aft_attach",__aft_attach_operator},
@@ -54,9 +53,8 @@ void operators::execute()
     
     if (oprt == optr_table_.cend())
     {   
-        ///////
-        throw sys_error(error_type::UNDEFINE_PARAM_TYPE,
-                            "method :__write_table_operator | undefine param type");
+        throw sys_error(error_type::UNDEFINE_FUNCTION,
+                            "method :operators::execute | undefine operator : " + get(0)->get_value());
     }
     next(1);        // oprt_name
     
@@ -98,11 +96,12 @@ args_oprt_t operators::make_args_oprt()
 }
 
 
-void operators::is_eq_lex(const LEXEME_TYPE& ltype, const LEXEME_TYPE& rtype, std::string&& emsg)
+void operators::is_eq_lex(const LEXEME_TYPE& ltype, const LEXEME_TYPE& rtype, std::string&& errmsg)
 {
     if (ltype != rtype)
     {
-        throw emsg;
+        throw sys_error(error_type::UNDEFINE_TOKEN,
+                std::move(errmsg));
     }
 }
 

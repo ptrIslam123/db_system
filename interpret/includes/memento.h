@@ -7,8 +7,7 @@
 #include "record.h"
 
 struct memento;
-
-using memento_t = singleton_classic<memento>;
+using memento_t                     = singleton_classic<memento>;
 
 struct memento
 {
@@ -22,7 +21,8 @@ public:
     void    reserve(size_t );
     void    set_state(index_t index, token_t&& value, controller_transact_t controller);
     void    rolback();
-
+    void    clear_buf();
+    
     size_t size_records() const;
     size_t capacity_records() const;
 

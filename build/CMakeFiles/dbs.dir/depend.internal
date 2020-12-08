@@ -211,8 +211,10 @@ CMakeFiles/dbs.dir/interpret/record.cpp.o
  /home/islam/CppProgram/db_sysytem_for_it_company/interpret/record.cpp
 CMakeFiles/dbs.dir/interpret/response_data.cpp.o
  /home/islam/CppProgram/db_sysytem_for_it_company/interpret/includes/response_data.h
+ /home/islam/CppProgram/db_sysytem_for_it_company/interpret/includes/sys_error.h
  /home/islam/CppProgram/db_sysytem_for_it_company/interpret/response_data.cpp
  /home/islam/CppProgram/db_sysytem_for_it_company/tools/includes/singleton.h
+ /home/islam/CppProgram/db_sysytem_for_it_company/tools/includes/utils.h
 CMakeFiles/dbs.dir/interpret/shared_oprt_funcs.cpp.o
  /home/islam/CppProgram/db_sysytem_for_it_company/db_kernel/includes/token.h
  /home/islam/CppProgram/db_sysytem_for_it_company/interpret/includes/args_data.h

@@ -395,6 +395,10 @@ includes/record.h
 /home/islam/CppProgram/db_sysytem_for_it_company/interpret/response_data.cpp
 includes/response_data.h
 /home/islam/CppProgram/db_sysytem_for_it_company/interpret/includes/response_data.h
+includes/sys_error.h
+/home/islam/CppProgram/db_sysytem_for_it_company/interpret/includes/sys_error.h
+../tools/includes/utils.h
+/home/islam/CppProgram/db_sysytem_for_it_company/tools/includes/utils.h
 
 /home/islam/CppProgram/db_sysytem_for_it_company/interpret/shared_oprt_funcs.cpp
 includes/shared_oprt_funcs.h

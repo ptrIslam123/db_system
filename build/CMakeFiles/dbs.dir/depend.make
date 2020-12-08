@@ -210,8 +210,10 @@ CMakeFiles/dbs.dir/interpret/record.cpp.o: ../interpret/includes/record.h
 CMakeFiles/dbs.dir/interpret/record.cpp.o: ../interpret/record.cpp
 
 CMakeFiles/dbs.dir/interpret/response_data.cpp.o: ../interpret/includes/response_data.h
+CMakeFiles/dbs.dir/interpret/response_data.cpp.o: ../interpret/includes/sys_error.h
 CMakeFiles/dbs.dir/interpret/response_data.cpp.o: ../interpret/response_data.cpp
 CMakeFiles/dbs.dir/interpret/response_data.cpp.o: ../tools/includes/singleton.h
+CMakeFiles/dbs.dir/interpret/response_data.cpp.o: ../tools/includes/utils.h
 
 CMakeFiles/dbs.dir/interpret/shared_oprt_funcs.cpp.o: ../db_kernel/includes/token.h
 CMakeFiles/dbs.dir/interpret/shared_oprt_funcs.cpp.o: ../interpret/includes/args_data.h

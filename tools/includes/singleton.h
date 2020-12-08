@@ -25,7 +25,7 @@ private:
 
 
 template<class T>
-template<typename ... Args>
+template<typename ... Args>         // sysntax_error !
 singleton_classic<T>::singleton_classic(Args&& ... args):
     T( std::forward<Args>(args)... )
 {}

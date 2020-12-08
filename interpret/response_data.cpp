@@ -1,4 +1,6 @@
 #include "includes/response_data.h"
+#include "includes/sys_error.h"
+#include "../tools/includes/utils.h"
 
 response_data::response_data()
 {}
@@ -14,7 +16,15 @@ void response_data::reserve(size_t size)
 
 void response_data::add(size_t indx)
 {
-    poll_indx_.push_back(indx);
+    try
+    {
+        poll_indx_.push_back(indx);   
+    }
+    catch(const std::bad_alloc& e)
+    {
+        throw sys_error(error_type::BAD_ALLOC,
+            "method response_data::add | size_records : " + cast_i_str(size()));
+    }
 }
 
 void response_data::clear_buf()
@@ -29,7 +39,17 @@ response_data::container_t response_data::get_response()
 
 response_data::index_t response_data::get_index(size_t pos) const
 {
-    return poll_indx_[pos];
+    index_t indx = 0;
+    try
+    {
+        indx = poll_indx_.at(pos); 
+    }
+    catch(const std::out_of_range& e)
+    {
+        throw sys_error(error_type::OUT_OF_RANGE,
+            "method response_data::get_index | index = " + cast_i_str(pos));
+    }
+    return indx;
 }
 
 size_t response_data::size() const

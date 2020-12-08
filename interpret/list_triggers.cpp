@@ -37,11 +37,9 @@ void list_triggers::add(trigger_name_t&& tname, trigger_block_t&& tblock)
 
 void list_triggers::remove(trigger_name_t&& tname)
 {
-    auto beg                = triggers_.begin();
-    auto end                = triggers_.end();
     trigger_node_ptr node_p = nullptr;
     
-    for (auto it = beg; it != end; ++it)
+    for (auto it = triggers_.begin(); it != triggers_.end(); ++it)
     {
         node_p = (*it).get();
         if (node_p->is_eq(&tname))

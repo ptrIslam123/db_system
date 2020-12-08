@@ -25,9 +25,10 @@ void memento::set_state(index_t index, token_t&& value, controller_transact_t co
 
 void memento::rolback()
 {
+    record_ptr r_ptr                    = nullptr; 
     container_revers_iter_t rend_iter_  = records_.rend();
     controller_transact_t controller;
-    record_ptr r_ptr = nullptr; 
+
     for (auto record = records_.rbegin(); record != rend_iter_; ++record)
     {
         r_ptr = (*record).get();
@@ -36,6 +37,10 @@ void memento::rolback()
     }
 }
 
+void memento::clear_buf()
+{
+    records_.clear();
+}
 
 size_t memento::size_records() const
 {

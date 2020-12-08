@@ -23,7 +23,6 @@ atomic_operators::atomic_operators(base_parse_api_ptr base_p_api):
         {"log",       __log_operator},
         {"ltables",   __list_tables_operator},
         {"ltriggers", __list_triggers_operator},
-        {"rolback",   __rolback_operator},
         {"bef_attach",__bef_attach_operator},
         {"bef_detach",__bef_detach_operator},
         {"aft_attach",__aft_attach_operator},
@@ -43,7 +42,7 @@ void atomic_operators::execute()
     if (oprt == optr_table_.cend())
     {   
         throw sys_error(error_type::UNDEFINE_FUNCTION,
-            "atomic_operator::execute |undefine operator" + get(0)->get_value());
+            "atomic_operator::execute | undefine operator : " + get(0)->get_value());
     }
     next(1);        // oprt_name
     
@@ -70,6 +69,7 @@ bool atomic_operators::is_it_command() const
 {
     auto word = get(0)->get_type();     // oprt_name
     auto paraml = get(1)->get_type();   // (param_list)
+
     if (word == LEXEME_TYPE::WORD && paraml == LEXEME_TYPE::L_BRACKET)
     {
         return true;
@@ -112,11 +112,12 @@ void atomic_operators::next(size_t offset)
 
  void atomic_operators::is_eq_lex(const LEXEME_TYPE& ltype, 
                               const LEXEME_TYPE& rtype, 
-                              std::string&& emsg          )
+                              std::string&& errmsg)
 {
-    if (ltype != rtype)
+     if (ltype != rtype)
     {
-        throw emsg;
+        throw sys_error(error_type::UNDEFINE_TOKEN,
+                std::move(errmsg));
     }
 }
 

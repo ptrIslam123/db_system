@@ -6,7 +6,7 @@
 #include "../../tools/includes/singleton.h"
 
 struct response_data;
-using response_data_t = singleton_classic<response_data>;
+using response_data_t   = singleton_classic<response_data>;
 
 struct response_data
 {
@@ -26,7 +26,7 @@ public:
     container_t get_response();
 
 private:
-    size_t size_;
+    size_t      size_;
     container_t poll_indx_;
 };
 
