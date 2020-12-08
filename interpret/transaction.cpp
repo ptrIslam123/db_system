@@ -1,5 +1,6 @@
 #include "includes/transaction.h"
 #include "includes/sys_error.h"
+#include "includes/sys_functions.h"
 
 transaction::transaction(base_parse_api_ptr base_p_api):
     command(base_p_api),
@@ -27,6 +28,7 @@ void transaction::execute()
         } 
     }
     next(1);        // '}'
+    clear_buf_memento();    // !clear_buf_memento after exec transaction code 
 }
 
 

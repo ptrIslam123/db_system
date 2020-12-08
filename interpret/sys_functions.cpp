@@ -567,7 +567,10 @@ void rolback_records()
     memento_t::instance().rolback();
 }
 
-
+void clear_buf_memento()
+{
+    memento_t::instance().clear_buf();
+}
 
 /* rolback_request functions */
 

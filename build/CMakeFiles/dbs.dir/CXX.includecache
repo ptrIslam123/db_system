@@ -465,6 +465,8 @@ includes/transaction.h
 /home/islam/CppProgram/db_sysytem_for_it_company/interpret/includes/transaction.h
 includes/sys_error.h
 /home/islam/CppProgram/db_sysytem_for_it_company/interpret/includes/sys_error.h
+includes/sys_functions.h
+/home/islam/CppProgram/db_sysytem_for_it_company/interpret/includes/sys_functions.h
 
 /home/islam/CppProgram/db_sysytem_for_it_company/interpret/trigger_node.cpp
 includes/trigger_node.h

@@ -111,6 +111,7 @@ void remove_req_atomic(index_t );
 
 
 void rolback_records();
+void clear_buf_memento();
 
 
 /* rolback request functions */

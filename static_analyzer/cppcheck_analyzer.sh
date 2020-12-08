@@ -26,3 +26,4 @@ run_all(){
 }
 
 run_all
+echo "#_END_"

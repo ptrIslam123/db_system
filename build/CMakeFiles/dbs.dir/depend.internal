@@ -293,10 +293,14 @@ CMakeFiles/dbs.dir/interpret/transaction.cpp.o
  /home/islam/CppProgram/db_sysytem_for_it_company/interpret/includes/lexeme_type.h
  /home/islam/CppProgram/db_sysytem_for_it_company/interpret/includes/lexer.h
  /home/islam/CppProgram/db_sysytem_for_it_company/interpret/includes/operators.h
+ /home/islam/CppProgram/db_sysytem_for_it_company/interpret/includes/record.h
+ /home/islam/CppProgram/db_sysytem_for_it_company/interpret/includes/response_data.h
  /home/islam/CppProgram/db_sysytem_for_it_company/interpret/includes/shared_oprt_funcs.h
  /home/islam/CppProgram/db_sysytem_for_it_company/interpret/includes/sys_error.h
+ /home/islam/CppProgram/db_sysytem_for_it_company/interpret/includes/sys_functions.h
  /home/islam/CppProgram/db_sysytem_for_it_company/interpret/includes/transaction.h
  /home/islam/CppProgram/db_sysytem_for_it_company/interpret/transaction.cpp
+ /home/islam/CppProgram/db_sysytem_for_it_company/tools/includes/loger.h
  /home/islam/CppProgram/db_sysytem_for_it_company/tools/includes/singleton.h
 CMakeFiles/dbs.dir/interpret/trigger_node.cpp.o
  /home/islam/CppProgram/db_sysytem_for_it_company/db_kernel/includes/token.h

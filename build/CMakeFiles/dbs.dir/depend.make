@@ -292,10 +292,14 @@ CMakeFiles/dbs.dir/interpret/transaction.cpp.o: ../interpret/includes/lexeme.h
 CMakeFiles/dbs.dir/interpret/transaction.cpp.o: ../interpret/includes/lexeme_type.h
 CMakeFiles/dbs.dir/interpret/transaction.cpp.o: ../interpret/includes/lexer.h
 CMakeFiles/dbs.dir/interpret/transaction.cpp.o: ../interpret/includes/operators.h
+CMakeFiles/dbs.dir/interpret/transaction.cpp.o: ../interpret/includes/record.h
+CMakeFiles/dbs.dir/interpret/transaction.cpp.o: ../interpret/includes/response_data.h
 CMakeFiles/dbs.dir/interpret/transaction.cpp.o: ../interpret/includes/shared_oprt_funcs.h
 CMakeFiles/dbs.dir/interpret/transaction.cpp.o: ../interpret/includes/sys_error.h
+CMakeFiles/dbs.dir/interpret/transaction.cpp.o: ../interpret/includes/sys_functions.h
 CMakeFiles/dbs.dir/interpret/transaction.cpp.o: ../interpret/includes/transaction.h
 CMakeFiles/dbs.dir/interpret/transaction.cpp.o: ../interpret/transaction.cpp
+CMakeFiles/dbs.dir/interpret/transaction.cpp.o: ../tools/includes/loger.h
 CMakeFiles/dbs.dir/interpret/transaction.cpp.o: ../tools/includes/singleton.h
 
 CMakeFiles/dbs.dir/interpret/trigger_node.cpp.o: ../db_kernel/includes/token.h
