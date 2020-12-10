@@ -355,6 +355,19 @@ void __write_table_operator(args_oprt_buf_t&& args)
 }
 
 
+void __size_table_operator(args_oprt_buf_t&& args)
+{
+    const auto size = args.size();
+    if (size > 0 )
+    {
+        throw sys_error(error_type::UNDEFINE_PARAM_TYPE,
+                            "method :__size_table_operator | undefine param type");
+    }
+    auto result = _get_size_table();
+    std::cout << result << std::endl;   
+}
+
+
 void init_data(data_ptr data, args_oprt_buf_t&& args)
 {
     static option_parse opt_parse_; 

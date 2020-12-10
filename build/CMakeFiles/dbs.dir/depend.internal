@@ -343,6 +343,7 @@ CMakeFiles/dbs.dir/main.cpp.o
  /home/islam/CppProgram/db_sysytem_for_it_company/interpret/includes/lexer.h
  /home/islam/CppProgram/db_sysytem_for_it_company/interpret/includes/parser.h
  /home/islam/CppProgram/db_sysytem_for_it_company/interpret/includes/shell.h
+ /home/islam/CppProgram/db_sysytem_for_it_company/interpret/includes/sys_error.h
  /home/islam/CppProgram/db_sysytem_for_it_company/interpret/test/t_lexer.h
  /home/islam/CppProgram/db_sysytem_for_it_company/main.cpp
  /home/islam/CppProgram/db_sysytem_for_it_company/tools/includes/singleton.h

@@ -23,7 +23,12 @@ bool comparator_ti(const token_ptr tok, const data_ptr data)
 
 bool comparator_ds(const token_ptr tok, const data_ptr data)
 {
-  return (tok->get_descript() == *(data->get_descript_ptr()));
+    // for Widnows new line = \r\n; 
+    auto descript1  =   tok->get_descript();
+    auto descript2  =   *(data->get_descript_ptr());
+    auto res        =   (descript1 == descript2 + '\r') || 
+                        (descript1 == descript2);
+  return res;
 }
 
 bool comparator_dt_ti(const token_ptr tok, const data_ptr data)

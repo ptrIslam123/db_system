@@ -342,6 +342,7 @@ CMakeFiles/dbs.dir/main.cpp.o: ../interpret/includes/lexeme_type.h
 CMakeFiles/dbs.dir/main.cpp.o: ../interpret/includes/lexer.h
 CMakeFiles/dbs.dir/main.cpp.o: ../interpret/includes/parser.h
 CMakeFiles/dbs.dir/main.cpp.o: ../interpret/includes/shell.h
+CMakeFiles/dbs.dir/main.cpp.o: ../interpret/includes/sys_error.h
 CMakeFiles/dbs.dir/main.cpp.o: ../interpret/test/t_lexer.h
 CMakeFiles/dbs.dir/main.cpp.o: ../main.cpp
 CMakeFiles/dbs.dir/main.cpp.o: ../tools/includes/singleton.h

@@ -487,6 +487,8 @@ interpret/includes/shell.h
 /home/islam/CppProgram/db_sysytem_for_it_company/interpret/includes/shell.h
 interpret/test/t_lexer.h
 /home/islam/CppProgram/db_sysytem_for_it_company/interpret/test/t_lexer.h
+interpret/includes/sys_error.h
+/home/islam/CppProgram/db_sysytem_for_it_company/interpret/includes/sys_error.h
 
 /home/islam/CppProgram/db_sysytem_for_it_company/tools/files.cpp
 includes/files.h

@@ -19,6 +19,7 @@ void  __bef_detach_operator(args_oprt_buf_t&& );
 void  __aft_attach_operator(args_oprt_buf_t&& );
 void  __aft_detach_operator(args_oprt_buf_t&& );
 void  __write_table_operator(args_oprt_buf_t&& );
+void  __size_table_operator(args_oprt_buf_t&& );
 
 void     init_data(data_ptr , args_oprt_buf_t&& );
 data_ptr get_data_ptr();

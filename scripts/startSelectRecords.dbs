@@ -1,0 +1,23 @@
+
+create_t(   tn : 'table'
+            fn : '../config/tables/data.txt'
+            sz : '25000'    )
+
+
+set_t(tn : 'table')
+
+
+
+get(
+    ds : 'GПросмотр камеры "132.Общ. №10-Центральный вход" пользователем "Оператор"/"Murat" с IP-адреса "192.168.1.69"'
+)
+
+log(ds : 'SIZE_RECORDS: ')
+size_t()
+
+log(ds : 'SELCET_RECORDS DS = GПросмотр камеры "132.Общ. №10-Центральный вход" пользователем "Оператор"/"Murat" с IP-адреса "192.168.1.69"')
+log(ds : 'COUNT RESULT : ')
+count()
+
+clear()
+

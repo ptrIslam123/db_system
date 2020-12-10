@@ -58,7 +58,8 @@ void args_data::set_time_ptr(const time_ptr time)
 void args_data::set_descript_ptr(const descript_ptr descript)
 {
     is_f_true(f_descript_, "ds");
-    descript_ =  descript;
+    //*descript += '\r';          // for Widnows new line = \r\n; 
+    descript_ =  descript;      //  for Linux new line = \n;
     f_descript_ = true;
 }
 

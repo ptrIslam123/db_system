@@ -79,3 +79,63 @@
 <TYPE_ERROR >   : sys_error: Undefine funcion param type
 <DESCRIPTION>   : method :__remove_operator | undefine param type
 
+<DATE | TIME>   : Thu Dec 10 14:44:00 2020
+<TYPE_ERROR >   : sys_error: Undefine function
+<DESCRIPTION>   : method :operators::execute | undefine operator : prit_t
+
+<DATE | TIME>   : Thu Dec 10 14:44:11 2020
+<TYPE_ERROR >   : sys_error: Undefine funcion param type
+<DESCRIPTION>   : method :__print_table__operator | undefine param type
+
+<DATE | TIME>   : Thu Dec 10 15:24:51 2020
+<TYPE_ERROR >   : sys_error: Undefine funcion param type
+<DESCRIPTION>   : method :__log_operator | undefine param type
+
+<DATE | TIME>   : Thu Dec 10 15:25:21 2020
+<TYPE_ERROR >   : sys_error: Undefine funcion param type
+<DESCRIPTION>   : method :__log_operator | undefine param type
+
+<DATE | TIME>   : Thu Dec 10 17:21:00 2020
+<TYPE_ERROR >   : sys_error: Undefine token
+<DESCRIPTION>   : r::tokenize_data : undefine token "'"
+
+<DATE | TIME>   : Thu Dec 10 17:21:45 2020
+<TYPE_ERROR >   : sys_error: Undefine token
+<DESCRIPTION>   : r::tokenize_data : undefine token "'"
+
+<DATE | TIME>   : Thu Dec 10 17:22:29 2020
+<TYPE_ERROR >   : sys_error: Undefine token
+<DESCRIPTION>   : r::tokenize_data : undefine token "'"
+
+<DATE | TIME>   : Thu Dec 10 17:23:06 2020
+<TYPE_ERROR >   : sys_error: Undefine token
+<DESCRIPTION>   : r::tokenize_data : undefine token "'"
+
+<DATE | TIME>   : Thu Dec 10 17:23:52 2020
+<TYPE_ERROR >   : sys_error: Undefine token
+<DESCRIPTION>   : r::tokenize_data : undefine token "'"
+
+<DATE | TIME>   : Thu Dec 10 17:36:04 2020
+<TYPE_ERROR >   : sys_error: Can`t to find or access the table
+<DESCRIPTION>   : db_controller::get_table = > data.txt
+
+<DATE | TIME>   : Thu Dec 10 17:54:56 2020
+<TYPE_ERROR >   : sys_error: Undefine function
+<DESCRIPTION>   : method :operators::execute | undefine operator : claer
+
+<DATE | TIME>   : Thu Dec 10 18:12:07 2020
+<TYPE_ERROR >   : sys_error: Can`t to find or access the file
+<DESCRIPTION>   : db_kernel::open_file() : ../config/tables/23.txt
+
+<DATE | TIME>   : Thu Dec 10 18:13:59 2020
+<TYPE_ERROR >   : sys_error: Can`t to find or access the file
+<DESCRIPTION>   : db_kernel::open_file() : ../config/tables/23.txt
+
+<DATE | TIME>   : Thu Dec 10 18:15:14 2020
+<TYPE_ERROR >   : sys_error: Can`t to find or access the file
+<DESCRIPTION>   : db_kernel::open_file() : ../config/tables/23.txt
+
+<DATE | TIME>   : Thu Dec 10 18:16:56 2020
+<TYPE_ERROR >   : sys_error: Can`t to find or access the file
+<DESCRIPTION>   : db_kernel::open_file() : ../config/tables/file.txt
+
