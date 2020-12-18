@@ -311,12 +311,13 @@ void db_kernel::update_dt_ti_ds(size_t pos,
 
  /* SORT RECORDS API */
 
-#define IS_EXISTS(ITER) ITER == sortRecords_.cend()
+#define IS_EXISTS(ITER) ITER != sortRecords_.cend()
 #define FIRST 1
 
 void db_kernel::add_sort_record(statist_key_t&& key, index_t indx)
 {
     auto iter = sortRecords_.find(key);
+    
     if (IS_EXISTS(iter))
     {
         auto list_i = iter->second.get();

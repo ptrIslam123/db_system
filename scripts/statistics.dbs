@@ -1,11 +1,16 @@
 
 create_t(
     tn : 'table'
-    fn : '../config/tables/big_init.txt'
+    fn : '../config/tables/small_init.txt'
     sz : '25000'
 )
 
 
 set_t(tn : 'table')
 
-statistics(ds : '*')
+
+sort(ds : '*')
+statistics(ds : 'count')
+
+
+

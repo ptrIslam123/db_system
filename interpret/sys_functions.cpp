@@ -56,41 +56,41 @@ bool comparator_dt_ti_ds(const token_ptr tok, const data_ptr data)
 
 
 
-statict_key_t make_sort_key_dt(token_ptr tok)
+statist_key_t make_sort_key_dt(token_ptr tok)
 {
     return  tok->get_date();
 }
 
 
-statict_key_t make_sort_key_ti(token_ptr tok)
+statist_key_t make_sort_key_ti(token_ptr tok)
 {
     return  tok->get_time();
 }
 
-statict_key_t make_sort_key_ds(token_ptr tok)
+statist_key_t make_sort_key_ds(token_ptr tok)
 {
     return  tok->get_descript();
 }
 
-statict_key_t make_sort_key_dt_ti(token_ptr tok)
+statist_key_t make_sort_key_dt_ti(token_ptr tok)
 {
     return  tok->get_date() + " " + 
             tok->get_time();
 }
 
-statict_key_t make_sort_key_dt_ds(token_ptr tok)
+statist_key_t make_sort_key_dt_ds(token_ptr tok)
 {
     return  tok->get_date() + " " + 
             tok->get_descript();
 }
 
-statict_key_t make_sort_key_ti_ds(token_ptr tok)
+statist_key_t make_sort_key_ti_ds(token_ptr tok)
 {
     return  tok->get_time() + " " +
             tok->get_descript();
 }
 
-statict_key_t make_sort_key_dt_ti_ds(token_ptr tok)
+statist_key_t make_sort_key_dt_ti_ds(token_ptr tok)
 {
     return  tok->get_date() + " " + 
             tok->get_time() + " " + 
@@ -154,7 +154,7 @@ void for_each(req_method_t req)
 }
 
 
-void for_each(statict_ket_maker_t s_maker)
+void for_each(statict_key_maker_t s_maker)
 {
     auto size = _get_size_table();
 
@@ -322,7 +322,7 @@ void write_table_to_table_req(data_ptr data)
 
 /* SORT RECORDS API */
 
-void add_sortRecord_req(statict_key_t&& key, index_t indx)
+void add_sortRecord_req(statist_key_t&& key, index_t indx)
 {
     db_controller_t::instance().add_sort_record(std::move(key), indx);
 }
@@ -355,12 +355,16 @@ void statistics_req(data_ptr data)
 
 void print_count_sortRec_req()
 {
-
+    db_controller_t::instance().for_each_sortRec(
+        _print_count_sortRec
+    );
 }
 
 void print_indexs_sortRec_req()
 {
-
+    db_controller_t::instance().for_each_sortRec(
+        _print_index_sortRec
+    );
 }
 
 
@@ -784,7 +788,7 @@ table_ptr _get_table_ptr(table_name_t&& tname)
     return db_controller_t::instance().get_table(std::move(tname));
 }
 
-statict_ptr _get_sortrecords()
+statist_ptr _get_sortrecords()
 {
     return db_controller_t::instance().get_sortRecords();
 }
@@ -882,6 +886,33 @@ void _print_log_file()
    static files file(_STD_LOGER_FILE_PATH_);
    std::cout << file.read(); 
 }
+
+
+void _print_count_sortRec(word_t&& name_key, statist_value_ptr list_val)
+{
+    std::cout << "NAME  : " << name_key             << std::endl;
+    std::cout << "COUNT : " << list_val->front()    << std::endl;
+    std::cout << std::endl;
+}
+
+void _print_index_sortRec(word_t&& name_key, statist_value_ptr list_val)
+{
+    auto beg = list_val->cbegin();
+    auto end = list_val->cend();
+    auto it = beg;
+    it++;
+    
+    std::cout << "NAME  : " << name_key << std::endl;
+    std::cout << "INDEX : ";
+
+    for (it = beg; it != end; ++it)
+    {
+        std::cout << *it;
+    }
+    
+    std::cout << std::endl;
+}
+
 
 #ifndef _TRANSACT_TEST_LOG_
 

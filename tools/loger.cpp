@@ -52,9 +52,11 @@ loger::~loger()
 void loger::log(str_t&& type_err, str_t&& descript)
 {
     auto date_time = get_date_time();
-    str_t log_format =  "<DATE | TIME>   : " + date_time + 
-                        "<TYPE_ERROR >   : " + type_err + "\n" +
-                        "<DESCRIPTION>   : " + descript + "\n\n";
+    date_time.erase(date_time.size() - 1);
+
+    str_t log_format =   "[" +  date_time   + "] : [" + 
+                                type_err    + "] : [" + 
+                                descript    + "]\n";
     
     //const auto size_data = log_format.size(); // -Wall : unused 
     write(std::move(log_format));

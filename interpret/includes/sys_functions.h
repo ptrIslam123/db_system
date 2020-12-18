@@ -14,7 +14,7 @@
 #include "../../db_kernel/includes/db_controller.h"
 
 
-using statict_key_t     = statict_key_t;
+//using statist_key_t     = statist_key_t;
 
 using token_ptr         = token*;   // token*
 using token_t           = std::unique_ptr<token>;
@@ -33,7 +33,7 @@ using ins_method_t      = void (*)(index_t , token_t&& );
 using upd_method_t      = void (*)(index_t, data_ptr );
 using select_t          = void (*)(cmprt_t, token_ptr , data_ptr , index_t );
 using req_method_t      = void (*)(token_ptr );
-using statict_ket_maker_t   = statict_key_t (*)(token_ptr );
+using statict_key_maker_t   = statist_key_t (*)(token_ptr );
 
 
 
@@ -48,13 +48,13 @@ bool comparator_ti_ds(const token_ptr, const data_ptr );
 bool comparator_dt_ti_ds(const token_ptr, const data_ptr );
 
 
-statict_key_t make_sort_key_dt(token_ptr );
-statict_key_t make_sort_key_ti(token_ptr );
-statict_key_t make_sort_key_ds(token_ptr );
-statict_key_t make_sort_key_dt_ti(token_ptr );
-statict_key_t make_sort_key_dt_ds(token_ptr );
-statict_key_t make_sort_key_ti_ds(token_ptr );
-statict_key_t make_sort_key_dt_ti_ds(token_ptr );
+statist_key_t make_sort_key_dt(token_ptr );
+statist_key_t make_sort_key_ti(token_ptr );
+statist_key_t make_sort_key_ds(token_ptr );
+statist_key_t make_sort_key_dt_ti(token_ptr );
+statist_key_t make_sort_key_dt_ds(token_ptr );
+statist_key_t make_sort_key_ti_ds(token_ptr );
+statist_key_t make_sort_key_dt_ti_ds(token_ptr );
 
 
 /* for_each */
@@ -64,7 +64,7 @@ void for_each(ins_method_t , token_t&& );
 void for_each(upd_method_t , data_ptr );
 void for_each(rm_method_t );
 void for_each(req_method_t );
-void for_each(statict_ket_maker_t );
+void for_each(statict_key_maker_t );
 
 /* request functions */
 
@@ -94,7 +94,7 @@ void size_table_req(data_ptr );
 
 /* SORT RECORDS API */
 
-void            add_sortRecord_req(statict_key_t&& , index_t );
+void            add_sortRecord_req(statist_key_t&& , index_t );
 void            clear_sortRecords_req();
 void            statistics_req(data_ptr );
 void            print_count_sortRec_req();
@@ -154,7 +154,7 @@ size_t        const _get_size_table();
 size_t        const _get_size_pesronse_buf();
 size_t        const _get_index_response_buf(size_t );
 table_ptr     _get_table_ptr(table_name_t&& );
-statict_ptr   _get_sortrecords();
+statist_ptr   _get_sortrecords();
 void          _add_index_response_buf(index_t );
 token_ptr     const _get_token(size_t );
 response_d    const _get_response();
@@ -171,6 +171,9 @@ void         _print_table(const table_name_ptr );
 void         _print_tables();
 void         _print_triggers();
 void         _print_log_file();
+
+void         _print_count_sortRec(word_t&& , statist_value_ptr );
+void         _print_index_sortRec(word_t&& , statist_value_ptr );
 
 #ifndef _TRANSACT_TEST_LOG_
 void         _save_state_log(const token_ptr , const std::string& );
