@@ -12,6 +12,7 @@ using heder_t                 = word_t&;
 class db_controller
 {
 public:
+    using statict_key_t       = word_t;
     using fname_t             = std::string;
     using file_name_t         = fname_t;
     using db_t                = std::unique_ptr<db_kernel>;
@@ -59,6 +60,13 @@ public:
     void        update_dt_ds(size_t, date_t_&& , descript_t_&& );
     void        update_ti_ds(size_t , time_t_&& , descript_t_&& );
     void        update_dt_ti_ds(size_t, date_t_&& , time_t_&& , descript_t_&&);
+    
+
+    void        add_sort_record(statict_key_t&& , index_t );
+    statist_ptr get_sortRecords();
+    void        clear_sortRecords();
+    void        for_each_sortRec(sort_method_t );
+
     heder_t     get_heder_table();
 
     size_t      size_table();

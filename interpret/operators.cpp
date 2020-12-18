@@ -30,7 +30,9 @@ operators::operators(base_parse_api_ptr base_p_api):
         {"aft_detach",__aft_detach_operator},
         {"write_to",  __write_table_operator},
         {"llog",      __list_error_log_operator},
-        {"size_t",    __size_table_operator}
+        {"size_t",    __size_table_operator},
+        {"statistics", __statistics_operator},
+        {"sort",       __sort_records_operator}
     }
 {}
 

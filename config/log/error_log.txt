@@ -139,3 +139,31 @@
 <TYPE_ERROR >   : sys_error: Can`t to find or access the file
 <DESCRIPTION>   : db_kernel::open_file() : ../config/tables/file.txt
 
+<DATE | TIME>   : Fri Dec 11 14:47:36 2020
+<TYPE_ERROR >   : sys_error: Can`t to find or access the file
+<DESCRIPTION>   : db_kernel::open_file() : ../config/big_init.txt
+
+<DATE | TIME>   : Fri Dec 11 14:47:55 2020
+<TYPE_ERROR >   : sys_error: Undefine function
+<DESCRIPTION>   : method :operators::execute | undefine operator : statistics
+
+<DATE | TIME>   : Fri Dec 11 14:49:06 2020
+<TYPE_ERROR >   : sys_error: Undefine function
+<DESCRIPTION>   : method :operators::execute | undefine operator : statistics
+
+<DATE | TIME>   : Fri Dec 11 14:51:52 2020
+<TYPE_ERROR >   : sys_error: Undefine function
+<DESCRIPTION>   : method :operators::execute | undefine operator : statistics
+
+<DATE | TIME>   : Fri Dec 11 14:53:05 2020
+<TYPE_ERROR >   : sys_error: Undefine function
+<DESCRIPTION>   : method :operators::execute | undefine operator : statistics
+
+<DATE | TIME>   : Fri Dec 11 14:53:30 2020
+<TYPE_ERROR >   : sys_error: Undefine function
+<DESCRIPTION>   : method :operators::execute | undefine operator : statistics
+
+<DATE | TIME>   : Fri Dec 11 14:54:06 2020
+<TYPE_ERROR >   : sys_error: Undefine function
+<DESCRIPTION>   : method :operators::execute | undefine operator : statistics
+

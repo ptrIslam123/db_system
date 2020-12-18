@@ -2,7 +2,6 @@
 #include "includes/sys_error.h"
 #include "includes/memento.h"
 #include "includes/list_triggers.h"
-#include "../db_kernel/includes/db_controller.h"
 #include "../tools/includes/files.h"
 
 using size_table_t          = decltype(_get_size_table);
@@ -57,6 +56,48 @@ bool comparator_dt_ti_ds(const token_ptr tok, const data_ptr data)
 
 
 
+statict_key_t make_sort_key_dt(token_ptr tok)
+{
+    return  tok->get_date();
+}
+
+
+statict_key_t make_sort_key_ti(token_ptr tok)
+{
+    return  tok->get_time();
+}
+
+statict_key_t make_sort_key_ds(token_ptr tok)
+{
+    return  tok->get_descript();
+}
+
+statict_key_t make_sort_key_dt_ti(token_ptr tok)
+{
+    return  tok->get_date() + " " + 
+            tok->get_time();
+}
+
+statict_key_t make_sort_key_dt_ds(token_ptr tok)
+{
+    return  tok->get_date() + " " + 
+            tok->get_descript();
+}
+
+statict_key_t make_sort_key_ti_ds(token_ptr tok)
+{
+    return  tok->get_time() + " " +
+            tok->get_descript();
+}
+
+statict_key_t make_sort_key_dt_ti_ds(token_ptr tok)
+{
+    return  tok->get_date() + " " + 
+            tok->get_time() + " " + 
+            tok->get_descript();
+}
+
+
 
 /* for_each */
 
@@ -109,6 +150,17 @@ void for_each(req_method_t req)
     for (decltype(size) i = 0; i < size; ++i)
     {
         req( _get_token( _get_index_response_buf(i) ) );
+    }
+}
+
+
+void for_each(statict_ket_maker_t s_maker)
+{
+    auto size = _get_size_table();
+
+    for (decltype(size) i = 0; i < size; ++i)
+    {
+        add_sortRecord_req(s_maker(_get_token(i)) ,i);
     }
 }
 
@@ -268,6 +320,50 @@ void write_table_to_table_req(data_ptr data)
 }
 
 
+/* SORT RECORDS API */
+
+void add_sortRecord_req(statict_key_t&& key, index_t indx)
+{
+    db_controller_t::instance().add_sort_record(std::move(key), indx);
+}
+
+
+void clear_sortRecords_req()
+{
+    db_controller_t::instance().clear_sortRecords();
+}
+
+void statistics_req(data_ptr data)
+{
+    auto ds = *(data->get_descript_ptr());
+    if (ds == "count")
+    {
+        print_count_sortRec_req();
+    }
+    else if (ds == "index")
+    {
+        print_indexs_sortRec_req();
+    }
+    else
+    {
+        throw sys_error(error_type::UNDEFINE_PARAM_TYPE,
+            "method : statistics_req | undefine param => " + ds);
+    }
+    
+}
+
+
+void print_count_sortRec_req()
+{
+
+}
+
+void print_indexs_sortRec_req()
+{
+
+}
+
+
 
 /* TRIGGER API */
 
@@ -408,7 +504,31 @@ void aft_detach_req(data_ptr data)
 }
 
 
-
+void size_table_req(data_ptr data)
+{
+    auto arg_type = data->get_args_type();
+    
+    switch (arg_type)
+    {
+        case _TABLE_NAME_ : {
+            auto tname      = *(data->get_table_name_ptr());
+            auto table_ptr  = _get_table_ptr(std::move(tname));
+            auto size_table = table_ptr->size_table();
+            
+            std::cout << size_table << std::endl;
+            break;
+        }
+        case _NULL_TYPE : {
+            auto cur_size_t = _get_size_table();
+            
+            std::cout << cur_size_t << std::endl;
+            break;
+        }
+        default: 
+            throw sys_error(error_type::UNDEFINE_PARAM_TYPE,
+                "method : sys_function::size_table_req");
+    }
+}
 
 
 
@@ -658,6 +778,16 @@ size_t const _get_index_response_buf(size_t pos)
     return response_data_t::instance().get_index(pos);
 }
 
+
+table_ptr _get_table_ptr(table_name_t&& tname)
+{
+    return db_controller_t::instance().get_table(std::move(tname));
+}
+
+statict_ptr _get_sortrecords()
+{
+    return db_controller_t::instance().get_sortRecords();
+}
 
 void _add_index_response_buf(index_t index)
 {

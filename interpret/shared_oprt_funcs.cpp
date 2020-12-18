@@ -11,15 +11,9 @@ void __get_operator(args_oprt_buf_t&& args)
     //auto data = get_data_ptr();
     args_data arg_data;
     data_ptr data = &arg_data;
-    try
-    {
-        init_data(data, std::move(args));   
-    }
-    catch(const std::out_of_range& e)
-    {
-        throw sys_error(error_type::OUT_OF_RANGE, 
-                        "init_data(parse_argument function { get })");
-    }
+   
+    init_data(data, std::move(args)); 
+
     auto type = data->get_args_type();
 
     clear_req();
@@ -65,15 +59,9 @@ void __print_table__operator(args_oprt_buf_t&& args)
     //auto data = get_data_ptr();
     args_data arg_data;
     data_ptr data = &arg_data;
-    try
-    {
-        init_data(data, std::move(args));   
-    }
-    catch(const std::out_of_range& e)
-    {
-        throw sys_error(error_type::OUT_OF_RANGE, 
-                        "init_data(parse_argument function { print_t })");
-    }
+    
+    init_data(data, std::move(args)); 
+
     auto type = data->get_args_type();
     
     if (type == _TABLE_NAME_)
@@ -126,15 +114,9 @@ void __log_operator(args_oprt_buf_t&& args)
 {
     args_data arg_data;
     data_ptr data = &arg_data;
-    try
-    {
-        init_data(data, std::move(args));   
-    }
-    catch(const std::out_of_range& e)
-    {
-        throw sys_error(error_type::OUT_OF_RANGE, 
-                        "init_data(parse_argument function { log })");
-    }
+    
+    init_data(data, std::move(args)); 
+
     auto type = data->get_args_type();
     
     switch (type)
@@ -218,15 +200,9 @@ void  __bef_attach_operator(args_oprt_buf_t&& args)
 {
     args_data arg_data;
     data_ptr data = &arg_data;
-    try
-    {
-        init_data(data, std::move(args));   
-    }
-    catch(const std::out_of_range& e)
-    {
-        throw sys_error(error_type::OUT_OF_RANGE, 
-                        "init_data(parse_argument function { bef_attach })");
-    }
+    
+    init_data(data, std::move(args)); 
+
     auto type = data->get_args_type();
 
     switch (type)
@@ -245,15 +221,9 @@ void  __bef_detach_operator(args_oprt_buf_t&& args)
 {
     args_data arg_data;
     data_ptr data = &arg_data;
-    try
-    {
-        init_data(data, std::move(args));   
-    }
-    catch(const std::out_of_range& e)
-    {
-        throw sys_error(error_type::OUT_OF_RANGE, 
-                        "init_data(parse_argument function { bef_detach })");
-    }
+    
+    init_data(data, std::move(args)); 
+
     auto type = data->get_args_type();
 
     switch (type)
@@ -272,15 +242,9 @@ void  __aft_attach_operator(args_oprt_buf_t&& args)
 {
     args_data arg_data;
     data_ptr data = &arg_data;
-    try
-    {
-        init_data(data, std::move(args));   
-    }
-    catch(const std::out_of_range& e)
-    {
-        throw sys_error(error_type::OUT_OF_RANGE, 
-                        "init_data(parse_argument function { aft_attch })");
-    }
+    
+    init_data(data, std::move(args));
+
     auto type = data->get_args_type();
 
     switch (type)
@@ -299,15 +263,9 @@ void  __aft_detach_operator(args_oprt_buf_t&& args)
 {
     args_data arg_data;
     data_ptr data = &arg_data;
-    try
-    {
-        init_data(data, std::move(args));   
-    }
-    catch(const std::out_of_range& e)
-    {
-        throw sys_error(error_type::OUT_OF_RANGE, 
-                        "init_data(parse_argument function { aft_detach })");
-    }
+    
+    init_data(data, std::move(args));  
+
     auto type = data->get_args_type();
 
     switch (type)
@@ -327,15 +285,9 @@ void __write_table_operator(args_oprt_buf_t&& args)
 {
     args_data arg_data;
     data_ptr data = &arg_data;
-    try
-    {
-        init_data(data, std::move(args));   
-    }
-    catch(const std::out_of_range& e)
-    {
-        throw sys_error(error_type::OUT_OF_RANGE, 
-                        "init_data(parse_argument function { write_table })");
-    }
+    
+    init_data(data, std::move(args));  
+
     auto type = data->get_args_type();
 
     switch (type)
@@ -357,14 +309,113 @@ void __write_table_operator(args_oprt_buf_t&& args)
 
 void __size_table_operator(args_oprt_buf_t&& args)
 {
-    const auto size = args.size();
-    if (size > 0 )
+    args_data arg_data;
+    data_ptr data = &arg_data;
+    
+    init_data(data, std::move(args)); 
+
+    size_table_req(data);
+}
+
+
+
+void __sort_records_operator(args_oprt_buf_t&& args)
+{
+    //auto data = get_data_ptr();
+    args_data arg_data;
+    data_ptr data = &arg_data;
+    try
     {
-        throw sys_error(error_type::UNDEFINE_PARAM_TYPE,
-                            "method :__size_table_operator | undefine param type");
+        init_data(data, std::move(args));   
     }
-    auto result = _get_size_table();
-    std::cout << result << std::endl;   
+    catch(const std::out_of_range& e)
+    {
+        throw sys_error(error_type::OUT_OF_RANGE, 
+                        "init_data(parse_argument function { update })");
+    }
+    auto type = data->get_args_type();
+    switch (type)
+    {
+        case _NULL_TYPE : {
+            clear_sortRecords_req();
+
+            for_each(make_sort_key_dt_ti_ds);
+            break;
+        }
+        case _DATE_ : {
+            clear_sortRecords_req();
+
+            for_each(make_sort_key_dt);
+            break;
+        }
+        case _TIME_ : {
+            clear_sortRecords_req();
+
+            for_each(make_sort_key_ti);
+            break;
+        }
+        case _DESCRIPT_ : {
+            clear_sortRecords_req();
+
+            for_each(make_sort_key_ds);
+            break;
+        }
+        case _DATE_TIME_ : {
+            clear_sortRecords_req();
+
+            for_each(make_sort_key_dt_ti);
+            break;
+        }
+        case _DATE_DESCRIPT : {
+            clear_sortRecords_req();
+
+            for_each(make_sort_key_dt_ds);
+            break;
+        }
+        case _TIME_DESCRIPT_ : {
+            clear_sortRecords_req();
+
+            for_each(make_sort_key_ti_ds);
+            break;
+        }
+        case _DATE_TIME_DESCRIPT_ : {
+            clear_sortRecords_req();
+
+            for_each(make_sort_key_dt_ti_ds);
+            break;
+        }
+        default:
+            throw sys_error(error_type::UNDEFINE_PARAM_TYPE,
+                            "method :__sort_records_operator | undefine param type");
+    }
+}
+
+void __statistics_operator(args_oprt_buf_t&& args)
+{
+     //auto data = get_data_ptr();
+    args_data arg_data;
+    data_ptr data = &arg_data;
+    try
+    {
+        init_data(data, std::move(args));   
+    }
+    catch(const std::out_of_range& e)
+    {
+        throw sys_error(error_type::OUT_OF_RANGE, 
+                        "init_data(parse_argument function { update })");
+    }
+    auto type = data->get_args_type();
+
+    switch (type)
+    {
+        case _DESCRIPT_ : {
+            statistics_req(data);
+            break;
+        }
+        default:
+            throw sys_error(error_type::UNDEFINE_PARAM_TYPE,
+                            "method :__statistics_operator | undefine param type");
+    }
 }
 
 

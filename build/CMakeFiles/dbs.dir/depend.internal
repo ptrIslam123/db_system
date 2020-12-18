@@ -91,7 +91,13 @@ CMakeFiles/dbs.dir/interpret/args_data.cpp.o
  /home/islam/CppProgram/db_sysytem_for_it_company/interpret/includes/args_data.h
  /home/islam/CppProgram/db_sysytem_for_it_company/interpret/includes/sys_error.h
 CMakeFiles/dbs.dir/interpret/atomic_operators.cpp.o
+ /home/islam/CppProgram/db_sysytem_for_it_company/db_kernel/includes/db_controller.h
+ /home/islam/CppProgram/db_sysytem_for_it_company/db_kernel/includes/db_kernel.h
+ /home/islam/CppProgram/db_sysytem_for_it_company/db_kernel/includes/event.h
+ /home/islam/CppProgram/db_sysytem_for_it_company/db_kernel/includes/file_stream.h
+ /home/islam/CppProgram/db_sysytem_for_it_company/db_kernel/includes/methods.h
  /home/islam/CppProgram/db_sysytem_for_it_company/db_kernel/includes/token.h
+ /home/islam/CppProgram/db_sysytem_for_it_company/db_kernel/includes/tokenize_grammar.h
  /home/islam/CppProgram/db_sysytem_for_it_company/interpret/atomic_operators.cpp
  /home/islam/CppProgram/db_sysytem_for_it_company/interpret/includes/args_data.h
  /home/islam/CppProgram/db_sysytem_for_it_company/interpret/includes/args_data_operator.h
@@ -101,11 +107,15 @@ CMakeFiles/dbs.dir/interpret/atomic_operators.cpp.o
  /home/islam/CppProgram/db_sysytem_for_it_company/interpret/includes/lexeme.h
  /home/islam/CppProgram/db_sysytem_for_it_company/interpret/includes/lexeme_type.h
  /home/islam/CppProgram/db_sysytem_for_it_company/interpret/includes/lexer.h
+ /home/islam/CppProgram/db_sysytem_for_it_company/interpret/includes/operators.h
+ /home/islam/CppProgram/db_sysytem_for_it_company/interpret/includes/parser.h
  /home/islam/CppProgram/db_sysytem_for_it_company/interpret/includes/record.h
  /home/islam/CppProgram/db_sysytem_for_it_company/interpret/includes/response_data.h
  /home/islam/CppProgram/db_sysytem_for_it_company/interpret/includes/shared_oprt_funcs.h
  /home/islam/CppProgram/db_sysytem_for_it_company/interpret/includes/sys_error.h
  /home/islam/CppProgram/db_sysytem_for_it_company/interpret/includes/sys_functions.h
+ /home/islam/CppProgram/db_sysytem_for_it_company/interpret/includes/trigger_node.h
+ /home/islam/CppProgram/db_sysytem_for_it_company/interpret/includes/trigger_opeators.h
  /home/islam/CppProgram/db_sysytem_for_it_company/tools/includes/loger.h
  /home/islam/CppProgram/db_sysytem_for_it_company/tools/includes/singleton.h
  /home/islam/CppProgram/db_sysytem_for_it_company/tools/includes/utils.h
@@ -160,7 +170,13 @@ CMakeFiles/dbs.dir/interpret/memento.cpp.o
  /home/islam/CppProgram/db_sysytem_for_it_company/interpret/memento.cpp
  /home/islam/CppProgram/db_sysytem_for_it_company/tools/includes/singleton.h
 CMakeFiles/dbs.dir/interpret/operators.cpp.o
+ /home/islam/CppProgram/db_sysytem_for_it_company/db_kernel/includes/db_controller.h
+ /home/islam/CppProgram/db_sysytem_for_it_company/db_kernel/includes/db_kernel.h
+ /home/islam/CppProgram/db_sysytem_for_it_company/db_kernel/includes/event.h
+ /home/islam/CppProgram/db_sysytem_for_it_company/db_kernel/includes/file_stream.h
+ /home/islam/CppProgram/db_sysytem_for_it_company/db_kernel/includes/methods.h
  /home/islam/CppProgram/db_sysytem_for_it_company/db_kernel/includes/token.h
+ /home/islam/CppProgram/db_sysytem_for_it_company/db_kernel/includes/tokenize_grammar.h
  /home/islam/CppProgram/db_sysytem_for_it_company/interpret/includes/args_data.h
  /home/islam/CppProgram/db_sysytem_for_it_company/interpret/includes/args_data_operator.h
  /home/islam/CppProgram/db_sysytem_for_it_company/interpret/includes/base_parse_api.h
@@ -169,11 +185,14 @@ CMakeFiles/dbs.dir/interpret/operators.cpp.o
  /home/islam/CppProgram/db_sysytem_for_it_company/interpret/includes/lexeme_type.h
  /home/islam/CppProgram/db_sysytem_for_it_company/interpret/includes/lexer.h
  /home/islam/CppProgram/db_sysytem_for_it_company/interpret/includes/operators.h
+ /home/islam/CppProgram/db_sysytem_for_it_company/interpret/includes/parser.h
  /home/islam/CppProgram/db_sysytem_for_it_company/interpret/includes/record.h
  /home/islam/CppProgram/db_sysytem_for_it_company/interpret/includes/response_data.h
  /home/islam/CppProgram/db_sysytem_for_it_company/interpret/includes/shared_oprt_funcs.h
  /home/islam/CppProgram/db_sysytem_for_it_company/interpret/includes/sys_error.h
  /home/islam/CppProgram/db_sysytem_for_it_company/interpret/includes/sys_functions.h
+ /home/islam/CppProgram/db_sysytem_for_it_company/interpret/includes/trigger_node.h
+ /home/islam/CppProgram/db_sysytem_for_it_company/interpret/includes/trigger_opeators.h
  /home/islam/CppProgram/db_sysytem_for_it_company/interpret/operators.cpp
  /home/islam/CppProgram/db_sysytem_for_it_company/tools/includes/loger.h
  /home/islam/CppProgram/db_sysytem_for_it_company/tools/includes/singleton.h
@@ -216,17 +235,30 @@ CMakeFiles/dbs.dir/interpret/response_data.cpp.o
  /home/islam/CppProgram/db_sysytem_for_it_company/tools/includes/singleton.h
  /home/islam/CppProgram/db_sysytem_for_it_company/tools/includes/utils.h
 CMakeFiles/dbs.dir/interpret/shared_oprt_funcs.cpp.o
+ /home/islam/CppProgram/db_sysytem_for_it_company/db_kernel/includes/db_controller.h
+ /home/islam/CppProgram/db_sysytem_for_it_company/db_kernel/includes/db_kernel.h
+ /home/islam/CppProgram/db_sysytem_for_it_company/db_kernel/includes/event.h
+ /home/islam/CppProgram/db_sysytem_for_it_company/db_kernel/includes/file_stream.h
+ /home/islam/CppProgram/db_sysytem_for_it_company/db_kernel/includes/methods.h
  /home/islam/CppProgram/db_sysytem_for_it_company/db_kernel/includes/token.h
+ /home/islam/CppProgram/db_sysytem_for_it_company/db_kernel/includes/tokenize_grammar.h
  /home/islam/CppProgram/db_sysytem_for_it_company/interpret/includes/args_data.h
  /home/islam/CppProgram/db_sysytem_for_it_company/interpret/includes/args_data_operator.h
+ /home/islam/CppProgram/db_sysytem_for_it_company/interpret/includes/base_parse_api.h
+ /home/islam/CppProgram/db_sysytem_for_it_company/interpret/includes/command.h
  /home/islam/CppProgram/db_sysytem_for_it_company/interpret/includes/lexeme.h
  /home/islam/CppProgram/db_sysytem_for_it_company/interpret/includes/lexeme_type.h
+ /home/islam/CppProgram/db_sysytem_for_it_company/interpret/includes/lexer.h
+ /home/islam/CppProgram/db_sysytem_for_it_company/interpret/includes/operators.h
  /home/islam/CppProgram/db_sysytem_for_it_company/interpret/includes/option_parse.h
+ /home/islam/CppProgram/db_sysytem_for_it_company/interpret/includes/parser.h
  /home/islam/CppProgram/db_sysytem_for_it_company/interpret/includes/record.h
  /home/islam/CppProgram/db_sysytem_for_it_company/interpret/includes/response_data.h
  /home/islam/CppProgram/db_sysytem_for_it_company/interpret/includes/shared_oprt_funcs.h
  /home/islam/CppProgram/db_sysytem_for_it_company/interpret/includes/sys_error.h
  /home/islam/CppProgram/db_sysytem_for_it_company/interpret/includes/sys_functions.h
+ /home/islam/CppProgram/db_sysytem_for_it_company/interpret/includes/trigger_node.h
+ /home/islam/CppProgram/db_sysytem_for_it_company/interpret/includes/trigger_opeators.h
  /home/islam/CppProgram/db_sysytem_for_it_company/interpret/shared_oprt_funcs.cpp
  /home/islam/CppProgram/db_sysytem_for_it_company/tools/includes/files.h
  /home/islam/CppProgram/db_sysytem_for_it_company/tools/includes/loger.h
@@ -283,7 +315,13 @@ CMakeFiles/dbs.dir/interpret/sys_functions.cpp.o
  /home/islam/CppProgram/db_sysytem_for_it_company/tools/includes/loger.h
  /home/islam/CppProgram/db_sysytem_for_it_company/tools/includes/singleton.h
 CMakeFiles/dbs.dir/interpret/transaction.cpp.o
+ /home/islam/CppProgram/db_sysytem_for_it_company/db_kernel/includes/db_controller.h
+ /home/islam/CppProgram/db_sysytem_for_it_company/db_kernel/includes/db_kernel.h
+ /home/islam/CppProgram/db_sysytem_for_it_company/db_kernel/includes/event.h
+ /home/islam/CppProgram/db_sysytem_for_it_company/db_kernel/includes/file_stream.h
+ /home/islam/CppProgram/db_sysytem_for_it_company/db_kernel/includes/methods.h
  /home/islam/CppProgram/db_sysytem_for_it_company/db_kernel/includes/token.h
+ /home/islam/CppProgram/db_sysytem_for_it_company/db_kernel/includes/tokenize_grammar.h
  /home/islam/CppProgram/db_sysytem_for_it_company/interpret/includes/args_data.h
  /home/islam/CppProgram/db_sysytem_for_it_company/interpret/includes/args_data_operator.h
  /home/islam/CppProgram/db_sysytem_for_it_company/interpret/includes/atomic_operators.h
@@ -293,12 +331,15 @@ CMakeFiles/dbs.dir/interpret/transaction.cpp.o
  /home/islam/CppProgram/db_sysytem_for_it_company/interpret/includes/lexeme_type.h
  /home/islam/CppProgram/db_sysytem_for_it_company/interpret/includes/lexer.h
  /home/islam/CppProgram/db_sysytem_for_it_company/interpret/includes/operators.h
+ /home/islam/CppProgram/db_sysytem_for_it_company/interpret/includes/parser.h
  /home/islam/CppProgram/db_sysytem_for_it_company/interpret/includes/record.h
  /home/islam/CppProgram/db_sysytem_for_it_company/interpret/includes/response_data.h
  /home/islam/CppProgram/db_sysytem_for_it_company/interpret/includes/shared_oprt_funcs.h
  /home/islam/CppProgram/db_sysytem_for_it_company/interpret/includes/sys_error.h
  /home/islam/CppProgram/db_sysytem_for_it_company/interpret/includes/sys_functions.h
  /home/islam/CppProgram/db_sysytem_for_it_company/interpret/includes/transaction.h
+ /home/islam/CppProgram/db_sysytem_for_it_company/interpret/includes/trigger_node.h
+ /home/islam/CppProgram/db_sysytem_for_it_company/interpret/includes/trigger_opeators.h
  /home/islam/CppProgram/db_sysytem_for_it_company/interpret/transaction.cpp
  /home/islam/CppProgram/db_sysytem_for_it_company/tools/includes/loger.h
  /home/islam/CppProgram/db_sysytem_for_it_company/tools/includes/singleton.h

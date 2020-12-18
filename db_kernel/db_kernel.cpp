@@ -309,6 +309,51 @@ void db_kernel::update_dt_ti_ds(size_t pos,
     tok->set_descript(std::move(descript));
 }
 
+ /* SORT RECORDS API */
+
+#define IS_EXISTS(ITER) ITER == sortRecords_.cend()
+#define FIRST 1
+
+void db_kernel::add_sort_record(statist_key_t&& key, index_t indx)
+{
+    auto iter = sortRecords_.find(key);
+    if (IS_EXISTS(iter))
+    {
+        auto list_i = iter->second.get();
+        list_i->push_back(indx);
+        list_i->front()++;
+    }
+    else
+    {
+        auto val = std::make_unique<statist_value_t>();
+        val->push_back(FIRST);
+        val->push_back(indx);
+
+        sortRecords_[std::move(key)] = std::move(val);  
+    }
+}
+
+
+statist_ptr db_kernel::get_sortRecords()
+{
+    return &sortRecords_;
+}
+
+
+void db_kernel::clear_sortRecords()
+{
+    sortRecords_.clear();
+}
+
+void db_kernel::for_each_sortRec(sort_method_t method)
+{
+    for (auto &i : sortRecords_)
+    {
+        word_t w = std::move(i.first);
+        method(std::move(w), i.second.get());
+    }
+}
+
 token_ptr db_kernel::get_token(size_t pos)
 {
     auto iter = container_.begin();

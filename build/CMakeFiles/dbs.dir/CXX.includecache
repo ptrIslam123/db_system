@@ -51,6 +51,10 @@ string
 -
 vector
 -
+list
+-
+map
+-
 token.h
 /home/islam/CppProgram/db_sysytem_for_it_company/db_kernel/includes/token.h
 tokenize_grammar.h
@@ -305,6 +309,8 @@ response_data.h
 /home/islam/CppProgram/db_sysytem_for_it_company/interpret/includes/response_data.h
 ../../tools/includes/loger.h
 /home/islam/CppProgram/db_sysytem_for_it_company/tools/includes/loger.h
+../../db_kernel/includes/db_controller.h
+/home/islam/CppProgram/db_sysytem_for_it_company/db_kernel/includes/db_controller.h
 
 /home/islam/CppProgram/db_sysytem_for_it_company/interpret/includes/transaction.h
 operators.h
@@ -443,8 +449,6 @@ includes/memento.h
 /home/islam/CppProgram/db_sysytem_for_it_company/interpret/includes/memento.h
 includes/list_triggers.h
 /home/islam/CppProgram/db_sysytem_for_it_company/interpret/includes/list_triggers.h
-../db_kernel/includes/db_controller.h
-/home/islam/CppProgram/db_sysytem_for_it_company/db_kernel/includes/db_controller.h
 ../tools/includes/files.h
 /home/islam/CppProgram/db_sysytem_for_it_company/tools/includes/files.h
 

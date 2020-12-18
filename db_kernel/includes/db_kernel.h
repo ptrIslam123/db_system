@@ -9,6 +9,8 @@
 
 #ifndef _ENABLE_DB_CONTROLLER_OPRTIONS_
 #include <vector>
+#include <list>
+#include <map>
 
 #include "token.h"
 #include "tokenize_grammar.h"
@@ -18,7 +20,6 @@
 #endif // !_ENABLE_DB_CONTROLLER_OPRTIONS_
 
 class db_kernel;
-
 #ifndef _ENABLE_DB_CONTROLLER_OPRTIONS_
 using token_t           = std::unique_ptr<token>;
 using token_ptr         = token*;
@@ -26,19 +27,21 @@ using file_stream_t     = file_stream;
 using file_stream_ptr   = file_stream_t*;
 using tok_gramm_t       = std::unique_ptr<tokenize_grammar>;
 using tok_gramm_ptr     = tokenize_grammar*;
+
 using container_t       = std::vector<token_t>;
 using container_iter_t  = typename container_t::iterator;
 using db_kernel_t       = std::unique_ptr<db_kernel>; 
 using db_kernel_ptr     = db_kernel*;
+
+using index_t           = container_t::size_type;
+using count_t           = index_t;
+using statist_value_t   = std::list<index_t>;
+using statist_value_ptr = statist_value_t*;
+using statist_key_t     = word_t; 
+using statist_t         = std::map<word_t, std::unique_ptr<statist_value_t>>;
+using statist_ptr       = statist_t*;
+using sort_method_t     = void (*)(word_t&& , statist_value_ptr);
 #endif // !_ENABLE_DB_CONTROLLER_OPRTIONS_
-/*
-    token_t         = std::unique_ptr<token>
-    token_ptr       = token*
-    file_stream_t   = file_stream
-    file_stream_ptr = file_stream*
-    tok_gramm_t     = tokenize_grammar<file_stream*>
-    tok_gramm_ptr   = tokenize_grammar<file_stream*>*
-*/
 
 class db_kernel
 {
@@ -67,6 +70,13 @@ public:
     void        update_dt_ds(size_t, date_t_&& , descript_t_&& );
     void        update_ti_ds(size_t , time_t_&& , descript_t_&& );
     void        update_dt_ti_ds(size_t, date_t_&& , time_t_&& , descript_t_&&);
+
+    /* SORT RECORDS API */
+    void        add_sort_record(statist_key_t&& , index_t );
+    statist_ptr get_sortRecords();
+    void        clear_sortRecords();
+    void        for_each_sortRec(sort_method_t );
+    
 
     word_t&     get_heder();
     word_ptr    get_heder_ptr();
@@ -103,7 +113,7 @@ private:
     container_t      container_;
     container_iter_t iter_, beg_iter_;
     word_t           heder_;
-
+    statist_t        sortRecords_;
 
     /*  TRIGERS API */
 

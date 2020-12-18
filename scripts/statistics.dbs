@@ -1,0 +1,11 @@
+
+create_t(
+    tn : 'table'
+    fn : '../config/tables/big_init.txt'
+    sz : '25000'
+)
+
+
+set_t(tn : 'table')
+
+statistics(ds : '*')

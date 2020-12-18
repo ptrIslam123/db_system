@@ -11,28 +11,29 @@
 #include "args_data.h"
 #include "response_data.h"
 #include "../../tools/includes/loger.h"
+#include "../../db_kernel/includes/db_controller.h"
 
-using token_ptr     = token*;   // token*
-using token_t       = std::unique_ptr<token>;
-using response_d    = response_data::container_t;
 
-using table_name_t  = std::string;
-using file_name_t   = std::string;
+using statict_key_t     = statict_key_t;
+
+using token_ptr         = token*;   // token*
+using token_t           = std::unique_ptr<token>;
+using response_d        = response_data::container_t;
+
+using table_name_t      = std::string;
+using file_name_t       = std::string;
+using table_ptr         = db_controller::table_ptr;
 
 /* memento API */
-using rolback_f_t   = controller_transact_t;
-using indext_t      = size_t;
-using cmprt_t       = bool (*)(const token_ptr ,const data_ptr ); 
-using rm_method_t   = void (*)(index_t );
-using ins_method_t  = void (*)(index_t , token_t&& );
-using upd_method_t  = void (*)(index_t, data_ptr );
-using select_t      = void (*)(cmprt_t, token_ptr , data_ptr , index_t );
-using req_method_t  = void (*)(token_ptr );
-//using comparator_t  = bool (*)(cmprt_t, token_ptr , data_ptr ); 
-
-/* rm_method_t for remove_request */
-/* req_method_t for update, insert request */
-/* select_t for get request */
+using rolback_f_t       = controller_transact_t;
+using indext_t          = size_t;
+using cmprt_t           = bool (*)(const token_ptr ,const data_ptr ); 
+using rm_method_t       = void (*)(index_t );
+using ins_method_t      = void (*)(index_t , token_t&& );
+using upd_method_t      = void (*)(index_t, data_ptr );
+using select_t          = void (*)(cmprt_t, token_ptr , data_ptr , index_t );
+using req_method_t      = void (*)(token_ptr );
+using statict_ket_maker_t   = statict_key_t (*)(token_ptr );
 
 
 
@@ -47,6 +48,14 @@ bool comparator_ti_ds(const token_ptr, const data_ptr );
 bool comparator_dt_ti_ds(const token_ptr, const data_ptr );
 
 
+statict_key_t make_sort_key_dt(token_ptr );
+statict_key_t make_sort_key_ti(token_ptr );
+statict_key_t make_sort_key_ds(token_ptr );
+statict_key_t make_sort_key_dt_ti(token_ptr );
+statict_key_t make_sort_key_dt_ds(token_ptr );
+statict_key_t make_sort_key_ti_ds(token_ptr );
+statict_key_t make_sort_key_dt_ti_ds(token_ptr );
+
 
 /* for_each */
 
@@ -55,6 +64,7 @@ void for_each(ins_method_t , token_t&& );
 void for_each(upd_method_t , data_ptr );
 void for_each(rm_method_t );
 void for_each(req_method_t );
+void for_each(statict_ket_maker_t );
 
 /* request functions */
 
@@ -80,6 +90,18 @@ void print_error_log_req();
 void clear_req();
 void write_table_to_file_req(data_ptr );
 void write_table_to_table_req(data_ptr );
+void size_table_req(data_ptr );
+
+/* SORT RECORDS API */
+
+void            add_sortRecord_req(statict_key_t&& , index_t );
+void            clear_sortRecords_req();
+void            statistics_req(data_ptr );
+void            print_count_sortRec_req();
+void            print_indexs_sortRec_req();
+
+
+
 
 /* TRIGGER API */
 
@@ -110,6 +132,7 @@ void update_dt_ti_ds_req_atomic(index_t , data_ptr );
 void remove_req_atomic(index_t );
 
 
+
 void rolback_records();
 void clear_buf_memento();
 
@@ -130,6 +153,8 @@ token_t       create_token(data_ptr );
 size_t        const _get_size_table();
 size_t        const _get_size_pesronse_buf();
 size_t        const _get_index_response_buf(size_t );
+table_ptr     _get_table_ptr(table_name_t&& );
+statict_ptr   _get_sortrecords();
 void          _add_index_response_buf(index_t );
 token_ptr     const _get_token(size_t );
 response_d    const _get_response();

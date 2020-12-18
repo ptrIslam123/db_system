@@ -655,6 +655,29 @@ void db_controller::update_dt_ti_ds(size_t pos,
 }
 
 
+void db_controller::add_sort_record(statict_key_t&& key, index_t indx)
+{
+    cur_table_->add_sort_record(std::move(key), indx);
+}
+
+statist_ptr db_controller::get_sortRecords()
+{
+    return cur_table_->get_sortRecords();
+}
+
+
+void db_controller::clear_sortRecords()
+{
+    cur_table_->clear_sortRecords();
+}
+
+
+void db_controller::for_each_sortRec(sort_method_t method)
+{
+    cur_table_->for_each_sortRec(method);
+}
+
+
 heder_t db_controller::get_heder_table()
 {
     return cur_table_->get_heder();
