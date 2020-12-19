@@ -48,53 +48,47 @@ date_t_ tokenize_grammar::tokenize_date()
 }
 
 
+
 type_t_ tokenize_grammar::tokenize_type()
 {
-    return tokenize_word();  // -Wall return std::move(tokenize_word());
-}
-
-
-#ifndef _OLD_API_DESCRIPTION_
-descript_t_ tokenize_grammar::tokenize_description()
-{
-    descript_t_ buffer;
-    int indx = 0;
+    word_t buffer;
     char cur_s = 0;
-    try
-    {
-         while (true)
+
+        while (true)
         {
             cur_s = get();
-            if (is_eof() || cur_s == '\n')break;
-            if (cur_s == '\"')
+            if (is_eof())
             {
-                indx++;
-                //buffer.at(indx) = std::move(tokenize_data());
-                (buffer.second).at(indx) = std::move(tokenize_data());
-                indx++;
-                continue;
+                break;
             }
-            (buffer.second).at(indx) += cur_s; 
+
+            if (isspace(cur_s))
+            {
+                if (buffer == "Отладочная")
+                {
+                    buffer += '_';
+                    buffer += get();
+                    continue;
+                }
+                else if (buffer == "Тревожное")
+                {
+                    buffer += '_';
+                    buffer += get();
+                    continue;
+                }
+                else
+                {
+                    break;
+                }
+            }
+
+            buffer += cur_s;
         }
-    }
-    catch(std::out_of_range& e)
-    {
-        //log error
-        error_report(
-            F_PATH_DB_KERNEL_DEGUB_INF,
-            "\n\n#~ tokenize_grammar::tokenize_description()\n\n"
-        );
-        error_report(
-            F_PATH_DB_KERNEL_DEGUB_INF, 
-            "std::out_of_range whit std::array\n"
-        );
-        error_report(F_PATH_DB_KERNEL_DEGUB_INF, indx);
-        throw -1;
-    }
-    buffer.first = indx;
-    return std::move(buffer);
+    skip_nul_scpace();
+    return buffer;
 }
-#endif // !_OLD_API_DESCRIPTION_
+
+
 
 
 descript_t_ tokenize_grammar::tokenize_description()
@@ -119,7 +113,8 @@ word_t tokenize_grammar::tokenize_word()
     while (true)
     {
         cur_s = get();
-        if (is_eof() || isspace(cur_s))break;
+        if (is_eof() || isspace(cur_s))
+            break;
         buffer += cur_s;
     }
     skip_nul_scpace();

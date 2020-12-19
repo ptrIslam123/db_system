@@ -1,16 +1,19 @@
 
 create_t(
     tn : 'table'
-    fn : '../config/tables/small_init.txt'
-    sz : '25000'
+    fn : '../config/tables/otherData.txt'
+    sz : '350000'
 )
 
 
 set_t(tn : 'table')
 
+#get(ds  : 'Просмотр камеры "132.Общ. №10-Центральный вход" пользователем "Оператор"/"Murat" с IP-адреса "192.168.1.69"')
+#print()
 
 sort(ds : '*')
 statistics(ds : 'count')
+
 
 
 

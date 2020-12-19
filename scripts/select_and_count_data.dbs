@@ -1,16 +1,15 @@
 
+create_t(
+    tn : 'table'
+    fn : '../config/tables/otherData.txt'
+    sz : '350000'
+)
 
-set_t(tn : 'init')
 
-get(dt : '18.07.2020' ti : '6:52:59')
+set_t(tn : 'table')
 
+get(ds : 'Устройство "98.Общежитие №5 - стоянка" сервера "KBGU-AXXON-1": Тревога классифицирована как подозрительная пользователем "Оператор"/"Nika" с IP-адреса "192.168.1.69"')
 print()
-
-log(ds : 'COUNT RECORDS:')
-log(ds : '')
-log(ds : '')
-log(ds : '')
-
-
+log(ds  : 'COUNT_RECORDS:')
 count()
 

@@ -5,18 +5,90 @@
 
 int main()
 {
-   
-    std::map<std::string, int> m = 
-        {{"ivan", 10}, {"ivar", 20}, {"jon", 30}};
 
-    auto m_p = &m;
+    using namespace std;
+    
+    auto fname = "../test.txt";
 
-    for (auto &i : *m_p)
+    std::fstream file(fname);
+    char s = 0;
+    std::string buffer;
+    std::string type_;
+    
+
+    if (file.is_open())
     {
-        std::cout << i.second << "\n";
-        std::cout << i.first << "\n";
-    }
+        while (true)
+        {
+            s = file.get();
+            if (file.eof())
+            {
+                break;
+            }
 
+            if (isspace(s))
+            {
+                if (buffer == "Отладочная")
+                {
+                    buffer += '_';
+                    buffer += file.get();
+                    continue;
+                }
+                else if (buffer == "Тревожное")
+                {
+                    buffer += '_';
+                    buffer += file.get();
+                    continue;
+                }
+                else
+                {
+                    break;
+                }
+            }
+
+            buffer += s;
+        }
+
+        std::cout << "[" << buffer << "]\n";
+        
+    }
+    else 
+    {
+        std::cout << "file is not open\n";
+    }
+   
     return 0;
 }
 
+/*
+
+    auto fname = "../test.txt";
+    std::fstream file(fname);
+    char s = 0, n_s = 0;
+    std::string buffer;
+    std::string type_;
+    
+
+    if (file.is_open())
+    {
+         while (true)
+        {
+            s = file.get();
+
+            if (file.eof())
+            {
+                break;
+            }
+            
+
+            buffer += s;
+        }
+        std::cout << "buffer = " << buffer << "\n";
+        
+    }
+    else 
+    {
+        std::cout << "file is not open\n";
+    }
+   
+ */
