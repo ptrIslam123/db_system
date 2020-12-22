@@ -32,7 +32,8 @@ operators::operators(base_parse_api_ptr base_p_api):
         {"llog",      __list_error_log_operator},
         {"size_t",    __size_table_operator},
         {"statistics", __statistics_operator},
-        {"sort",       __sort_records_operator}
+        {"sort",       __sort_records_operator},
+        {"backup",     __backup_operators}
     }
 {}
 

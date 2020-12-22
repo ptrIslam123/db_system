@@ -22,6 +22,7 @@ void  __write_table_operator(args_oprt_buf_t&& );
 void  __size_table_operator(args_oprt_buf_t&& );
 void  __sort_records_operator(args_oprt_buf_t&& );
 void  __statistics_operator(args_oprt_buf_t&& );
+void  __backup_operators(args_oprt_buf_t&& );
 
 
 void     init_data(data_ptr , args_oprt_buf_t&& );

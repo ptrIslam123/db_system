@@ -392,7 +392,7 @@ void __sort_records_operator(args_oprt_buf_t&& args)
 
 void __statistics_operator(args_oprt_buf_t&& args)
 {
-     //auto data = get_data_ptr();
+    //auto data = get_data_ptr();
     args_data arg_data;
     data_ptr data = &arg_data;
     try
@@ -417,6 +417,40 @@ void __statistics_operator(args_oprt_buf_t&& args)
                             "method :__statistics_operator | undefine param type");
     }
 }
+
+
+
+void  __backup_operators(args_oprt_buf_t&& args)
+{
+    //auto data = get_data_ptr();
+    args_data arg_data;
+    data_ptr data = &arg_data;
+    try
+    {
+        init_data(data, std::move(args));   
+    }
+    catch(const std::out_of_range& e)
+    {
+        throw sys_error(error_type::OUT_OF_RANGE, 
+                        "init_data(parse_argument function { update })");
+    }
+    auto type = data->get_args_type();
+
+    switch (type)
+    {
+        case _NAME_ + _DESCRIPT_ : {
+            backup_req(data);
+            break;
+        }
+        default:
+            throw sys_error(error_type::UNDEFINE_PARAM_TYPE,
+                            "method :__backup_operators | undefine param type");
+    }
+}
+
+
+
+
 
 
 void init_data(data_ptr data, args_oprt_buf_t&& args)

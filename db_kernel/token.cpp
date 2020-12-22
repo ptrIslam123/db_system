@@ -1,4 +1,5 @@
 #include "includes/token.h"
+#include "../interpret/includes/sys_error.h"
 #include <iostream>
 
 token::token()
@@ -105,4 +106,14 @@ word_t get_type_token()
 token_t make_token()
 {
     return std::unique_ptr<token>(nullptr);
+}
+
+token_t make_token(token* tok_p)
+{
+    if (tok_p == nullptr)
+    {
+        throw sys_error(error_type::RUNTIME_ERROR,
+            "method : token:(make_token) | segmentation error | invalid memory");
+    }
+    return std::unique_ptr<token>(tok_p);
 }

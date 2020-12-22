@@ -91,6 +91,7 @@ void clear_req();
 void write_table_to_file_req(data_ptr );
 void write_table_to_table_req(data_ptr );
 void size_table_req(data_ptr );
+void backup_req(data_ptr );
 
 /* SORT RECORDS API */
 

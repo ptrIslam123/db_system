@@ -3,6 +3,8 @@
 #include "includes/memento.h"
 #include "includes/list_triggers.h"
 #include "../tools/includes/files.h"
+#include "../vcs/includes/backup.h"
+#include "../vcs/includes/inodes.h"
 
 using size_table_t          = decltype(_get_size_table);
 using index_response_buf_t  = decltype(_get_index_response_buf);
@@ -364,6 +366,24 @@ void print_indexs_sortRec_req()
 {
     db_controller_t::instance().for_each_sortRec(
         _print_index_sortRec
+    );
+}
+
+/* BACKUP API */
+
+void backup_req(data_ptr data)
+{
+    auto tname      = *(data->get_name_ptr());
+    auto msg_inf    = *(data->get_descript_ptr());
+
+    auto table_p    = _get_table_ptr(std::move(tname));
+    auto inodes_p   = get_inodes();
+
+    inodes_p->add_inode(
+        std::make_unique<inode>(
+            std::move(msg_inf),
+            table_p
+        )
     );
 }
 
