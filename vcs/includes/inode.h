@@ -19,6 +19,10 @@ public:
     inode_msg_t&    get_message();
     db_kernel_ptr   get_db_ptr() const;
     size_record_t   get_size_record() const;
+    
+private:
+    inode_indx_t    generate_index();
+
 private:
     inode_msg_t     msg_;
     inode_indx_t    indx_;

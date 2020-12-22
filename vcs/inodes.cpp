@@ -1,33 +1,8 @@
 #include "includes/inodes.h"
 #include "../interpret/includes/sys_error.h"
 #include "../tools/includes/utils.h"
-
 #include <fstream>
 
-#define _INODES_FILE_PATH_ "../config/backup/"
-
-inodes_ptr get_inodes()
-{
-    static std::fstream fs(_INODES_FILE_PATH_);
-    static inodes_ptr inodes_   = nullptr;
-    static bool is_init         = false;
-
-    if (!is_init)
-    {
-        /* reading object inode from file! */
-        is_init = true;        
-    }
-    
-    if (fs.is_open())
-    {
-        return inodes_;
-    }
-    else
-    {
-        throw sys_error(error_type::FILE_NOT_FOUND,
-            "method : get_inodes | file => " + std::string(_INODES_FILE_PATH_) );
-    }
-}
 
 inodes::inodes():
     size_(0)
@@ -42,21 +17,33 @@ void inodes::add_inode(inode_t&& in)
     {
         size_ = 0;
     }
+    capacity_           += in->get_size_record();
     poll_inode_[size_++] = std::move(in);
 }
 
-inodes::inode_ptr inodes::get_inode(size_t pos)
+inodes::inode_ptr inodes::get_inode(size_t indx)
 {
-    if (pos >= _MAX_SIZE_POLL_INODE_)
+    inode_ptr in_p = nullptr;
+
+    for(size_t i = 0; i < size_; ++i)
     {
-        throw sys_error(error_type::OUT_OF_RANGE,
-            "method : inodes::get_inode | out of range [position] => " + cast_i_str(pos));
+        in_p = (poll_inode_[i]).get();
+        if (in_p->get_index() == indx)
+        {
+            return in_p;
+        }
     }
-    
-    return (poll_inode_[pos]).get();
+
+    throw sys_error(error_type::RUNTIME_ERROR,
+        "method : inodes::get_inode | undefine inode index => " + cast_i_str(indx));
 }
 
 size_t inodes::get_size()
 {
     return size_;
+}
+
+size_t inodes::get_cur_index()
+{
+    return capacity_;
 }

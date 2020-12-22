@@ -2,14 +2,16 @@
 #include "../interpret/includes/sys_error.h"
 #include "../tools/includes/utils.h"
 
+
 backup::backup(fname_t&& fname):
     fname_(fname),
-    size_rt_(0)
+    size_rt_(sizeof(token)),
+    indx_(0)
 {
     file_.open(fname_,  std::ios::binary    |
                         std::ios::in        | 
                         std::ios::out);
-    
+
     if (!file_.is_open())
     {
         throw sys_error(error_type::FILE_NOT_FOUND,
@@ -19,7 +21,8 @@ backup::backup(fname_t&& fname):
 
 backup::backup(const fname_t& fname):
     fname_(std::move(fname)),
-    size_rt_(0)
+    size_rt_(sizeof(token)),
+    indx_(0)
 {
     file_.open(fname_,  std::ios::binary    |
                         std::ios::in        | 
@@ -42,12 +45,16 @@ backup::~backup()
 void backup::write_db(inode_ptr in_p)
 {
     auto db_p       = in_p->get_db_ptr();
-    auto size_db    = db_p->size_table();
+    auto size       = db_p->size_table();
 
-    for(decltype(size_db) i = 0; i < size_db; ++i)
+    file_.seekg(indx_);
+
+    for(decltype(size) i = 0; i < size; ++i)
     {
         write(db_p->get(i), size_rt_);
-    } 
+    }
+
+    indx_ += size; 
 }
 
 void backup::read_db(inode_ptr in_p, db_kernel_ptr db_p)
@@ -55,11 +62,14 @@ void backup::read_db(inode_ptr in_p, db_kernel_ptr db_p)
     auto offset             = in_p->get_index();
     auto size_db            = in_p->get_size_record();
     auto size_db_old_table  = db_p->size_table();
+
+    file_.seekg(std::ios::beg);
+    file_.seekg(offset);
+
     
     decltype(size_db) i     = 0;
     record_t r              = nullptr;
 
-    file_.seekg(offset);
 
     for (i = 0; i < size_db; ++i)
     {
@@ -90,7 +100,7 @@ void backup::write(record_t r, const size_record_t size_r)
 
 void backup::read(record_t r, const size_record_t size_r)
 {
-    file_.read((char*)r, size_r);
+   file_.read((char*)r, size_r);
 }
 
 backup::fname_t& backup::get_fname()

@@ -7,6 +7,9 @@
 #include "inode.h"
 #include "../../db_kernel/includes/db_kernel.h"
 
+struct backup;
+using backup_ptr        = backup*; 
+
 struct backup
 {
     using inode_t       = inode;
@@ -31,6 +34,7 @@ private:
     std::fstream    file_;
     fname_t         fname_;
     size_record_t   size_rt_;
+    size_t          indx_;
 };
 
 

@@ -24,10 +24,12 @@ public:
     void        add_inode(inode_t&& );
     inode_ptr   get_inode(size_t );
     size_t      get_size();
+    size_t      get_cur_index();
 
 private:
     inodes_t    poll_inode_;
     size_t      size_;
+    size_t      capacity_;
 };
 
 
