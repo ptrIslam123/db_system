@@ -1,6 +1,5 @@
 #include "includes/inode.h"
 
-#define _INODES_FILE_PATH_ "../config/backup/inodes.cnf"
 #define _SIZE_TOKEN_ (sizeof(token))
 
 using inode_indx_t  = inode::inode_indx_t;

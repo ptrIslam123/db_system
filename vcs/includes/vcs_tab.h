@@ -13,16 +13,16 @@ using msg_t     = inode::inode_msg_t;
 using indx_t    = inode::inode_indx_t;
 using table_ptr = db_kernel_ptr;
 
-inodes_ptr      get_inodes();
-backup_ptr      get_backup();
 
 void            backup_table(msg_t&& , table_ptr );
 
-inodes_ptr      init_inodes_sys();
-backup_ptr      init_backup_sys();
+inodes_ptr      get_inodes();
+backup_ptr      get_backup();
 
-void            reinit_inodes_sys();
-void            reinit_backup_sys();
+void            init_inodes_sys(inodes_ptr );
+void            init_backup_sys(inodes_ptr );
+
+
 
 } // namespace vcs
 

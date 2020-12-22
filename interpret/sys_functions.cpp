@@ -5,8 +5,6 @@
 #include "../tools/includes/files.h"
 #include "../vcs/includes/vcs_tab.h"
 
-#define _BACKUP_COPY_FILE_PATH_ "../config/backup/backup.copy"
-
 using size_table_t          = decltype(_get_size_table);
 using index_response_buf_t  = decltype(_get_index_response_buf);
 using size_response_buf_t   = decltype(_get_size_pesronse_buf);
