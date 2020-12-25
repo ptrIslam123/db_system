@@ -1,4 +1,5 @@
 #include "includes/vcs_tab.h"
+#include "includes/backup.h"
 #include "../interpret/includes/sys_error.h"
 
 #define _BACKUP_COPY_FILE_PATH_ "../config/backup/backup.copy"
@@ -6,79 +7,51 @@
 #define _SIZE_INODES_ (sizeof(inodes))
 #define _SIZE_BACKUP_ (sizeof(backup))
 
+
 namespace vcs{
 
-
-void backup_table(msg_t&& msg, table_ptr table_p)
+void backup_table(msg_t&& msg, table_ptr tbl_p)
 {
-    auto inodes_ = get_inodes();
-    auto backup_ = get_backup();
+    auto ins    = vcs::get_inodes();
+    auto new_in = ins->add_inode(std::move(msg), tbl_p);
 
-    auto new_inode = std::make_unique<inode>(
-                        std::move(msg),
-                        table_p
-                    );
-
-    inodes_->add_inode(
-        std::move(new_inode)
-    );
-
-    backup_->write_db(new_inode.get());
+    backup_t::instance(_BACKUP_COPY_FILE_PATH_).write_db(new_in);
 }
 
 
+void roll_back_db(inode_ptr in_p)
+{
+    backup_t::instance(_BACKUP_COPY_FILE_PATH_).read_db(in_p);
+}
 
-inodes_ptr  get_inodes()
+
+inode_ptr find_inode(indx_t indx)
+{
+    auto ins = vcs::get_inodes();
+    return ins->get_inode(indx);
+}
+
+inode_ptr find_inode(msg_t&& msg)
+{
+    auto ins = vcs::get_inodes();
+    return ins->get_inode(std::move(msg));
+}
+
+
+inodes_ptr get_inodes()
 {
     static inodes_ptr inodes_   = nullptr;
     static bool is_init         = false;
 
     if (!is_init)
     {
-        inodes_ = init_inodes_sys();
-        is_init = true;
+        std::ifstream ifs(_INODES_CNF__FILE_PATH_);
+
+        ifs.read((char*)inodes_, sizeof(inodes));
+
+        ifs.close();
     }
     return inodes_;
 }
-
-backup_ptr  get_backup()
-{
-    static backup_ptr backup_   = nullptr;
-    static bool is_init         = false;
-
-    if (!is_init)
-    {
-        backup_ = init_backup_sys();
-        is_init = true;
-    }
-    return backup_;
-}
-
-
-void  init_inodes_sys(inodes_ptr in_p)
-{
-    std::ifstream ifs(_INODES_CNF__FILE_PATH_);
-    if (ifs.is_open())
-    {
-        ifs.read((char*)in_p, _SIZE_INODES_);
-        return;
-    }
-    throw sys_error(error_type::FILE_NOT_FOUND,
-        "method : init_inodes_sys | file => " + std::string(_INODES_CNF__FILE_PATH_));
-}
-
-void  init_backup_sys(inodes_ptr bk_p)
-{
-    std::ifstream ifs(_BACKUP_COPY_FILE_PATH_);
-    if (ifs.is_open())
-    {
-        ifs.read((char*)in_p, _SIZE_BACKUP_);
-        return;
-    }
-    throw sys_error(error_type::FILE_NOT_FOUND,
-        "method : init_backup_sys | file => " + std::string(_BACKUP_COPY_FILE_PATH_));
-}
-
-
 
 } // namespace vcs

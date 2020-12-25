@@ -6,6 +6,7 @@ args_data::args_data():
     date_(nullptr),
     time_(nullptr),
     descript_(nullptr),
+    ttype_(nullptr),
     table_name_(nullptr),
     file_name_(nullptr),
     size_(nullptr),
@@ -18,6 +19,7 @@ args_data::args_data():
     f_date_(false),
     f_time_(false),
     f_descript_(false),
+    f_ttype_(false),
     f_table_name_(false),
     f_file_name_(false),
     f_size_(false),
@@ -61,6 +63,13 @@ void args_data::set_descript_ptr(const descript_ptr descript)
     //*descript += '\r';          // for Widnows new line = \r\n; 
     descript_ =  descript;      //  for Linux new line = \n;
     f_descript_ = true;
+}
+
+void args_data::set_type(const type_ptr ttype)
+{
+    is_f_true(f_ttype_, "ty");
+    ttype_ = ttype;
+    f_ttype_ = true;
 }
 
 void args_data::set_table_name_ptr(const table_name_ptr table_name)
@@ -118,6 +127,11 @@ time_ptr args_data::get_time_ptr() const
 descript_ptr args_data::get_descript_ptr()
 {
     return descript_;
+}
+
+type_ptr args_data::get_type_ptr() const
+{
+    return ttype_;
 }
 
 args_type_t args_data::get_args_type() 

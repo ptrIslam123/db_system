@@ -3,7 +3,7 @@
 #include "includes/memento.h"
 #include "includes/list_triggers.h"
 #include "../tools/includes/files.h"
-#include "../vcs/includes/vcs_tab.h"
+#include "../tools/includes/utils.h"
 
 using size_table_t          = decltype(_get_size_table);
 using index_response_buf_t  = decltype(_get_index_response_buf);
@@ -21,6 +21,11 @@ bool comparator_ti(const token_ptr tok, const data_ptr data)
     return (tok->get_time() == *(data->get_time_ptr()));
 }
 
+bool comparator_ty(const token_ptr tok, const data_ptr data)
+{
+    return (tok->get_type() == *(data->get_type_ptr()));
+} 
+
 bool comparator_ds(const token_ptr tok, const data_ptr data)
 {
     // for Widnows new line = \r\n; 
@@ -30,6 +35,22 @@ bool comparator_ds(const token_ptr tok, const data_ptr data)
                         (descript1 == descript2);
   return res;
 }
+
+bool comparator_dt_ty(const token_ptr tok, const data_ptr data)
+{
+    return (comparator_dt(tok, data) && comparator_ty(tok, data));
+}
+
+bool comparator_ti_ty(const token_ptr tok, const data_ptr data)
+{
+    return (comparator_ti(tok, data) && comparator_ty(tok, data));
+}
+
+bool comparator_ty_ds(const token_ptr tok, const data_ptr data)
+{
+    return (comparator_ty(tok, data) && comparator_ds(tok, data));
+}
+
 
 bool comparator_dt_ti(const token_ptr tok, const data_ptr data)
 {
@@ -54,6 +75,14 @@ bool comparator_dt_ti_ds(const token_ptr tok, const data_ptr data)
     );
 }
 
+
+bool comparator_dt_ti_ty_ds(const token_ptr tok, const data_ptr data)
+{
+    return (comparator_dt(tok, data) &&
+            comparator_ti(tok, data) &&
+            comparator_ty(tok, data) &&
+            comparator_ds(tok, data));
+}
 
 
 
@@ -372,7 +401,7 @@ void print_indexs_sortRec_req()
 
 void backup_req(data_ptr data)
 {
-    auto tname      = *(data->get_name_ptr());
+    auto tname      = *(data->get_table_name_ptr());
     auto msg_inf    = *(data->get_descript_ptr());
 
     auto table_p    = _get_table_ptr(std::move(tname));
@@ -380,6 +409,26 @@ void backup_req(data_ptr data)
     vcs::backup_table(std::move(msg_inf), table_p);
 }
 
+
+void list_inodes_req()
+{
+    /* for_each(print_inode_inf) */
+}
+
+void list_inodes_req(data_ptr data)
+{
+    auto msg    = *(data->get_descript_ptr());
+    auto in_p   = vcs::find_inode(std::move(msg));
+
+    _print_inode_inf(in_p);
+}
+
+
+void roll_back_req(index_t indx)
+{
+    auto in_p =  vcs::find_inode(indx);
+    vcs::roll_back_db(in_p);
+}
 
 
 /* TRIGGER API */
@@ -882,6 +931,7 @@ void _print_table(const table_name_ptr tname_ptr)
 }
 
 
+
 void _print_tables()
 {
     db_controller_t::instance().print_tables();
@@ -898,6 +948,17 @@ void _print_log_file()
 {
    static files file(_STD_LOGER_FILE_PATH_);
    std::cout << file.read(); 
+}
+
+
+void _print_inode_inf(vcs::inode_ptr in_p)
+{
+    auto msg    = in_p->get_message().c_str();
+    auto indx   = in_p->get_index();
+    auto size   = in_p->get_size_record();
+
+    printf("message : %-250s\tindex : %d\tsize : %d\n",
+        msg, indx, size);
 }
 
 

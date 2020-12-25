@@ -94,8 +94,8 @@ void token::print(const size_t index)
 
 void token::print()
 {
-    printf("\n\t%-10s\t%-10s\t%-300s\n",
-            date_.c_str(), time_.c_str(), descript_.c_str());
+    printf("\n\t%-10s\t%-10s\t%-20s\t%-300s\n",
+            date_.c_str(), time_.c_str(), type_.c_str(), descript_.c_str());
 }
 
 word_t get_type_token()

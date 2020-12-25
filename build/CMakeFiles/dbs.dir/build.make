@@ -801,6 +801,102 @@ CMakeFiles/dbs.dir/tools/utils.cpp.o.provides: CMakeFiles/dbs.dir/tools/utils.cp
 CMakeFiles/dbs.dir/tools/utils.cpp.o.provides.build: CMakeFiles/dbs.dir/tools/utils.cpp.o
 
 
+CMakeFiles/dbs.dir/vcs/backup.cpp.o: CMakeFiles/dbs.dir/flags.make
+CMakeFiles/dbs.dir/vcs/backup.cpp.o: ../vcs/backup.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/islam/CppProgram/db_sysytem_for_it_company/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_32) "Building CXX object CMakeFiles/dbs.dir/vcs/backup.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/dbs.dir/vcs/backup.cpp.o -c /home/islam/CppProgram/db_sysytem_for_it_company/vcs/backup.cpp
+
+CMakeFiles/dbs.dir/vcs/backup.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/dbs.dir/vcs/backup.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/islam/CppProgram/db_sysytem_for_it_company/vcs/backup.cpp > CMakeFiles/dbs.dir/vcs/backup.cpp.i
+
+CMakeFiles/dbs.dir/vcs/backup.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/dbs.dir/vcs/backup.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/islam/CppProgram/db_sysytem_for_it_company/vcs/backup.cpp -o CMakeFiles/dbs.dir/vcs/backup.cpp.s
+
+CMakeFiles/dbs.dir/vcs/backup.cpp.o.requires:
+
+.PHONY : CMakeFiles/dbs.dir/vcs/backup.cpp.o.requires
+
+CMakeFiles/dbs.dir/vcs/backup.cpp.o.provides: CMakeFiles/dbs.dir/vcs/backup.cpp.o.requires
+	$(MAKE) -f CMakeFiles/dbs.dir/build.make CMakeFiles/dbs.dir/vcs/backup.cpp.o.provides.build
+.PHONY : CMakeFiles/dbs.dir/vcs/backup.cpp.o.provides
+
+CMakeFiles/dbs.dir/vcs/backup.cpp.o.provides.build: CMakeFiles/dbs.dir/vcs/backup.cpp.o
+
+
+CMakeFiles/dbs.dir/vcs/inode.cpp.o: CMakeFiles/dbs.dir/flags.make
+CMakeFiles/dbs.dir/vcs/inode.cpp.o: ../vcs/inode.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/islam/CppProgram/db_sysytem_for_it_company/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_33) "Building CXX object CMakeFiles/dbs.dir/vcs/inode.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/dbs.dir/vcs/inode.cpp.o -c /home/islam/CppProgram/db_sysytem_for_it_company/vcs/inode.cpp
+
+CMakeFiles/dbs.dir/vcs/inode.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/dbs.dir/vcs/inode.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/islam/CppProgram/db_sysytem_for_it_company/vcs/inode.cpp > CMakeFiles/dbs.dir/vcs/inode.cpp.i
+
+CMakeFiles/dbs.dir/vcs/inode.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/dbs.dir/vcs/inode.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/islam/CppProgram/db_sysytem_for_it_company/vcs/inode.cpp -o CMakeFiles/dbs.dir/vcs/inode.cpp.s
+
+CMakeFiles/dbs.dir/vcs/inode.cpp.o.requires:
+
+.PHONY : CMakeFiles/dbs.dir/vcs/inode.cpp.o.requires
+
+CMakeFiles/dbs.dir/vcs/inode.cpp.o.provides: CMakeFiles/dbs.dir/vcs/inode.cpp.o.requires
+	$(MAKE) -f CMakeFiles/dbs.dir/build.make CMakeFiles/dbs.dir/vcs/inode.cpp.o.provides.build
+.PHONY : CMakeFiles/dbs.dir/vcs/inode.cpp.o.provides
+
+CMakeFiles/dbs.dir/vcs/inode.cpp.o.provides.build: CMakeFiles/dbs.dir/vcs/inode.cpp.o
+
+
+CMakeFiles/dbs.dir/vcs/inodes.cpp.o: CMakeFiles/dbs.dir/flags.make
+CMakeFiles/dbs.dir/vcs/inodes.cpp.o: ../vcs/inodes.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/islam/CppProgram/db_sysytem_for_it_company/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_34) "Building CXX object CMakeFiles/dbs.dir/vcs/inodes.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/dbs.dir/vcs/inodes.cpp.o -c /home/islam/CppProgram/db_sysytem_for_it_company/vcs/inodes.cpp
+
+CMakeFiles/dbs.dir/vcs/inodes.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/dbs.dir/vcs/inodes.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/islam/CppProgram/db_sysytem_for_it_company/vcs/inodes.cpp > CMakeFiles/dbs.dir/vcs/inodes.cpp.i
+
+CMakeFiles/dbs.dir/vcs/inodes.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/dbs.dir/vcs/inodes.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/islam/CppProgram/db_sysytem_for_it_company/vcs/inodes.cpp -o CMakeFiles/dbs.dir/vcs/inodes.cpp.s
+
+CMakeFiles/dbs.dir/vcs/inodes.cpp.o.requires:
+
+.PHONY : CMakeFiles/dbs.dir/vcs/inodes.cpp.o.requires
+
+CMakeFiles/dbs.dir/vcs/inodes.cpp.o.provides: CMakeFiles/dbs.dir/vcs/inodes.cpp.o.requires
+	$(MAKE) -f CMakeFiles/dbs.dir/build.make CMakeFiles/dbs.dir/vcs/inodes.cpp.o.provides.build
+.PHONY : CMakeFiles/dbs.dir/vcs/inodes.cpp.o.provides
+
+CMakeFiles/dbs.dir/vcs/inodes.cpp.o.provides.build: CMakeFiles/dbs.dir/vcs/inodes.cpp.o
+
+
+CMakeFiles/dbs.dir/vcs/vcs_tab.cpp.o: CMakeFiles/dbs.dir/flags.make
+CMakeFiles/dbs.dir/vcs/vcs_tab.cpp.o: ../vcs/vcs_tab.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/islam/CppProgram/db_sysytem_for_it_company/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_35) "Building CXX object CMakeFiles/dbs.dir/vcs/vcs_tab.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/dbs.dir/vcs/vcs_tab.cpp.o -c /home/islam/CppProgram/db_sysytem_for_it_company/vcs/vcs_tab.cpp
+
+CMakeFiles/dbs.dir/vcs/vcs_tab.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/dbs.dir/vcs/vcs_tab.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/islam/CppProgram/db_sysytem_for_it_company/vcs/vcs_tab.cpp > CMakeFiles/dbs.dir/vcs/vcs_tab.cpp.i
+
+CMakeFiles/dbs.dir/vcs/vcs_tab.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/dbs.dir/vcs/vcs_tab.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/islam/CppProgram/db_sysytem_for_it_company/vcs/vcs_tab.cpp -o CMakeFiles/dbs.dir/vcs/vcs_tab.cpp.s
+
+CMakeFiles/dbs.dir/vcs/vcs_tab.cpp.o.requires:
+
+.PHONY : CMakeFiles/dbs.dir/vcs/vcs_tab.cpp.o.requires
+
+CMakeFiles/dbs.dir/vcs/vcs_tab.cpp.o.provides: CMakeFiles/dbs.dir/vcs/vcs_tab.cpp.o.requires
+	$(MAKE) -f CMakeFiles/dbs.dir/build.make CMakeFiles/dbs.dir/vcs/vcs_tab.cpp.o.provides.build
+.PHONY : CMakeFiles/dbs.dir/vcs/vcs_tab.cpp.o.provides
+
+CMakeFiles/dbs.dir/vcs/vcs_tab.cpp.o.provides.build: CMakeFiles/dbs.dir/vcs/vcs_tab.cpp.o
+
+
 # Object files for target dbs
 dbs_OBJECTS = \
 "CMakeFiles/dbs.dir/main.cpp.o" \
@@ -833,7 +929,11 @@ dbs_OBJECTS = \
 "CMakeFiles/dbs.dir/interpret/trigger_operators.cpp.o" \
 "CMakeFiles/dbs.dir/tools/files.cpp.o" \
 "CMakeFiles/dbs.dir/tools/loger.cpp.o" \
-"CMakeFiles/dbs.dir/tools/utils.cpp.o"
+"CMakeFiles/dbs.dir/tools/utils.cpp.o" \
+"CMakeFiles/dbs.dir/vcs/backup.cpp.o" \
+"CMakeFiles/dbs.dir/vcs/inode.cpp.o" \
+"CMakeFiles/dbs.dir/vcs/inodes.cpp.o" \
+"CMakeFiles/dbs.dir/vcs/vcs_tab.cpp.o"
 
 # External object files for target dbs
 dbs_EXTERNAL_OBJECTS =
@@ -869,9 +969,13 @@ dbs: CMakeFiles/dbs.dir/interpret/trigger_operators.cpp.o
 dbs: CMakeFiles/dbs.dir/tools/files.cpp.o
 dbs: CMakeFiles/dbs.dir/tools/loger.cpp.o
 dbs: CMakeFiles/dbs.dir/tools/utils.cpp.o
+dbs: CMakeFiles/dbs.dir/vcs/backup.cpp.o
+dbs: CMakeFiles/dbs.dir/vcs/inode.cpp.o
+dbs: CMakeFiles/dbs.dir/vcs/inodes.cpp.o
+dbs: CMakeFiles/dbs.dir/vcs/vcs_tab.cpp.o
 dbs: CMakeFiles/dbs.dir/build.make
 dbs: CMakeFiles/dbs.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/islam/CppProgram/db_sysytem_for_it_company/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_32) "Linking CXX executable dbs"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/islam/CppProgram/db_sysytem_for_it_company/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_36) "Linking CXX executable dbs"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/dbs.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -910,6 +1014,10 @@ CMakeFiles/dbs.dir/requires: CMakeFiles/dbs.dir/interpret/trigger_operators.cpp.
 CMakeFiles/dbs.dir/requires: CMakeFiles/dbs.dir/tools/files.cpp.o.requires
 CMakeFiles/dbs.dir/requires: CMakeFiles/dbs.dir/tools/loger.cpp.o.requires
 CMakeFiles/dbs.dir/requires: CMakeFiles/dbs.dir/tools/utils.cpp.o.requires
+CMakeFiles/dbs.dir/requires: CMakeFiles/dbs.dir/vcs/backup.cpp.o.requires
+CMakeFiles/dbs.dir/requires: CMakeFiles/dbs.dir/vcs/inode.cpp.o.requires
+CMakeFiles/dbs.dir/requires: CMakeFiles/dbs.dir/vcs/inodes.cpp.o.requires
+CMakeFiles/dbs.dir/requires: CMakeFiles/dbs.dir/vcs/vcs_tab.cpp.o.requires
 
 .PHONY : CMakeFiles/dbs.dir/requires
 

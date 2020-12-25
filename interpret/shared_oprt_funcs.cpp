@@ -28,12 +28,28 @@ void __get_operator(args_oprt_buf_t&& args)
             for_each(comparator_ti, get_req, data);
             break;
         }
+        case _TYPE_ : {
+            for_each(comparator_ty, get_req, data);
+            break;
+        }
         case _DESCRIPT_ : {
             for_each(comparator_ds, get_req, data);
             break;
         }
         case _DATE_TIME_ : {
             for_each(comparator_dt_ti, get_req, data);
+            break;
+        }
+        case (_DATE_ + _TYPE_) : {
+            for_each(comparator_dt_ty, get_req, data);
+            break;
+        }
+        case (_TIME_ + _TYPE_) : {
+            for_each(comparator_ti_ty, get_req, data);
+            break;
+        }
+        case (_TYPE_ + _DESCRIPT_ ): {
+            for_each(comparator_ty_ds, get_req, data);
             break;
         }
         case _DATE_DESCRIPT : {
@@ -46,6 +62,10 @@ void __get_operator(args_oprt_buf_t&& args)
         }
         case _DATE_TIME_DESCRIPT_ : {
             for_each(comparator_dt_ti_ds, get_req, data);
+            break;
+        }
+        case (_DATE_ + _TIME_ + _TYPE_ + _DESCRIPT_) : {
+            for_each(comparator_dt_ti_ty_ds, get_req, data);
             break;
         }
         default:
@@ -438,7 +458,7 @@ void  __backup_operators(args_oprt_buf_t&& args)
 
     switch (type)
     {
-        case _NAME_ + _DESCRIPT_ : {
+        case _TABLE_NAME_ + _DESCRIPT_ : {
             backup_req(data);
             break;
         }
@@ -450,6 +470,102 @@ void  __backup_operators(args_oprt_buf_t&& args)
 
 
 
+void  __list_inodes_operators(args_oprt_buf_t&& args)
+{
+     //auto data = get_data_ptr();
+    args_data arg_data;
+    data_ptr data = &arg_data;
+    try
+    {
+        init_data(data, std::move(args));   
+    }
+    catch(const std::out_of_range& e)
+    {
+        throw sys_error(error_type::OUT_OF_RANGE, 
+                        "init_data(parse_argument function { update })");
+    }
+    auto type = data->get_args_type();
+
+    switch (type)
+    {
+        case _DESCRIPT_ : {
+            
+            break;
+        }
+        
+        case _NULL_TYPE : {
+
+            break;
+        }
+
+        default : {
+            throw sys_error(error_type::UNDEFINE_PARAM_TYPE,
+                            "method :__list_inodes_operators | undefine param type");
+        }
+    }
+}
+
+
+void  __roll_back_operators(args_oprt_buf_t&& args)
+{
+    //auto data = get_data_ptr();
+    args_data arg_data;
+    data_ptr data = &arg_data;
+    try
+    {
+        init_data(data, std::move(args));   
+    }
+    catch(const std::out_of_range& e)
+    {
+        throw sys_error(error_type::OUT_OF_RANGE, 
+                        "init_data(parse_argument function { update })");
+    }
+    auto type = data->get_args_type();
+
+    switch (type)
+    {
+        case _POS_ : {
+
+            break;
+        }
+
+        default : {
+            throw sys_error(error_type::UNDEFINE_PARAM_TYPE,
+                            "method :__roll_back_operators | undefine param type");
+        }
+    }
+}
+
+
+void  __echo_operators(args_oprt_buf_t&& args)
+{
+    //auto data = get_data_ptr();
+    args_data arg_data;
+    data_ptr data = &arg_data;
+    try
+    {
+        init_data(data, std::move(args));   
+    }
+    catch(const std::out_of_range& e)
+    {
+        throw sys_error(error_type::OUT_OF_RANGE, 
+                        "init_data(parse_argument function { update })");
+    }
+    auto type = data->get_args_type();
+
+    switch (type)
+    {
+        case _DESCRIPT_ : {
+            std::cout << *(data->get_descript_ptr());
+            break;
+        }
+
+        default : {
+            throw sys_error(error_type::UNDEFINE_PARAM_TYPE,
+                            "method :__roll_back_operators | undefine param type");
+        }
+    }
+}
 
 
 
@@ -480,6 +596,14 @@ void init_data(data_ptr data, args_oprt_buf_t&& args)
             data->set_time_ptr(time_ptr);
             i++;
             continue;
+        }
+        if (args_type == "ty")
+        {
+            data->set_args_type(_TYPE_);
+            auto type_ptr = (args.at(i).second)->get_ptr_value();
+            data->set_type(type_ptr);
+            i++;
+            continue; 
         }
         if (args_type == "ds")
         {

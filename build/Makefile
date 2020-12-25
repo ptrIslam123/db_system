@@ -960,6 +960,114 @@ tools/utils.cpp.s:
 	$(MAKE) -f CMakeFiles/dbs.dir/build.make CMakeFiles/dbs.dir/tools/utils.cpp.s
 .PHONY : tools/utils.cpp.s
 
+vcs/backup.o: vcs/backup.cpp.o
+
+.PHONY : vcs/backup.o
+
+# target to build an object file
+vcs/backup.cpp.o:
+	$(MAKE) -f CMakeFiles/dbs.dir/build.make CMakeFiles/dbs.dir/vcs/backup.cpp.o
+.PHONY : vcs/backup.cpp.o
+
+vcs/backup.i: vcs/backup.cpp.i
+
+.PHONY : vcs/backup.i
+
+# target to preprocess a source file
+vcs/backup.cpp.i:
+	$(MAKE) -f CMakeFiles/dbs.dir/build.make CMakeFiles/dbs.dir/vcs/backup.cpp.i
+.PHONY : vcs/backup.cpp.i
+
+vcs/backup.s: vcs/backup.cpp.s
+
+.PHONY : vcs/backup.s
+
+# target to generate assembly for a file
+vcs/backup.cpp.s:
+	$(MAKE) -f CMakeFiles/dbs.dir/build.make CMakeFiles/dbs.dir/vcs/backup.cpp.s
+.PHONY : vcs/backup.cpp.s
+
+vcs/inode.o: vcs/inode.cpp.o
+
+.PHONY : vcs/inode.o
+
+# target to build an object file
+vcs/inode.cpp.o:
+	$(MAKE) -f CMakeFiles/dbs.dir/build.make CMakeFiles/dbs.dir/vcs/inode.cpp.o
+.PHONY : vcs/inode.cpp.o
+
+vcs/inode.i: vcs/inode.cpp.i
+
+.PHONY : vcs/inode.i
+
+# target to preprocess a source file
+vcs/inode.cpp.i:
+	$(MAKE) -f CMakeFiles/dbs.dir/build.make CMakeFiles/dbs.dir/vcs/inode.cpp.i
+.PHONY : vcs/inode.cpp.i
+
+vcs/inode.s: vcs/inode.cpp.s
+
+.PHONY : vcs/inode.s
+
+# target to generate assembly for a file
+vcs/inode.cpp.s:
+	$(MAKE) -f CMakeFiles/dbs.dir/build.make CMakeFiles/dbs.dir/vcs/inode.cpp.s
+.PHONY : vcs/inode.cpp.s
+
+vcs/inodes.o: vcs/inodes.cpp.o
+
+.PHONY : vcs/inodes.o
+
+# target to build an object file
+vcs/inodes.cpp.o:
+	$(MAKE) -f CMakeFiles/dbs.dir/build.make CMakeFiles/dbs.dir/vcs/inodes.cpp.o
+.PHONY : vcs/inodes.cpp.o
+
+vcs/inodes.i: vcs/inodes.cpp.i
+
+.PHONY : vcs/inodes.i
+
+# target to preprocess a source file
+vcs/inodes.cpp.i:
+	$(MAKE) -f CMakeFiles/dbs.dir/build.make CMakeFiles/dbs.dir/vcs/inodes.cpp.i
+.PHONY : vcs/inodes.cpp.i
+
+vcs/inodes.s: vcs/inodes.cpp.s
+
+.PHONY : vcs/inodes.s
+
+# target to generate assembly for a file
+vcs/inodes.cpp.s:
+	$(MAKE) -f CMakeFiles/dbs.dir/build.make CMakeFiles/dbs.dir/vcs/inodes.cpp.s
+.PHONY : vcs/inodes.cpp.s
+
+vcs/vcs_tab.o: vcs/vcs_tab.cpp.o
+
+.PHONY : vcs/vcs_tab.o
+
+# target to build an object file
+vcs/vcs_tab.cpp.o:
+	$(MAKE) -f CMakeFiles/dbs.dir/build.make CMakeFiles/dbs.dir/vcs/vcs_tab.cpp.o
+.PHONY : vcs/vcs_tab.cpp.o
+
+vcs/vcs_tab.i: vcs/vcs_tab.cpp.i
+
+.PHONY : vcs/vcs_tab.i
+
+# target to preprocess a source file
+vcs/vcs_tab.cpp.i:
+	$(MAKE) -f CMakeFiles/dbs.dir/build.make CMakeFiles/dbs.dir/vcs/vcs_tab.cpp.i
+.PHONY : vcs/vcs_tab.cpp.i
+
+vcs/vcs_tab.s: vcs/vcs_tab.cpp.s
+
+.PHONY : vcs/vcs_tab.s
+
+# target to generate assembly for a file
+vcs/vcs_tab.cpp.s:
+	$(MAKE) -f CMakeFiles/dbs.dir/build.make CMakeFiles/dbs.dir/vcs/vcs_tab.cpp.s
+.PHONY : vcs/vcs_tab.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -1062,6 +1170,18 @@ help:
 	@echo "... tools/utils.o"
 	@echo "... tools/utils.i"
 	@echo "... tools/utils.s"
+	@echo "... vcs/backup.o"
+	@echo "... vcs/backup.i"
+	@echo "... vcs/backup.s"
+	@echo "... vcs/inode.o"
+	@echo "... vcs/inode.i"
+	@echo "... vcs/inode.s"
+	@echo "... vcs/inodes.o"
+	@echo "... vcs/inodes.i"
+	@echo "... vcs/inodes.s"
+	@echo "... vcs/vcs_tab.o"
+	@echo "... vcs/vcs_tab.i"
+	@echo "... vcs/vcs_tab.s"
 .PHONY : help
 
 

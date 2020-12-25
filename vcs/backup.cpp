@@ -5,8 +5,7 @@
 
 backup::backup(fname_t&& fname):
     fname_(fname),
-    size_rt_(sizeof(token)),
-    indx_(0)
+    size_rt_(sizeof(token))
 {
     file_.open(fname_,  std::ios::binary    |
                         std::ios::in        | 
@@ -21,8 +20,7 @@ backup::backup(fname_t&& fname):
 
 backup::backup(const fname_t& fname):
     fname_(std::move(fname)),
-    size_rt_(sizeof(token)),
-    indx_(0)
+    size_rt_(sizeof(token))
 {
     file_.open(fname_,  std::ios::binary    |
                         std::ios::in        | 
@@ -44,54 +42,53 @@ backup::~backup()
 
 void backup::write_db(inode_ptr in_p)
 {
+    set_fseek(in_p->get_index());
+
     auto db_p       = in_p->get_db_ptr();
-    auto size       = db_p->size_table();
+    auto size       = in_p->get_size_record();
 
-    file_.seekg(indx_);
-
-    for(decltype(size) i = 0; i < size; ++i)
+    for (decltype(size) i = 0; i < size; ++i)
     {
         write(db_p->get(i), size_rt_);
     }
-
-    indx_ += size; 
 }
 
-void backup::read_db(inode_ptr in_p, db_kernel_ptr db_p)
+void backup::read_db(inode_ptr in_p)
 {
-    auto offset             = in_p->get_index();
-    auto size_db            = in_p->get_size_record();
-    auto size_db_old_table  = db_p->size_table();
+   set_fseek(in_p->get_index());
 
-    file_.seekg(std::ios::beg);
-    file_.seekg(offset);
+   auto db_p        = in_p->get_db_ptr();
+   auto size        = in_p->get_size_record();
+   auto size_db     = db_p->size_table();
+   decltype(size) i = 0;
+   record_t t       = nullptr;
 
-    
-    decltype(size_db) i     = 0;
-    record_t r              = nullptr;
+   for ( ; i < size; ++i)
+   {
+       read(t, size_rt_);
+       db_p->update(i, make_token(t));
+   }
 
-
-    for (i = 0; i < size_db; ++i)
-    {
-        read(r, size_rt_);
-        db_p->update(i, make_token(r));
-    }
-    
-    try
-    {
-        for ( ; i < size_db_old_table; ++i)
-        {
-            db_p->remove(i);
-        }
-    }
-    catch(const std::out_of_range& e)
-    {
-        throw sys_error(error_type::OUT_OF_RANGE,
-            "method : backup::read_db | index => " + cast_i_str(i));
-    }
-    
+   try
+   {
+       for( ; i < size_db; ++i)
+       {
+           db_p->remove(i);
+       }
+   }
+   catch(const std::out_of_range& e)
+   {
+       throw sys_error(error_type::OUT_OF_RANGE,
+        "method : backup::read_db | indxe => " + cast_i_str(i));
+   }
+   
 }
 
+
+void backup::set_fseek(index_t indx)
+{
+    file_.seekg(indx, std::ios::beg);
+}
 
 void backup::write(record_t r, const size_record_t size_r)
 {

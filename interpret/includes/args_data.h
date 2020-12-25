@@ -3,21 +3,10 @@
 #define _DEF_T_
 #include "../../db_kernel/includes/token.h"
 
-#ifndef _DEF_T_
-#define _DATE_ 1
-#define _TIME_ 10
-#define _DESCRIPT_ 100
-#define _DATE_TIME_ ( _DATE_ + _TIME_ )
-#define _TIME_DESCRIPT_ ( _TIME_ + _DESCRIPT_ )
-#define _DATE_DESCRIPT  ( _DATE_ + _DESCRIPT_ )
-#define _DATE_TIME_DESCRIPT_ ( _DATE_ + _TIME_ + _DESCRIPT_ )
-#define _TABLE_ANME_ 
-#define _NULL_TYPE 0
-#endif // !_DEF_T_
-
 constexpr short _NULL_TYPE              = 0;
 constexpr short _DATE_                  = 1;
 constexpr short _TIME_                  = 10;
+constexpr short _TYPE_                  = 15;
 constexpr short _TABLE_NAME_            = 20;
 constexpr short _FILE_NAME_             = 25;
 constexpr short _SIZE_TABLE_            = 30;
@@ -45,6 +34,7 @@ constexpr short _DATE_DESCRIPT          = ( _DATE_ + _DESCRIPT_ );
 constexpr short _DATE_TIME_DESCRIPT_    = ( _DATE_ + _TIME_ + _DESCRIPT_ );
 constexpr short _POS_DATE_TIME_DESCRIPT_= ( _POS_ + _DATE_TIME_DESCRIPT_ ); 
 constexpr short _TG_NAME_OP_            = ( _NAME_ + _OPTION_ );
+constexpr short _NAME_DESCRIPT_         = ( _NAME_ + _DESCRIPT_ );
 constexpr short _TG_TNAME_NAME_OP_      = ( _TABLE_NAME_ + _NAME_ + _OPTION_ );
 constexpr short _TG_TNAME_NAME_         = ( _TABLE_NAME_ + _NAME_ );
 constexpr short _TABLE_FIE_NAME_        = ( _TABLE_NAME_ + _FILE_NAME_ );
@@ -56,6 +46,7 @@ using data_ptr      = args_data*;
 using token_ptr     = token*;
 using date_ptr      = date_t_*;
 using time_ptr      = time_t_*;
+using type_ptr      = word_t*;
 using descript_ptr  = descript_t_*;
 using table_name_ptr= word_t*;
 using file_name_ptr = word_t*;
@@ -75,6 +66,7 @@ public:
     void            set_opt_type(opt_type_t );
     void            set_date_ptr(const date_ptr );
     void            set_time_ptr(const time_ptr );
+    void            set_type(const type_ptr );
     void            set_descript_ptr(const descript_ptr );
     void            set_null_type();
     void            set_table_name_ptr(const table_name_ptr );
@@ -87,6 +79,7 @@ public:
     date_ptr        get_date_ptr() const;
     time_ptr        get_time_ptr() const;
     descript_ptr    get_descript_ptr();
+    type_ptr        get_type_ptr() const;
     args_type_t     get_args_type();
     opt_type_t      get_opt_type();
     table_name_ptr  get_table_name_ptr() const;
@@ -104,6 +97,7 @@ private:
     date_ptr        date_;
     time_ptr        time_;
     descript_ptr    descript_;
+    type_ptr        ttype_;
     table_name_ptr  table_name_;
     file_name_ptr   file_name_;
     size_ptr        size_;
@@ -116,6 +110,7 @@ private:
     bool            f_date_;
     bool            f_time_;
     bool            f_descript_;
+    bool            f_ttype_;
     bool            f_table_name_;
     bool            f_file_name_;
     bool            f_size_;

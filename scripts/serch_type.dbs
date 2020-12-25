@@ -1,0 +1,15 @@
+
+create_t(
+    tn : 'table'
+    fn : '../config/tables/small_init.txt'
+    sz : '200'
+)
+
+set_t(tn : 'table')
+
+
+get(ty : 'Отладочная_информация')
+log(ds : 'PRINT RECORDS : ')
+print()
+echo(ds : 'COUNT RESULT: ')
+count()

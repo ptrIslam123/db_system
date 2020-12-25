@@ -76,6 +76,7 @@ CMakeFiles/dbs.dir/db_kernel/methods.cpp.o: ../db_kernel/methods.cpp
 
 CMakeFiles/dbs.dir/db_kernel/token.cpp.o: ../db_kernel/includes/token.h
 CMakeFiles/dbs.dir/db_kernel/token.cpp.o: ../db_kernel/token.cpp
+CMakeFiles/dbs.dir/db_kernel/token.cpp.o: ../interpret/includes/sys_error.h
 
 CMakeFiles/dbs.dir/db_kernel/tokenize_grammar.cpp.o: ../db_kernel/includes/file_stream.h
 CMakeFiles/dbs.dir/db_kernel/tokenize_grammar.cpp.o: ../db_kernel/includes/methods.h
@@ -118,6 +119,9 @@ CMakeFiles/dbs.dir/interpret/atomic_operators.cpp.o: ../interpret/includes/trigg
 CMakeFiles/dbs.dir/interpret/atomic_operators.cpp.o: ../tools/includes/loger.h
 CMakeFiles/dbs.dir/interpret/atomic_operators.cpp.o: ../tools/includes/singleton.h
 CMakeFiles/dbs.dir/interpret/atomic_operators.cpp.o: ../tools/includes/utils.h
+CMakeFiles/dbs.dir/interpret/atomic_operators.cpp.o: ../vcs/includes/inode.h
+CMakeFiles/dbs.dir/interpret/atomic_operators.cpp.o: ../vcs/includes/inodes.h
+CMakeFiles/dbs.dir/interpret/atomic_operators.cpp.o: ../vcs/includes/vcs_tab.h
 
 CMakeFiles/dbs.dir/interpret/base_parse_api.cpp.o: ../interpret/base_parse_api.cpp
 CMakeFiles/dbs.dir/interpret/base_parse_api.cpp.o: ../interpret/includes/base_parse_api.h
@@ -196,6 +200,9 @@ CMakeFiles/dbs.dir/interpret/operators.cpp.o: ../interpret/operators.cpp
 CMakeFiles/dbs.dir/interpret/operators.cpp.o: ../tools/includes/loger.h
 CMakeFiles/dbs.dir/interpret/operators.cpp.o: ../tools/includes/singleton.h
 CMakeFiles/dbs.dir/interpret/operators.cpp.o: ../tools/includes/utils.h
+CMakeFiles/dbs.dir/interpret/operators.cpp.o: ../vcs/includes/inode.h
+CMakeFiles/dbs.dir/interpret/operators.cpp.o: ../vcs/includes/inodes.h
+CMakeFiles/dbs.dir/interpret/operators.cpp.o: ../vcs/includes/vcs_tab.h
 
 CMakeFiles/dbs.dir/interpret/option_parse.cpp.o: ../db_kernel/includes/token.h
 CMakeFiles/dbs.dir/interpret/option_parse.cpp.o: ../interpret/includes/args_data.h
@@ -262,6 +269,9 @@ CMakeFiles/dbs.dir/interpret/shared_oprt_funcs.cpp.o: ../interpret/shared_oprt_f
 CMakeFiles/dbs.dir/interpret/shared_oprt_funcs.cpp.o: ../tools/includes/files.h
 CMakeFiles/dbs.dir/interpret/shared_oprt_funcs.cpp.o: ../tools/includes/loger.h
 CMakeFiles/dbs.dir/interpret/shared_oprt_funcs.cpp.o: ../tools/includes/singleton.h
+CMakeFiles/dbs.dir/interpret/shared_oprt_funcs.cpp.o: ../vcs/includes/inode.h
+CMakeFiles/dbs.dir/interpret/shared_oprt_funcs.cpp.o: ../vcs/includes/inodes.h
+CMakeFiles/dbs.dir/interpret/shared_oprt_funcs.cpp.o: ../vcs/includes/vcs_tab.h
 
 CMakeFiles/dbs.dir/interpret/shell.cpp.o: ../interpret/includes/base_parse_api.h
 CMakeFiles/dbs.dir/interpret/shell.cpp.o: ../interpret/includes/command.h
@@ -313,6 +323,10 @@ CMakeFiles/dbs.dir/interpret/sys_functions.cpp.o: ../interpret/sys_functions.cpp
 CMakeFiles/dbs.dir/interpret/sys_functions.cpp.o: ../tools/includes/files.h
 CMakeFiles/dbs.dir/interpret/sys_functions.cpp.o: ../tools/includes/loger.h
 CMakeFiles/dbs.dir/interpret/sys_functions.cpp.o: ../tools/includes/singleton.h
+CMakeFiles/dbs.dir/interpret/sys_functions.cpp.o: ../tools/includes/utils.h
+CMakeFiles/dbs.dir/interpret/sys_functions.cpp.o: ../vcs/includes/inode.h
+CMakeFiles/dbs.dir/interpret/sys_functions.cpp.o: ../vcs/includes/inodes.h
+CMakeFiles/dbs.dir/interpret/sys_functions.cpp.o: ../vcs/includes/vcs_tab.h
 
 CMakeFiles/dbs.dir/interpret/transaction.cpp.o: ../db_kernel/includes/db_controller.h
 CMakeFiles/dbs.dir/interpret/transaction.cpp.o: ../db_kernel/includes/db_kernel.h
@@ -342,6 +356,9 @@ CMakeFiles/dbs.dir/interpret/transaction.cpp.o: ../interpret/includes/trigger_op
 CMakeFiles/dbs.dir/interpret/transaction.cpp.o: ../interpret/transaction.cpp
 CMakeFiles/dbs.dir/interpret/transaction.cpp.o: ../tools/includes/loger.h
 CMakeFiles/dbs.dir/interpret/transaction.cpp.o: ../tools/includes/singleton.h
+CMakeFiles/dbs.dir/interpret/transaction.cpp.o: ../vcs/includes/inode.h
+CMakeFiles/dbs.dir/interpret/transaction.cpp.o: ../vcs/includes/inodes.h
+CMakeFiles/dbs.dir/interpret/transaction.cpp.o: ../vcs/includes/vcs_tab.h
 
 CMakeFiles/dbs.dir/interpret/trigger_node.cpp.o: ../db_kernel/includes/token.h
 CMakeFiles/dbs.dir/interpret/trigger_node.cpp.o: ../interpret/includes/args_data.h
@@ -398,4 +415,102 @@ CMakeFiles/dbs.dir/tools/loger.cpp.o: ../tools/loger.cpp
 
 CMakeFiles/dbs.dir/tools/utils.cpp.o: ../tools/includes/utils.h
 CMakeFiles/dbs.dir/tools/utils.cpp.o: ../tools/utils.cpp
+
+CMakeFiles/dbs.dir/vcs/backup.cpp.o: ../db_kernel/includes/db_kernel.h
+CMakeFiles/dbs.dir/vcs/backup.cpp.o: ../db_kernel/includes/event.h
+CMakeFiles/dbs.dir/vcs/backup.cpp.o: ../db_kernel/includes/file_stream.h
+CMakeFiles/dbs.dir/vcs/backup.cpp.o: ../db_kernel/includes/methods.h
+CMakeFiles/dbs.dir/vcs/backup.cpp.o: ../db_kernel/includes/token.h
+CMakeFiles/dbs.dir/vcs/backup.cpp.o: ../db_kernel/includes/tokenize_grammar.h
+CMakeFiles/dbs.dir/vcs/backup.cpp.o: ../interpret/includes/args_data.h
+CMakeFiles/dbs.dir/vcs/backup.cpp.o: ../interpret/includes/args_data_operator.h
+CMakeFiles/dbs.dir/vcs/backup.cpp.o: ../interpret/includes/base_parse_api.h
+CMakeFiles/dbs.dir/vcs/backup.cpp.o: ../interpret/includes/command.h
+CMakeFiles/dbs.dir/vcs/backup.cpp.o: ../interpret/includes/lexeme.h
+CMakeFiles/dbs.dir/vcs/backup.cpp.o: ../interpret/includes/lexeme_type.h
+CMakeFiles/dbs.dir/vcs/backup.cpp.o: ../interpret/includes/lexer.h
+CMakeFiles/dbs.dir/vcs/backup.cpp.o: ../interpret/includes/operators.h
+CMakeFiles/dbs.dir/vcs/backup.cpp.o: ../interpret/includes/parser.h
+CMakeFiles/dbs.dir/vcs/backup.cpp.o: ../interpret/includes/shared_oprt_funcs.h
+CMakeFiles/dbs.dir/vcs/backup.cpp.o: ../interpret/includes/sys_error.h
+CMakeFiles/dbs.dir/vcs/backup.cpp.o: ../interpret/includes/trigger_node.h
+CMakeFiles/dbs.dir/vcs/backup.cpp.o: ../interpret/includes/trigger_opeators.h
+CMakeFiles/dbs.dir/vcs/backup.cpp.o: ../tools/includes/singleton.h
+CMakeFiles/dbs.dir/vcs/backup.cpp.o: ../tools/includes/utils.h
+CMakeFiles/dbs.dir/vcs/backup.cpp.o: ../vcs/backup.cpp
+CMakeFiles/dbs.dir/vcs/backup.cpp.o: ../vcs/includes/backup.h
+CMakeFiles/dbs.dir/vcs/backup.cpp.o: ../vcs/includes/inode.h
+
+CMakeFiles/dbs.dir/vcs/inode.cpp.o: ../db_kernel/includes/db_kernel.h
+CMakeFiles/dbs.dir/vcs/inode.cpp.o: ../db_kernel/includes/event.h
+CMakeFiles/dbs.dir/vcs/inode.cpp.o: ../db_kernel/includes/file_stream.h
+CMakeFiles/dbs.dir/vcs/inode.cpp.o: ../db_kernel/includes/methods.h
+CMakeFiles/dbs.dir/vcs/inode.cpp.o: ../db_kernel/includes/token.h
+CMakeFiles/dbs.dir/vcs/inode.cpp.o: ../db_kernel/includes/tokenize_grammar.h
+CMakeFiles/dbs.dir/vcs/inode.cpp.o: ../interpret/includes/args_data.h
+CMakeFiles/dbs.dir/vcs/inode.cpp.o: ../interpret/includes/args_data_operator.h
+CMakeFiles/dbs.dir/vcs/inode.cpp.o: ../interpret/includes/base_parse_api.h
+CMakeFiles/dbs.dir/vcs/inode.cpp.o: ../interpret/includes/command.h
+CMakeFiles/dbs.dir/vcs/inode.cpp.o: ../interpret/includes/lexeme.h
+CMakeFiles/dbs.dir/vcs/inode.cpp.o: ../interpret/includes/lexeme_type.h
+CMakeFiles/dbs.dir/vcs/inode.cpp.o: ../interpret/includes/lexer.h
+CMakeFiles/dbs.dir/vcs/inode.cpp.o: ../interpret/includes/operators.h
+CMakeFiles/dbs.dir/vcs/inode.cpp.o: ../interpret/includes/parser.h
+CMakeFiles/dbs.dir/vcs/inode.cpp.o: ../interpret/includes/shared_oprt_funcs.h
+CMakeFiles/dbs.dir/vcs/inode.cpp.o: ../interpret/includes/trigger_node.h
+CMakeFiles/dbs.dir/vcs/inode.cpp.o: ../interpret/includes/trigger_opeators.h
+CMakeFiles/dbs.dir/vcs/inode.cpp.o: ../tools/includes/singleton.h
+CMakeFiles/dbs.dir/vcs/inode.cpp.o: ../vcs/includes/inode.h
+CMakeFiles/dbs.dir/vcs/inode.cpp.o: ../vcs/inode.cpp
+
+CMakeFiles/dbs.dir/vcs/inodes.cpp.o: ../db_kernel/includes/db_kernel.h
+CMakeFiles/dbs.dir/vcs/inodes.cpp.o: ../db_kernel/includes/event.h
+CMakeFiles/dbs.dir/vcs/inodes.cpp.o: ../db_kernel/includes/file_stream.h
+CMakeFiles/dbs.dir/vcs/inodes.cpp.o: ../db_kernel/includes/methods.h
+CMakeFiles/dbs.dir/vcs/inodes.cpp.o: ../db_kernel/includes/token.h
+CMakeFiles/dbs.dir/vcs/inodes.cpp.o: ../db_kernel/includes/tokenize_grammar.h
+CMakeFiles/dbs.dir/vcs/inodes.cpp.o: ../interpret/includes/args_data.h
+CMakeFiles/dbs.dir/vcs/inodes.cpp.o: ../interpret/includes/args_data_operator.h
+CMakeFiles/dbs.dir/vcs/inodes.cpp.o: ../interpret/includes/base_parse_api.h
+CMakeFiles/dbs.dir/vcs/inodes.cpp.o: ../interpret/includes/command.h
+CMakeFiles/dbs.dir/vcs/inodes.cpp.o: ../interpret/includes/lexeme.h
+CMakeFiles/dbs.dir/vcs/inodes.cpp.o: ../interpret/includes/lexeme_type.h
+CMakeFiles/dbs.dir/vcs/inodes.cpp.o: ../interpret/includes/lexer.h
+CMakeFiles/dbs.dir/vcs/inodes.cpp.o: ../interpret/includes/operators.h
+CMakeFiles/dbs.dir/vcs/inodes.cpp.o: ../interpret/includes/parser.h
+CMakeFiles/dbs.dir/vcs/inodes.cpp.o: ../interpret/includes/shared_oprt_funcs.h
+CMakeFiles/dbs.dir/vcs/inodes.cpp.o: ../interpret/includes/sys_error.h
+CMakeFiles/dbs.dir/vcs/inodes.cpp.o: ../interpret/includes/trigger_node.h
+CMakeFiles/dbs.dir/vcs/inodes.cpp.o: ../interpret/includes/trigger_opeators.h
+CMakeFiles/dbs.dir/vcs/inodes.cpp.o: ../tools/includes/singleton.h
+CMakeFiles/dbs.dir/vcs/inodes.cpp.o: ../tools/includes/utils.h
+CMakeFiles/dbs.dir/vcs/inodes.cpp.o: ../vcs/includes/inode.h
+CMakeFiles/dbs.dir/vcs/inodes.cpp.o: ../vcs/includes/inodes.h
+CMakeFiles/dbs.dir/vcs/inodes.cpp.o: ../vcs/inodes.cpp
+
+CMakeFiles/dbs.dir/vcs/vcs_tab.cpp.o: ../db_kernel/includes/db_kernel.h
+CMakeFiles/dbs.dir/vcs/vcs_tab.cpp.o: ../db_kernel/includes/event.h
+CMakeFiles/dbs.dir/vcs/vcs_tab.cpp.o: ../db_kernel/includes/file_stream.h
+CMakeFiles/dbs.dir/vcs/vcs_tab.cpp.o: ../db_kernel/includes/methods.h
+CMakeFiles/dbs.dir/vcs/vcs_tab.cpp.o: ../db_kernel/includes/token.h
+CMakeFiles/dbs.dir/vcs/vcs_tab.cpp.o: ../db_kernel/includes/tokenize_grammar.h
+CMakeFiles/dbs.dir/vcs/vcs_tab.cpp.o: ../interpret/includes/args_data.h
+CMakeFiles/dbs.dir/vcs/vcs_tab.cpp.o: ../interpret/includes/args_data_operator.h
+CMakeFiles/dbs.dir/vcs/vcs_tab.cpp.o: ../interpret/includes/base_parse_api.h
+CMakeFiles/dbs.dir/vcs/vcs_tab.cpp.o: ../interpret/includes/command.h
+CMakeFiles/dbs.dir/vcs/vcs_tab.cpp.o: ../interpret/includes/lexeme.h
+CMakeFiles/dbs.dir/vcs/vcs_tab.cpp.o: ../interpret/includes/lexeme_type.h
+CMakeFiles/dbs.dir/vcs/vcs_tab.cpp.o: ../interpret/includes/lexer.h
+CMakeFiles/dbs.dir/vcs/vcs_tab.cpp.o: ../interpret/includes/operators.h
+CMakeFiles/dbs.dir/vcs/vcs_tab.cpp.o: ../interpret/includes/parser.h
+CMakeFiles/dbs.dir/vcs/vcs_tab.cpp.o: ../interpret/includes/shared_oprt_funcs.h
+CMakeFiles/dbs.dir/vcs/vcs_tab.cpp.o: ../interpret/includes/sys_error.h
+CMakeFiles/dbs.dir/vcs/vcs_tab.cpp.o: ../interpret/includes/trigger_node.h
+CMakeFiles/dbs.dir/vcs/vcs_tab.cpp.o: ../interpret/includes/trigger_opeators.h
+CMakeFiles/dbs.dir/vcs/vcs_tab.cpp.o: ../tools/includes/singleton.h
+CMakeFiles/dbs.dir/vcs/vcs_tab.cpp.o: ../vcs/includes/backup.h
+CMakeFiles/dbs.dir/vcs/vcs_tab.cpp.o: ../vcs/includes/inode.h
+CMakeFiles/dbs.dir/vcs/vcs_tab.cpp.o: ../vcs/includes/inodes.h
+CMakeFiles/dbs.dir/vcs/vcs_tab.cpp.o: ../vcs/includes/vcs_tab.h
+CMakeFiles/dbs.dir/vcs/vcs_tab.cpp.o: ../vcs/vcs_tab.cpp
 

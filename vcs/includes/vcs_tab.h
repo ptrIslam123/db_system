@@ -3,26 +3,25 @@
 
 #include "inode.h"
 #include "inodes.h"
-#include "backup.h"
 #include "../../db_kernel/includes/db_kernel.h"
+
+/*  НЕОБХОДИМО ПЕРВОНАЧАЛЬНО ЗАПИСАТЬ ОБРАЗ
+    INODES НА ФАЙЛ ПЕРЕД ЕГО ИСПОЛЬЗОВАНИЕМ! */
 
 namespace vcs
 {
 
 using msg_t     = inode::inode_msg_t;
 using indx_t    = inode::inode_indx_t;
+using inode_ptr = inodes::inode_ptr;
 using table_ptr = db_kernel_ptr;
 
 
 void            backup_table(msg_t&& , table_ptr );
-
+void            roll_back_db(inode_ptr );
+inode_ptr       find_inode(indx_t );
+inode_ptr       find_inode(msg_t&& );
 inodes_ptr      get_inodes();
-backup_ptr      get_backup();
-
-void            init_inodes_sys(inodes_ptr );
-void            init_backup_sys(inodes_ptr );
-
-
 
 } // namespace vcs
 

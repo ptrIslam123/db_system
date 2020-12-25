@@ -1,0 +1,11 @@
+create_t(   tn : 'table'
+            fn : '../config/tables/small_init.txt'
+            sz : '200')
+
+set_t(tn : 'table')
+
+print_t(tn : 'table')
+
+backup(tn : 'table' ds : 'my first backup!')
+
+log(ds : 'BACKUP OK!')

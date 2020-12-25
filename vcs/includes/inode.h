@@ -11,15 +11,15 @@ struct inode
     using size_record_t = size_t;  
 
 public:
-    inode(inode_msg_t&& , db_kernel_ptr );
-    inode(const inode_msg_t& , db_kernel_ptr );
+    inode(inode_msg_t&& , inode_indx_t , db_kernel_ptr );
+    inode(const inode_msg_t& , inode_indx_t , db_kernel_ptr );
     ~inode();
 
     inode_indx_t    get_index() const;
     inode_msg_t&    get_message();
-    db_kernel_ptr   get_db_ptr() const;
     size_record_t   get_size_record() const;
-    
+    db_kernel_ptr   get_db_ptr() const;
+
 private:
     inode_indx_t    generate_index();
 

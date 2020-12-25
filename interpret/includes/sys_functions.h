@@ -12,6 +12,7 @@
 #include "response_data.h"
 #include "../../tools/includes/loger.h"
 #include "../../db_kernel/includes/db_controller.h"
+#include "../../vcs/includes/vcs_tab.h"
 
 
 //using statist_key_t     = statist_key_t;
@@ -23,6 +24,8 @@ using response_d        = response_data::container_t;
 using table_name_t      = std::string;
 using file_name_t       = std::string;
 using table_ptr         = db_controller::table_ptr;
+
+using inode_ptr         = vcs::inode_ptr;
 
 /* memento API */
 using rolback_f_t       = controller_transact_t;
@@ -41,11 +44,16 @@ using statict_key_maker_t   = statist_key_t (*)(token_ptr );
 /* comparators */
 bool comparator_dt(const token_ptr ,const data_ptr );
 bool comparator_ti(const token_ptr, const data_ptr );
+bool comparator_ty(const token_ptr , const data_ptr );
 bool comparator_ds(const token_ptr, const data_ptr );
 bool comparator_dt_ti(const token_ptr, const data_ptr );
+bool comparator_dt_ty(const token_ptr , const data_ptr );
+bool comparator_ti_ty(const token_ptr , const data_ptr );
+bool comparator_ty_ds(const token_ptr , const data_ptr );
 bool comparator_dt_ds(const token_ptr, const data_ptr );
 bool comparator_ti_ds(const token_ptr, const data_ptr );
 bool comparator_dt_ti_ds(const token_ptr, const data_ptr );
+bool comparator_dt_ti_ty_ds(const token_ptr, const data_ptr );
 
 
 statist_key_t make_sort_key_dt(token_ptr );
@@ -92,6 +100,9 @@ void write_table_to_file_req(data_ptr );
 void write_table_to_table_req(data_ptr );
 void size_table_req(data_ptr );
 void backup_req(data_ptr );
+void list_inodes_req();
+void list_inodes_req(data_ptr );
+void roll_back_req(index_t );
 
 /* SORT RECORDS API */
 
@@ -172,6 +183,8 @@ void         _print_table(const table_name_ptr );
 void         _print_tables();
 void         _print_triggers();
 void         _print_log_file();
+
+void         _print_inode_inf(vcs::inode_ptr );
 
 void         _print_count_sortRec(word_t&& , statist_value_ptr );
 void         _print_index_sortRec(word_t&& , statist_value_ptr );

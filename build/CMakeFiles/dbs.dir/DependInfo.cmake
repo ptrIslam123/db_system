@@ -35,6 +35,10 @@ set(CMAKE_DEPENDS_CHECK_CXX
   "/home/islam/CppProgram/db_sysytem_for_it_company/tools/files.cpp" "/home/islam/CppProgram/db_sysytem_for_it_company/build/CMakeFiles/dbs.dir/tools/files.cpp.o"
   "/home/islam/CppProgram/db_sysytem_for_it_company/tools/loger.cpp" "/home/islam/CppProgram/db_sysytem_for_it_company/build/CMakeFiles/dbs.dir/tools/loger.cpp.o"
   "/home/islam/CppProgram/db_sysytem_for_it_company/tools/utils.cpp" "/home/islam/CppProgram/db_sysytem_for_it_company/build/CMakeFiles/dbs.dir/tools/utils.cpp.o"
+  "/home/islam/CppProgram/db_sysytem_for_it_company/vcs/backup.cpp" "/home/islam/CppProgram/db_sysytem_for_it_company/build/CMakeFiles/dbs.dir/vcs/backup.cpp.o"
+  "/home/islam/CppProgram/db_sysytem_for_it_company/vcs/inode.cpp" "/home/islam/CppProgram/db_sysytem_for_it_company/build/CMakeFiles/dbs.dir/vcs/inode.cpp.o"
+  "/home/islam/CppProgram/db_sysytem_for_it_company/vcs/inodes.cpp" "/home/islam/CppProgram/db_sysytem_for_it_company/build/CMakeFiles/dbs.dir/vcs/inodes.cpp.o"
+  "/home/islam/CppProgram/db_sysytem_for_it_company/vcs/vcs_tab.cpp" "/home/islam/CppProgram/db_sysytem_for_it_company/build/CMakeFiles/dbs.dir/vcs/vcs_tab.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

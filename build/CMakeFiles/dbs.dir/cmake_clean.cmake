@@ -30,6 +30,10 @@ file(REMOVE_RECURSE
   "CMakeFiles/dbs.dir/tools/files.cpp.o"
   "CMakeFiles/dbs.dir/tools/loger.cpp.o"
   "CMakeFiles/dbs.dir/tools/utils.cpp.o"
+  "CMakeFiles/dbs.dir/vcs/backup.cpp.o"
+  "CMakeFiles/dbs.dir/vcs/inode.cpp.o"
+  "CMakeFiles/dbs.dir/vcs/inodes.cpp.o"
+  "CMakeFiles/dbs.dir/vcs/vcs_tab.cpp.o"
   "dbs.pdb"
   "dbs"
 )
