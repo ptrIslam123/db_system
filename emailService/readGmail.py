@@ -3,7 +3,6 @@
 import imaplib
 import email
 
-
 class EmailStruct:
 
         def __init__(self, email_to, email_from, email_subject, \
@@ -13,7 +12,7 @@ class EmailStruct:
                         self.__email_subject      = email_subject
                         self.__email_id           = email_id
                         self.__email_date         = email_date
-                        self.__email_body         = email_body
+                        self.__email_body         = email_body.encode("UTF-8")
 
         def get_addr_to(self):
                 return self.__email_to
@@ -56,7 +55,7 @@ def parseGmail(email_message):
         email_id                = email_message['Message-Id']
         email_date              = email_message['Date']
         email_body              = readEmailBody(email_message)
-        
+
 
         emailStruct = EmailStruct(email_to, email_from, email_subject, email_id, email_date, email_body)
         return emailStruct
@@ -73,20 +72,21 @@ def searchGmail(id_list, mail, data):
                 result, data    = mail.fetch(email_id, '(RFC822)')
 
                 raw_email       = data[0][1]
+		
                 email_message   = email.message_from_string(raw_email)
 
                 email_subject   = email_message['Subject']
                 need_email_subject = "Result_email"
-                
+
                 if (email_subject == need_email_subject):
                         return email_message
 
 
         return -1
 
-                
 
-                
+
+
 
 
 
@@ -94,7 +94,7 @@ def searchGmail(id_list, mail, data):
 def readGmail(email_addr, password):
     mail = imaplib.IMAP4_SSL('imap.gmail.com')
     mail.login(email_addr, password)
-    
+
     mail.list()
     mail.select('INBOX')
 
@@ -113,16 +113,14 @@ def readGmail(email_addr, password):
    
     
 
-
-    
-
     
 
 
-email = ""
-password = ""
+#email_addr = "ptrislam123@gmail.com"
+#password = ""
+
 #emailStruct = readGmail(email_addr, password)
 
-#print (emailStruct.get_addr_from())
-#print (emailStruct.get_id())
-#print (emailStruct.get_body())
+#data = emailStruct.get_body()
+
+
