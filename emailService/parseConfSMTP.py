@@ -38,15 +38,40 @@ class JsonConfStruct:
 
 
 def makeJsonConfStruct(json_obj):
-    
+    # json_obj -> type(dict)
+    em_to       = json_obj['email_to'],
+    em_from     = json_obj['email_from'],
+    passwd      = json_obj['password'],
+    data_fn     = json_obj['data_fname'],
+    result_fn   = json_obj['result_fname'],
+    scripts     = []
+
+    for i in json_obj['scripts']:
+        scripts.append(i.encode('UTF-8'))
+
     return JsonConfStruct(
-        json_obj['email_to'],
-        json_obj['email_from'],
-        json_obj['password'],
-        json_obj['data_fname'],
-        json_obj['result_fname'],
-        json_obj['scripts']
+        em_to,
+        em_from,
+        passwd,
+        data_fn,
+        result_fn,
+        scripts
     )
+
+def getJsonDict(jsonConfStruct):
+    # jsonConfStruct -> type(JsonConfStruct)
+    jdict = {}
+
+    jdict['email_to']       = jsonConfStruct.get_email_to()
+    jdict['email_from']     = jsonConfStruct.get_email_from()
+    jdict['password']       = jsonConfStruct.get_password()
+    jdict['data_fname']     = jsonConfStruct.get_data_fname()
+    jdict['result_fname']   = jsonConfStruct.get_result_fname()
+    jdict['scripts']        = jsonConfStruct.get_scripts()
+
+    return jdict
+
+
 
 def write_json_obj(fname, obj):
     with open(fname, 'w') as file:
@@ -80,8 +105,4 @@ fname = "task.json"
 obj = read_json_obj(fname)
 jo = makeJsonConfStruct(obj)
 
-print(jo.get_email_from())
-print (jo.get_email_to())
-print (jo.get_data_fname())
-print (jo.get_result_fname())
-print (jo.get_scripts())
+print (getJsonDict(jo))
