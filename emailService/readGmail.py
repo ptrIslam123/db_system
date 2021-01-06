@@ -66,7 +66,7 @@ def parseGmail(email_message):
 
 
 
-def searchGmail(id_list, mail, data):
+def searchGmail(id_list, mail, data, emailSubjectType):
         for id in id_list:
                 id_num          = int(id)
                 email_id        = id_list[id_num - 1]
@@ -78,9 +78,8 @@ def searchGmail(id_list, mail, data):
                 email_message   = email.message_from_string(raw_email)
 
                 email_subject   = email_message['Subject']
-                need_email_subject = "Result_email"
 
-                if (email_subject == need_email_subject):
+                if (email_subject == emailSubjectType):
                         return email_message
 
 
@@ -93,7 +92,7 @@ def searchGmail(id_list, mail, data):
 
 
 
-def readGmail(email_addr, password):
+def readGmail(email_addr, password, emailSubjectType):
     mail = imaplib.IMAP4_SSL('imap.gmail.com')
     mail.login(email_addr, password)
 
@@ -105,7 +104,7 @@ def readGmail(email_addr, password):
     ids = data[0]
     id_list = ids.split()   
 
-    email_message = searchGmail(id_list, mail, data)
+    email_message = searchGmail(id_list, mail, data, emailSubjectType)
 
     return parseGmail(email_message)
     
@@ -120,8 +119,9 @@ def readGmail(email_addr, password):
 
 #email_addr = "ptrislam123@gmail.com"
 #password = ""
+#email_subject_t = ""
 
-#emailStruct = readGmail(email_addr, password)
+#emailStruct = readGmail(email_addr, password, email_subject_t)
 
 #data = emailStruct.get_body()
 
