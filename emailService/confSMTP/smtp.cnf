@@ -1,6 +1,0 @@
-# commnet
-from_email_addr=test@gmail.com
-to_email_addr=test@gmail.com
-subject=test_subject
-password=12345
-file_name=../../scripts/result.txt
