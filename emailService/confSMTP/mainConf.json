@@ -1,0 +1,10 @@
+{
+    "result_fname": "result.txt", 
+    "email_to": "ptrislam123@gmail.com ", 
+    "scripts": [
+        "statistics.sh"
+    ], 
+    "password": "*****", 
+    "data_fname": "small_init.txt", 
+    "email_from": "ptrislam123@gmail.com"
+}

@@ -6,8 +6,9 @@ import sendGmail as smtp
 import parseConfSMTP as parseConf
 import sysloger as sysloger
 
+#import test as t
 
-MAIN_CONFIGURE_FILE = ".confSMTP/mainConf.json"
+MAIN_CONFIGURE_FILE = "./confSMTP/mainConf.json"
 
 def readf(fname):
     with open(fname, mode = 'r') as file:
@@ -27,39 +28,47 @@ def sendReport(fname):
     confObj = parseConf.getConf(fname)
 
 
-    email_to        = confObj.get_email_to()
-    email_from      = confObj.get_email_from
-    password        = confObj.get_password()
-    data_fname      = confObj.get_data_fname()
-    result_fname    = confObj.get_result_fname()
-    tasks           = confObj.get_scripts()
+    #email_to        = confObj().get_email_to()
+    #email_from      = confObj().get_email_from
+    #password        = confObj.get_password()
+    #data_fname      = confObj.get_data_fname()
+    #result_fname    = confObj.get_result_fname()
+    #tasks           = confObj.get_scripts()
 
     subscription    = "DBS_REPORT"
     descript_event  = "WARNING: The report was sent to work mail"
     report_dir_path = "../config/reports/" 
 
+    resultFilePath = report_dir_path + confObj.get_result_fname()
+
+
+    # EXECUTE TASKS
+
+    for taskfname in confObj.get_scripts():
+            runTasks(taskfname, confObj.get_data_fname(), \
+                    confObj.get_result_fname())
+
+    reportData = readf(resultFilePath)
 
 
 
-    # RUN TASKS
-    runTasks(tasks, data_fname, result_fname)
+    # SEND REPORT TO MAIL
 
-    reportData = readf(report_dir_path + result_fname)
-
-
-
-
-
-    # SEND REPORT AT EMAIL
-    smtp.sendGmail(email_from, email_to, subscription, password, \
-            reportData, result_fname)
-
-
-    # WRITE LOG TO LOGFILE
-    sysloger.log(sysloger.SYS_LOG_FILE_NAME, descript_event)
+    smtp.sendGmail(
+            confObj.get_email_to(),
+            confObj.get_email_from(),
+            subscription,
+            confObj.get_password(),
+            reportData,
+            confObj.get_result_fname()
+    )
+    
+    # WRITE SYSTEM LOG TO LOG FILE
+    sysloger.log(sysloger.SYS_LOG_FILE_NAME , descript_event)
 
 
 
+#sendReport(MAIN_CONFIGURE_FILE)
 
 
 
