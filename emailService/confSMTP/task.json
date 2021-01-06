@@ -1,0 +1,13 @@
+{
+    "result_fname": "result.txt", 
+    "email_to": "example@gmail.com", 
+    "scripts": [
+        "1.dbs", 
+        "2.dbs", 
+        "3.dbs", 
+        "n.dbs"
+    ], 
+    "password": "12345", 
+    "data_fname": "datafname.txt", 
+    "email_from": "example@gmail.com"
+}

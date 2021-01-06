@@ -1,5 +1,6 @@
 #!/usr/bin/env python 2.7
 #-*-coding: utf-8-*-
+
 import imaplib
 import email
 
@@ -13,6 +14,7 @@ class EmailStruct:
                         self.__email_id           = email_id
                         self.__email_date         = email_date
                         self.__email_body         = email_body.encode("UTF-8")
+			# email_body.encode - encode unicode from usuali string utf-8
 
         def get_addr_to(self):
                 return self.__email_to
