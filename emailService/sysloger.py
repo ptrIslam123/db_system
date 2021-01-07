@@ -1,12 +1,15 @@
 #!/usr/bin/env python 2.7
 #-*-coding: utf-8-*-
 
-SYS_LOG_FILE_NAME = "../config/log/sys_log.txt"
+import vars as env
+from datetime import datetime
+
 
 def get_time():
-    return "[12.12.12]"
+    return str(datetime.now())
 
-def log(fname, description):
-    with open(fname, mode = 'a') as file:
+def log(description):
+    with open(env.SYS_LOG_FILE_NAME, mode = 'a') as file:
         file.writelines(get_time() + "\t[" + description + "]\n")
+
 

@@ -1,0 +1,19 @@
+#!/usr/bin/env python 2.7
+#-*-coding: utf-8-*-
+
+MAIN_CONFIG_FILE_PATH   = "confSMTP/mainConf.json"
+REPORT_DIR_PATH         = "../config/reports/" 
+SYS_LOG_FILE_NAME       = "../config/log/sys_log.txt"
+
+DBS_CONF_SUBJECT_TYPE   = "DBS_CONF"
+DBS_DATA_SUBJECT_TYPE   = "DBS_DATA"
+DBS_REPORT_SUBJECT_TYPE = "DBS_REPORT"
+MAIN_CONF_FILE_NAME     = "mainConf.json" 
+
+EVENT_SEND_REPORT   = "WARNING: send a report by mail"
+EVENT_SEND_DATA     = "WARNING: send a data by mail"
+EVENT_SEND_CONF     = "WARNING: send a configuration data by mail"
+EVENT_GET_REPORT    = "WARNING: receiving a report by mail"
+EVENT_GET_DATA      = "WARNING: receiving a data by mail"
+EVENT_GET_CONF      = "WARNING: receiving a configuration data by mail"
+

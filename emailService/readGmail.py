@@ -3,6 +3,7 @@
 
 import imaplib
 import email
+import vars
 
 class EmailStruct:
 
@@ -67,7 +68,8 @@ def parseGmail(email_message):
 
 
 def searchGmail(id_list, mail, data, emailSubjectType):
-        for id in id_list:
+        for id in reversed(id_list):
+                # for id in id_list:
                 id_num          = int(id)
                 email_id        = id_list[id_num - 1]
 
@@ -110,19 +112,15 @@ def readGmail(email_addr, password, emailSubjectType):
     
 
 
+def getConfGmail():
+        pass
+
+def getDataGmail():
+        pass
 
    
-    
 
     
 
-
-#email_addr = "ptrislam123@gmail.com"
-#password = ""
-#email_subject_t = ""
-
-#emailStruct = readGmail(email_addr, password, email_subject_t)
-
-#data = emailStruct.get_body()
 
 

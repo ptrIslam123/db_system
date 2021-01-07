@@ -2,6 +2,7 @@
 #-*-coding: utf-8-*-
 
 import json
+import vars
 
 
 class JsonConfStruct:
@@ -35,12 +36,26 @@ class JsonConfStruct:
             return self.__scripts
 
 
+
+
+def readf(fname):
+    with open(fname, mode = 'r') as file:
+        return file.read()
+
+
+def writef(fname, data):
+        with open(fname, 'w') as file:
+                file.write(data)
+
+
 def convertUnicodeDicttoStrDict(container):
         scripts     = []
         for i in container:
                 scripts.append(i.encode('UTF-8'))
 
         return scripts
+        
+        
 
 
 def makeJsonConfStruct(json_obj):
@@ -68,6 +83,11 @@ def makeJsonConfStruct(json_obj):
 
 
 
+def strToJsonConfStruct(strJson):
+        dictJson = json.loads(strJson)
+        return makeJsonConfStruct(dictJson)
+
+
 def getJsonDict(jsonConfStruct):
     # jsonConfStruct -> type(JsonConfStruct)
     if not (isinstance(jsonConfStruct, JsonConfStruct)):
@@ -86,35 +106,21 @@ def getJsonDict(jsonConfStruct):
 
 
 
-def write_json_obj(fname, obj):
+def writeJsonToFile(fname, obj):
     with open(fname, 'w') as file:
         json.dump(obj, file, indent=4)
 
 
 
-def read_json_obj(fname):
+def readJsonFromFile(fname):
     with open(fname, 'r') as file:
         return json.load(file)
 
 
 
 def getConf(fname):
-        json_o = read_json_obj(fname)
+        json_o = readJsonFromFile(fname)
         return makeJsonConfStruct(json_o)
 
 
-#fn = "confSMTP/mainConf.json"
-#o = getConf(fn)
-#print (o.get_email_from())
 
-
-
-#o = read_json_obj("./confSMTP/mainConf.json")
-
-#print (o['email_from'].encode("UTF-8"))
-#print (type(o['email_from'].encode("UTF-8")))
-
-#s = o["scripts"]
-#print (s)
-#ns = convertUnicodeDicttoStrDict(s)
-#print (ns)

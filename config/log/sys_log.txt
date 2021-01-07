@@ -1,1 +1,13 @@
 
+2021-01-07 21:30:35.304182	[WARNING: send a configuration data by mail]
+2021-01-07 21:30:35.304182	[WARNING: send a data by mail]
+2021-01-07 21:30:35.304182	[WARNING: send a report by mail]
+2021-01-07 21:30:35.304182	[WARNING: send a report by mail]
+2021-01-07 21:30:35.304182	[WARNING: send a data by mail]
+2021-01-07 21:30:35.304182	[WARNING: send a configuration data by mail]
+2021-01-07 21:30:35.304182	[WARNING: receiving a report by mail]
+2021-01-07 21:30:35.304182	[WARNING: receiving a data by mail]
+2021-01-07 21:30:35.304182	[WARNING: receiving a configuration data by mail]
+2021-01-07 21:30:35.304182	[WARNING: receiving a data by mail]
+2021-01-07 21:30:36.252967	[WARNING: receiving a configuration data by mail]
+2021-01-07 21:30:37.209077	[WARNING: receiving a report by mail]
