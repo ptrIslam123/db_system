@@ -1,4 +1,4 @@
-#!/usr/bin/env python 2.7
+#!/usr/bin/env python 
 #-*-coding: utf-8-*-
 
 
@@ -7,7 +7,21 @@ import sendGmail as sGmail
 import sendReport as sReport
 import readGmail as rGmail
 import parseConfSMTP as pConf
+import execTasks as execT
 import sysloger 
+
+
+def runTasks(task_list, data_fn, result_fn):
+    if not (isinstance(task_list, list)):
+        return -1
+    # !main function for executing tasks
+    for task in task_list:
+        taskFileName = env.SCRIPTS_DIR_PATH + task
+        ### create aliases to file : data_fn <-> word_file.txt (with data)
+        execT.execTaskAndWriteResultToFile([taskFileName], result_fn)
+
+    sysloger.log(env.EVENT_SEND_REPORT)
+
 
 
 def sendReport():
@@ -52,4 +66,5 @@ def getConfData(email_addr, password):
     strJson = emailS.get_body()
     sysloger.log(env.EVENT_GET_CONF)
     return pConf.strToJsonConfStruct(strJson)
+
 

@@ -1,13 +1,7 @@
 #! /bin/bash
 
-reportDirPath="../config/reports/"
-filePath=$1
+echo "this is statistics.sh run!!!"
 
-allReportPath="$reportDirPath$filePath"
-
-cd ../../build/
-
-
-./dbs ../scripts/dbsScripts/statistics.dbs > $allReportPath
-
+ls -l
+pwd
 

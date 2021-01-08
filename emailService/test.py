@@ -1,4 +1,4 @@
-#!/usr/bin/env python 2.7
+#!/usr/bin/env python
 #-*-coding: utf-8-*-
 
 import main as m
@@ -7,7 +7,7 @@ import vars as v
 
 
 temail_addr = "ptrislam123@gmail.com"
-tpassword = "*****"
+tpassword = "1w2q3r4e"
 tdata = p.readf(v.MAIN_CONFIG_FILE_PATH)
 
 

@@ -1,4 +1,4 @@
-#!/usr/bin/env python 2.7
+#!/usr/bin/env python 
 #-*-coding: utf-8-*-
 
 import json
@@ -70,7 +70,7 @@ def makeJsonConfStruct(json_obj):
     result_fn   = json_obj['result_fname'].encode("UTF-8")
     
 
-    scripts = convertUnicodeDicttoStrDict(json_obj['scripts'])
+    scripts     = convertUnicodeDicttoStrDict(json_obj['scripts'])
 
     return JsonConfStruct(
         em_to,

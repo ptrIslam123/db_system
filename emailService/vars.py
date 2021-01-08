@@ -1,8 +1,9 @@
-#!/usr/bin/env python 2.7
+#!/usr/bin/env python
 #-*-coding: utf-8-*-
 
 MAIN_CONFIG_FILE_PATH   = "confSMTP/mainConf.json"
 REPORT_DIR_PATH         = "../config/reports/" 
+SCRIPTS_DIR_PATH        = "../scripts/bashScripts/"
 SYS_LOG_FILE_NAME       = "../config/log/sys_log.txt"
 
 DBS_CONF_SUBJECT_TYPE   = "DBS_CONF"

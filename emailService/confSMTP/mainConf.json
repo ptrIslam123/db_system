@@ -6,7 +6,7 @@
         "test.sh",
         "new_task.sh"
     ], 
-    "password": "*****", 
+    "password": "****", 
     "data_fname": "small_init.txt", 
     "email_from": "ptrislam123@gmail.com"
 }

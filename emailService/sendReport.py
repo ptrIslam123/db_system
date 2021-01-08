@@ -1,4 +1,4 @@
-#!/usr/bin/env python 2.7
+#!/usr/bin/env python
 #-*-coding: utf-8-*-
 
 from sys import argv
@@ -8,12 +8,6 @@ import sysloger as sysloger
 import vars
 
     
-
-def runTasks(task_list, data_fname, result_fname):
-    if not (isinstance(task_list, list)):
-        return -1
-    # !main function for executing tasks
-    pass
 
 
 def sendReport(fname):
@@ -26,12 +20,6 @@ def sendReport(fname):
 
     resultFilePath = report_dir_path + confObj.get_result_fname()
 
-
-    # EXECUTE TASKS
-
-    for taskfname in confObj.get_scripts():
-            runTasks(taskfname, confObj.get_data_fname(), \
-                    confObj.get_result_fname())
 
     reportData = parseConf.readf(resultFilePath)
 
