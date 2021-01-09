@@ -1,7 +1,6 @@
 #!/usr/bin/env python 
 #-*-coding: utf-8-*-
 
-
 import vars as env
 import sendGmail as sGmail
 import sendReport as sReport
@@ -11,16 +10,28 @@ import execTasks as execT
 import sysloger 
 
 
-def runTasks(task_list, data_fn, result_fn):
+def createWorkFile(wordData):
+    pConf.writef(env.WORD_FILE_NAME, wordData)
+    sysloger.log(env.EVENT_CREATE_WORD_SPACE)
+
+
+def clearWordSpace(fname):
+    pConf.removef(fname)
+    sysloger.log(env.EVENT_CLEAR_WORK_SPACE + fname)
+
+
+def runTasks(task_list, data, result_fn):
     if not (isinstance(task_list, list)):
         return -1
-    # !main function for executing tasks
+
+    createWorkFile(data)
+
     for task in task_list:
         taskFileName = env.SCRIPTS_DIR_PATH + task
-        ### create aliases to file : data_fn <-> word_file.txt (with data)
+
         execT.execTaskAndWriteResultToFile([taskFileName], result_fn)
 
-    sysloger.log(env.EVENT_SEND_REPORT)
+    sysloger.log(env.EVENT_RUN_TASK + taskFileName)
 
 
 
@@ -68,3 +79,36 @@ def getConfData(email_addr, password):
     return pConf.strToJsonConfStruct(strJson)
 
 
+def main():
+    email_addr  = "ptrislam123@gmail.com"
+    passwd      = "1w2q3r4e"
+
+    emailS      = getConfData(email_addr, passwd)
+    targetData  = getData(email_addr, passwd)
+
+    email_from  = emailS.get_email_from()
+    email_to    = emailS.get_email_to()
+    password    = emailS.get_password()
+
+    task_list   = emailS.get_scripts()
+    data_fn     = emailS.get_data_fname()
+    result_fn   = emailS.get_result_fname()
+
+    # execute set tasks! 
+    runTasks(task_list, targetData, result_fn)
+
+
+    # send report to email server!
+    reportData = pConf.readf(env.REPORT_DIR_PATH + result_fn)
+
+    sGmail.sendGmail(email_from, email_to, env.DBS_REPORT_SUBJECT_TYPE, \
+                password, reportData, result_fn)
+
+    clearWordSpace(env.REPORT_DIR_PATH + result_fn)
+
+
+
+
+
+if __name__ == "__main__":
+    main()

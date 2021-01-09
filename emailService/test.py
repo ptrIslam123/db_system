@@ -12,6 +12,19 @@ tdata = p.readf(v.MAIN_CONFIG_FILE_PATH)
 
 
 
+def sendTestConf(email_from, email_to, password):
+    confData = p.readf(v.MAIN_CONFIG_FILE_PATH)
+    m.sendConfData(email_from, email_to, password, confData, v.MAIN_CONFIG_FILE_PATH)
+
+
+
+#sendTestConf(temail_addr,temail_addr, tpassword)
+#fname = "../config/tables/small_init.txt"
+
+#data = p.readf(fname)
+
+#m.sendData(temail_addr, temail_addr, tpassword, data, fname)
+
 #m.sendConfData(temail_addr, temail_addr, tpassword, tdata, "testConf.json")
 #m.sendData(temail_addr, temail_addr, tpassword, "hello world!", "testData.txt")
 #m.sendReport()

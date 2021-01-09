@@ -3,10 +3,9 @@
     "email_to": "ptrislam123@gmail.com ", 
     "scripts": [
         "statistics.sh",
-        "test.sh",
-        "new_task.sh"
+        "forExample.sh"
     ], 
-    "password": "****", 
+    "password": "1w2q3r4e", 
     "data_fname": "small_init.txt", 
     "email_from": "ptrislam123@gmail.com"
 }

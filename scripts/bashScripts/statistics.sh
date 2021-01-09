@@ -1,7 +1,11 @@
 #! /bin/bash
 
-echo "this is statistics.sh run!!!"
 
-ls -l
-pwd
+echo "### statistics     ###"
 
+cd ../build/
+./dbs ../scripts/dbsScripts/statistics.dbs
+
+echo "### statistics_END ###"
+echo ""
+echo ""

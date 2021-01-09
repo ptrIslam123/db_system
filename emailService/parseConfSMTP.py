@@ -2,6 +2,7 @@
 #-*-coding: utf-8-*-
 
 import json
+import os
 import vars
 
 
@@ -36,7 +37,8 @@ class JsonConfStruct:
             return self.__scripts
 
 
-
+def removef(fname):
+        os.remove(fname)
 
 def readf(fname):
     with open(fname, mode = 'r') as file:
